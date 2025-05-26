@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Video Game Journey</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 My Video Game Journey</h1>
+        <p class="subtitle">Comprehensive analysis of games played: timeline, ratings by genre, and playtime relationships</p>
+        
+        <div class="stats" id="stats"></div>
+        
+        <div class="controls">
+            <div class="control-section">
+                <div class="control-title">Platforms</div>
+                <div class="platform-checkboxes" id="platformCheckboxes"></div>
+                <button class="clear-filters" onclick="clearPlatformFilters()">Clear All</button>
+            </div>
+            
+            <div class="control-section">
+                <div class="control-title">Tags</div>
+                <div class="tag-checkboxes" id="tagCheckboxes"></div>
+                <button class="clear-filters" onclick="clearTagFilters()">Clear All</button>
+            </div>
+            
+            <div class="control-section">
+                <div class="control-title">Status</div>
+                <div class="platform-checkboxes" id="statusCheckboxes"></div>
+                <button class="clear-filters" onclick="clearStatusFilters()">Clear All</button>
+            </div>
+            
+            <div class="control-section">
+                <div class="control-title">Date Range</div>
+                <div class="date-range">
+                    <div class="date-input-group">
+                        <label for="startDate">From</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="date-input-group">
+                        <label for="endDate">To</label>
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+                <button class="clear-filters" onclick="clearDateFilter()" style="margin-top: 10px;">Clear Range</button>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart" id="chart"></div>
+            <div class="zoom-instructions">
+                🔍 Scroll to zoom • Click and drag to pan • Hover over points for details
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 30px;">
+            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📊 Rating Distribution by Tag</h2>
+            <div class="chart" id="boxplotChart" style="height: 600px; overflow-y: auto;"></div>
+            <div class="zoom-instructions">
+                📈 Box plots show rating distributions • Tags ordered by average rating • Scroll to see all tags
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 30px;">
+            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">⏱️ Playtime vs Rating</h2>
+            <div class="chart" id="playtimeChart" style="height: 600px; overflow: hidden;"></div>
+            <div class="zoom-instructions">
+                🎮 Playtime vs rating relationship • Scroll to zoom • Click and drag to pan • Hover over points for details
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

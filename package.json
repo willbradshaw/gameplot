@@ -1,0 +1,39 @@
+{
+  "name": "video-game-dashboard",
+  "version": "1.0.0",
+  "description": "Interactive dashboard for analyzing video game playing patterns and preferences. Load your gaming data from JSON and explore three complementary visualizations: timeline scatter plot, rating distribution by tags, and playtime vs rating analysis.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "start": "python -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/video-game-dashboard.git"
+  },
+  "keywords": [
+    "data-visualization",
+    "d3js",
+    "gaming",
+    "analytics",
+    "dashboard",
+    "interactive"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/video-game-dashboard/issues"
+  },
+  "homepage": "https://github.com/yourusername/video-game-dashboard#readme",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
