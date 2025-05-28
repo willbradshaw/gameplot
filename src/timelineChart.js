@@ -12,7 +12,7 @@ const TIMELINE_CONFIG = {
 };
 
 // Global chart variables
-let svg, g, xScale, yScale, tooltip, zoom;
+let svg, g, xScale, yScale, tooltip, zoom, originalXScale;
 
 /**
  * Create the main timeline chart
@@ -35,6 +35,9 @@ export function createTimelineChart(data) {
     xScale = d3.scaleTime()
         .domain(xExtent)
         .range([0, chartWidth]);
+    
+    // Store original scale for zoom boundary calculations
+    originalXScale = xScale.copy();
 
     yScale = d3.scaleLinear()
         .domain([0, 10])
@@ -100,12 +103,17 @@ export function createTimelineChart(data) {
     // Create tooltip
     tooltip = d3.select("#tooltip");
 
-    // Add zoom behavior with constraints
+    // Calculate proper translate extent based on data bounds
+    const dataMinX = originalXScale(xExtent[0]);
+    const dataMaxX = originalXScale(xExtent[1]);
+    const padding = 50; // Small padding beyond data extents
+    
+    // Add zoom behavior with data-bounded constraints
     zoom = d3.zoom()
         .scaleExtent(ZOOM_CONFIG.scaleExtent)
         .extent([[0, 0], [chartWidth, chartHeight]])
-        .translateExtent([[-chartWidth * ZOOM_CONFIG.translateExtentMultiplier, -Infinity], 
-                         [chartWidth * (ZOOM_CONFIG.translateExtentMultiplier + 1), Infinity]])
+        .translateExtent([[dataMinX - padding, -Infinity], 
+                         [dataMaxX + padding, Infinity]])
         .on("zoom", handleZoom);
 
     svg.call(zoom);
@@ -117,8 +125,35 @@ export function createTimelineChart(data) {
  */
 function handleZoom(event) {
     const { chartWidth, chartHeight } = TIMELINE_CONFIG;
-    const transform = event.transform;
-    const newXScale = transform.rescaleX(xScale);
+    let transform = event.transform;
+    
+    // Get the current data extent in screen coordinates after transformation
+    const dataExtent = originalXScale.domain();
+    const transformedMinX = transform.applyX(originalXScale(dataExtent[0]));
+    const transformedMaxX = transform.applyX(originalXScale(dataExtent[1]));
+    
+    // Add padding buffer
+    const padding = 50;
+    
+    // Check if we need to constrain the transform to keep data within bounds
+    let newTransform = transform;
+    
+    // If leftmost data point would go beyond right edge (+ padding)
+    if (transformedMinX > chartWidth + padding) {
+        const targetMinX = chartWidth + padding;
+        const correctedTranslateX = targetMinX - transform.k * originalXScale(dataExtent[0]);
+        newTransform = d3.zoomIdentity.translate(correctedTranslateX, transform.y).scale(transform.k);
+    }
+    
+    // If rightmost data point would go beyond left edge (- padding)
+    if (transformedMaxX < -padding) {
+        const targetMaxX = -padding;
+        const correctedTranslateX = targetMaxX - transform.k * originalXScale(dataExtent[1]);
+        newTransform = d3.zoomIdentity.translate(correctedTranslateX, transform.y).scale(transform.k);
+    }
+    
+    // Apply the (possibly corrected) transform
+    const newXScale = newTransform.rescaleX(originalXScale);
     
     // Update axis
     g.select(".axis")
@@ -141,6 +176,11 @@ function handleZoom(event) {
         )
         .selectAll("line")
         .attr("class", "grid-line");
+    
+    // If we had to correct the transform, update the zoom transform
+    if (newTransform !== transform) {
+        svg.call(zoom.transform, newTransform);
+    }
 }
 
 /**
@@ -165,6 +205,7 @@ export function renderTimelinePoints(filteredData) {
         .attr("r", d => Math.sqrt(d.hoursPlayed) * 0.8 + 4)
         .attr("fill", d => getPlatformColor(d.platform))
         .attr("opacity", 0.8)
+        .style("cursor", "pointer") // Add pointer cursor to indicate clickability
         .on("mouseover", function(event, d) {
             d3.select(this).attr("opacity", 1);
             showTooltip(event, d);
@@ -175,6 +216,12 @@ export function renderTimelinePoints(filteredData) {
         .on("mouseout", function() {
             d3.select(this).attr("opacity", 0.8);
             hideTooltip();
+        })
+        .on("click", function(event, d) {
+            // Open URL in new tab/window when point is clicked
+            if (d.url) {
+                window.open(d.url, '_blank');
+            }
         });
 }
 
@@ -205,10 +252,6 @@ function showTooltip(event, d) {
             <div class="tooltip-detail">
                 <span class="tooltip-label">Hours Played:</span>
                 <span>${d.hoursPlayed}h</span>
-            </div>
-            <div class="tooltip-detail">
-                <span class="tooltip-label">First Played:</span>
-                <span>${d3.timeFormat("%b %d, %Y")(d.firstPlayedDate)}</span>
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
