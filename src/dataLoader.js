@@ -9,7 +9,7 @@ let gameData = [];
  */
 export async function loadGameData() {
     try {
-        const response = await fetch('data/merged-games.json');
+        const response = await fetch('./games.json');
         const jsonData = await response.json();
         
         // Process the data - convert date strings to Date objects
