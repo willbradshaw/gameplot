@@ -125,7 +125,8 @@ def merge_platform(merged_games: dict[str, dict[str, object]] | None,
             logger.debug(f"New entry: {game_data}")
             # If this is the first platform for this game, format as a new entry
             output_dict[game_name]["platforms"] = [game_data["platform"]]
-            output_dict[game_name]["lastPlayed"] = game_data["lastPlayed"]
+            output_dict[game_name]["lastPlayedSingle"] = [game_data["lastPlayed"]]
+            output_dict[game_name]["lastPlayedTotal"] = game_data["lastPlayed"]
             output_dict[game_name]["hoursPlayedSingle"] = [game_data["hoursPlayed"]]
             output_dict[game_name]["hoursPlayedTotal"] = game_data["hoursPlayed"]
             output_dict[game_name]["ids"] = [game_data["id"]]
@@ -142,14 +143,19 @@ def merge_platform(merged_games: dict[str, dict[str, object]] | None,
                 assert merged_games[game_name]["ids"][platform_idx] == game_data["id"]
                 assert merged_games[game_name]["urls"][platform_idx] == game_data["url"]
                 output_dict[game_name]["hoursPlayedSingle"][platform_idx] += game_data["hoursPlayed"]
+                output_dict[game_name]["lastPlayedSingle"][platform_idx] = get_most_recent_date(
+                    merged_games[game_name]["lastPlayedSingle"][platform_idx],
+                    game_data["lastPlayed"],
+                )
             else:
                 logger.debug(f"Platform {game_data['platform']} not in list")
                 output_dict[game_name]["platforms"].append(game_data["platform"])
                 output_dict[game_name]["ids"].append(game_data["id"])
                 output_dict[game_name]["urls"].append(game_data["url"])
                 output_dict[game_name]["hoursPlayedSingle"].append(game_data["hoursPlayed"])
-            output_dict[game_name]["lastPlayed"] = get_most_recent_date(
-                merged_games[game_name]["lastPlayed"],
+                output_dict[game_name]["lastPlayedSingle"].append(game_data["lastPlayed"])
+            output_dict[game_name]["lastPlayedTotal"] = get_most_recent_date(
+                merged_games[game_name]["lastPlayedTotal"],
                 game_data["lastPlayed"],
             )
             output_dict[game_name]["hoursPlayedTotal"] += game_data["hoursPlayed"]
