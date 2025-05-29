@@ -12,6 +12,8 @@ const PLAYTIME_CONFIG = {
 };
 
 let playtimeSvg = null;
+let originalXScale = null;
+let originalYScale = null;
 
 /**
  * Render the playtime vs rating chart
@@ -42,13 +44,17 @@ export function renderPlaytimeChart(filteredData) {
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
     // Create scales
-    const playtimeXScale = d3.scaleLinear()
-        .domain([0, d3.max(filteredData, d => d.hoursPlayed) * 1.1])
+    const playtimeXScale = d3.scaleLog()
+        .domain([0.1, d3.max(filteredData, d => Math.max(d.hoursPlayed, 0.1)) * 1.1])
         .range([0, chartWidth]);
 
     const playtimeYScale = d3.scaleLinear()
         .domain([0, 10])
         .range([chartHeight, 0]);
+
+    // Store original scales for zoom boundary calculations
+    originalXScale = playtimeXScale.copy();
+    originalYScale = playtimeYScale.copy();
 
     // Create axes
     const playtimeXAxis = d3.axisBottom(playtimeXScale);
@@ -100,34 +106,45 @@ export function renderPlaytimeChart(filteredData) {
         .style("text-anchor", "middle")
         .text("Hours Played");
 
-    // Add zoom behavior
+    // Calculate proper translate extent based on data bounds
+    const padding = 50; // Padding buffer beyond data extents
+    
+    // Get data range in screen coordinates
+    const xExtent = originalXScale.domain();
+    const yExtent = originalYScale.domain();
+    
+    const dataMinX = originalXScale(xExtent[0]);
+    const dataMaxX = originalXScale(xExtent[1]);
+    const dataMinY = originalYScale(yExtent[1]); // Note: Y scale is inverted
+    const dataMaxY = originalYScale(yExtent[0]);
+
+    // Add zoom behavior with data-bounded constraints
     const playtimeZoom = d3.zoom()
         .scaleExtent(ZOOM_CONFIG.scaleExtent)
         .extent([[0, 0], [chartWidth, chartHeight]])
-        .on("zoom", (event) => handlePlaytimeZoom(event, playtimeXScale, playtimeYScale, 
-                                                  playtimeXAxisGroup, playtimeYAxisGroup, 
+        .translateExtent([[dataMinX - padding, dataMinY - padding], 
+                         [dataMaxX + padding, dataMaxY + padding]])
+        .on("zoom", (event) => handlePlaytimeZoom(event, playtimeXAxisGroup, playtimeYAxisGroup, 
                                                   playtimeG, chartWidth, chartHeight));
 
     playtimeSvg.call(playtimeZoom);
 
     // Render data points
-    renderPlaytimePoints(filteredData, playtimeG, playtimeXScale, playtimeYScale);
+    renderPlaytimePoints(filteredData, playtimeG);
 }
 
 /**
  * Handle zoom events for the playtime chart
  * @param {Object} event - D3 zoom event
- * @param {Function} xScale - Original X scale
- * @param {Function} yScale - Original Y scale
  * @param {Object} xAxisGroup - X axis group selection
  * @param {Object} yAxisGroup - Y axis group selection
  * @param {Object} g - Main chart group
  * @param {number} chartWidth - Chart width
  * @param {number} chartHeight - Chart height
  */
-function handlePlaytimeZoom(event, xScale, yScale, xAxisGroup, yAxisGroup, g, chartWidth, chartHeight) {
-    const newXScale = event.transform.rescaleX(xScale);
-    const newYScale = event.transform.rescaleY(yScale);
+function handlePlaytimeZoom(event, xAxisGroup, yAxisGroup, g, chartWidth, chartHeight) {
+    const newXScale = event.transform.rescaleX(originalXScale);
+    const newYScale = event.transform.rescaleY(originalYScale);
     
     // Update axes
     xAxisGroup.call(d3.axisBottom(newXScale));
@@ -160,10 +177,8 @@ function handlePlaytimeZoom(event, xScale, yScale, xAxisGroup, yAxisGroup, g, ch
  * Render data points on the playtime chart
  * @param {Array} filteredData - Filtered game data
  * @param {Object} g - Chart group selection
- * @param {Function} xScale - X scale function
- * @param {Function} yScale - Y scale function
  */
-function renderPlaytimePoints(filteredData, g, xScale, yScale) {
+function renderPlaytimePoints(filteredData, g) {
     const circles = g.selectAll(".playtime-circle")
         .data(filteredData, d => d.game);
 
@@ -176,14 +191,14 @@ function renderPlaytimePoints(filteredData, g, xScale, yScale) {
     const circlesUpdate = circlesEnter.merge(circles);
 
     circlesUpdate
-        .attr("cx", d => xScale(d.hoursPlayed))
-        .attr("cy", d => yScale(d.rating))
+        .attr("cx", d => originalXScale(d.hoursPlayed))
+        .attr("cy", d => originalYScale(d.rating))
         .attr("r", 8)
         .attr("fill", d => getPlatformColor(d.platform))
         .attr("stroke", "rgba(255,255,255,0.3)")
         .attr("stroke-width", 1)
         .attr("opacity", 0.8)
-        .style("cursor", "pointer")
+        .style("cursor", "pointer") // Add pointer cursor to indicate clickability
         .style("transition", "all 0.2s ease")
         .on("mouseover", function(event, d) {
             d3.select(this)
@@ -204,6 +219,12 @@ function renderPlaytimePoints(filteredData, g, xScale, yScale) {
                 .attr("stroke", "rgba(255,255,255,0.3)")
                 .style("filter", "brightness(1)");
             hidePlaytimeTooltip();
+        })
+        .on("click", function(event, d) {
+            // Open URL in new tab/window when point is clicked
+            if (d.url) {
+                window.open(d.url, '_blank');
+            }
         });
 }
 
@@ -235,10 +256,6 @@ function showPlaytimeTooltip(event, d) {
             <div class="tooltip-detail">
                 <span class="tooltip-label">Hours Played:</span>
                 <span>${d.hoursPlayed}h</span>
-            </div>
-            <div class="tooltip-detail">
-                <span class="tooltip-label">First Played:</span>
-                <span>${d3.timeFormat("%b %d, %Y")(d.firstPlayedDate)}</span>
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>

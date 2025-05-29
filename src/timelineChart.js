@@ -125,35 +125,8 @@ export function createTimelineChart(data) {
  */
 function handleZoom(event) {
     const { chartWidth, chartHeight } = TIMELINE_CONFIG;
-    let transform = event.transform;
-    
-    // Get the current data extent in screen coordinates after transformation
-    const dataExtent = originalXScale.domain();
-    const transformedMinX = transform.applyX(originalXScale(dataExtent[0]));
-    const transformedMaxX = transform.applyX(originalXScale(dataExtent[1]));
-    
-    // Add padding buffer
-    const padding = 50;
-    
-    // Check if we need to constrain the transform to keep data within bounds
-    let newTransform = transform;
-    
-    // If leftmost data point would go beyond right edge (+ padding)
-    if (transformedMinX > chartWidth + padding) {
-        const targetMinX = chartWidth + padding;
-        const correctedTranslateX = targetMinX - transform.k * originalXScale(dataExtent[0]);
-        newTransform = d3.zoomIdentity.translate(correctedTranslateX, transform.y).scale(transform.k);
-    }
-    
-    // If rightmost data point would go beyond left edge (- padding)
-    if (transformedMaxX < -padding) {
-        const targetMaxX = -padding;
-        const correctedTranslateX = targetMaxX - transform.k * originalXScale(dataExtent[1]);
-        newTransform = d3.zoomIdentity.translate(correctedTranslateX, transform.y).scale(transform.k);
-    }
-    
-    // Apply the (possibly corrected) transform
-    const newXScale = newTransform.rescaleX(originalXScale);
+    const transform = event.transform;
+    const newXScale = transform.rescaleX(originalXScale);
     
     // Update axis
     g.select(".axis")
@@ -176,11 +149,6 @@ function handleZoom(event) {
         )
         .selectAll("line")
         .attr("class", "grid-line");
-    
-    // If we had to correct the transform, update the zoom transform
-    if (newTransform !== transform) {
-        svg.call(zoom.transform, newTransform);
-    }
 }
 
 /**
