@@ -3,7 +3,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-01-06",
+    "lastPlayedSingle": [
+      "2024-01-06"
+    ],
+    "lastPlayedTotal": "2024-01-06",
     "hoursPlayedSingle": [
       418.6
     ],
@@ -20,7 +23,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-05-22",
+    "lastPlayedSingle": [
+      "2025-05-22"
+    ],
+    "lastPlayedTotal": "2025-05-22",
     "hoursPlayedSingle": [
       173.6
     ],
@@ -38,7 +44,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2024-03-31",
+    "lastPlayedSingle": [
+      "2022-05-23",
+      "2024-03-31"
+    ],
+    "lastPlayedTotal": "2024-03-31",
     "hoursPlayedSingle": [
       143.6,
       37
@@ -59,7 +69,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2025-05-11",
+    "lastPlayedSingle": [
+      "2024-12-16",
+      "2025-05-11"
+    ],
+    "lastPlayedTotal": "2025-05-11",
     "hoursPlayedSingle": [
       136.4,
       143
@@ -79,7 +93,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-10-13",
+    "lastPlayedSingle": [
+      "2018-10-13"
+    ],
+    "lastPlayedTotal": "2018-10-13",
     "hoursPlayedSingle": [
       95.7
     ],
@@ -96,7 +113,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-08-09",
+    "lastPlayedSingle": [
+      "2018-08-09"
+    ],
+    "lastPlayedTotal": "2018-08-09",
     "hoursPlayedSingle": [
       74
     ],
@@ -113,7 +133,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2021-01-10",
+    "lastPlayedSingle": [
+      "2021-01-10"
+    ],
+    "lastPlayedTotal": "2021-01-10",
     "hoursPlayedSingle": [
       72.7
     ],
@@ -124,13 +147,16 @@
     "urls": [
       "https://store.steampowered.com/app/289070"
     ],
-    "game": "Sid Meier's Civilization VI"
+    "game": "Sid Meier’s Civilization® VI"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-02-01",
+    "lastPlayedSingle": [
+      "2015-02-01"
+    ],
+    "lastPlayedTotal": "2015-02-01",
     "hoursPlayedSingle": [
       71.5
     ],
@@ -147,7 +173,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-05-12",
+    "lastPlayedSingle": [
+      "2024-05-12"
+    ],
+    "lastPlayedTotal": "2024-05-12",
     "hoursPlayedSingle": [
       59.8
     ],
@@ -164,7 +193,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2011-04-01",
+    "lastPlayedSingle": [
+      "2011-04-01"
+    ],
+    "lastPlayedTotal": "2011-04-01",
     "hoursPlayedSingle": [
       57.1
     ],
@@ -175,13 +207,16 @@
     "urls": [
       "https://store.steampowered.com/app/22330"
     ],
-    "game": "The Elder Scrolls IV: Oblivion Game of the Year Edition (2009)"
+    "game": "The Elder Scrolls IV: Oblivion® Game of the Year Edition (2009)"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-05-07",
+    "lastPlayedSingle": [
+      "2020-05-07"
+    ],
+    "lastPlayedTotal": "2020-05-07",
     "hoursPlayedSingle": [
       50.6
     ],
@@ -198,7 +233,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-03-01",
+    "lastPlayedSingle": [
+      "2014-03-01"
+    ],
+    "lastPlayedTotal": "2014-03-01",
     "hoursPlayedSingle": [
       48.5
     ],
@@ -215,7 +253,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-08-10",
+    "lastPlayedSingle": [
+      "2024-08-10"
+    ],
+    "lastPlayedTotal": "2024-08-10",
     "hoursPlayedSingle": [
       44.9
     ],
@@ -232,7 +273,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-11-19",
+    "lastPlayedSingle": [
+      "2023-11-19"
+    ],
+    "lastPlayedTotal": "2023-11-19",
     "hoursPlayedSingle": [
       44.4
     ],
@@ -243,13 +287,16 @@
     "urls": [
       "https://store.steampowered.com/app/632470"
     ],
-    "game": "Disco Elysium"
+    "game": "Disco Elysium - The Final Cut"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-10-12",
+    "lastPlayedSingle": [
+      "2024-10-12"
+    ],
+    "lastPlayedTotal": "2024-10-12",
     "hoursPlayedSingle": [
       43.5
     ],
@@ -266,7 +313,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-12-15",
+    "lastPlayedSingle": [
+      "2013-12-15"
+    ],
+    "lastPlayedTotal": "2013-12-15",
     "hoursPlayedSingle": [
       35.8
     ],
@@ -283,7 +333,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-01-01",
+    "lastPlayedSingle": [
+      "2025-01-01"
+    ],
+    "lastPlayedTotal": "2025-01-01",
     "hoursPlayedSingle": [
       35.2
     ],
@@ -301,7 +354,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2025-01-25",
+    "lastPlayedSingle": [
+      "2017-10-28",
+      "2025-01-25"
+    ],
+    "lastPlayedTotal": "2025-01-25",
     "hoursPlayedSingle": [
       34.8,
       13.6
@@ -321,7 +378,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-05-27",
+    "lastPlayedSingle": [
+      "2018-05-27"
+    ],
+    "lastPlayedTotal": "2018-05-27",
     "hoursPlayedSingle": [
       33.5
     ],
@@ -338,7 +398,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-10-16",
+    "lastPlayedSingle": [
+      "2015-10-16"
+    ],
+    "lastPlayedTotal": "2015-10-16",
     "hoursPlayedSingle": [
       33.3
     ],
@@ -356,7 +419,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2024-10-10",
+    "lastPlayedSingle": [
+      "2024-10-10",
+      "2022-05-28"
+    ],
+    "lastPlayedTotal": "2024-10-10",
     "hoursPlayedSingle": [
       33,
       17.6
@@ -376,7 +443,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-04-15",
+    "lastPlayedSingle": [
+      "2018-04-15"
+    ],
+    "lastPlayedTotal": "2018-04-15",
     "hoursPlayedSingle": [
       27.6
     ],
@@ -393,7 +463,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2019-04-06",
+    "lastPlayedSingle": [
+      "2019-04-06"
+    ],
+    "lastPlayedTotal": "2019-04-06",
     "hoursPlayedSingle": [
       27.5
     ],
@@ -411,7 +484,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2025-02-23",
+    "lastPlayedSingle": [
+      "2018-05-06",
+      "2025-02-23"
+    ],
+    "lastPlayedTotal": "2025-02-23",
     "hoursPlayedSingle": [
       27.3,
       138.4
@@ -431,7 +508,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-04-30",
+    "lastPlayedSingle": [
+      "2025-04-30"
+    ],
+    "lastPlayedTotal": "2025-04-30",
     "hoursPlayedSingle": [
       26.9
     ],
@@ -448,7 +528,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-12-04",
+    "lastPlayedSingle": [
+      "2018-12-04"
+    ],
+    "lastPlayedTotal": "2018-12-04",
     "hoursPlayedSingle": [
       23.9
     ],
@@ -465,7 +548,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-08-03",
+    "lastPlayedSingle": [
+      "2023-08-03"
+    ],
+    "lastPlayedTotal": "2023-08-03",
     "hoursPlayedSingle": [
       21.8
     ],
@@ -482,7 +568,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-06-16",
+    "lastPlayedSingle": [
+      "2024-06-16"
+    ],
+    "lastPlayedTotal": "2024-06-16",
     "hoursPlayedSingle": [
       19.8
     ],
@@ -499,7 +588,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-10-05",
+    "lastPlayedSingle": [
+      "2023-10-05"
+    ],
+    "lastPlayedTotal": "2023-10-05",
     "hoursPlayedSingle": [
       19.6
     ],
@@ -517,7 +609,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2023-12-16",
+    "lastPlayedSingle": [
+      "2022-04-09",
+      "2023-12-16"
+    ],
+    "lastPlayedTotal": "2023-12-16",
     "hoursPlayedSingle": [
       19,
       39.5
@@ -537,7 +633,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-04-01",
+    "lastPlayedSingle": [
+      "2013-04-01"
+    ],
+    "lastPlayedTotal": "2013-04-01",
     "hoursPlayedSingle": [
       18.1
     ],
@@ -554,7 +653,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       15.2
     ],
@@ -571,7 +673,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2022-12-26",
+    "lastPlayedSingle": [
+      "2022-12-26"
+    ],
+    "lastPlayedTotal": "2022-12-26",
     "hoursPlayedSingle": [
       15.2
     ],
@@ -588,7 +693,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-06-30",
+    "lastPlayedSingle": [
+      "2014-06-30"
+    ],
+    "lastPlayedTotal": "2014-06-30",
     "hoursPlayedSingle": [
       15
     ],
@@ -605,7 +713,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-03-27",
+    "lastPlayedSingle": [
+      "2025-03-27"
+    ],
+    "lastPlayedTotal": "2025-03-27",
     "hoursPlayedSingle": [
       15
     ],
@@ -622,7 +733,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-18",
+    "lastPlayedSingle": [
+      "2020-12-18"
+    ],
+    "lastPlayedTotal": "2020-12-18",
     "hoursPlayedSingle": [
       14.5
     ],
@@ -639,7 +753,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-07-10",
+    "lastPlayedSingle": [
+      "2015-07-10"
+    ],
+    "lastPlayedTotal": "2015-07-10",
     "hoursPlayedSingle": [
       14
     ],
@@ -656,7 +773,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-08-24",
+    "lastPlayedSingle": [
+      "2018-08-24"
+    ],
+    "lastPlayedTotal": "2018-08-24",
     "hoursPlayedSingle": [
       13.8
     ],
@@ -673,7 +793,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-06-18",
+    "lastPlayedSingle": [
+      "2023-06-18"
+    ],
+    "lastPlayedTotal": "2023-06-18",
     "hoursPlayedSingle": [
       13.8
     ],
@@ -690,7 +813,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-11-05",
+    "lastPlayedSingle": [
+      "2023-11-05"
+    ],
+    "lastPlayedTotal": "2023-11-05",
     "hoursPlayedSingle": [
       13.7
     ],
@@ -707,7 +833,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-08-31",
+    "lastPlayedSingle": [
+      "2018-08-31"
+    ],
+    "lastPlayedTotal": "2018-08-31",
     "hoursPlayedSingle": [
       13.3
     ],
@@ -724,7 +853,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-05-27",
+    "lastPlayedSingle": [
+      "2025-05-27"
+    ],
+    "lastPlayedTotal": "2025-05-27",
     "hoursPlayedSingle": [
       11.8
     ],
@@ -741,7 +873,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-04-11",
+    "lastPlayedSingle": [
+      "2025-04-11"
+    ],
+    "lastPlayedTotal": "2025-04-11",
     "hoursPlayedSingle": [
       11.2
     ],
@@ -758,7 +893,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-10-28",
+    "lastPlayedSingle": [
+      "2020-10-28"
+    ],
+    "lastPlayedTotal": "2020-10-28",
     "hoursPlayedSingle": [
       11
     ],
@@ -775,7 +913,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-10-10",
+    "lastPlayedSingle": [
+      "2024-10-10"
+    ],
+    "lastPlayedTotal": "2024-10-10",
     "hoursPlayedSingle": [
       10.9
     ],
@@ -792,7 +933,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-07-29",
+    "lastPlayedSingle": [
+      "2023-07-29"
+    ],
+    "lastPlayedTotal": "2023-07-29",
     "hoursPlayedSingle": [
       10.8
     ],
@@ -809,7 +953,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-03-17",
+    "lastPlayedSingle": [
+      "2025-03-17"
+    ],
+    "lastPlayedTotal": "2025-03-17",
     "hoursPlayedSingle": [
       10.5
     ],
@@ -826,7 +973,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-07-02",
+    "lastPlayedSingle": [
+      "2024-07-02"
+    ],
+    "lastPlayedTotal": "2024-07-02",
     "hoursPlayedSingle": [
       10.4
     ],
@@ -843,7 +993,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-30",
+    "lastPlayedSingle": [
+      "2014-09-30"
+    ],
+    "lastPlayedTotal": "2014-09-30",
     "hoursPlayedSingle": [
       10.3
     ],
@@ -860,7 +1013,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-09",
+    "lastPlayedSingle": [
+      "2014-09-09"
+    ],
+    "lastPlayedTotal": "2014-09-09",
     "hoursPlayedSingle": [
       9.1
     ],
@@ -878,7 +1034,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2022-11-12",
+    "lastPlayedSingle": [
+      "2021-02-21",
+      "2022-11-12"
+    ],
+    "lastPlayedTotal": "2022-11-12",
     "hoursPlayedSingle": [
       8.9,
       18
@@ -898,7 +1058,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-04-06",
+    "lastPlayedSingle": [
+      "2025-04-06"
+    ],
+    "lastPlayedTotal": "2025-04-06",
     "hoursPlayedSingle": [
       8.5
     ],
@@ -915,7 +1078,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2022-10-01",
+    "lastPlayedSingle": [
+      "2022-10-01"
+    ],
+    "lastPlayedTotal": "2022-10-01",
     "hoursPlayedSingle": [
       8.2
     ],
@@ -932,7 +1098,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-04-14",
+    "lastPlayedSingle": [
+      "2017-04-14"
+    ],
+    "lastPlayedTotal": "2017-04-14",
     "hoursPlayedSingle": [
       8.1
     ],
@@ -949,7 +1118,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-10-09",
+    "lastPlayedSingle": [
+      "2020-10-09"
+    ],
+    "lastPlayedTotal": "2020-10-09",
     "hoursPlayedSingle": [
       8
     ],
@@ -966,7 +1138,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-05-24",
+    "lastPlayedSingle": [
+      "2020-05-24"
+    ],
+    "lastPlayedTotal": "2020-05-24",
     "hoursPlayedSingle": [
       8
     ],
@@ -983,7 +1158,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-09",
+    "lastPlayedSingle": [
+      "2014-09-09"
+    ],
+    "lastPlayedTotal": "2014-09-09",
     "hoursPlayedSingle": [
       7.8
     ],
@@ -1000,7 +1178,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-05-25",
+    "lastPlayedSingle": [
+      "2025-05-25"
+    ],
+    "lastPlayedTotal": "2025-05-25",
     "hoursPlayedSingle": [
       7.6
     ],
@@ -1017,7 +1198,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-09-08",
+    "lastPlayedSingle": [
+      "2012-09-08"
+    ],
+    "lastPlayedTotal": "2012-09-08",
     "hoursPlayedSingle": [
       7.5
     ],
@@ -1034,7 +1218,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       7.3
     ],
@@ -1051,7 +1238,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-08-18",
+    "lastPlayedSingle": [
+      "2018-08-18"
+    ],
+    "lastPlayedTotal": "2018-08-18",
     "hoursPlayedSingle": [
       7.2
     ],
@@ -1068,7 +1258,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-07-23",
+    "lastPlayedSingle": [
+      "2018-07-23"
+    ],
+    "lastPlayedTotal": "2018-07-23",
     "hoursPlayedSingle": [
       6.9
     ],
@@ -1085,7 +1278,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-03-29",
+    "lastPlayedSingle": [
+      "2014-03-29"
+    ],
+    "lastPlayedTotal": "2014-03-29",
     "hoursPlayedSingle": [
       6.8
     ],
@@ -1102,7 +1298,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-04-15",
+    "lastPlayedSingle": [
+      "2018-04-15"
+    ],
+    "lastPlayedTotal": "2018-04-15",
     "hoursPlayedSingle": [
       6.8
     ],
@@ -1119,7 +1318,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-03-29",
+    "lastPlayedSingle": [
+      "2014-03-29"
+    ],
+    "lastPlayedTotal": "2014-03-29",
     "hoursPlayedSingle": [
       6.7
     ],
@@ -1130,13 +1332,16 @@
     "urls": [
       "https://store.steampowered.com/app/211600"
     ],
-    "game": "Thief™ Gold"
+    "game": "Thief Gold"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-08-21",
+    "lastPlayedSingle": [
+      "2012-08-21"
+    ],
+    "lastPlayedTotal": "2012-08-21",
     "hoursPlayedSingle": [
       6.5
     ],
@@ -1154,7 +1359,11 @@
       "Steam",
       "PS5"
     ],
-    "lastPlayed": "2024-06-30",
+    "lastPlayedSingle": [
+      "2018-12-28",
+      "2024-06-30"
+    ],
+    "lastPlayedTotal": "2024-06-30",
     "hoursPlayedSingle": [
       6.4,
       0.1
@@ -1174,7 +1383,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2022-02-05",
+    "lastPlayedSingle": [
+      "2022-02-05"
+    ],
+    "lastPlayedTotal": "2022-02-05",
     "hoursPlayedSingle": [
       6.4
     ],
@@ -1191,7 +1403,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-12",
+    "lastPlayedSingle": [
+      "2020-12-12"
+    ],
+    "lastPlayedTotal": "2020-12-12",
     "hoursPlayedSingle": [
       6.2
     ],
@@ -1208,7 +1423,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-07",
+    "lastPlayedSingle": [
+      "2014-09-07"
+    ],
+    "lastPlayedTotal": "2014-09-07",
     "hoursPlayedSingle": [
       6.2
     ],
@@ -1225,7 +1443,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-06-26",
+    "lastPlayedSingle": [
+      "2024-06-26"
+    ],
+    "lastPlayedTotal": "2024-06-26",
     "hoursPlayedSingle": [
       6.2
     ],
@@ -1242,7 +1463,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-04-02",
+    "lastPlayedSingle": [
+      "2013-04-02"
+    ],
+    "lastPlayedTotal": "2013-04-02",
     "hoursPlayedSingle": [
       6.1
     ],
@@ -1259,7 +1483,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-07",
+    "lastPlayedSingle": [
+      "2012-07-07"
+    ],
+    "lastPlayedTotal": "2012-07-07",
     "hoursPlayedSingle": [
       6
     ],
@@ -1276,7 +1503,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       5.9
     ],
@@ -1293,7 +1523,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-10-25",
+    "lastPlayedSingle": [
+      "2017-10-25"
+    ],
+    "lastPlayedTotal": "2017-10-25",
     "hoursPlayedSingle": [
       5.9
     ],
@@ -1310,7 +1543,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-09-28",
+    "lastPlayedSingle": [
+      "2018-09-28"
+    ],
+    "lastPlayedTotal": "2018-09-28",
     "hoursPlayedSingle": [
       5.9
     ],
@@ -1327,7 +1563,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-09-04",
+    "lastPlayedSingle": [
+      "2012-09-04"
+    ],
+    "lastPlayedTotal": "2012-09-04",
     "hoursPlayedSingle": [
       5.7
     ],
@@ -1344,7 +1583,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-04-12",
+    "lastPlayedSingle": [
+      "2020-04-12"
+    ],
+    "lastPlayedTotal": "2020-04-12",
     "hoursPlayedSingle": [
       5.7
     ],
@@ -1361,7 +1603,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2022-04-07",
+    "lastPlayedSingle": [
+      "2022-04-07"
+    ],
+    "lastPlayedTotal": "2022-04-07",
     "hoursPlayedSingle": [
       5.7
     ],
@@ -1378,7 +1623,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-10-31",
+    "lastPlayedSingle": [
+      "2012-10-31"
+    ],
+    "lastPlayedTotal": "2012-10-31",
     "hoursPlayedSingle": [
       5.5
     ],
@@ -1395,7 +1643,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-07",
+    "lastPlayedSingle": [
+      "2014-09-07"
+    ],
+    "lastPlayedTotal": "2014-09-07",
     "hoursPlayedSingle": [
       5.5
     ],
@@ -1412,7 +1663,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-08-09",
+    "lastPlayedSingle": [
+      "2024-08-09"
+    ],
+    "lastPlayedTotal": "2024-08-09",
     "hoursPlayedSingle": [
       5.5
     ],
@@ -1429,7 +1683,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2016-11-02",
+    "lastPlayedSingle": [
+      "2016-11-02"
+    ],
+    "lastPlayedTotal": "2016-11-02",
     "hoursPlayedSingle": [
       5.4
     ],
@@ -1446,7 +1703,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-10-05",
+    "lastPlayedSingle": [
+      "2018-10-05"
+    ],
+    "lastPlayedTotal": "2018-10-05",
     "hoursPlayedSingle": [
       5.3
     ],
@@ -1463,7 +1723,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-06-10",
+    "lastPlayedSingle": [
+      "2024-06-10"
+    ],
+    "lastPlayedTotal": "2024-06-10",
     "hoursPlayedSingle": [
       5.3
     ],
@@ -1480,7 +1743,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-21",
+    "lastPlayedSingle": [
+      "2013-07-21"
+    ],
+    "lastPlayedTotal": "2013-07-21",
     "hoursPlayedSingle": [
       5.1
     ],
@@ -1491,13 +1757,16 @@
     "urls": [
       "https://store.steampowered.com/app/94610"
     ],
-    "game": "Hector: Episode 2"
+    "game": "Hector: Ep 2"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-09-18",
+    "lastPlayedSingle": [
+      "2020-09-18"
+    ],
+    "lastPlayedTotal": "2020-09-18",
     "hoursPlayedSingle": [
       4.9
     ],
@@ -1514,7 +1783,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-12",
+    "lastPlayedSingle": [
+      "2013-07-12"
+    ],
+    "lastPlayedTotal": "2013-07-12",
     "hoursPlayedSingle": [
       4.9
     ],
@@ -1531,7 +1803,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-11-09",
+    "lastPlayedSingle": [
+      "2013-11-09"
+    ],
+    "lastPlayedTotal": "2013-11-09",
     "hoursPlayedSingle": [
       4.9
     ],
@@ -1548,7 +1823,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-11-22",
+    "lastPlayedSingle": [
+      "2024-11-22"
+    ],
+    "lastPlayedTotal": "2024-11-22",
     "hoursPlayedSingle": [
       4.8
     ],
@@ -1565,7 +1843,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-06-25",
+    "lastPlayedSingle": [
+      "2018-06-25"
+    ],
+    "lastPlayedTotal": "2018-06-25",
     "hoursPlayedSingle": [
       4.6
     ],
@@ -1582,7 +1863,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-03-01",
+    "lastPlayedSingle": [
+      "2025-03-01"
+    ],
+    "lastPlayedTotal": "2025-03-01",
     "hoursPlayedSingle": [
       4.6
     ],
@@ -1599,7 +1883,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-10-22",
+    "lastPlayedSingle": [
+      "2023-10-22"
+    ],
+    "lastPlayedTotal": "2023-10-22",
     "hoursPlayedSingle": [
       4.4
     ],
@@ -1616,7 +1903,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-11-10",
+    "lastPlayedSingle": [
+      "2017-11-10"
+    ],
+    "lastPlayedTotal": "2017-11-10",
     "hoursPlayedSingle": [
       4.3
     ],
@@ -1633,7 +1923,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-11-01",
+    "lastPlayedSingle": [
+      "2018-11-01"
+    ],
+    "lastPlayedTotal": "2018-11-01",
     "hoursPlayedSingle": [
       4.3
     ],
@@ -1650,7 +1943,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-11-09",
+    "lastPlayedSingle": [
+      "2013-11-09"
+    ],
+    "lastPlayedTotal": "2013-11-09",
     "hoursPlayedSingle": [
       4.2
     ],
@@ -1667,7 +1963,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-12-22",
+    "lastPlayedSingle": [
+      "2013-12-22"
+    ],
+    "lastPlayedTotal": "2013-12-22",
     "hoursPlayedSingle": [
       4.2
     ],
@@ -1684,7 +1983,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-08-20",
+    "lastPlayedSingle": [
+      "2012-08-20"
+    ],
+    "lastPlayedTotal": "2012-08-20",
     "hoursPlayedSingle": [
       4.1
     ],
@@ -1701,7 +2003,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-11-16",
+    "lastPlayedSingle": [
+      "2012-11-16"
+    ],
+    "lastPlayedTotal": "2012-11-16",
     "hoursPlayedSingle": [
       3.9
     ],
@@ -1718,7 +2023,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2016-06-05",
+    "lastPlayedSingle": [
+      "2016-06-05"
+    ],
+    "lastPlayedTotal": "2016-06-05",
     "hoursPlayedSingle": [
       3.8
     ],
@@ -1735,7 +2043,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2016-10-14",
+    "lastPlayedSingle": [
+      "2016-10-14"
+    ],
+    "lastPlayedTotal": "2016-10-14",
     "hoursPlayedSingle": [
       3.8
     ],
@@ -1752,7 +2063,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-07-10",
+    "lastPlayedSingle": [
+      "2015-07-10"
+    ],
+    "lastPlayedTotal": "2015-07-10",
     "hoursPlayedSingle": [
       3.6
     ],
@@ -1769,7 +2083,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-08-02",
+    "lastPlayedSingle": [
+      "2014-08-02"
+    ],
+    "lastPlayedTotal": "2014-08-02",
     "hoursPlayedSingle": [
       3.6
     ],
@@ -1786,7 +2103,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-03-19",
+    "lastPlayedSingle": [
+      "2012-03-19"
+    ],
+    "lastPlayedTotal": "2012-03-19",
     "hoursPlayedSingle": [
       3.5
     ],
@@ -1803,7 +2123,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-10-20",
+    "lastPlayedSingle": [
+      "2013-10-20"
+    ],
+    "lastPlayedTotal": "2013-10-20",
     "hoursPlayedSingle": [
       3.4
     ],
@@ -1820,7 +2143,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-18",
+    "lastPlayedSingle": [
+      "2013-07-18"
+    ],
+    "lastPlayedTotal": "2013-07-18",
     "hoursPlayedSingle": [
       3.4
     ],
@@ -1837,7 +2163,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2021-12-18",
+    "lastPlayedSingle": [
+      "2021-12-18"
+    ],
+    "lastPlayedTotal": "2021-12-18",
     "hoursPlayedSingle": [
       3.4
     ],
@@ -1854,7 +2183,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-11",
+    "lastPlayedSingle": [
+      "2012-07-11"
+    ],
+    "lastPlayedTotal": "2012-07-11",
     "hoursPlayedSingle": [
       3.3
     ],
@@ -1871,7 +2203,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-27",
+    "lastPlayedSingle": [
+      "2020-11-27"
+    ],
+    "lastPlayedTotal": "2020-11-27",
     "hoursPlayedSingle": [
       3.3
     ],
@@ -1888,7 +2223,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-01-04",
+    "lastPlayedSingle": [
+      "2025-01-04"
+    ],
+    "lastPlayedTotal": "2025-01-04",
     "hoursPlayedSingle": [
       3.2
     ],
@@ -1905,7 +2243,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-03-03",
+    "lastPlayedSingle": [
+      "2023-03-03"
+    ],
+    "lastPlayedTotal": "2023-03-03",
     "hoursPlayedSingle": [
       3.2
     ],
@@ -1922,7 +2263,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-11-18",
+    "lastPlayedSingle": [
+      "2012-11-18"
+    ],
+    "lastPlayedTotal": "2012-11-18",
     "hoursPlayedSingle": [
       3.1
     ],
@@ -1939,7 +2283,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-03-18",
+    "lastPlayedSingle": [
+      "2014-03-18"
+    ],
+    "lastPlayedTotal": "2014-03-18",
     "hoursPlayedSingle": [
       3.1
     ],
@@ -1956,7 +2303,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-08-31",
+    "lastPlayedSingle": [
+      "2014-08-31"
+    ],
+    "lastPlayedTotal": "2014-08-31",
     "hoursPlayedSingle": [
       3.1
     ],
@@ -1973,7 +2323,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-07-13",
+    "lastPlayedSingle": [
+      "2018-07-13"
+    ],
+    "lastPlayedTotal": "2018-07-13",
     "hoursPlayedSingle": [
       3.1
     ],
@@ -1990,7 +2343,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-22",
+    "lastPlayedSingle": [
+      "2013-07-22"
+    ],
+    "lastPlayedTotal": "2013-07-22",
     "hoursPlayedSingle": [
       3
     ],
@@ -2001,13 +2357,16 @@
     "urls": [
       "https://store.steampowered.com/app/94620"
     ],
-    "game": "Hector: Badge of Carnage - Full Series"
+    "game": "Hector: Ep 3"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-08-10",
+    "lastPlayedSingle": [
+      "2017-08-10"
+    ],
+    "lastPlayedTotal": "2017-08-10",
     "hoursPlayedSingle": [
       3
     ],
@@ -2024,7 +2383,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-11-21",
+    "lastPlayedSingle": [
+      "2012-11-21"
+    ],
+    "lastPlayedTotal": "2012-11-21",
     "hoursPlayedSingle": [
       2.9
     ],
@@ -2041,7 +2403,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-07-05",
+    "lastPlayedSingle": [
+      "2014-07-05"
+    ],
+    "lastPlayedTotal": "2014-07-05",
     "hoursPlayedSingle": [
       2.9
     ],
@@ -2058,7 +2423,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-17",
+    "lastPlayedSingle": [
+      "2020-11-17"
+    ],
+    "lastPlayedTotal": "2020-11-17",
     "hoursPlayedSingle": [
       2.9
     ],
@@ -2075,7 +2443,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2011-12-29",
+    "lastPlayedSingle": [
+      "2011-12-29"
+    ],
+    "lastPlayedTotal": "2011-12-29",
     "hoursPlayedSingle": [
       2.8
     ],
@@ -2092,7 +2463,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-03-28",
+    "lastPlayedSingle": [
+      "2015-03-28"
+    ],
+    "lastPlayedTotal": "2015-03-28",
     "hoursPlayedSingle": [
       2.6
     ],
@@ -2103,13 +2477,16 @@
     "urls": [
       "https://store.steampowered.com/app/35720"
     ],
-    "game": "Trine 2: Complete Story"
+    "game": "Trine 2"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-12-01",
+    "lastPlayedSingle": [
+      "2018-12-01"
+    ],
+    "lastPlayedTotal": "2018-12-01",
     "hoursPlayedSingle": [
       2.5
     ],
@@ -2126,7 +2503,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-11-10",
+    "lastPlayedSingle": [
+      "2018-11-10"
+    ],
+    "lastPlayedTotal": "2018-11-10",
     "hoursPlayedSingle": [
       2.5
     ],
@@ -2143,7 +2523,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-02-17",
+    "lastPlayedSingle": [
+      "2015-02-17"
+    ],
+    "lastPlayedTotal": "2015-02-17",
     "hoursPlayedSingle": [
       2.5
     ],
@@ -2160,7 +2543,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2021-04-28",
+    "lastPlayedSingle": [
+      "2021-04-28"
+    ],
+    "lastPlayedTotal": "2021-04-28",
     "hoursPlayedSingle": [
       2.5
     ],
@@ -2177,7 +2563,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-04-03",
+    "lastPlayedSingle": [
+      "2015-04-03"
+    ],
+    "lastPlayedTotal": "2015-04-03",
     "hoursPlayedSingle": [
       2.4
     ],
@@ -2194,7 +2583,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-06-28",
+    "lastPlayedSingle": [
+      "2018-06-28"
+    ],
+    "lastPlayedTotal": "2018-06-28",
     "hoursPlayedSingle": [
       2.4
     ],
@@ -2211,7 +2603,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-08",
+    "lastPlayedSingle": [
+      "2012-07-08"
+    ],
+    "lastPlayedTotal": "2012-07-08",
     "hoursPlayedSingle": [
       2.3
     ],
@@ -2228,7 +2623,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-15",
+    "lastPlayedSingle": [
+      "2012-07-15"
+    ],
+    "lastPlayedTotal": "2012-07-15",
     "hoursPlayedSingle": [
       2.3
     ],
@@ -2245,7 +2643,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-08-25",
+    "lastPlayedSingle": [
+      "2018-08-25"
+    ],
+    "lastPlayedTotal": "2018-08-25",
     "hoursPlayedSingle": [
       2.3
     ],
@@ -2262,7 +2663,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-08-09",
+    "lastPlayedSingle": [
+      "2024-08-09"
+    ],
+    "lastPlayedTotal": "2024-08-09",
     "hoursPlayedSingle": [
       2.3
     ],
@@ -2279,7 +2683,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-06-28",
+    "lastPlayedSingle": [
+      "2018-06-28"
+    ],
+    "lastPlayedTotal": "2018-06-28",
     "hoursPlayedSingle": [
       2.3
     ],
@@ -2296,7 +2703,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-08-29",
+    "lastPlayedSingle": [
+      "2020-08-29"
+    ],
+    "lastPlayedTotal": "2020-08-29",
     "hoursPlayedSingle": [
       2.3
     ],
@@ -2313,7 +2723,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-08-13",
+    "lastPlayedSingle": [
+      "2012-08-13"
+    ],
+    "lastPlayedTotal": "2012-08-13",
     "hoursPlayedSingle": [
       2.2
     ],
@@ -2330,7 +2743,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-07-01",
+    "lastPlayedSingle": [
+      "2024-07-01"
+    ],
+    "lastPlayedTotal": "2024-07-01",
     "hoursPlayedSingle": [
       2.2
     ],
@@ -2347,7 +2763,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-04",
+    "lastPlayedSingle": [
+      "2020-12-04"
+    ],
+    "lastPlayedTotal": "2020-12-04",
     "hoursPlayedSingle": [
       2
     ],
@@ -2364,7 +2783,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-11-12",
+    "lastPlayedSingle": [
+      "2014-11-12"
+    ],
+    "lastPlayedTotal": "2014-11-12",
     "hoursPlayedSingle": [
       2
     ],
@@ -2381,7 +2803,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-01-07",
+    "lastPlayedSingle": [
+      "2023-01-07"
+    ],
+    "lastPlayedTotal": "2023-01-07",
     "hoursPlayedSingle": [
       2
     ],
@@ -2398,7 +2823,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-11-09",
+    "lastPlayedSingle": [
+      "2014-11-09"
+    ],
+    "lastPlayedTotal": "2014-11-09",
     "hoursPlayedSingle": [
       1.9
     ],
@@ -2415,7 +2843,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-04-15",
+    "lastPlayedSingle": [
+      "2025-04-15"
+    ],
+    "lastPlayedTotal": "2025-04-15",
     "hoursPlayedSingle": [
       1.9
     ],
@@ -2432,7 +2863,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-10-11",
+    "lastPlayedSingle": [
+      "2018-10-11"
+    ],
+    "lastPlayedTotal": "2018-10-11",
     "hoursPlayedSingle": [
       1.8
     ],
@@ -2449,7 +2883,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-11-11",
+    "lastPlayedSingle": [
+      "2023-11-11"
+    ],
+    "lastPlayedTotal": "2023-11-11",
     "hoursPlayedSingle": [
       1.8
     ],
@@ -2466,7 +2903,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-03-29",
+    "lastPlayedSingle": [
+      "2025-03-29"
+    ],
+    "lastPlayedTotal": "2025-03-29",
     "hoursPlayedSingle": [
       1.8
     ],
@@ -2483,7 +2923,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-08",
+    "lastPlayedSingle": [
+      "2012-07-08"
+    ],
+    "lastPlayedTotal": "2012-07-08",
     "hoursPlayedSingle": [
       1.7
     ],
@@ -2500,7 +2943,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-10-18",
+    "lastPlayedSingle": [
+      "2015-10-18"
+    ],
+    "lastPlayedTotal": "2015-10-18",
     "hoursPlayedSingle": [
       1.7
     ],
@@ -2517,7 +2963,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-02-21",
+    "lastPlayedSingle": [
+      "2015-02-21"
+    ],
+    "lastPlayedTotal": "2015-02-21",
     "hoursPlayedSingle": [
       1.7
     ],
@@ -2528,13 +2977,16 @@
     "urls": [
       "https://store.steampowered.com/app/57640"
     ],
-    "game": "Broken Sword: Director's Cut (2009)"
+    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-12-13",
+    "lastPlayedSingle": [
+      "2014-12-13"
+    ],
+    "lastPlayedTotal": "2014-12-13",
     "hoursPlayedSingle": [
       1.6
     ],
@@ -2551,7 +3003,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2016-06-25",
+    "lastPlayedSingle": [
+      "2016-06-25"
+    ],
+    "lastPlayedTotal": "2016-06-25",
     "hoursPlayedSingle": [
       1.6
     ],
@@ -2568,7 +3023,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-10-23",
+    "lastPlayedSingle": [
+      "2020-10-23"
+    ],
+    "lastPlayedTotal": "2020-10-23",
     "hoursPlayedSingle": [
       1.6
     ],
@@ -2585,7 +3043,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-05-02",
+    "lastPlayedSingle": [
+      "2025-05-02"
+    ],
+    "lastPlayedTotal": "2025-05-02",
     "hoursPlayedSingle": [
       1.6
     ],
@@ -2602,7 +3063,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-11-01",
+    "lastPlayedSingle": [
+      "2018-11-01"
+    ],
+    "lastPlayedTotal": "2018-11-01",
     "hoursPlayedSingle": [
       1.5
     ],
@@ -2619,7 +3083,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-07-04",
+    "lastPlayedSingle": [
+      "2024-07-04"
+    ],
+    "lastPlayedTotal": "2024-07-04",
     "hoursPlayedSingle": [
       1.5
     ],
@@ -2636,7 +3103,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-11-29",
+    "lastPlayedSingle": [
+      "2018-11-29"
+    ],
+    "lastPlayedTotal": "2018-11-29",
     "hoursPlayedSingle": [
       1.4
     ],
@@ -2653,7 +3123,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-12-07",
+    "lastPlayedSingle": [
+      "2018-12-07"
+    ],
+    "lastPlayedTotal": "2018-12-07",
     "hoursPlayedSingle": [
       1.4
     ],
@@ -2670,7 +3143,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-04-04",
+    "lastPlayedSingle": [
+      "2014-04-04"
+    ],
+    "lastPlayedTotal": "2014-04-04",
     "hoursPlayedSingle": [
       1.3
     ],
@@ -2681,13 +3157,16 @@
     "urls": [
       "https://store.steampowered.com/app/22320"
     ],
-    "game": "The Elder Scrolls III: Morrowind"
+    "game": "The Elder Scrolls III: Morrowind® Game of the Year Edition"
   },
   {
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-13",
+    "lastPlayedSingle": [
+      "2020-12-13"
+    ],
+    "lastPlayedTotal": "2020-12-13",
     "hoursPlayedSingle": [
       1.3
     ],
@@ -2704,7 +3183,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-04-06",
+    "lastPlayedSingle": [
+      "2025-04-06"
+    ],
+    "lastPlayedTotal": "2025-04-06",
     "hoursPlayedSingle": [
       1.3
     ],
@@ -2721,7 +3203,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-11-11",
+    "lastPlayedSingle": [
+      "2017-11-11"
+    ],
+    "lastPlayedTotal": "2017-11-11",
     "hoursPlayedSingle": [
       1.2
     ],
@@ -2738,7 +3223,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-08-29",
+    "lastPlayedSingle": [
+      "2015-08-29"
+    ],
+    "lastPlayedTotal": "2015-08-29",
     "hoursPlayedSingle": [
       1.2
     ],
@@ -2755,7 +3243,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-17",
+    "lastPlayedSingle": [
+      "2012-07-17"
+    ],
+    "lastPlayedTotal": "2012-07-17",
     "hoursPlayedSingle": [
       1.2
     ],
@@ -2772,7 +3263,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-19",
+    "lastPlayedSingle": [
+      "2020-12-19"
+    ],
+    "lastPlayedTotal": "2020-12-19",
     "hoursPlayedSingle": [
       1.2
     ],
@@ -2789,7 +3283,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-02-01",
+    "lastPlayedSingle": [
+      "2015-02-01"
+    ],
+    "lastPlayedTotal": "2015-02-01",
     "hoursPlayedSingle": [
       1.2
     ],
@@ -2806,7 +3303,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-05-04",
+    "lastPlayedSingle": [
+      "2025-05-04"
+    ],
+    "lastPlayedTotal": "2025-05-04",
     "hoursPlayedSingle": [
       1.2
     ],
@@ -2823,7 +3323,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-13",
+    "lastPlayedSingle": [
+      "2013-07-13"
+    ],
+    "lastPlayedTotal": "2013-07-13",
     "hoursPlayedSingle": [
       1.1
     ],
@@ -2840,7 +3343,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-05-06",
+    "lastPlayedSingle": [
+      "2020-05-06"
+    ],
+    "lastPlayedTotal": "2020-05-06",
     "hoursPlayedSingle": [
       1.1
     ],
@@ -2857,7 +3363,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-17",
+    "lastPlayedSingle": [
+      "2012-07-17"
+    ],
+    "lastPlayedTotal": "2012-07-17",
     "hoursPlayedSingle": [
       1
     ],
@@ -2874,7 +3383,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-08-07",
+    "lastPlayedSingle": [
+      "2024-08-07"
+    ],
+    "lastPlayedTotal": "2024-08-07",
     "hoursPlayedSingle": [
       1
     ],
@@ -2891,7 +3403,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-08",
+    "lastPlayedSingle": [
+      "2014-09-08"
+    ],
+    "lastPlayedTotal": "2014-09-08",
     "hoursPlayedSingle": [
       0.9
     ],
@@ -2908,7 +3423,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-23",
+    "lastPlayedSingle": [
+      "2013-07-23"
+    ],
+    "lastPlayedTotal": "2013-07-23",
     "hoursPlayedSingle": [
       0.9
     ],
@@ -2925,7 +3443,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-11-09",
+    "lastPlayedSingle": [
+      "2018-11-09"
+    ],
+    "lastPlayedTotal": "2018-11-09",
     "hoursPlayedSingle": [
       0.9
     ],
@@ -2942,7 +3463,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-11-01",
+    "lastPlayedSingle": [
+      "2018-11-01"
+    ],
+    "lastPlayedTotal": "2018-11-01",
     "hoursPlayedSingle": [
       0.8
     ],
@@ -2959,7 +3483,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-15",
+    "lastPlayedSingle": [
+      "2020-11-15"
+    ],
+    "lastPlayedTotal": "2020-11-15",
     "hoursPlayedSingle": [
       0.8
     ],
@@ -2976,7 +3503,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-23",
+    "lastPlayedSingle": [
+      "2012-07-23"
+    ],
+    "lastPlayedTotal": "2012-07-23",
     "hoursPlayedSingle": [
       0.7
     ],
@@ -2993,7 +3523,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-16",
+    "lastPlayedSingle": [
+      "2020-11-16"
+    ],
+    "lastPlayedTotal": "2020-11-16",
     "hoursPlayedSingle": [
       0.7
     ],
@@ -3010,7 +3543,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-26",
+    "lastPlayedSingle": [
+      "2020-12-26"
+    ],
+    "lastPlayedTotal": "2020-12-26",
     "hoursPlayedSingle": [
       0.6
     ],
@@ -3027,7 +3563,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-08",
+    "lastPlayedSingle": [
+      "2012-07-08"
+    ],
+    "lastPlayedTotal": "2012-07-08",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3044,7 +3583,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-02-18",
+    "lastPlayedSingle": [
+      "2015-02-18"
+    ],
+    "lastPlayedTotal": "2015-02-18",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3061,7 +3603,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-16",
+    "lastPlayedSingle": [
+      "2012-07-16"
+    ],
+    "lastPlayedTotal": "2012-07-16",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3078,7 +3623,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-08-29",
+    "lastPlayedSingle": [
+      "2015-08-29"
+    ],
+    "lastPlayedTotal": "2015-08-29",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3095,7 +3643,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-20",
+    "lastPlayedSingle": [
+      "2020-11-20"
+    ],
+    "lastPlayedTotal": "2020-11-20",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3112,7 +3663,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-12-07",
+    "lastPlayedSingle": [
+      "2018-12-07"
+    ],
+    "lastPlayedTotal": "2018-12-07",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3129,7 +3683,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-12-25",
+    "lastPlayedSingle": [
+      "2024-12-25"
+    ],
+    "lastPlayedTotal": "2024-12-25",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3146,7 +3703,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-09-13",
+    "lastPlayedSingle": [
+      "2020-09-13"
+    ],
+    "lastPlayedTotal": "2020-09-13",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -3163,7 +3723,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-03-29",
+    "lastPlayedSingle": [
+      "2015-03-29"
+    ],
+    "lastPlayedTotal": "2015-03-29",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3180,7 +3743,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-26",
+    "lastPlayedSingle": [
+      "2014-09-26"
+    ],
+    "lastPlayedTotal": "2014-09-26",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3197,7 +3763,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-25",
+    "lastPlayedSingle": [
+      "2013-07-25"
+    ],
+    "lastPlayedTotal": "2013-07-25",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3214,7 +3783,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-12-16",
+    "lastPlayedSingle": [
+      "2017-12-16"
+    ],
+    "lastPlayedTotal": "2017-12-16",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3231,7 +3803,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-19",
+    "lastPlayedSingle": [
+      "2020-12-19"
+    ],
+    "lastPlayedTotal": "2020-12-19",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3248,7 +3823,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-10-31",
+    "lastPlayedSingle": [
+      "2018-10-31"
+    ],
+    "lastPlayedTotal": "2018-10-31",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3265,7 +3843,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-16",
+    "lastPlayedSingle": [
+      "2020-11-16"
+    ],
+    "lastPlayedTotal": "2020-11-16",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3282,7 +3863,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       0.4
     ],
@@ -3299,7 +3883,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3316,7 +3903,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-13",
+    "lastPlayedSingle": [
+      "2020-12-13"
+    ],
+    "lastPlayedTotal": "2020-12-13",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3333,7 +3923,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-23",
+    "lastPlayedSingle": [
+      "2013-07-23"
+    ],
+    "lastPlayedTotal": "2013-07-23",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3350,7 +3943,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-06-17",
+    "lastPlayedSingle": [
+      "2012-06-17"
+    ],
+    "lastPlayedTotal": "2012-06-17",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3367,7 +3963,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-09-19",
+    "lastPlayedSingle": [
+      "2018-09-19"
+    ],
+    "lastPlayedTotal": "2018-09-19",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3384,7 +3983,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-07-23",
+    "lastPlayedSingle": [
+      "2018-07-23"
+    ],
+    "lastPlayedTotal": "2018-07-23",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3401,7 +4003,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-26",
+    "lastPlayedSingle": [
+      "2020-12-26"
+    ],
+    "lastPlayedTotal": "2020-12-26",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3418,7 +4023,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-04-01",
+    "lastPlayedSingle": [
+      "2017-04-01"
+    ],
+    "lastPlayedTotal": "2017-04-01",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3435,7 +4043,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-12-23",
+    "lastPlayedSingle": [
+      "2024-12-23"
+    ],
+    "lastPlayedTotal": "2024-12-23",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3452,7 +4063,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-07-07",
+    "lastPlayedSingle": [
+      "2024-07-07"
+    ],
+    "lastPlayedTotal": "2024-07-07",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -3469,7 +4083,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-23",
+    "lastPlayedSingle": [
+      "2013-07-23"
+    ],
+    "lastPlayedTotal": "2013-07-23",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3486,7 +4103,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-19",
+    "lastPlayedSingle": [
+      "2014-09-19"
+    ],
+    "lastPlayedTotal": "2014-09-19",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3503,7 +4123,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-07-06",
+    "lastPlayedSingle": [
+      "2014-07-06"
+    ],
+    "lastPlayedTotal": "2014-07-06",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3520,7 +4143,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-12-13",
+    "lastPlayedSingle": [
+      "2014-12-13"
+    ],
+    "lastPlayedTotal": "2014-12-13",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3537,7 +4163,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-03-29",
+    "lastPlayedSingle": [
+      "2015-03-29"
+    ],
+    "lastPlayedTotal": "2015-03-29",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3554,7 +4183,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2023-12-30",
+    "lastPlayedSingle": [
+      "2023-12-30"
+    ],
+    "lastPlayedTotal": "2023-12-30",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3571,7 +4203,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-04-11",
+    "lastPlayedSingle": [
+      "2020-04-11"
+    ],
+    "lastPlayedTotal": "2020-04-11",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3588,7 +4223,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2025-05-02",
+    "lastPlayedSingle": [
+      "2025-05-02"
+    ],
+    "lastPlayedTotal": "2025-05-02",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3605,7 +4243,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-12-23",
+    "lastPlayedSingle": [
+      "2024-12-23"
+    ],
+    "lastPlayedTotal": "2024-12-23",
     "hoursPlayedSingle": [
       0.2
     ],
@@ -3622,7 +4263,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-08",
+    "lastPlayedSingle": [
+      "2012-07-08"
+    ],
+    "lastPlayedTotal": "2012-07-08",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3639,7 +4283,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3656,7 +4303,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3673,7 +4323,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "1970-01-02",
+    "lastPlayedSingle": [
+      "1970-01-02"
+    ],
+    "lastPlayedTotal": "1970-01-02",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3690,7 +4343,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2015-03-29",
+    "lastPlayedSingle": [
+      "2015-03-29"
+    ],
+    "lastPlayedTotal": "2015-03-29",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3707,7 +4363,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2017-12-16",
+    "lastPlayedSingle": [
+      "2017-12-16"
+    ],
+    "lastPlayedTotal": "2017-12-16",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3724,7 +4383,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-09-14",
+    "lastPlayedSingle": [
+      "2014-09-14"
+    ],
+    "lastPlayedTotal": "2014-09-14",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3741,7 +4403,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2013-07-25",
+    "lastPlayedSingle": [
+      "2013-07-25"
+    ],
+    "lastPlayedTotal": "2013-07-25",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3758,7 +4423,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-07-14",
+    "lastPlayedSingle": [
+      "2012-07-14"
+    ],
+    "lastPlayedTotal": "2012-07-14",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3775,7 +4443,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-03-09",
+    "lastPlayedSingle": [
+      "2014-03-09"
+    ],
+    "lastPlayedTotal": "2014-03-09",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3792,7 +4463,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-12-13",
+    "lastPlayedSingle": [
+      "2014-12-13"
+    ],
+    "lastPlayedTotal": "2014-12-13",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3809,7 +4483,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-09-19",
+    "lastPlayedSingle": [
+      "2018-09-19"
+    ],
+    "lastPlayedTotal": "2018-09-19",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3826,7 +4503,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-04-11",
+    "lastPlayedSingle": [
+      "2020-04-11"
+    ],
+    "lastPlayedTotal": "2020-04-11",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3843,7 +4523,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2019-12-29",
+    "lastPlayedSingle": [
+      "2019-12-29"
+    ],
+    "lastPlayedTotal": "2019-12-29",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3860,7 +4543,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-12-19",
+    "lastPlayedSingle": [
+      "2020-12-19"
+    ],
+    "lastPlayedTotal": "2020-12-19",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3877,7 +4563,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2020-11-16",
+    "lastPlayedSingle": [
+      "2020-11-16"
+    ],
+    "lastPlayedTotal": "2020-11-16",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3894,7 +4583,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2024-11-30",
+    "lastPlayedSingle": [
+      "2024-11-30"
+    ],
+    "lastPlayedTotal": "2024-11-30",
     "hoursPlayedSingle": [
       0.1
     ],
@@ -3911,7 +4603,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2012-11-08",
+    "lastPlayedSingle": [
+      "2012-11-08"
+    ],
+    "lastPlayedTotal": "2012-11-08",
     "hoursPlayedSingle": [
       0
     ],
@@ -3928,7 +4623,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2014-11-12",
+    "lastPlayedSingle": [
+      "2014-11-12"
+    ],
+    "lastPlayedTotal": "2014-11-12",
     "hoursPlayedSingle": [
       0
     ],
@@ -3945,7 +4643,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2018-12-30",
+    "lastPlayedSingle": [
+      "2018-12-30"
+    ],
+    "lastPlayedTotal": "2018-12-30",
     "hoursPlayedSingle": [
       0
     ],
@@ -3962,7 +4663,10 @@
     "platforms": [
       "Steam"
     ],
-    "lastPlayed": "2021-12-28",
+    "lastPlayedSingle": [
+      "2021-12-28"
+    ],
+    "lastPlayedTotal": "2021-12-28",
     "hoursPlayedSingle": [
       0
     ],
@@ -3979,7 +4683,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-11-05",
+    "lastPlayedSingle": [
+      "2024-11-05"
+    ],
+    "lastPlayedTotal": "2024-11-05",
     "hoursPlayedSingle": [
       119.2
     ],
@@ -3996,7 +4703,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-01-26",
+    "lastPlayedSingle": [
+      "2025-01-26"
+    ],
+    "lastPlayedTotal": "2025-01-26",
     "hoursPlayedSingle": [
       131.7
     ],
@@ -4013,7 +4723,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-11-27",
+    "lastPlayedSingle": [
+      "2021-11-27"
+    ],
+    "lastPlayedTotal": "2021-11-27",
     "hoursPlayedSingle": [
       35.1
     ],
@@ -4030,7 +4743,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-03-01",
+    "lastPlayedSingle": [
+      "2024-03-01"
+    ],
+    "lastPlayedTotal": "2024-03-01",
     "hoursPlayedSingle": [
       59.2
     ],
@@ -4047,7 +4763,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-12-18",
+    "lastPlayedSingle": [
+      "2022-12-18"
+    ],
+    "lastPlayedTotal": "2022-12-18",
     "hoursPlayedSingle": [
       29.5
     ],
@@ -4064,7 +4783,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-04-28",
+    "lastPlayedSingle": [
+      "2022-04-28"
+    ],
+    "lastPlayedTotal": "2022-04-28",
     "hoursPlayedSingle": [
       25
     ],
@@ -4081,7 +4803,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-06-11",
+    "lastPlayedSingle": [
+      "2023-06-11"
+    ],
+    "lastPlayedTotal": "2023-06-11",
     "hoursPlayedSingle": [
       25.900000000000002
     ],
@@ -4098,7 +4823,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-03-25",
+    "lastPlayedSingle": [
+      "2022-03-25"
+    ],
+    "lastPlayedTotal": "2022-03-25",
     "hoursPlayedSingle": [
       16.3
     ],
@@ -4115,7 +4843,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-07-31",
+    "lastPlayedSingle": [
+      "2021-07-31"
+    ],
+    "lastPlayedTotal": "2021-07-31",
     "hoursPlayedSingle": [
       14.8
     ],
@@ -4132,7 +4863,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-12-19",
+    "lastPlayedSingle": [
+      "2021-12-19"
+    ],
+    "lastPlayedTotal": "2021-12-19",
     "hoursPlayedSingle": [
       9.7
     ],
@@ -4149,7 +4883,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-02-11",
+    "lastPlayedSingle": [
+      "2022-02-11"
+    ],
+    "lastPlayedTotal": "2022-02-11",
     "hoursPlayedSingle": [
       7.2
     ],
@@ -4166,7 +4903,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-02-11",
+    "lastPlayedSingle": [
+      "2022-02-11"
+    ],
+    "lastPlayedTotal": "2022-02-11",
     "hoursPlayedSingle": [
       6.7
     ],
@@ -4183,7 +4923,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-04-06",
+    "lastPlayedSingle": [
+      "2022-04-06"
+    ],
+    "lastPlayedTotal": "2022-04-06",
     "hoursPlayedSingle": [
       6.2
     ],
@@ -4200,7 +4943,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-02-08",
+    "lastPlayedSingle": [
+      "2022-02-08"
+    ],
+    "lastPlayedTotal": "2022-02-08",
     "hoursPlayedSingle": [
       6.1
     ],
@@ -4217,7 +4963,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-09-09",
+    "lastPlayedSingle": [
+      "2021-09-09"
+    ],
+    "lastPlayedTotal": "2021-09-09",
     "hoursPlayedSingle": [
       6
     ],
@@ -4234,7 +4983,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-02-25",
+    "lastPlayedSingle": [
+      "2022-02-25"
+    ],
+    "lastPlayedTotal": "2022-02-25",
     "hoursPlayedSingle": [
       4.5
     ],
@@ -4251,7 +5003,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-09-22",
+    "lastPlayedSingle": [
+      "2024-09-22"
+    ],
+    "lastPlayedTotal": "2024-09-22",
     "hoursPlayedSingle": [
       8.4
     ],
@@ -4268,7 +5023,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-11-12",
+    "lastPlayedSingle": [
+      "2021-11-12"
+    ],
+    "lastPlayedTotal": "2021-11-12",
     "hoursPlayedSingle": [
       0.9
     ],
@@ -4285,7 +5043,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-09-09",
+    "lastPlayedSingle": [
+      "2021-09-09"
+    ],
+    "lastPlayedTotal": "2021-09-09",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -4302,7 +5063,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2021-08-16",
+    "lastPlayedSingle": [
+      "2021-08-16"
+    ],
+    "lastPlayedTotal": "2021-08-16",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -4319,7 +5083,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-05-30",
+    "lastPlayedSingle": [
+      "2023-05-30"
+    ],
+    "lastPlayedTotal": "2023-05-30",
     "hoursPlayedSingle": [
       0
     ],
@@ -4336,7 +5103,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-07-18",
+    "lastPlayedSingle": [
+      "2022-07-18"
+    ],
+    "lastPlayedTotal": "2022-07-18",
     "hoursPlayedSingle": [
       4.7
     ],
@@ -4353,7 +5123,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-01-19",
+    "lastPlayedSingle": [
+      "2025-01-19"
+    ],
+    "lastPlayedTotal": "2025-01-19",
     "hoursPlayedSingle": [
       160.6
     ],
@@ -4370,7 +5143,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-06-04",
+    "lastPlayedSingle": [
+      "2023-06-04"
+    ],
+    "lastPlayedTotal": "2023-06-04",
     "hoursPlayedSingle": [
       69.4
     ],
@@ -4387,7 +5163,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-10-28",
+    "lastPlayedSingle": [
+      "2022-10-28"
+    ],
+    "lastPlayedTotal": "2022-10-28",
     "hoursPlayedSingle": [
       34.4
     ],
@@ -4404,7 +5183,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-06-12",
+    "lastPlayedSingle": [
+      "2023-06-12"
+    ],
+    "lastPlayedTotal": "2023-06-12",
     "hoursPlayedSingle": [
       18.3
     ],
@@ -4421,7 +5203,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-02-24",
+    "lastPlayedSingle": [
+      "2024-02-24"
+    ],
+    "lastPlayedTotal": "2024-02-24",
     "hoursPlayedSingle": [
       15.6
     ],
@@ -4438,7 +5223,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-08-07",
+    "lastPlayedSingle": [
+      "2023-08-07"
+    ],
+    "lastPlayedTotal": "2023-08-07",
     "hoursPlayedSingle": [
       15.2
     ],
@@ -4455,7 +5243,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-07-22",
+    "lastPlayedSingle": [
+      "2023-07-22"
+    ],
+    "lastPlayedTotal": "2023-07-22",
     "hoursPlayedSingle": [
       13.8
     ],
@@ -4472,7 +5263,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-06-30",
+    "lastPlayedSingle": [
+      "2024-06-30"
+    ],
+    "lastPlayedTotal": "2024-06-30",
     "hoursPlayedSingle": [
       13.5
     ],
@@ -4489,7 +5283,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-03-16",
+    "lastPlayedSingle": [
+      "2023-03-16"
+    ],
+    "lastPlayedTotal": "2023-03-16",
     "hoursPlayedSingle": [
       12.5
     ],
@@ -4506,7 +5303,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-03-08",
+    "lastPlayedSingle": [
+      "2025-03-08"
+    ],
+    "lastPlayedTotal": "2025-03-08",
     "hoursPlayedSingle": [
       11.7
     ],
@@ -4523,7 +5323,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-01-12",
+    "lastPlayedSingle": [
+      "2023-01-12"
+    ],
+    "lastPlayedTotal": "2023-01-12",
     "hoursPlayedSingle": [
       10.2
     ],
@@ -4540,7 +5343,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-02-22",
+    "lastPlayedSingle": [
+      "2025-02-22"
+    ],
+    "lastPlayedTotal": "2025-02-22",
     "hoursPlayedSingle": [
       9.4
     ],
@@ -4557,7 +5363,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-09-08",
+    "lastPlayedSingle": [
+      "2022-09-08"
+    ],
+    "lastPlayedTotal": "2022-09-08",
     "hoursPlayedSingle": [
       6.3
     ],
@@ -4574,7 +5383,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-08-27",
+    "lastPlayedSingle": [
+      "2022-08-27"
+    ],
+    "lastPlayedTotal": "2022-08-27",
     "hoursPlayedSingle": [
       6.2
     ],
@@ -4591,7 +5403,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-07-06",
+    "lastPlayedSingle": [
+      "2024-07-06"
+    ],
+    "lastPlayedTotal": "2024-07-06",
     "hoursPlayedSingle": [
       6
     ],
@@ -4608,7 +5423,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-03-04",
+    "lastPlayedSingle": [
+      "2024-03-04"
+    ],
+    "lastPlayedTotal": "2024-03-04",
     "hoursPlayedSingle": [
       5.4
     ],
@@ -4625,7 +5443,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-07-17",
+    "lastPlayedSingle": [
+      "2022-07-17"
+    ],
+    "lastPlayedTotal": "2022-07-17",
     "hoursPlayedSingle": [
       5.1
     ],
@@ -4642,7 +5463,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-01-15",
+    "lastPlayedSingle": [
+      "2024-01-15"
+    ],
+    "lastPlayedTotal": "2024-01-15",
     "hoursPlayedSingle": [
       4.9
     ],
@@ -4659,7 +5483,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-06-03",
+    "lastPlayedSingle": [
+      "2022-06-03"
+    ],
+    "lastPlayedTotal": "2022-06-03",
     "hoursPlayedSingle": [
       4.7
     ],
@@ -4676,7 +5503,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-05-26",
+    "lastPlayedSingle": [
+      "2025-05-26"
+    ],
+    "lastPlayedTotal": "2025-05-26",
     "hoursPlayedSingle": [
       3.9
     ],
@@ -4693,7 +5523,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-08-08",
+    "lastPlayedSingle": [
+      "2023-08-08"
+    ],
+    "lastPlayedTotal": "2023-08-08",
     "hoursPlayedSingle": [
       3.6
     ],
@@ -4710,7 +5543,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-07-23",
+    "lastPlayedSingle": [
+      "2023-07-23"
+    ],
+    "lastPlayedTotal": "2023-07-23",
     "hoursPlayedSingle": [
       3.2
     ],
@@ -4727,7 +5563,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-06-30",
+    "lastPlayedSingle": [
+      "2024-06-30"
+    ],
+    "lastPlayedTotal": "2024-06-30",
     "hoursPlayedSingle": [
       2.9
     ],
@@ -4744,7 +5583,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-04-08",
+    "lastPlayedSingle": [
+      "2024-04-08"
+    ],
+    "lastPlayedTotal": "2024-04-08",
     "hoursPlayedSingle": [
       2.5
     ],
@@ -4761,7 +5603,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-03-31",
+    "lastPlayedSingle": [
+      "2023-03-31"
+    ],
+    "lastPlayedTotal": "2023-03-31",
     "hoursPlayedSingle": [
       2.5
     ],
@@ -4778,7 +5623,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-01-05",
+    "lastPlayedSingle": [
+      "2025-01-05"
+    ],
+    "lastPlayedTotal": "2025-01-05",
     "hoursPlayedSingle": [
       2.4
     ],
@@ -4795,7 +5643,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-06-30",
+    "lastPlayedSingle": [
+      "2024-06-30"
+    ],
+    "lastPlayedTotal": "2024-06-30",
     "hoursPlayedSingle": [
       2.1
     ],
@@ -4812,7 +5663,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-08-12",
+    "lastPlayedSingle": [
+      "2023-08-12"
+    ],
+    "lastPlayedTotal": "2023-08-12",
     "hoursPlayedSingle": [
       2
     ],
@@ -4829,7 +5683,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-09-11",
+    "lastPlayedSingle": [
+      "2022-09-11"
+    ],
+    "lastPlayedTotal": "2022-09-11",
     "hoursPlayedSingle": [
       1.7
     ],
@@ -4846,7 +5703,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-10-27",
+    "lastPlayedSingle": [
+      "2024-10-27"
+    ],
+    "lastPlayedTotal": "2024-10-27",
     "hoursPlayedSingle": [
       1.6
     ],
@@ -4863,7 +5723,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-04-30",
+    "lastPlayedSingle": [
+      "2023-04-30"
+    ],
+    "lastPlayedTotal": "2023-04-30",
     "hoursPlayedSingle": [
       1.5
     ],
@@ -4880,7 +5743,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-12-22",
+    "lastPlayedSingle": [
+      "2022-12-22"
+    ],
+    "lastPlayedTotal": "2022-12-22",
     "hoursPlayedSingle": [
       1
     ],
@@ -4897,7 +5763,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-09-08",
+    "lastPlayedSingle": [
+      "2022-09-08"
+    ],
+    "lastPlayedTotal": "2022-09-08",
     "hoursPlayedSingle": [
       0.8
     ],
@@ -4914,7 +5783,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-09-29",
+    "lastPlayedSingle": [
+      "2022-09-29"
+    ],
+    "lastPlayedTotal": "2022-09-29",
     "hoursPlayedSingle": [
       0.7
     ],
@@ -4931,7 +5803,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-06-19",
+    "lastPlayedSingle": [
+      "2022-06-19"
+    ],
+    "lastPlayedTotal": "2022-06-19",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -4948,7 +5823,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2022-04-29",
+    "lastPlayedSingle": [
+      "2022-04-29"
+    ],
+    "lastPlayedTotal": "2022-04-29",
     "hoursPlayedSingle": [
       0.5
     ],
@@ -4965,7 +5843,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-01-05",
+    "lastPlayedSingle": [
+      "2025-01-05"
+    ],
+    "lastPlayedTotal": "2025-01-05",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -4982,7 +5863,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2024-03-17",
+    "lastPlayedSingle": [
+      "2024-03-17"
+    ],
+    "lastPlayedTotal": "2024-03-17",
     "hoursPlayedSingle": [
       0.3
     ],
@@ -4999,7 +5883,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2025-01-16",
+    "lastPlayedSingle": [
+      "2025-01-16"
+    ],
+    "lastPlayedTotal": "2025-01-16",
     "hoursPlayedSingle": [
       0
     ],
@@ -5016,7 +5903,10 @@
     "platforms": [
       "PS5"
     ],
-    "lastPlayed": "2023-07-16",
+    "lastPlayedSingle": [
+      "2023-07-16"
+    ],
+    "lastPlayedTotal": "2023-07-16",
     "hoursPlayedSingle": [
       0
     ],
