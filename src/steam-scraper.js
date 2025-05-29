@@ -75,8 +75,8 @@ function getOwnedGames(apiKey, steamId) {
  */
 async function getGameDetails(games) {
     const gamesWithDetails = [];
-    const batchSize = 20; // Process games in batches
-    const delay = 100; // 0.1 second delay between batches
+    const batchSize = 500; // Process games in batches
+    const delay = 10; // 0.01 second delay between batches
     
     for (let i = 0; i < games.length; i += batchSize) {
         const batch = games.slice(i, i + batchSize);
@@ -163,9 +163,12 @@ function getGameDetail(game) {
  * Converts Steam API data to the project's JSON format
  */
 function convertToProjectFormat(steamGames) {
-    return steamGames
+    // Use a Map to track games by ID and handle duplicates
+    const gamesMap = new Map();
+    
+    steamGames
         .filter(game => game.playtime_forever > 0) // Only include games with playtime
-        .map(game => {
+        .forEach(game => {
             // Convert playtime from minutes to hours
             const hoursPlayed = Math.round((game.playtime_forever / 60) * 10) / 10;
             
@@ -176,16 +179,44 @@ function convertToProjectFormat(steamGames) {
                 lastPlayed = lastPlayedDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
             }
             
-            return {
+            const gameData = {
                 game: game.detailed_name || game.name || `Unknown Game (${game.appid})`,
                 platform: "Steam", // All games from Steam
                 lastPlayed: lastPlayed,
                 hoursPlayed: hoursPlayed,
-                appid: game.appid,
+                id: game.appid,
                 url: `https://store.steampowered.com/app/${game.appid}`
             };
-        })
-        .sort((a, b) => b.hoursPlayed - a.hoursPlayed); // Sort by playtime descending
+            
+            // Check if we already have this game (by ID)
+            if (gamesMap.has(game.appid)) {
+                const existingGame = gamesMap.get(game.appid);
+                console.log(`Found duplicate game: ${gameData.game} (ID: ${game.appid})`);
+                
+                // Assert that game names match for the same ID
+                if (existingGame.game !== gameData.game) {
+                    throw new Error(`Game name mismatch for ID ${game.appid}: "${existingGame.game}" vs "${gameData.game}"`);
+                }
+                
+                // Update lastPlayed to the most recent date
+                if (lastPlayed && (!existingGame.lastPlayed || lastPlayed > existingGame.lastPlayed)) {
+                    existingGame.lastPlayed = lastPlayed;
+                    console.log(`  Updated lastPlayed to: ${lastPlayed}`);
+                }
+                
+                // Update hoursPlayed to the sum of the two entries
+                const newHoursPlayed = Math.round((existingGame.hoursPlayed + hoursPlayed) * 10) / 10;
+                console.log(`  Summed hoursPlayed: ${existingGame.hoursPlayed} + ${hoursPlayed} = ${newHoursPlayed} hours`);
+                existingGame.hoursPlayed = newHoursPlayed;
+            } else {
+                // First time seeing this game, add it to the map
+                gamesMap.set(game.appid, gameData);
+            }
+        });
+    
+    // Convert Map back to array and sort by playtime descending
+    return Array.from(gamesMap.values())
+        .sort((a, b) => b.hoursPlayed - a.hoursPlayed);
 }
 
 // Export the main function for use as a module
