@@ -20,7 +20,8 @@ export function populateFilters() {
  * @param {Array} data - Game data array
  */
 function populatePlatformFilters(data) {
-    const platforms = [...new Set(data.map(d => d.platform))].sort();
+    // Extract all platforms from the platforms arrays and flatten them
+    const platforms = [...new Set(data.flatMap(d => d.platforms))].sort();
     const platformContainer = d3.select("#platformCheckboxes");
     
     platforms.forEach(platform => {
@@ -97,7 +98,10 @@ function populateStatusFilters(data) {
  * @param {Array} data - Game data array
  */
 function populateDateFilters(data) {
-    const dateExtent = d3.extent(data, d => d.displayDate);
+    // Convert lastPlayedTotal strings to Date objects and find extent
+    const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
+    const dateExtent = d3.extent(dates);
+    
     document.getElementById("startDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[0]);
     document.getElementById("endDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[1]);
     
@@ -134,8 +138,8 @@ export function getFilteredData() {
     endDate.setHours(23, 59, 59); // Include the entire end date
 
     return data.filter(d => {
-        // Platform filter
-        const platformMatch = selectedPlatforms.includes(d.platform);
+        // Platform filter (game must have at least one selected platform)
+        const platformMatch = selectedPlatforms.length === 0 || d.platforms.some(platform => selectedPlatforms.includes(platform));
         
         // Tag filter (game must have at least one selected tag)
         const tagMatch = selectedTags.length === 0 || d.tags.some(tag => selectedTags.includes(tag));
@@ -143,8 +147,9 @@ export function getFilteredData() {
         // Status filter
         const statusMatch = selectedStatuses.includes(d.status);
         
-        // Date filter
-        const dateMatch = d.displayDate >= startDate && d.displayDate <= endDate;
+        // Date filter - convert lastPlayedTotal to Date for comparison
+        const gameDate = new Date(d.lastPlayedTotal);
+        const dateMatch = !isNaN(gameDate) && gameDate >= startDate && gameDate <= endDate;
         
         return platformMatch && tagMatch && statusMatch && dateMatch;
     });
@@ -179,7 +184,10 @@ export function clearStatusFilters() {
  */
 export function clearDateFilter() {
     const data = getGameData();
-    const dateExtent = d3.extent(data, d => d.displayDate);
+    // Convert lastPlayedTotal strings to Date objects and find extent
+    const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
+    const dateExtent = d3.extent(dates);
+    
     document.getElementById("startDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[0]);
     document.getElementById("endDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[1]);
     document.dispatchEvent(new CustomEvent('filtersChanged'));

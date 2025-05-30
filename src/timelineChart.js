@@ -30,8 +30,9 @@ export function createTimelineChart(data) {
     g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Create scales
-    const xExtent = d3.extent(data, d => d.displayDate);
+    // Create scales - convert lastPlayedTotal strings to Date objects
+    const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
+    const xExtent = d3.extent(dates);
     xScale = d3.scaleTime()
         .domain(xExtent)
         .range([0, chartWidth]);
@@ -139,7 +140,7 @@ function handleZoom(event) {
     
     // Update points
     g.selectAll(".rating-circle")
-        .attr("cx", d => newXScale(d.displayDate));
+        .attr("cx", d => newXScale(new Date(d.lastPlayedTotal)));
     
     // Update grid
     g.select(".grid")
@@ -168,10 +169,10 @@ export function renderTimelinePoints(filteredData) {
     const circlesUpdate = circlesEnter.merge(circles);
 
     circlesUpdate
-        .attr("cx", d => xScale(d.displayDate))
+        .attr("cx", d => xScale(new Date(d.lastPlayedTotal)))
         .attr("cy", d => yScale(d.rating))
-        .attr("r", d => Math.sqrt(d.hoursPlayed) * 0.8 + 4)
-        .attr("fill", d => getPlatformColor(d.platform))
+        .attr("r", d => Math.sqrt(d.hoursPlayedTotal) * 0.8 + 4)
+        .attr("fill", d => getPlatformColor(d.platforms[0])) // Use first platform for color
         .attr("opacity", 0.8)
         .style("cursor", "pointer") // Add pointer cursor to indicate clickability
         .on("mouseover", function(event, d) {
@@ -187,8 +188,8 @@ export function renderTimelinePoints(filteredData) {
         })
         .on("click", function(event, d) {
             // Open URL in new tab/window when point is clicked
-            if (d.url) {
-                window.open(d.url, '_blank');
+            if (d.displayUrl) {
+                window.open(d.displayUrl, '_blank');
             }
         });
 }
@@ -200,6 +201,7 @@ export function renderTimelinePoints(filteredData) {
  */
 function showTooltip(event, d) {
     const tagHTML = d.tags.map(tag => `<span class="tooltip-tag">${tag}</span>`).join('');
+    const platformsText = d.platforms.join(', ');
     
     tooltip
         .style("display", "block")
@@ -210,8 +212,8 @@ function showTooltip(event, d) {
                 <span>${d.rating}/10</span>
             </div>
             <div class="tooltip-detail">
-                <span class="tooltip-label">Platform:</span>
-                <span>${d.platform}</span>
+                <span class="tooltip-label">Platform${d.platforms.length > 1 ? 's' : ''}:</span>
+                <span>${platformsText}</span>
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Status:</span>
@@ -219,14 +221,13 @@ function showTooltip(event, d) {
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Hours Played:</span>
-                <span>${d.hoursPlayed}h</span>
+                <span>${d.hoursPlayedTotal.toFixed(1)}</span>
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
-                <span>${d3.timeFormat("%b %d, %Y")(d.lastPlayedDate)}</span>
+                <span>${d3.timeFormat("%b %d, %Y")(new Date(d.lastPlayedTotal))}</span>
             </div>
             <div class="tooltip-tags">${tagHTML}</div>
-            ${d.notes ? `<div style="margin-top: 8px; font-style: italic; color: #ccc;">"${d.notes}"</div>` : ''}
         `)
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 10) + "px");

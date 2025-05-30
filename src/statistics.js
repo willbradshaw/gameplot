@@ -6,7 +6,7 @@
  */
 export function updateStats(filteredData) {
     const avgRating = filteredData.length > 0 ? d3.mean(filteredData, d => d.rating).toFixed(1) : 0;
-    const totalHours = d3.sum(filteredData, d => d.hoursPlayed);
+    const totalHours = d3.sum(filteredData, d => d.hoursPlayedTotal).toFixed(1);
     const gamesCount = filteredData.length;
     const topRated = filteredData.length > 0 ? filteredData.reduce((a, b) => a.rating > b.rating ? a : b) : null;
 
@@ -20,7 +20,7 @@ export function updateStats(filteredData) {
             <div class="stat-label">Average Rating</div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">${totalHours}h</div>
+            <div class="stat-value">${totalHours}</div>
             <div class="stat-label">Total Hours</div>
         </div>
         <div class="stat-card">
@@ -51,12 +51,14 @@ export function calculateDetailedStats(data) {
     }
 
     const ratings = data.map(d => d.rating);
-    const hours = data.map(d => d.hoursPlayed);
+    const hours = data.map(d => d.hoursPlayedTotal);
     
-    // Platform breakdown
+    // Platform breakdown - handle platforms array
     const platformBreakdown = {};
     data.forEach(d => {
-        platformBreakdown[d.platform] = (platformBreakdown[d.platform] || 0) + 1;
+        d.platforms.forEach(platform => {
+            platformBreakdown[platform] = (platformBreakdown[platform] || 0) + 1;
+        });
     });
 
     // Status breakdown
@@ -72,7 +74,7 @@ export function calculateDetailedStats(data) {
         totalHours: d3.sum(hours),
         avgHours: d3.mean(hours),
         topRated: data.reduce((a, b) => a.rating > b.rating ? a : b),
-        mostPlayed: data.reduce((a, b) => a.hoursPlayed > b.hoursPlayed ? a : b),
+        mostPlayed: data.reduce((a, b) => a.hoursPlayedTotal > b.hoursPlayedTotal ? a : b),
         platformBreakdown,
         statusBreakdown
     };

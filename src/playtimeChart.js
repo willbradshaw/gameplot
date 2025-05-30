@@ -45,7 +45,7 @@ export function renderPlaytimeChart(filteredData) {
 
     // Create scales
     const playtimeXScale = d3.scaleLog()
-        .domain([0.1, d3.max(filteredData, d => Math.max(d.hoursPlayed, 0.1)) * 1.1])
+        .domain([0.1, d3.max(filteredData, d => Math.max(d.hoursPlayedTotal, 0.1)) * 1.1])
         .range([0, chartWidth]);
 
     const playtimeYScale = d3.scaleLinear()
@@ -152,7 +152,7 @@ function handlePlaytimeZoom(event, xAxisGroup, yAxisGroup, g, chartWidth, chartH
     
     // Update points
     g.selectAll(".playtime-circle")
-        .attr("cx", d => newXScale(d.hoursPlayed))
+        .attr("cx", d => newXScale(d.hoursPlayedTotal))
         .attr("cy", d => newYScale(d.rating));
     
     // Update grid
@@ -191,10 +191,10 @@ function renderPlaytimePoints(filteredData, g) {
     const circlesUpdate = circlesEnter.merge(circles);
 
     circlesUpdate
-        .attr("cx", d => originalXScale(d.hoursPlayed))
+        .attr("cx", d => originalXScale(d.hoursPlayedTotal))
         .attr("cy", d => originalYScale(d.rating))
         .attr("r", 8)
-        .attr("fill", d => getPlatformColor(d.platform))
+        .attr("fill", d => getPlatformColor(d.platforms[0])) // Use first platform for color
         .attr("stroke", "rgba(255,255,255,0.3)")
         .attr("stroke-width", 1)
         .attr("opacity", 0.8)
@@ -222,8 +222,8 @@ function renderPlaytimePoints(filteredData, g) {
         })
         .on("click", function(event, d) {
             // Open URL in new tab/window when point is clicked
-            if (d.url) {
-                window.open(d.url, '_blank');
+            if (d.displayUrl) {
+                window.open(d.displayUrl, '_blank');
             }
         });
 }
@@ -236,6 +236,7 @@ function renderPlaytimePoints(filteredData, g) {
 function showPlaytimeTooltip(event, d) {
     const tooltip = d3.select("#tooltip");
     const tagHTML = d.tags.map(tag => `<span class="tooltip-tag">${tag}</span>`).join('');
+    const platformsText = d.platforms.join(', ');
     
     tooltip
         .style("display", "block")
@@ -246,8 +247,8 @@ function showPlaytimeTooltip(event, d) {
                 <span>${d.rating}/10</span>
             </div>
             <div class="tooltip-detail">
-                <span class="tooltip-label">Platform:</span>
-                <span>${d.platform}</span>
+                <span class="tooltip-label">Platform${d.platforms.length > 1 ? 's' : ''}:</span>
+                <span>${platformsText}</span>
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Status:</span>
@@ -255,14 +256,13 @@ function showPlaytimeTooltip(event, d) {
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Hours Played:</span>
-                <span>${d.hoursPlayed}h</span>
+                <span>${d.hoursPlayedTotal.toFixed(1)}</span>
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
-                <span>${d3.timeFormat("%b %d, %Y")(d.lastPlayedDate)}</span>
+                <span>${d3.timeFormat("%b %d, %Y")(new Date(d.lastPlayedTotal))}</span>
             </div>
             <div class="tooltip-tags">${tagHTML}</div>
-            ${d.notes ? `<div style="margin-top: 8px; font-style: italic; color: #ccc;">"${d.notes}"</div>` : ''}
         `)
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 10) + "px");
