@@ -219,7 +219,31 @@ def merge_annotations(
     collapsed_dict = collapse_by_display_name(merged_dict)
     # Determine display URL
     display_dict = get_display_url(collapsed_dict)
-    return display_dict
+    # Order platforms by playtime
+    sorted_dict = order_platforms(display_dict)
+    return sorted_dict
+
+def order_platforms(collapsed_games: dict[str, dict[str, object]]) -> dict[str, dict[str, object]]:
+    """
+    Order by-platform data in descending order of playtime.
+    Args:
+        collapsed_games: Dictionary of collapsed game dictionaries, keyed by display name.
+    Returns:
+        Sorted dictionary of collapsed game dictionaries, keyed by display name, with by-platform
+        data ordered in descending order of playtime.
+    """
+    keys_to_sort = ["platforms", "ids", "urls", "lastPlayedSingle", "hoursPlayedSingle"]
+    sorted_games = {}
+    for game in collapsed_games:
+        # Get sorting function
+        sorted_entry = collapsed_games[game].copy()
+        def sort_by_playtime(list_to_sort: list) -> list:
+            key_dict = dict(zip(list_to_sort, sorted_entry['hoursPlayedSingle']))
+            return sorted(list_to_sort, key=key_dict.get, reverse = True)
+        for key in keys_to_sort:
+            sorted_entry[key] = sort_by_playtime(sorted_entry[key])
+        sorted_games[game] = sorted_entry
+    return sorted_games
 
 def get_display_url(collapsed_games: dict[str, dict[str, object]]) -> dict[str, dict[str, object]]:
     """
