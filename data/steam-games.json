@@ -40,7 +40,7 @@
     "url": "https://store.steampowered.com/app/8930"
   },
   {
-    "game": "Divinity: Original Sin Enhanced Edition",
+    "game": "Divinity: Original Sin - Enhanced Edition",
     "platform": "Steam",
     "lastPlayed": "2018-08-09",
     "hoursPlayed": 74,
@@ -48,7 +48,7 @@
     "url": "https://store.steampowered.com/app/373420"
   },
   {
-    "game": "Sid Meier’s Civilization® VI",
+    "game": "Sid Meier's Civilization VI",
     "platform": "Steam",
     "lastPlayed": "2021-01-10",
     "hoursPlayed": 72.7,
@@ -64,7 +64,7 @@
     "url": "https://store.steampowered.com/app/72850"
   },
   {
-    "game": "Book of Hours",
+    "game": "BOOK OF HOURS",
     "platform": "Steam",
     "lastPlayed": "2024-05-12",
     "hoursPlayed": 59.8,
@@ -104,7 +104,7 @@
     "url": "https://store.steampowered.com/app/1092790"
   },
   {
-    "game": "Disco Elysium - The Final Cut",
+    "game": "Disco Elysium",
     "platform": "Steam",
     "lastPlayed": "2023-11-19",
     "hoursPlayed": 44.4,
@@ -112,7 +112,7 @@
     "url": "https://store.steampowered.com/app/632470"
   },
   {
-    "game": "Sunless Sea",
+    "game": "SUNLESS SEA",
     "platform": "Steam",
     "lastPlayed": "2024-10-12",
     "hoursPlayed": 43.5,
@@ -206,6 +206,14 @@
     "hoursPlayed": 23.9,
     "id": 346940,
     "url": "https://store.steampowered.com/app/346940"
+  },
+  {
+    "game": "Blue Prince",
+    "platform": "Steam",
+    "lastPlayed": "2025-06-01",
+    "hoursPlayed": 22.4,
+    "id": 1569580,
+    "url": "https://store.steampowered.com/app/1569580"
   },
   {
     "game": "Shadows Over Loathing",
@@ -326,14 +334,6 @@
     "hoursPlayed": 13.3,
     "id": 268540,
     "url": "https://store.steampowered.com/app/268540"
-  },
-  {
-    "game": "Blue Prince",
-    "platform": "Steam",
-    "lastPlayed": "2025-05-27",
-    "hoursPlayed": 11.8,
-    "id": 1569580,
-    "url": "https://store.steampowered.com/app/1569580"
   },
   {
     "game": "Wildermyth",
@@ -680,7 +680,7 @@
     "url": "https://store.steampowered.com/app/1609230"
   },
   {
-    "game": "Hector: Ep 2",
+    "game": "Hector: Episode 2",
     "platform": "Steam",
     "lastPlayed": "2013-07-21",
     "hoursPlayed": 5.1,
@@ -718,6 +718,14 @@
     "hoursPlayed": 4.8,
     "id": 2716400,
     "url": "https://store.steampowered.com/app/2716400"
+  },
+  {
+    "game": "Kathy Rain: Director's Cut",
+    "platform": "Steam",
+    "lastPlayed": "2025-05-31",
+    "hoursPlayed": 4.7,
+    "id": 1395030,
+    "url": "https://store.steampowered.com/app/1395030"
   },
   {
     "game": "Firewatch",
@@ -880,7 +888,7 @@
     "url": "https://store.steampowered.com/app/362960"
   },
   {
-    "game": "Pathfinder: Kingmaker — Enhanced Plus Edition",
+    "game": "Pathfinder: Kingmaker",
     "platform": "Steam",
     "lastPlayed": "2023-03-03",
     "hoursPlayed": 3.2,
@@ -920,7 +928,7 @@
     "url": "https://store.steampowered.com/app/343860"
   },
   {
-    "game": "Hector: Ep 3",
+    "game": "Hector: Badge of Carnage - Full Series",
     "platform": "Steam",
     "lastPlayed": "2013-07-22",
     "hoursPlayed": 3,
@@ -936,7 +944,7 @@
     "url": "https://store.steampowered.com/app/388880"
   },
   {
-    "game": "Sam & Max 305: The City That Dares Not Sleep",
+    "game": "Sam & Max 305: The City that Dares not Sleep",
     "platform": "Steam",
     "lastPlayed": "2012-11-21",
     "hoursPlayed": 2.9,
@@ -968,7 +976,7 @@
     "url": "https://store.steampowered.com/app/2760"
   },
   {
-    "game": "Trine 2",
+    "game": "Trine 2: Complete Story",
     "platform": "Steam",
     "lastPlayed": "2015-03-28",
     "hoursPlayed": 2.6,
@@ -1296,7 +1304,7 @@
     "url": "https://store.steampowered.com/app/205100"
   },
   {
-    "game": "Magic 2015 - Duels of the Planeswalkers",
+    "game": "Magic 2015",
     "platform": "Steam",
     "lastPlayed": "2015-02-01",
     "hoursPlayed": 1.2,

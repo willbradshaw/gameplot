@@ -33,11 +33,24 @@
     "tags": ["Strategy"]
   },
   {
+    "game": "Divinity: Original Sin - Enhanced Edition",
+    "displayName": "Divinity: Original Sin",
+    "rating": 7.3,
+    "status": "Abandoned",
+    "tags": ["Fantasy", "RPG", "Coop"]
+  {
     "game": "Divinity: Original Sin Enhanced Edition",
     "displayName": "Divinity: Original Sin",
     "rating": 7.3,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG", "Coop"]
+  },
+  {
+    "game": "Sid Meier’s Civilization VI",
+    "displayName": "Sid Meier's Civilization VI",
+    "rating": 6.2,
+    "status": "Abandoned",
+    "tags": ["Strategy"]
   },
   {
     "game": "Sid Meier’s Civilization® VI",
@@ -52,6 +65,12 @@
     "rating": 9.1,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "BOOK OF HOURS",
+    "rating": 7.6,
+    "status": "In Progress",
+    "tags": ["Fantasy", "Management", "Exploration"]
   },
   {
     "game": "Book of Hours",
@@ -87,11 +106,23 @@
     "tags": ["Deckbuilder", "Roguelike", "Horror"]
   },
   {
+    "game": "Disco Elysium",
+    "rating": 9.6,
+    "status": "Complete",
+    "tags": ["RPG", "Crime", "Comedy"]
+  },
+  {
     "game": "Disco Elysium - The Final Cut",
     "displayName": "Disco Elysium",
     "rating": 9.6,
     "status": "Complete",
     "tags": ["RPG", "Crime", "Comedy"]
+  },
+  {
+    "game": "SUNLESS SEA",
+    "rating": 8.0,
+    "status": "Abandoned",
+    "tags": ["Roguelike", "Exploration", "Horror"]
   },
   {
     "game": "Sunless Sea",
@@ -534,6 +565,12 @@
     "tags": ["Visual Novel", "Adventure", "Horror"]
   },
   {
+    "game": "Hector: Episode 2",
+    "rating": 7.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
+  },
+  {
     "game": "Hector: Ep 2",
     "displayName": "Hector: Episode 2",
     "rating": 7.0,
@@ -716,6 +753,13 @@
     "tags": ["Walking Simulator", "Sci-Fi"]
   },
   {
+    "game": "Hector: Badge of Carnage - Full Series",
+    "displayName": "Hector: Episode 3",
+    "rating": 6.8,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
+  },
+  {
     "game": "Hector: Ep 3",
     "displayName": "Hector: Episode 3",
     "rating": 6.8,
@@ -727,6 +771,12 @@
     "rating": 7.3,
     "status": "Complete",
     "tags": ["Walking Simulator"]
+  },
+  {
+    "game": "Sam & Max 305: The City that Dares not Sleep",
+    "rating": 7.2,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Comedy"]
   },
   {
     "game": "Sam & Max 305: The City That Dares Not Sleep",
@@ -752,6 +802,13 @@
     "rating": 6.8,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "Trine 2: Complete Story",
+    "displayName": "Trine 2",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
   },
   {
     "game": "Trine 2",
@@ -1006,7 +1063,14 @@
     "tags": ["Stealth", "Action"]
   },
   {
+    "game": "Magic 2015",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
     "game": "Magic 2015 - Duels of the Planeswalkers",
+    "displayName": "Magic 2015",
     "rating": null,
     "status": "Abandoned",
     "tags": []
