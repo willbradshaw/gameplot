@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/yourusername/video-game-dashboard#readme",
   "dependencies": {
+    "open": "^10.1.2",
     "psn-api": "^2.12.0"
   },
   "engines": {

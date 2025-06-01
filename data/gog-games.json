@@ -1,0 +1,786 @@
+[
+  {
+    "game": "80 Days",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1441269533,
+    "url": "https://gogdb.org/product/1441269533"
+  },
+  {
+    "game": "Arcanum: Of Steamworks and Magick Obscura",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658829,
+    "url": "https://gogdb.org/product/1207658829"
+  },
+  {
+    "game": "Back to the Future: The Game",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659097,
+    "url": "https://gogdb.org/product/1207659097"
+  },
+  {
+    "game": "Baldur's Gate 2 Complete",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658893,
+    "url": "https://gogdb.org/product/1207658893"
+  },
+  {
+    "game": "Baldur's Gate: The Original Saga",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658886,
+    "url": "https://gogdb.org/product/1207658886"
+  },
+  {
+    "game": "Beneath a Steel Sky (1994)",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658695,
+    "url": "https://gogdb.org/product/1207658695"
+  },
+  {
+    "game": "Beyond Good & Evil™",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658746,
+    "url": "https://gogdb.org/product/1207658746"
+  },
+  {
+    "game": "Beyond Zork - The Coconut of Quendor",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661533,
+    "url": "https://gogdb.org/product/1207661533"
+  },
+  {
+    "game": "Blackwell Convergence",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207662903,
+    "url": "https://gogdb.org/product/1207662903"
+  },
+  {
+    "game": "Blackwell Deception",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207662913,
+    "url": "https://gogdb.org/product/1207662913"
+  },
+  {
+    "game": "Blackwell Legacy",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207662883,
+    "url": "https://gogdb.org/product/1207662883"
+  },
+  {
+    "game": "Blackwell Unbound",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207662893,
+    "url": "https://gogdb.org/product/1207662893"
+  },
+  {
+    "game": "Caesar 3",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658835,
+    "url": "https://gogdb.org/product/1207658835"
+  },
+  {
+    "game": "Cultist Simulator",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1456702644,
+    "url": "https://gogdb.org/product/1456702644"
+  },
+  {
+    "game": "Downfall",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207660723,
+    "url": "https://gogdb.org/product/1207660723"
+  },
+  {
+    "game": "Downfall (Redux)",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1455298654,
+    "url": "https://gogdb.org/product/1455298654"
+  },
+  {
+    "game": "Dragonsphere",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658927,
+    "url": "https://gogdb.org/product/1207658927"
+  },
+  {
+    "game": "Dreamfall Chapters: The Final Cut",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207666503,
+    "url": "https://gogdb.org/product/1207666503"
+  },
+  {
+    "game": "Dreamfall: The Longest Journey",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659045,
+    "url": "https://gogdb.org/product/1207659045"
+  },
+  {
+    "game": "Dungeon Keeper Gold™",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658934,
+    "url": "https://gogdb.org/product/1207658934"
+  },
+  {
+    "game": "Dungeon Keeper™ 2",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658959,
+    "url": "https://gogdb.org/product/1207658959"
+  },
+  {
+    "game": "Dungeons & Dragons: Dragonshard",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658928,
+    "url": "https://gogdb.org/product/1207658928"
+  },
+  {
+    "game": "Evil Genius",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658775,
+    "url": "https://gogdb.org/product/1207658775"
+  },
+  {
+    "game": "Fallout 2 Classic",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 2,
+    "url": "https://gogdb.org/product/2"
+  },
+  {
+    "game": "Fallout Classic",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1,
+    "url": "https://gogdb.org/product/1"
+  },
+  {
+    "game": "Fallout Tactics Classic",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 3,
+    "url": "https://gogdb.org/product/3"
+  },
+  {
+    "game": "Forgotten Realms: Demon Stone",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658929,
+    "url": "https://gogdb.org/product/1207658929"
+  },
+  {
+    "game": "Frostpunk",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1648559910,
+    "url": "https://gogdb.org/product/1648559910"
+  },
+  {
+    "game": "Gabriel Knight: Sins of the Fathers",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658828,
+    "url": "https://gogdb.org/product/1207658828"
+  },
+  {
+    "game": "Gemini Rue",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659073,
+    "url": "https://gogdb.org/product/1207659073"
+  },
+  {
+    "game": "Grim Fandango Remastered",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207667183,
+    "url": "https://gogdb.org/product/1207667183"
+  },
+  {
+    "game": "Hatoful Boyfriend",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207665623,
+    "url": "https://gogdb.org/product/1207665623"
+  },
+  {
+    "game": "I Have No Mouth And I Must Scream",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659593,
+    "url": "https://gogdb.org/product/1207659593"
+  },
+  {
+    "game": "Icewind Dale 2 Complete",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658891,
+    "url": "https://gogdb.org/product/1207658891"
+  },
+  {
+    "game": "Icewind Dale Complete",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658888,
+    "url": "https://gogdb.org/product/1207658888"
+  },
+  {
+    "game": "INSIDE",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1916896012,
+    "url": "https://gogdb.org/product/1916896012"
+  },
+  {
+    "game": "Kathy Rain",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1460710709,
+    "url": "https://gogdb.org/product/1460710709"
+  },
+  {
+    "game": "King's Quest 4 - The Perils of Rosella",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661153,
+    "url": "https://gogdb.org/product/1207661153"
+  },
+  {
+    "game": "King's Quest 5 - Absence Makes the Heart Go Yonder",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661163,
+    "url": "https://gogdb.org/product/1207661163"
+  },
+  {
+    "game": "King's Quest 6 - Heir Today, Gone Tomorrow",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661173,
+    "url": "https://gogdb.org/product/1207661173"
+  },
+  {
+    "game": "Lure of the Temptress (1992)",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658694,
+    "url": "https://gogdb.org/product/1207658694"
+  },
+  {
+    "game": "Miasmata",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659146,
+    "url": "https://gogdb.org/product/1207659146"
+  },
+  {
+    "game": "Mount & Blade",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207666893,
+    "url": "https://gogdb.org/product/1207666893"
+  },
+  {
+    "game": "Neverwinter Nights Diamond",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658890,
+    "url": "https://gogdb.org/product/1207658890"
+  },
+  {
+    "game": "Papers, Please",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659209,
+    "url": "https://gogdb.org/product/1207659209"
+  },
+  {
+    "game": "Phantasmagoria",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658834,
+    "url": "https://gogdb.org/product/1207658834"
+  },
+  {
+    "game": "Pillars of Eternity",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207666813,
+    "url": "https://gogdb.org/product/1207666813"
+  },
+  {
+    "game": "Planescape: Torment",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658887,
+    "url": "https://gogdb.org/product/1207658887"
+  },
+  {
+    "game": "Planetfall",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661543,
+    "url": "https://gogdb.org/product/1207661543"
+  },
+  {
+    "game": "Primordia",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659144,
+    "url": "https://gogdb.org/product/1207659144"
+  },
+  {
+    "game": "Quest for Glory (includes VGA Remake)",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661313,
+    "url": "https://gogdb.org/product/1207661313"
+  },
+  {
+    "game": "Quest for Glory 2",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661323,
+    "url": "https://gogdb.org/product/1207661323"
+  },
+  {
+    "game": "Quest for Glory 3",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661383,
+    "url": "https://gogdb.org/product/1207661383"
+  },
+  {
+    "game": "Quest for Glory 4",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661393,
+    "url": "https://gogdb.org/product/1207661393"
+  },
+  {
+    "game": "Quest for Glory 5",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661403,
+    "url": "https://gogdb.org/product/1207661403"
+  },
+  {
+    "game": "Resonance",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659043,
+    "url": "https://gogdb.org/product/1207659043"
+  },
+  {
+    "game": "S.T.A.L.K.E.R.: Call of Pripyat",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207660583,
+    "url": "https://gogdb.org/product/1207660583"
+  },
+  {
+    "game": "S.T.A.L.K.E.R.: Call of Prypiat - Enhanced Edition",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1525093053,
+    "url": "https://gogdb.org/product/1525093053"
+  },
+  {
+    "game": "S.T.A.L.K.E.R.: Clear Sky",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207660603,
+    "url": "https://gogdb.org/product/1207660603"
+  },
+  {
+    "game": "S.T.A.L.K.E.R.: Clear Sky - Enhanced Edition",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1709591792,
+    "url": "https://gogdb.org/product/1709591792"
+  },
+  {
+    "game": "S.T.A.L.K.E.R.: Shadow of Chernobyl",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207660573,
+    "url": "https://gogdb.org/product/1207660573"
+  },
+  {
+    "game": "S.T.A.L.K.E.R.: Shadow of Chornobyl - Enhanced Edition",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1542429427,
+    "url": "https://gogdb.org/product/1542429427"
+  },
+  {
+    "game": "Saints Row 2",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1430740458,
+    "url": "https://gogdb.org/product/1430740458"
+  },
+  {
+    "game": "Saints Row: The Third - The Full Package",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1430740694,
+    "url": "https://gogdb.org/product/1430740694"
+  },
+  {
+    "game": "Sam & Max Hit the Road",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207666303,
+    "url": "https://gogdb.org/product/1207666303"
+  },
+  {
+    "game": "Sanitarium",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658811,
+    "url": "https://gogdb.org/product/1207658811"
+  },
+  {
+    "game": "Shardlight",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1454499527,
+    "url": "https://gogdb.org/product/1454499527"
+  },
+  {
+    "game": "Simon the Sorcerer",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658699,
+    "url": "https://gogdb.org/product/1207658699"
+  },
+  {
+    "game": "Simon the Sorcerer 2",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658700,
+    "url": "https://gogdb.org/product/1207658700"
+  },
+  {
+    "game": "SOMA",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1439487606,
+    "url": "https://gogdb.org/product/1439487606"
+  },
+  {
+    "game": "Syberia",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658848,
+    "url": "https://gogdb.org/product/1207658848"
+  },
+  {
+    "game": "Syberia II",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658849,
+    "url": "https://gogdb.org/product/1207658849"
+  },
+  {
+    "game": "System Shock® 2 (Classic)",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659172,
+    "url": "https://gogdb.org/product/1207659172"
+  },
+  {
+    "game": "Tales of Monkey Island: Complete Season",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659066,
+    "url": "https://gogdb.org/product/1207659066"
+  },
+  {
+    "game": "Technobabylon",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1430234218,
+    "url": "https://gogdb.org/product/1430234218"
+  },
+  {
+    "game": "Teenagent",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658753,
+    "url": "https://gogdb.org/product/1207658753"
+  },
+  {
+    "game": "The Cat Lady",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659201,
+    "url": "https://gogdb.org/product/1207659201"
+  },
+  {
+    "game": "The Longest Journey",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658794,
+    "url": "https://gogdb.org/product/1207658794"
+  },
+  {
+    "game": "The Shivah",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207660263,
+    "url": "https://gogdb.org/product/1207660263"
+  },
+  {
+    "game": "The Temple of Elemental Evil",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658889,
+    "url": "https://gogdb.org/product/1207658889"
+  },
+  {
+    "game": "To The Moon",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659072,
+    "url": "https://gogdb.org/product/1207659072"
+  },
+  {
+    "game": "Transistor",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1429612159,
+    "url": "https://gogdb.org/product/1429612159"
+  },
+  {
+    "game": "Treasure Adventure Game",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659013,
+    "url": "https://gogdb.org/product/1207659013"
+  },
+  {
+    "game": "Tyranny",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1266051739,
+    "url": "https://gogdb.org/product/1266051739"
+  },
+  {
+    "game": "Tyrian 2000",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658901,
+    "url": "https://gogdb.org/product/1207658901"
+  },
+  {
+    "game": "Ultima™ IV: Quest of the Avatar",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207658962,
+    "url": "https://gogdb.org/product/1207658962"
+  },
+  {
+    "game": "Ultima™ Worlds of Adventure 2: Martian Dreams",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659062,
+    "url": "https://gogdb.org/product/1207659062"
+  },
+  {
+    "game": "Unavowed",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1637485057,
+    "url": "https://gogdb.org/product/1637485057"
+  },
+  {
+    "game": "Wallace and Gromit's Episode 1 Fright of the Bumblebees",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207663203,
+    "url": "https://gogdb.org/product/1207663203"
+  },
+  {
+    "game": "Wallace and Gromit's Episode 2 The Last Resort",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207663223,
+    "url": "https://gogdb.org/product/1207663223"
+  },
+  {
+    "game": "Wallace and Gromit's Episode 3 Muzzled",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207663243,
+    "url": "https://gogdb.org/product/1207663243"
+  },
+  {
+    "game": "Wallace and Gromit's Episode 4 The Bogey Man",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207663253,
+    "url": "https://gogdb.org/product/1207663253"
+  },
+  {
+    "game": "Worlds of Ultima™: The Savage Empire",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207659061,
+    "url": "https://gogdb.org/product/1207659061"
+  },
+  {
+    "game": "Xenonauts",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207664803,
+    "url": "https://gogdb.org/product/1207664803"
+  },
+  {
+    "game": "Zork - The Great Underground Empire",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661493,
+    "url": "https://gogdb.org/product/1207661493"
+  },
+  {
+    "game": "Zork II - The Wizard of Frobozz",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661503,
+    "url": "https://gogdb.org/product/1207661503"
+  },
+  {
+    "game": "Zork III - The Dungeon Master",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661513,
+    "url": "https://gogdb.org/product/1207661513"
+  },
+  {
+    "game": "Zork Zero - The Revenge of Megaboz",
+    "platform": "GOG",
+    "lastPlayed": null,
+    "hoursPlayed": null,
+    "id": 1207661523,
+    "url": "https://gogdb.org/product/1207661523"
+  }
+]
