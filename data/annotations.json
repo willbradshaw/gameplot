@@ -2,7 +2,7 @@
   {
     "game": "Pathfinder: Wrath of the Righteous - Enhanced Edition",
     "displayName": "Pathfinder: Wrath of the Righteous",
-    "rating": 8.3,
+    "rating": 8.5,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
   },
@@ -15,7 +15,7 @@
   {
     "game": "Divinity: Original Sin 2 - Definitive Edition",
     "displayName": "Divinity: Original Sin 2",
-    "rating": 7.7,
+    "rating": 7.6,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG", "Coop"]
   },
@@ -28,7 +28,7 @@
   {
     "game": "Sid Meier's Civilization® V",
     "displayName": "Sid Meier's Civilization V",
-    "rating": 6.4,
+    "rating": 6.0,
     "status": "Abandoned",
     "tags": ["Strategy"]
   },
@@ -42,14 +42,14 @@
   {
     "game": "Sid Meier’s Civilization® VI",
     "displayName": "Sid Meier's Civilization VI",
-    "rating": 6.9,
+    "rating": 6.2,
     "status": "Abandoned",
     "tags": ["Strategy"]
   },
   {
     "game": "The Elder Scrolls V: Skyrim",
     "displayName": "The Elder Scrolls V: Skyrim",
-    "rating": 8.7,
+    "rating": 9.1,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
   },
@@ -69,14 +69,14 @@
   {
     "game": "Dragon Age: Origins - Ultimate Edition",
     "displayName": "Dragon Age: Origins",
-    "rating": 8.4,
+    "rating": 8.6,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
   },
   {
     "game": "Mass Effect 2 (2010 Edition)",
     "displayName": "Mass Effect 2",
-    "rating": 8.5,
+    "rating": 8.8,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"]
   },
@@ -95,14 +95,14 @@
   },
   {
     "game": "Sunless Sea",
-    "rating": 8.2,
+    "rating": 8.0,
     "status": "Abandoned",
     "tags": ["Roguelike", "Exploration", "Horror"]
   },
   {
     "game": "Mass Effect (2007)",
     "displayName": "Mass Effect",
-    "rating": 7.6,
+    "rating": 7.7,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"]
   },
@@ -114,33 +114,33 @@
   },
   {
     "game": "The Talos Principle",
-    "rating": 8.7,
+    "rating": 8.8,
     "status": "Complete",
     "tags": ["Puzzle", "Sci-Fi"]
   },
   {
     "game": "The Witness",
-    "rating": 8.2,
+    "rating": 8.0,
     "status": "Complete",
     "tags": ["Puzzle"]
   },
   {
     "game": "Portal 2",
-    "rating": 8.5,
+    "rating": 8.7,
     "status": "Complete",
     "tags": ["Puzzle", "Sci-Fi", "Comedy"]
   },
   {
     "game": "Wasteland 2: Director's Cut",
     "displayName": "Wasteland 2",
-    "rating": 6.8,
+    "rating": 6.2,
     "status": "Abandoned",
     "tags": ["Sci-Fi", "RPG"]
   },
   {
     "game": "Shadowrun: Dragonfall - Director's Cut",
     "displayName": "Shadowrun: Dragonfall",
-    "rating": 8.5,
+    "rating": 8.8,
     "status": "Complete",
     "tags": ["Sci-Fi", "Fantasy", "RPG"]
   },
@@ -153,32 +153,32 @@
   {
     "game": "The Elder Scrolls V: Skyrim Special Edition",
     "displayName": "The Elder Scrolls V: Skyrim",
-    "rating": 8.7,
+    "rating": 9.1,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
   },
   {
     "game": "Tactical Breach Wizards",
-    "rating": 8.8,
+    "rating": 9.0,
     "status": "Complete",
     "tags": ["Fantasy", "Tactics", "Puzzle", "Comedy"]
   },
   {
     "game": "Shadowrun: Hong Kong - Extended Edition",
     "displayName": "Shadowrun: Hong Kong",
-    "rating": 8.8,
+    "rating": 9.0,
     "status": "Complete",
     "tags": ["Fantasy", "RPG", "Sci-Fi"]
   },
   {
     "game": "Shadows Over Loathing",
-    "rating": 7.0,
+    "rating": 6.8,
     "status": "Complete",
     "tags": ["Fantasy", "RPG", "Comedy"]
   },
   {
     "game": "Cultist Simulator",
-    "rating": 6.8,
+    "rating": 6.5,
     "status": "Abandoned",
     "tags": ["Management", "Roguelike", "Fantasy", "Horror"]
   },
@@ -190,7 +190,7 @@
   },
   {
     "game": "Subnautica",
-    "rating": 7.6,
+    "rating": 8.1,
     "status": "Abandoned",
     "tags": ["Sci-Fi", "Survival", "Exploration"]
   },
@@ -202,38 +202,38 @@
   },
   {
     "game": "Dark Messiah of Might & Magic",
-    "rating": 6.8,
+    "rating": 6.6,
     "status": "Complete",
     "tags": ["RPG", "Action" , "Fantasy"],
     "lastPlayedTotal": "2009-01-01"
   },
   {
     "game": "Citizen Sleeper",
-    "rating": 7.0,
+    "rating": 7.3,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"]
   },
   {
     "game": "The Walking Dead",
-    "rating": 7.3,
+    "rating": 7.5,
     "status": "Complete",
     "tags": ["Adventure", "Horror"]
   },
   {
     "game": "The Roottrees are Dead",
-    "rating": 8.0,
+    "rating": 8.2,
     "status": "In Progress",
     "tags": ["Puzzle"]
   },
   {
     "game": "ENDLESS™ Legend",
-    "rating": 6.2,
+    "rating": 5.7,
     "status": "Abandoned",
     "tags": ["Strategy", "Fantasy"]
   },
   {
     "game": "Broken Age",
-    "rating": 6.5,
+    "rating": 6.1,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Fantasy"]
   },
@@ -246,7 +246,7 @@
   },
   {
     "game": "Roadwarden",
-    "rating": 7.1,
+    "rating": 6.9,
     "status": "Complete",
     "tags": ["Fantasy", "Interactive Fiction", "RPG"]
   },
@@ -259,7 +259,7 @@
   {
     "game": "The Whispered World Special Edition",
     "displayName": "The Whispered World",
-    "rating": 6.1,
+    "rating": 5.7,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Fantasy"]
   },
@@ -271,13 +271,13 @@
   },
   {
     "game": "Magicka",
-    "rating": 7.0,
+    "rating": 7.2,
     "status": "Complete",
     "tags": ["Fantasy", "Twin-Stick Shooter", "Comedy", "Coop"]
   },
   {
     "game": "I Was a Teenage Exocolonist",
-    "rating": 7.3,
+    "rating": 7.5,
     "status": "Complete",
     "tags": ["Visual Novel", "Deckbuilder", "Management"]
   },
@@ -290,19 +290,19 @@
   },
   {
     "game": "Citizen Sleeper 2: Starward Vector",
-    "rating": 7.5,
+    "rating": 7.7,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"]
   },
   {
     "game": "The Case of the Golden Idol",
-    "rating": 7.2,
+    "rating": 7.5,
     "status": "Complete",
     "tags": ["Puzzle"]
   },
   {
     "game": "Braid",
-    "rating": 7.3,
+    "rating": 7.2,
     "status": "Complete",
     "tags": ["Puzzle", "Platformer"]
   },
@@ -314,7 +314,7 @@
   },
   {
     "game": "Outer Wilds",
-    "rating": 7.4,
+    "rating": 7.6,
     "status": "Complete",
     "tags": ["Exploration", "Puzzle"]
   },
@@ -326,7 +326,7 @@
   },
   {
     "game": "Loco Motive",
-    "rating": 4.7,
+    "rating": 4.6,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Comedy"]
   },
@@ -344,13 +344,13 @@
   },
   {
     "game": "Tabletop Simulator",
-    "rating": 5.8,
+    "rating": 5.5,
     "status": "Abandoned",
     "tags": ["Board Game"]
   },
   {
     "game": "Scythe: Digital Edition",
-    "rating": 6.5,
+    "rating": 6.2,
     "status": "Abandoned",
     "tags": ["Board Game"]
   },
@@ -363,7 +363,7 @@
   },
   {
     "game": "Old Skies",
-    "rating": 7.0,
+    "rating": 7.5,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Sci-Fi"]
   },
@@ -394,7 +394,7 @@
   },
   {
     "game": "FEZ",
-    "rating": 6.3,
+    "rating": 6.0,
     "status": "Abandoned",
     "tags": ["Puzzle", "Platformer"]
   },
@@ -431,37 +431,37 @@
   },
   {
     "game": "The Cave",
-    "rating": 7.1,
+    "rating": 6.7,
     "status": "Complete",
     "tags": ["Platformer", "Puzzle"]
   },
   {
     "game": "The Swapper",
-    "rating": 8.3,
+    "rating": 8.5,
     "status": "Complete",
     "tags": ["Platformer", "Puzzle", "Sci-Fi"]
   },
   {
     "game": "West of Loathing",
-    "rating": 6.0,
+    "rating": 5.8,
     "status": "Abandoned",
     "tags": ["RPG", "Comedy", "Western"]
   },
   {
     "game": "Little Inferno",
-    "rating": 6.0,
+    "rating": 5.6,
     "status": "Complete",
     "tags": ["Casual"]
   },
   {
     "game": "Botanicula",
-    "rating": 6.3,
+    "rating": 6.0,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle"]
   },
   {
     "game": "Half-Life",
-    "rating": 6.4,
+    "rating": 6.2,
     "status": "Complete",
     "tags": ["First-Person Shooter", "Sci-Fi"],
     "lastPlayedTotal": "2010-10-01"
@@ -486,7 +486,7 @@
   },
   {
     "game": "Antichamber",
-    "rating": 8.2,
+    "rating": 8.4,
     "status": "Complete",
     "tags": ["Puzzle"]
   },
@@ -504,26 +504,26 @@
   },
   {
     "game": "Bastion",
-    "rating": 5.5,
+    "rating": 5.3,
     "status": "Abandoned",
     "tags": ["Action"]
   },
   {
     "game": "The Hex",
-    "rating": 6.2,
+    "rating": 6.0,
     "status": "Complete",
     "tags": ["Adventure"]
   },
   {
     "game": "Ghost Master®",
     "displayName": "Ghost Master",
-    "rating": 7.4,
+    "rating": 7.6,
     "status": "Complete",
     "tags": ["Tactics", "Puzzle", "Comedy"]
   },
   {
     "game": "Deponia",
-    "rating": 6.2,
+    "rating": 6.0,
     "status": "Complete",
     "tags": ["Adventure", "Sci-Fi"]
   },
@@ -542,7 +542,7 @@
   },
   {
     "game": "Portal",
-    "rating": 9.0,
+    "rating": 9.5,
     "status": "Complete",
     "tags": ["Platformer", "Puzzle", "Comedy", "Sci-Fi"]
   },
@@ -554,7 +554,7 @@
   },
   {
     "game": "The Stanley Parable",
-    "rating": 8.9,
+    "rating": 9.4,
     "status": "Complete",
     "tags": ["Walking Simulator", "Comedy"]
   },
@@ -578,7 +578,7 @@
   },
   {
     "game": "Anchorhead",
-    "rating": 8.0,
+    "rating": 8.4,
     "status": "Complete",
     "tags": ["Interactive Fiction", "Adventure", "Puzzle", "Horror"]
   },
@@ -590,7 +590,7 @@
   },
   {
     "game": "Finding Paradise",
-    "rating": 7.2,
+    "rating": 7.4,
     "status": "Complete",
     "tags": ["Walking Simulator", "Adventure"]
   },
@@ -645,13 +645,13 @@
   },
   {
     "game": "LIMBO",
-    "rating": 7.8,
+    "rating": 8.2,
     "status": "Complete",
     "tags": ["Platformer", "Horror"]
   },
   {
     "game": "Dear Esther",
-    "rating": 8.5,
+    "rating": 9.0,
     "status": "Complete",
     "tags": ["Walking Simulator"]
   },
@@ -663,7 +663,7 @@
   },
   {
     "game": "Impostor Factory",
-    "rating": 5.4,
+    "rating": 5.2,
     "status": "Complete",
     "tags": ["Walking Simulator"]
   },
@@ -681,13 +681,13 @@
   },
   {
     "game": "Tyranny",
-    "rating": 6.2,
+    "rating": 6.6,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG"]
   },
   {
     "game": "Pathfinder: Kingmaker",
-    "rating": 5.3,
+    "rating": 5.6,
     "status": "Abandoned",
     "tags": ["RPG", "Fantasy"]
   },
@@ -780,19 +780,19 @@
   },
   {
     "game": "There Is No Game: Wrong Dimension",
-    "rating": 4.8,
+    "rating": 4.6,
     "status": "Abandoned",
     "tags": ["Puzzle", "Comedy"]
   },
   {
     "game": "Detective Grimoire",
-    "rating": 5.4,
+    "rating": 5.2,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle"]
   },
   {
     "game": "A House of Many Doors",
-    "rating": 5.2,
+    "rating": 5.0,
     "status": "Abandoned",
     "tags": ["Exploration", "Roguelike", "Fantasy"]
   },
@@ -846,7 +846,7 @@
   },
   {
     "game": "The Stanley Parable Demo",
-    "rating": 7.7,
+    "rating": 8.2,
     "status": "Complete",
     "tags": ["Walking Simulator", "Comedy"]
   },
@@ -858,7 +858,7 @@
   },
   {
     "game": "Don't Starve Together",
-    "rating": 4.3,
+    "rating": 3.4,
     "status": "Abandoned",
     "tags": ["Survival", "Coop"]
   },
@@ -921,13 +921,13 @@
   },
   {
     "game": "Tales from the Borderlands",
-    "rating": 5.2,
+    "rating": 4.4,
     "status": "Abandoned",
     "tags": ["Adventure", "Comedy"]
   },
   {
     "game": "Among Us",
-    "rating": 5.0,
+    "rating": 3.2,
     "status": "Abandoned",
     "tags": ["Social Deduction"]
   },
@@ -983,7 +983,7 @@
   {
     "game": "Dear Esther: Landmark Edition",
     "displayName": "Dear Esther",
-    "rating": 8.5,
+    "rating": 9.0,
     "status": "Complete",
     "tags": ["Walking Simulator"]
   },
@@ -1001,7 +1001,7 @@
   },
   {
     "game": "Dishonored",
-    "rating": 7.0,
+    "rating": 7.5,
     "status": "Abandoned",
     "tags": ["Stealth", "Action"]
   },
@@ -1123,7 +1123,7 @@
   },
   {
     "game": "Dr. Langeskov, The Tiger, and The Terribly Cursed Emerald: A Whirlwind Heist",
-    "rating": 6.4,
+    "rating": 6.6,
     "status": "Complete",
     "tags": ["Adventure", "Comedy", "Puzzle", "Walking Simulator"]
   },
@@ -1226,7 +1226,7 @@
   },
   {
     "game": "The Silent Age",
-    "rating": 4.9,
+    "rating": 4.4,
     "status": "Abandoned",
     "tags": ["Adventure", "Puzzle"]
   },
@@ -1251,7 +1251,7 @@
   },
   {
     "game": "Stacking",
-    "rating": 4.9,
+    "rating": 4.5,
     "status": "Abandoned",
     "tags": ["Puzzle", "Adventure"]
   },
@@ -1281,7 +1281,7 @@
   },
   {
     "game": "The Darkside Detective",
-    "rating": 4.5,
+    "rating": 3.8,
     "status": "Abandoned",
     "tags": ["Fantasy", "Crime", "Adventure", "Comedy"]
   },
@@ -1476,7 +1476,7 @@
   },
   {
     "displayName": "Mass Effect",
-    "rating": 7.6,
+    "rating": 7.7,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"],
     "game": "Mass Effect™ Legendary Edition"
@@ -1532,7 +1532,7 @@
     "game": "Warhammer 40,000: Rogue Trader"
   },
   {
-    "rating": 5.3,
+    "rating": 5.6,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG"],
     "game": "Pathfinder: Kingmaker — Enhanced Plus Edition",
@@ -1605,7 +1605,7 @@
     "game": "Superliminal"
   },
   {
-    "rating": 8.1,
+    "rating": 8.5,
     "status": "In Progress",
     "tags": ["Fantasy", "RPG"],
     "game": "Pillars of Eternity: Complete Edition",
@@ -1814,7 +1814,7 @@
     "game": "Cyberpunk 2077"
   },
   {
-    "rating": 8.9,
+    "rating": 9.4,
     "status": "Complete",
     "tags": ["Walking Simulator", "Comedy"],
     "game": "The Stanley Parable: Ultra Deluxe",
@@ -1831,5 +1831,187 @@
     "status": "Abandoned",
     "tags": ["RPG", "Sci-Fi"],
     "game": "Fallout 4"
+  },
+  {
+    "game": "80 Days",
+    "rating": 6.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Visual Novel"]
+  },
+  {
+    "game": "Blackwell Convergence",
+    "rating": 7.8,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "Blackwell Deception",
+    "rating": 8.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "Blackwell Legacy",
+    "rating": 7.2,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "Blackwell Unbound",
+    "rating": 7.5,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "Dreamfall Chapters: The Final Cut",
+    "rating": 7.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Fantasy", "Sci-Fi"]
+  },
+  {
+    "game": "Dreamfall: The Longest Journey",
+    "rating": 7.2,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Fantasy", "Sci-Fi"]
+  },
+  {
+    "game": "Frostpunk",
+    "rating": 7.3,
+    "status": "Complete",
+    "tags": ["Management", "Sci-Fi"]
+  },
+  {
+    "game": "Gemini Rue",
+    "rating": 7.2,
+    "status": "Complete",
+    "tags": ["Adventure", "Sci-Fi", "Puzzle"]
+  },
+  {
+    "game": "Grim Fandango Remastered",
+    "rating": 7.9,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "Hatoful Boyfriend",
+    "rating": 5.4,
+    "status": "Abandoned",
+    "tags": ["Visual Novel", "Dating Sim"]
+  },
+  {
+    "game": "I Have No Mouth And I Must Scream",
+    "rating": 4.7,
+    "status": "Abandoned",
+    "tags": ["Adventure", "Horror"]
+  },
+  {
+    "game": "INSIDE",
+    "rating": 8.0,
+    "status": "Complete",
+    "tags": ["Platformer", "Puzzle", "Horror"]
+  },
+  {
+    "game": "Kathy Rain",
+    "rating": 7.3,
+    "status": "Complete",
+    "tags": ["Adventure", "Mystery", "Puzzle"]
+  },
+  {
+    "game": "Neverwinter Nights Diamond",
+    "displayName": "Neverwinter Nights",
+    "rating": 6.8,
+    "status": "Complete",
+    "tags": ["RPG", "Fantasy"]
+  },
+  {
+    "game": "Papers, Please",
+    "rating": 7.7,
+    "status": "Abandoned",
+    "tags": ["Puzzle"]
+  },
+  {
+    "game": "Pillars of Eternity",
+    "rating": 8.5,
+    "status": "In Progress",
+    "tags": ["RPG", "Fantasy"]
+  },
+  {
+    "game": "Planescape: Torment",
+    "rating": 7.0,
+    "status": "Complete",
+    "tags": ["RPG", "Fantasy"]
+  },
+  {
+    "game": "Primordia",
+    "rating": 9.5,
+    "status": "Complete",
+    "tags": ["Sci-Fi", "Adventure"]
+  },
+  {
+    "game": "Resonance",
+    "rating": 7.8,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Sci-Fi"]
+  },
+  {
+    "game": "Saints Row 2",
+    "rating": 8.0,
+    "status": "Complete",
+    "tags": ["Crime", "Exploration", "Comedy"]
+  },
+  {
+    "game": "Shardlight",
+    "rating": 6.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Sci-Fi"]
+  },
+  {
+    "game": "Syberia",
+    "rating": 6.9,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "Technobabylon",
+    "rating": 9.1,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Sci-Fi"]
+  },
+  {
+    "game": "The Longest Journey",
+    "rating": 9.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Sci-Fi", "Fantasy"]
+  },
+  {
+    "game": "The Shivah",
+    "rating": 7.0,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle"]
+  },
+  {
+    "game": "The Temple of Elemental Evil",
+    "rating": 6.1,
+    "status": "Complete",
+    "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "To The Moon",
+    "rating": 9.7,
+    "status": "Complete",
+    "tags": ["Walking Simulator", "Adventure"]
+  },
+  {
+    "game": "Unavowed",
+    "rating": 8.9,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Fantasy"]
+  },
+  {
+    "game": "Kathy Rain: Director's Cut",
+    "displayName": "Kathy Rain",
+    "rating": 7.3,
+    "status": "Complete",
+    "tags": ["Adventure", "Mystery", "Puzzle"]
   }
 ]
