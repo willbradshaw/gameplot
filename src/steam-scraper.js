@@ -60,10 +60,17 @@ function getOwnedGames(apiKey, steamId) {
                     const jsonData = JSON.parse(data);
                     resolve(jsonData.response);
                 } catch (error) {
+                    console.error('JSON parse error:', error.message);
+                    console.error('Response status code:', res.statusCode);
+                    console.error('Response headers:', res.headers);
+                    console.error('Raw response length:', data.length);
+                    console.error('Raw response:', data);
+                    console.error('Request URL:', url.replace(apiKey, 'HIDDEN_API_KEY'));
                     reject(new Error('Failed to parse Steam API response'));
                 }
             });
         }).on('error', (error) => {
+            console.error('HTTPS request error:', error);
             reject(new Error(`Steam API request failed: ${error.message}`));
         });
     });
