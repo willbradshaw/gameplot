@@ -15,21 +15,14 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Import shared functionality from aux.py
+from aux import setup_logging, parse_game_json, write_game_json, get_most_recent_date
+
 #==============================================================================
 # Configure logging
 #==============================================================================
 
-class UTCFormatter(logging.Formatter):
-    def formatTime(self, record, datefmt=None):
-        dt = datetime.fromtimestamp(record.created, timezone.utc)
-        return dt.strftime('%Y-%m-%d %H:%M:%S UTC')
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger()
-handler = logging.StreamHandler()
-formatter = UTCFormatter('[%(asctime)s] %(message)s')
-handler.setFormatter(formatter)
-logger.handlers.clear()
-logger.addHandler(handler)
+logger = setup_logging(level=logging.DEBUG)
 
 #==============================================================================
 # I/O Functions
@@ -71,31 +64,6 @@ def parse_args() -> argparse.Namespace:
     )
     return parser.parse_args()
 
-def parse_game_json(game_json: str) -> dict[str, dict[str, object]]:
-    """
-    Parses a game JSON file and returns a dictionary of game dictionaries.
-    Args:
-        game_json: Path to game JSON file
-    Returns:
-        Dictionary of game dictionaries, keyed by game name.
-    """
-    logger.debug(f"Parsing game JSON file: {game_json}")
-    # Read raw JSON into list
-    with open(game_json, 'r', encoding='utf-8') as f:
-        game_raw = json.load(f)
-    # Check that every entry has a unique game name
-    game_names = [game['game'] for game in game_raw]
-    assert len(game_names) == len(set(game_names)), \
-        f"Duplicate game names found in {game_json}"
-    # Convert to dictionary of game dictionaries
-    game_dict = {game['game']: game for game in game_raw}
-    # Drop "game" key from each game dictionary (now keyed by game name)
-    for game in game_dict.values():
-        del game['game']
-    logger.debug(f"Parsed {len(game_dict)} games from {game_json}")
-    logger.debug(f"Game dict: {game_dict}")
-    return game_dict
-
 def parse_platform_data(platform_data: str) -> dict[str, dict[str, object]]:
     """
     Parses the platform data file JSON and returns a dictionary of game dictionaries.
@@ -122,44 +90,9 @@ def parse_annotations_file(annotations_file: str) -> dict[str, dict[str, object]
     logger.info(f"Parsed {len(game_dict)} games from {annotations_file}")
     return game_dict
 
-def write_game_json(game_dict: dict[str, dict[str, object]],
-                    output_file: str) -> None:
-    """
-    Writes a dictionary of game dictionaries to a JSON file.
-    Args:
-        game_dict: Dictionary of game dictionaries, keyed by game name.
-        output_file: Path for output file
-    """
-    # Convert output object to list of dictionaries
-    output_list = []
-    for game, data in game_dict.items():
-        output_dict = data.copy()
-        output_dict['game'] = game
-        output_list.append(output_dict)
-    # Write output list to JSON
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(output_list, f, indent=2, ensure_ascii=False)
-    logger.info(f"Game data written to {output_file}")
-
 #==============================================================================
 # Merging functions
 #==============================================================================
-
-def get_most_recent_date(date1: str, date2: str) -> str:
-    """
-    Compares two date strings and returns the most recent one.
-    Args:
-        date1: First date string in YYYY-MM-DD format
-        date2: Second date string in YYYY-MM-DD format
-    Returns:
-        The most recent date string
-    """
-    parsed_date1 = datetime.strptime(date1, '%Y-%m-%d')
-    parsed_date2 = datetime.strptime(date2, '%Y-%m-%d')
-    if parsed_date1 >= parsed_date2:
-        return date1
-    else:
-        return date2
 
 def inner_join_dicts(dict1: dict, dict2: dict) -> dict:
     """
