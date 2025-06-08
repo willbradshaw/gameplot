@@ -243,12 +243,15 @@ def get_most_recent_date(date1: str, date2: str) -> str:
     Returns:
         The most recent date string
     """
+    if date1 is None and date2 is None:
+        return None
+    if date1 is None:
+        return date2
+    if date2 is None:
+        return date1
     parsed_date1 = datetime.strptime(date1, '%Y-%m-%d')
     parsed_date2 = datetime.strptime(date2, '%Y-%m-%d')
-    if parsed_date1 >= parsed_date2:
-        return date1
-    else:
-        return date2
+    return date1 if parsed_date1 >= parsed_date2 else date2
 
 def convert_to_project_format(filtered_games: list[dict], playtime_stats: dict[str, int]) -> list[dict]:
     """
@@ -366,7 +369,7 @@ def parse_args():
     )
     parser.add_argument(
         '--output', '-o', type=str,
-        default='data/xbox-games.json',
+        default='data/games-raw/xbox-games.json',
         help='Output file path (default: %(default)s)'
     )
     return parser.parse_args()
