@@ -2,16 +2,16 @@
 
 // Platform colors mapping
 export const PLATFORM_COLORS = {
-    'PC': '#ff6b6b',
-    'PS4': '#4ecdc4',
-    'PS5': '#45b7d1', 
+    'PS5': '#eeeeee', 
     'Switch': '#96ceb4',
-    'Xbox': '#ffeaa7'
+    'Xbox': '#85E34A',
+    'GOG': '#FC7EFF',
+    'Steam': '#7EBBFF'
 };
 
 // Get platform color with fallback
 export function getPlatformColor(platform) {
-    return PLATFORM_COLORS[platform] || '#ddd';
+    return PLATFORM_COLORS[platform] || '#999999';
 }
 
 // Shared zoom configuration
