@@ -5,6 +5,20 @@ const {
 } = require('psn-api');
 const fs = require('fs');
 
+// Dynamic import for the 'open' package (ES Module)
+let open;
+async function loadOpenPackage() {
+    try {
+        const openModule = await import('open');
+        open = openModule.default;
+        console.log('✓ Open package loaded successfully');
+        return true;
+    } catch (error) {
+        console.log('✗ Failed to load open package:', error.message);
+        return false;
+    }
+}
+
 /**
  * Scrapes PSN (PlayStation Network) playtime data and converts it to the project's JSON format
  * @param {string} npsso - Your PSN NPSSO token (obtained from https://ca.account.sony.com/api/v1/ssocookie)
@@ -12,7 +26,7 @@ const fs = require('fs');
  * @param {string} outputFile - Output file path (default: 'psn-games.json')
  * @param {number} response_limit - Maximum number of games to fetch (default: 500)
  */
-async function scrapePsnData(npsso, accountId = 'me', outputFile = 'psn-games.json', response_limit = 200) {
+async function scrapePsnData(npsso, accountId = 'me', outputFile = 'data/games-raw/psn-games-us.json', response_limit = 200) {
     console.log('Starting PSN data scraping...');
     try {
         // Step 1: Authenticate with PSN using NPSSO token
@@ -129,35 +143,141 @@ function parseDurationToHours(duration) {
     return Math.round(totalHours * 10) / 10;
 }
 
-// Export the main function for use as a module
-module.exports = { scrapePsnData };
+/**
+ * Automated authentication flow for PSN
+ * Opens browser windows for login and guides user through NPSSO token extraction
+ * @param {string} outputFile - Output file path for scraped data
+ * @param {string} accountId - PSN account ID ("me" for your own account)
+ * @param {number} responseLimit - Maximum number of games to fetch
+ */
+async function automatedAuth(outputFile = 'data/games-raw/psn-games-us.json', accountId = 'me', responseLimit = 200) {
+    console.log('Starting PSN automated authentication...');
+    
+    const openLoaded = await loadOpenPackage();
+    
+    // Step 1: Open PlayStation login page
+    const loginUrl = 'https://www.playstation.com/';
+    console.log('\nStep 1: Logging into PlayStation Network');
+    
+    if (openLoaded && open) {
+        try {
+            await open(loginUrl);
+            console.log('✓ Browser opened to PlayStation login page');
+        } catch (error) {
+            console.log('Please manually open this URL to log in:');
+            console.log(loginUrl);
+        }
+    } else {
+        console.log('Please open this URL in your browser to log in:');
+        console.log(loginUrl);
+    }
+    
+    console.log('\n1. Please log into your PlayStation account in the browser');
+    console.log('2. Once logged in, press Enter to continue...');
+    
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    
+    return new Promise((resolve, reject) => {
+        rl.question('Press Enter after logging in...', async () => {
+            // Step 2: Open NPSSO cookie page
+            const npssoUrl = 'https://ca.account.sony.com/api/v1/ssocookie';
+            console.log('\nStep 2: Getting your NPSSO token');
+            
+            if (openLoaded && open) {
+                try {
+                    await open(npssoUrl);
+                    console.log('✓ Browser opened to NPSSO cookie page');
+                } catch (error) {
+                    console.log('Please manually open this URL:');
+                    console.log(npssoUrl);
+                }
+            } else {
+                console.log('Please open this URL in your browser:');
+                console.log(npssoUrl);
+            }
+            
+            console.log('\nYou should see a JSON response. Copy the "npsso" value (a 64-character string).');
+            console.log('Example: "npsso": "abcd1234efgh5678..."');
+            console.log('\nIMPORTANT: Keep your NPSSO token private - it\'s equivalent to your password!');
+            
+            rl.question('\nPaste your NPSSO token here: ', (npssoToken) => {
+                rl.close();
+                
+                if (!npssoToken || npssoToken.trim().length === 0) {
+                    reject(new Error('No NPSSO token provided'));
+                    return;
+                }
+                
+                const cleanToken = npssoToken.trim().replace(/"/g, ''); // Remove quotes if present
+                
+                if (cleanToken.length !== 64) {
+                    reject(new Error('Invalid NPSSO token length. Expected 64 characters.'));
+                    return;
+                }
+                
+                console.log('✓ NPSSO token received, starting data scraping...');
+                
+                scrapePsnData(cleanToken, accountId, outputFile, responseLimit)
+                    .then(() => {
+                        console.log('✓ PSN data scraping completed successfully!');
+                        resolve();
+                    })
+                    .catch(reject);
+            });
+        });
+    });
+}
+
+// Export the main functions for use as a module
+module.exports = { scrapePsnData, automatedAuth };
 
 // Allow running directly from command line
 if (require.main === module) {
     const args = process.argv.slice(2);
     
-    if (args.length < 1) {
-        console.log('Usage: node psn-scraper.js <NPSSO_TOKEN> [account_id] [output_file]');
-        console.log('Example: node psn-scraper.js "YOUR_64_CHAR_NPSSO_TOKEN" me psn-games.json');
+    // Show help
+    if (args.includes('--help') || args.includes('-h')) {
+        console.log('PSN Game Data Scraper');
         console.log('');
-        console.log('To get your NPSSO token:');
-        console.log('1. Sign in to https://www.playstation.com/');
-        console.log('2. Visit https://ca.account.sony.com/api/v1/ssocookie');
-        console.log('3. Copy the "npsso" value from the JSON response');
+        console.log('Usage:');
+        console.log('  node psn-scraper.js [output_file] [account_id] [response_limit]');
         console.log('');
-        console.log('IMPORTANT: Keep your NPSSO token private - it\'s equivalent to your password!');
-        process.exit(1);
+        console.log('Options:');
+        console.log('  [output_file]     Output file path (default: "data/games-raw/psn-games-us.json")');
+        console.log('  [account_id]      PSN account ID (default: "me")');
+        console.log('  [response_limit]  Max games to fetch (default: 200)');
+        console.log('');
+        console.log('Examples:');
+        console.log('  node psn-scraper.js');
+        console.log('  node psn-scraper.js my-games.json');
+        console.log('  node psn-scraper.js my-games.json me 500');
+        console.log('');
+        console.log('This will guide you through:');
+        console.log('1. Logging into https://www.playstation.com/');
+        console.log('2. Getting your NPSSO token from https://ca.account.sony.com/api/v1/ssocookie');
+        console.log('');
+        console.log('Note: NPSSO tokens are temporary and expire frequently, so manual token');
+        console.log('input is not supported. The automated flow ensures fresh authentication.');
+        process.exit(0);
     }
     
-    const [npsso, accountId, outputFile, responseLimit] = args;
-    const limit = responseLimit ? parseInt(responseLimit, 10) : 200;
+    // Parse arguments for automated authentication
+    const [outputFile, accountId, responseLimit] = args;
+    const finalOutputFile = outputFile || 'data/games-raw/psn-games-us.json';
+    const finalAccountId = accountId || 'me';
+    const finalLimit = responseLimit ? parseInt(responseLimit, 10) : 200;
     
-    scrapePsnData(npsso, accountId, outputFile, limit)
-        .then(() => {
-            console.log('PSN data scraping completed successfully!');
-        })
+    console.log('Starting automated PSN authentication...');
+    console.log('Use --help for options.');
+    console.log('');
+    
+    automatedAuth(finalOutputFile, finalAccountId, finalLimit)
         .catch((error) => {
-            console.error('PSN data scraping failed:', error.message);
+            console.error('PSN authentication failed:', error.message);
             process.exit(1);
         });
 } 
