@@ -38,6 +38,7 @@
     "rating": 7.3,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG", "Coop"]
+  },
   {
     "game": "Divinity: Original Sin Enhanced Edition",
     "displayName": "Divinity: Original Sin",
@@ -47,6 +48,13 @@
   },
   {
     "game": "Sid Meier’s Civilization VI",
+    "displayName": "Sid Meier's Civilization VI",
+    "rating": 6.2,
+    "status": "Abandoned",
+    "tags": ["Strategy"]
+  },
+  {
+    "game": "Sid Meier's Civilization VI",
     "displayName": "Sid Meier's Civilization VI",
     "rating": 6.2,
     "status": "Abandoned",
@@ -141,6 +149,14 @@
     "game": "Slay the Spire",
     "rating": 8.9,
     "status": "Abandoned",
+    "tags": ["Roguelike", "Deckbuilder", "Fantasy"]
+  },
+  {
+    "game": "Slay The Spire",
+    "displayName": "Slay the Spire",
+    "rating": 8.9,
+    "status": "Abandoned",
+    "hoursPlayedTotal": 100.0,
     "tags": ["Roguelike", "Deckbuilder", "Fantasy"]
   },
   {
@@ -345,7 +361,7 @@
   },
   {
     "game": "Outer Wilds",
-    "rating": 7.6,
+    "rating": 8.0,
     "status": "Complete",
     "tags": ["Exploration", "Puzzle"]
   },
@@ -1669,7 +1685,7 @@
     "game": "Superliminal"
   },
   {
-    "rating": 8.5,
+    "rating": 8.9,
     "status": "In Progress",
     "tags": ["Fantasy", "RPG"],
     "game": "Pillars of Eternity: Complete Edition",
@@ -1722,7 +1738,7 @@
   {
     "rating": 6.0,
     "status": "Adandoned",
-    "tags": ["First-Person Shooter", "Action", "RPG", "Coop", "Comedy"],
+    "tags": ["First-Person Shooter", "Action", "RPG", "Coop", "Comedy", "Sci-Fi"],
     "game": "Borderlands 3"
   },
   {
@@ -1831,7 +1847,7 @@
   {
     "rating": 6.1,
     "status": "Abandoned",
-    "tags": ["First-Person Shooter", "Action", "RPG", "Coop", "Comedy"],
+    "tags": ["First-Person Shooter", "Action", "RPG", "Coop", "Comedy", "Sci-Fi"],
     "game": "Borderlands: The Handsome Collection",
     "displayName": "Borderlands 2"
   },
@@ -1995,7 +2011,7 @@
   },
   {
     "game": "Pillars of Eternity",
-    "rating": 8.5,
+    "rating": 8.9,
     "status": "In Progress",
     "tags": ["RPG", "Fantasy"]
   },
@@ -2077,5 +2093,166 @@
     "rating": 7.3,
     "status": "Complete",
     "tags": ["Adventure", "Mystery", "Puzzle"]
+  },
+  {
+    "game": "The Elder Scrolls IV: Oblivion Remastered",
+    "rating": 7.5,
+    "status": "In Progress",
+    "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "Avowed",
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Fantasy", "RPG", "Action"]
+  },
+  {
+    "game": "Clair Obscur: Expedition 33",
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Fantasy", "RPG", "Action"]
+  },
+  {
+    "game": "Vampire Survivors",
+    "hoursPlayedTotal": 0.5,
+    "rating": 3.1,
+    "status": "Abandoned",
+    "tags": ["Roguelike", "Action"]
+  },
+  {
+    "game": "Hauntii",
+    "rating": 3.8,
+    "status": "Abandoned",
+    "tags": ["Exploration"]
+  },
+  {
+    "game": "Jusant",
+    "rating": 4.0,
+    "status": "Abandoned",
+    "tags": ["Exploration"]
+  },
+  {
+    "game": "Chants of Sennaar (Windows)",
+    "displayName": "Chants of Sennaar",
+    "rating": 7.6,
+    "status": "Complete",
+    "tags": ["Puzzle"]
+  },
+  {
+    "game": "ASTRONEER",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Diablo\u00ae IV",
+    "displayName": "Diablo IV",
+    "status": "Abandoned",
+    "rating": 5.8,
+    "tags": ["Action", "RPG", "Coop", "Fantasy"]
+  },
+  {
+    "game": "MLB\u00ae The Show\u2122 24 Xbox One",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Botany Manor",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Sea of Stars",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Townscaper",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Ori and the Will of the Wisps",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "PowerWash Simulator",
+    "rating": 5.4,
+    "status": "Abandoned",
+    "tags": ["Simulation", "Casual"]
+  },
+  {
+    "game": "OCTOPATH TRAVELER",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Dishonored\u00ae Definitive Edition",
+    "displayName": "Dishonored",
+    "rating": 7.5,
+    "hoursPlayedTotal": 12.0,
+    "status": "Abandoned",
+    "tags": ["Stealth", "Action"]
+  },
+  {
+    "game": "TUNIC",
+    "displayName": "Tunic",
+    "rating": 4.1,
+    "status": "Abandoned",
+    "tags": ["Exploration", "Puzzle", "Soulslike"]
+  },
+  {
+    "game": "Beacon Pines",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Darkest Dungeon\u00ae",
+    "displayName": "Darkest Dungeon",
+    "rating": 6.2,
+    "status": "Abandoned",
+    "tags": ["Roguelike"]
+  },
+  {
+    "game": "Halo: The Master Chief Collection",
+    "rating": 6.8,
+    "status": "Abandoned",
+    "tags": ["First-Person Shooter", "Sci-Fi", "Coop"]
+  },
+  {
+    "game": "Ori and the Blind Forest: Definitive Edition",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Stellaris: Console Edition",
+    "rating": null,
+    "status": null,
+    "hoursPlayedTotal": 0,
+    "tags": []
+  },
+  {
+    "game": "Pentiment",
+    "rating": 7.8,
+    "status": "Complete",
+    "tags": ["Puzzle", "Crime", "Historical"]
   }
 ]
