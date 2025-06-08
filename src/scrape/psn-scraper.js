@@ -23,7 +23,7 @@ async function loadOpenPackage() {
  * Scrapes PSN (PlayStation Network) playtime data and converts it to the project's JSON format
  * @param {string} npsso - Your PSN NPSSO token (obtained from https://ca.account.sony.com/api/v1/ssocookie)
  * @param {string} accountId - PSN account ID ("me" for your own account)
- * @param {string} outputFile - Output file path (default: 'psn-games.json')
+ * @param {string} outputFile - Output file path (default: 'data/games-raw/psn-games-us.json')
  * @param {number} response_limit - Maximum number of games to fetch (default: 500)
  */
 async function scrapePsnData(npsso, accountId = 'me', outputFile = 'data/games-raw/psn-games-us.json', response_limit = 200) {

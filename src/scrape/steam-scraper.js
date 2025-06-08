@@ -5,9 +5,9 @@ const fs = require('fs');
  * Scrapes Steam playtime data and converts it to the project's JSON format
  * @param {string} apiKey - Your Steam Web API key
  * @param {string} steamId - Your Steam ID
- * @param {string} outputFile - Output file path (default: 'steam-games.json')
+ * @param {string} outputFile - Output file path (default: 'data/games-raw/steam-games.json')
  */
-async function scrapeSteamData(apiKey, steamId, outputFile = 'steam-games.json') {
+async function scrapeSteamData(apiKey, steamId, outputFile = 'data/games-raw/steam-games.json') {
     console.log('Starting Steam data scraping...');
     
     try {

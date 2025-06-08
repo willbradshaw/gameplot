@@ -20,7 +20,7 @@ async function loadOpenPackage() {
 /**
  * Scrapes GOG library data and converts it to the project's JSON format
  */
-async function scrapeGOGData(accessToken, outputFile = 'data/gog-games.json') {
+async function scrapeGOGData(accessToken, outputFile = 'data/games-raw/gog-games-raw.json') {
     console.log('Starting GOG data scraping...');
     
     try {
@@ -300,11 +300,11 @@ if (require.main === module) {
     
     if (args.includes('--help') || args.includes('-h')) {
         console.log('Usage: node gog-scraper.js [output_file]');
-        console.log('Default output: data/gog-games.json');
+        console.log('Default output: data/games-raw/gog-games-raw.json');
         process.exit(0);
     }
     
-    const outputFile = args[0] || 'data/gog-games.json';
+    const outputFile = args[0] || 'data/games-raw/gog-games-raw.json';
     
     automatedAuth(outputFile)
         .catch((error) => {
