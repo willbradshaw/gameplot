@@ -10,8 +10,8 @@
   {
     "game": "Baldur's Gate 3",
     "platform": "PS5",
-    "lastPlayed": "2025-05-11",
-    "hoursPlayed": 143,
+    "lastPlayed": "2025-06-03",
+    "hoursPlayed": 145.6,
     "id": 10007460,
     "url": "https://store.playstation.com/concept/10007460"
   },
@@ -208,6 +208,14 @@
     "url": "https://store.playstation.com/concept/10000237"
   },
   {
+    "game": "Nidhogg",
+    "platform": "PS5",
+    "lastPlayed": "2025-06-08",
+    "hoursPlayed": 5,
+    "id": 203056,
+    "url": "https://store.playstation.com/concept/203056"
+  },
+  {
     "game": "The Ascent",
     "platform": "PS5",
     "lastPlayed": "2024-01-15",
@@ -232,18 +240,10 @@
     "url": "https://store.playstation.com/concept/10000185"
   },
   {
-    "game": "Nidhogg",
-    "platform": "PS5",
-    "lastPlayed": "2024-09-22",
-    "hoursPlayed": 4.2,
-    "id": 203056,
-    "url": "https://store.playstation.com/concept/203056"
-  },
-  {
     "game": "Tainted Grail: Fall of Avalon",
     "platform": "PS5",
-    "lastPlayed": "2025-05-26",
-    "hoursPlayed": 3.9,
+    "lastPlayed": "2025-06-01",
+    "hoursPlayed": 4.1,
     "id": 10009530,
     "url": "https://store.playstation.com/concept/10009530"
   },
