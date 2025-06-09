@@ -16,7 +16,7 @@
     "url": "https://store.steampowered.com/app/780290"
   },
   {
-    "game": "Divinity: Original Sin 2",
+    "game": "Divinity: Original Sin 2 - Definitive Edition",
     "platform": "Steam",
     "lastPlayed": "2022-05-23",
     "hoursPlayed": 143.6,
@@ -64,7 +64,7 @@
     "url": "https://store.steampowered.com/app/72850"
   },
   {
-    "game": "BOOK OF HOURS",
+    "game": "Book of Hours",
     "platform": "Steam",
     "lastPlayed": "2024-05-12",
     "hoursPlayed": 59.8,
@@ -112,7 +112,7 @@
     "url": "https://store.steampowered.com/app/632470"
   },
   {
-    "game": "Sunless Sea",
+    "game": "SUNLESS SEA",
     "platform": "Steam",
     "lastPlayed": "2024-10-12",
     "hoursPlayed": 43.5,
@@ -160,20 +160,20 @@
     "url": "https://store.steampowered.com/app/620"
   },
   {
+    "game": "Blue Prince",
+    "platform": "Steam",
+    "lastPlayed": "2025-06-09",
+    "hoursPlayed": 33.3,
+    "id": 1569580,
+    "url": "https://store.steampowered.com/app/1569580"
+  },
+  {
     "game": "Wasteland 2: Director's Cut",
     "platform": "Steam",
     "lastPlayed": "2024-10-10",
     "hoursPlayed": 33,
     "id": 404730,
     "url": "https://store.steampowered.com/app/404730"
-  },
-  {
-    "game": "Blue Prince",
-    "platform": "Steam",
-    "lastPlayed": "2025-06-09",
-    "hoursPlayed": 32.4,
-    "id": 1569580,
-    "url": "https://store.steampowered.com/app/1569580"
   },
   {
     "game": "Shadowrun: Dragonfall - Director's Cut",
@@ -688,7 +688,7 @@
     "url": "https://store.steampowered.com/app/1609230"
   },
   {
-    "game": "Hector: Episode 2",
+    "game": "Hector: Ep 2",
     "platform": "Steam",
     "lastPlayed": "2013-07-21",
     "hoursPlayed": 5.1,
@@ -856,7 +856,7 @@
     "url": "https://store.steampowered.com/app/203810"
   },
   {
-    "game": "Hector: Episode 1",
+    "game": "Hector: Ep 1",
     "platform": "Steam",
     "lastPlayed": "2013-07-18",
     "hoursPlayed": 3.4,
@@ -984,7 +984,7 @@
     "url": "https://store.steampowered.com/app/2760"
   },
   {
-    "game": "Trine 2",
+    "game": "Trine 2: Complete Story",
     "platform": "Steam",
     "lastPlayed": "2015-03-28",
     "hoursPlayed": 2.6,
@@ -1184,7 +1184,7 @@
     "url": "https://store.steampowered.com/app/22600"
   },
   {
-    "game": "Broken Sword: Director's Cut (2009)",
+    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)",
     "platform": "Steam",
     "lastPlayed": "2015-02-21",
     "hoursPlayed": 1.7,
