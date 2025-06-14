@@ -43,13 +43,30 @@ export function renderPlaytimeChart(filteredData) {
     const playtimeG = playtimeSvg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Create scales
+    // Calculate dynamic domains based on filtered data
+    const ratings = filteredData.map(d => d.rating).filter(r => r !== null && r !== undefined);
+    const hours = filteredData.map(d => Math.max(d.hoursPlayedTotal, 0.1));
+    
+    // Create scales with dynamic domains
+    const ratingExtent = d3.extent(ratings);
+    const ratingPadding = (ratingExtent[1] - ratingExtent[0]) * 0.1; // 10% padding
+    const ratingDomain = [
+        Math.max(0, ratingExtent[0] - ratingPadding),
+        Math.min(10, ratingExtent[1] + ratingPadding)
+    ];
+
+    const hoursExtent = d3.extent(hours);
+    const hoursDomain = [
+        Math.max(0.1, hoursExtent[0] * 0.8), // 20% padding on log scale
+        hoursExtent[1] * 1.2
+    ];
+
     const playtimeXScale = d3.scaleLog()
-        .domain([0.1, d3.max(filteredData, d => Math.max(d.hoursPlayedTotal, 0.1)) * 1.1])
+        .domain(hoursDomain)
         .range([0, chartWidth]);
 
     const playtimeYScale = d3.scaleLinear()
-        .domain([0, 10])
+        .domain(ratingDomain)
         .range([chartHeight, 0]);
 
     // Store original scales for zoom boundary calculations
@@ -98,7 +115,7 @@ export function renderPlaytimeChart(filteredData) {
         .attr("x", 0 - (chartHeight / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .text("Rating (0-10)");
+        .text("Rating");
 
     playtimeG.append("text")
         .attr("class", "axis-label")
@@ -110,13 +127,10 @@ export function renderPlaytimeChart(filteredData) {
     const padding = 50; // Padding buffer beyond data extents
     
     // Get data range in screen coordinates
-    const xExtent = originalXScale.domain();
-    const yExtent = originalYScale.domain();
-    
-    const dataMinX = originalXScale(xExtent[0]);
-    const dataMaxX = originalXScale(xExtent[1]);
-    const dataMinY = originalYScale(yExtent[1]); // Note: Y scale is inverted
-    const dataMaxY = originalYScale(yExtent[0]);
+    const dataMinX = originalXScale(hoursDomain[0]);
+    const dataMaxX = originalXScale(hoursDomain[1]);
+    const dataMinY = originalYScale(ratingDomain[1]); // Note: Y scale is inverted
+    const dataMaxY = originalYScale(ratingDomain[0]);
 
     // Add zoom behavior with data-bounded constraints
     const playtimeZoom = d3.zoom()
@@ -260,7 +274,7 @@ function showPlaytimeTooltip(event, d) {
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
-                <span>${d3.timeFormat("%b %d, %Y")(new Date(d.lastPlayedTotal))}</span>
+                <span>${new Date(d.lastPlayedTotal).toISOString().split('T')[0]}</span>
             </div>
             <div class="tooltip-tags">${tagHTML}</div>
         `)

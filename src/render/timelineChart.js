@@ -157,6 +157,15 @@ function handleZoom(event) {
  * @param {Array} filteredData - Filtered game data
  */
 export function renderTimelinePoints(filteredData) {
+    if (filteredData.length === 0) {
+        // Clear chart if no data
+        g.selectAll(".rating-circle").remove();
+        return;
+    }
+
+    // Update scales based on filtered data
+    updateTimelineScales(filteredData);
+
     const circles = g.selectAll(".rating-circle")
         .data(filteredData, d => d.game);
 
@@ -195,6 +204,89 @@ export function renderTimelinePoints(filteredData) {
 }
 
 /**
+ * Update timeline chart scales and axes based on filtered data
+ * @param {Array} filteredData - Filtered game data
+ */
+function updateTimelineScales(filteredData) {
+    const { chartWidth, chartHeight } = TIMELINE_CONFIG;
+
+    // Calculate new domains based on filtered data
+    const dates = filteredData.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
+    const ratings = filteredData.map(d => d.rating).filter(r => r !== null && r !== undefined);
+    
+    if (dates.length === 0 || ratings.length === 0) return;
+
+    // Update X scale (dates) with some padding
+    const dateExtent = d3.extent(dates);
+    const datePadding = (dateExtent[1] - dateExtent[0]) * 0.05; // 5% padding
+    const newDateDomain = [
+        new Date(dateExtent[0].getTime() - datePadding),
+        new Date(dateExtent[1].getTime() + datePadding)
+    ];
+    
+    xScale.domain(newDateDomain);
+    originalXScale.domain(newDateDomain);
+
+    // Update Y scale (ratings) with some padding
+    const ratingExtent = d3.extent(ratings);
+    const ratingPadding = (ratingExtent[1] - ratingExtent[0]) * 0.1; // 10% padding
+    const newRatingDomain = [
+        Math.max(0, ratingExtent[0] - ratingPadding),
+        Math.min(10, ratingExtent[1] + ratingPadding)
+    ];
+    
+    yScale.domain(newRatingDomain);
+
+    // Update axes
+    const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %Y"));
+    const yAxis = d3.axisLeft(yScale);
+
+    g.select(".axis")
+        .transition()
+        .duration(500)
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-45)");
+
+    g.selectAll(".axis").filter(function(d, i) { return i === 1; })
+        .transition()
+        .duration(500)
+        .call(yAxis);
+
+    // Update grid lines
+    g.selectAll(".grid").filter(function(d, i) { return i === 0; })
+        .transition()
+        .duration(500)
+        .call(d3.axisBottom(xScale)
+            .tickSize(-chartHeight)
+            .tickFormat("")
+        )
+        .selectAll("line")
+        .attr("class", "grid-line");
+
+    g.selectAll(".grid").filter(function(d, i) { return i === 1; })
+        .transition()
+        .duration(500)
+        .call(d3.axisLeft(yScale)
+            .tickSize(-chartWidth)
+            .tickFormat("")
+        )
+        .selectAll("line")
+        .attr("class", "grid-line");
+
+    // Update zoom translate extent based on new domain
+    const dataMinX = originalXScale(newDateDomain[0]);
+    const dataMaxX = originalXScale(newDateDomain[1]);
+    const padding = 50;
+    
+    zoom.translateExtent([[dataMinX - padding, -Infinity], 
+                         [dataMaxX + padding, Infinity]]);
+}
+
+/**
  * Show tooltip for a game data point
  * @param {Object} event - Mouse event
  * @param {Object} d - Game data object
@@ -225,7 +317,7 @@ function showTooltip(event, d) {
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
-                <span>${d3.timeFormat("%b %d, %Y")(new Date(d.lastPlayedTotal))}</span>
+                <span>${new Date(d.lastPlayedTotal).toISOString().split('T')[0]}</span>
             </div>
             <div class="tooltip-tags">${tagHTML}</div>
         `)
