@@ -97,6 +97,17 @@
         </div>
 
         <div class="chart-container" style="margin-top: 30px;">
+            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📊 Playtime by Category</h2>
+            <div class="aggregation-controls" id="playtimeAggregationControls" style="text-align: center; margin-bottom: 20px;">
+                <!-- Aggregation type buttons will be populated by JavaScript -->
+            </div>
+            <div class="chart" id="playtimeAggregationChart" style="height: 500px; overflow: hidden;"></div>
+            <div class="zoom-instructions">
+                📊 Total playtime aggregated by category • Switch between Platform, Tag, Status, and Rating views • Hover over bars for details
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 30px;">
             <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📊 Rating Distribution by Tag</h2>
             <div class="chart" id="boxplotChart" style="height: 600px; overflow-y: auto;"></div>
             <div class="zoom-instructions">

@@ -4,6 +4,7 @@ import { loadGameData } from './dataLoader.js';
 import { createTimelineChart, renderTimelinePoints } from './timelineChart.js';
 import { renderBoxplot } from './boxplotChart.js';
 import { renderPlaytimeChart } from './playtimeChart.js';
+import { initializePlaytimeAggregation, updatePlaytimeAggregation } from './playtimeAggregationChart.js';
 import { renderTable, initializeTableSorting, initializeTableSearch, downloadTableAsCSV, clearSearch } from './gamesTable.js';
 import { populateFilters, getFilteredData, clearPlatformFilters, clearTagFilters, clearStatusFilters, clearRatingFilters, clearDateFilter, selectOnlyPlatform, selectOnlyTag, selectOnlyStatus, selectOnlyRating } from './filters.js';
 import { updateStats } from './statistics.js';
@@ -25,6 +26,9 @@ async function initializeDashboard() {
         // Initialize table search
         initializeTableSearch();
         
+        // Initialize playtime aggregation chart
+        initializePlaytimeAggregation(data);
+        
         // Populate filter controls
         populateFilters();
         
@@ -32,7 +36,7 @@ async function initializeDashboard() {
         setupEventListeners();
         
         // Initial visualization update
-        updateVisualization();
+        await updateVisualization();
         
         console.log('✅ Dashboard initialized successfully');
         
@@ -46,7 +50,11 @@ async function initializeDashboard() {
  */
 function setupEventListeners() {
     // Listen for filter changes
-    document.addEventListener('filtersChanged', updateVisualization);
+    document.addEventListener('filtersChanged', () => {
+        updateVisualization().catch(error => {
+            console.error('Error updating visualization:', error);
+        });
+    });
     
     // Listen for table-based filter requests
     document.addEventListener('tableFilterRequested', handleTableFilterRequest);
@@ -84,17 +92,18 @@ function setupCsvDownloadButton() {
 /**
  * Update all visualizations based on current filter settings
  */
-function updateVisualization() {
+async function updateVisualization() {
     const filteredData = getFilteredData();
     
     // Update all charts and table with filtered data
     renderTimelinePoints(filteredData);
     renderTable(filteredData);
+    updatePlaytimeAggregation(filteredData);
     renderBoxplot(filteredData);
     renderPlaytimeChart(filteredData);
     
-    // Update statistics
-    updateStats(filteredData);
+    // Update statistics (now async)
+    await updateStats(filteredData);
     
     console.log(`📊 Visualization updated with ${filteredData.length} games`);
 }
