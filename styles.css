@@ -29,10 +29,10 @@ h1 {
 
 .controls {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.8fr;
+    gap: 15px;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 15px;
     background: rgba(255,255,255,0.1);
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -40,33 +40,97 @@ h1 {
 
 .control-section {
     background: rgba(255,255,255,0.05);
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 180px;
+}
+
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 .control-title {
     font-weight: bold;
     color: #ffffff;
-    margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.platform-checkboxes, .tag-checkboxes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 8px;
-    max-height: 150px;
+.control-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.filter-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #e0e0e0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn:hover {
+    background: rgba(255,255,255,0.2);
+    color: #ffffff;
+}
+
+.tag-search-container {
+    margin-bottom: 8px;
+}
+
+.tag-search-input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
+    font-size: 11px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.tag-search-input::placeholder {
+    color: #a0a0a0;
+}
+
+.tag-search-input:focus {
+    border-color: #4fc3f7;
+    background: rgba(255,255,255,0.15);
+}
+
+.platform-checkboxes, .tag-checkboxes, #statusCheckboxes, #ratingCheckboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 140px;
     overflow-y: auto;
+    flex: 1;
+}
+
+/* Remove height constraint for ratings filter since it only has 6 items */
+#ratingCheckboxes {
+    max-height: none;
+    overflow-y: visible;
 }
 
 .checkbox-item {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px;
-    border-radius: 4px;
+    padding: 3px 4px;
+    border-radius: 3px;
     transition: background 0.2s;
 }
 
@@ -75,20 +139,47 @@ h1 {
 }
 
 .checkbox-item input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     accent-color: #4fc3f7;
 }
 
 .checkbox-item label {
-    font-size: 13px;
+    font-size: 11px;
     cursor: pointer;
     color: #e0e0e0;
+    line-height: 1.2;
+}
+
+.reset-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+}
+
+.reset-all-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #e0e0e0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reset-all-btn:hover {
+    background: rgba(255,255,255,0.2);
+    color: #ffffff;
 }
 
 .date-range {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
@@ -239,21 +330,6 @@ input[type="date"] {
 .stat-label {
     color: #a0a0a0;
     margin-top: 5px;
-}
-
-.clear-filters {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #e0e0e0;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s;
-}
-
-.clear-filters:hover {
-    background: rgba(255,255,255,0.2);
 }
 
 /* Games Table Styles */
@@ -571,24 +647,38 @@ input[type="date"] {
 
 /* Responsive table */
 @media (max-width: 768px) {
+    .controls {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .control-section {
+        min-height: 160px;
+    }
+    
+    .reset-section {
+        grid-column: 1 / -1;
+        min-height: auto;
+    }
+    
     .table-header {
         flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-header h2 {
         text-align: center;
     }
-    
-    .table-header h2 {
-        text-align: center !important;
-    }
-    
+
     .games-table {
         font-size: 12px;
     }
-    
+
     .games-table th,
     .games-table td {
         padding: 8px 12px;
     }
-    
+
     .tags-list {
         max-width: 150px;
     }

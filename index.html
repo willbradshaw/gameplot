@@ -16,31 +16,59 @@
         
         <div class="controls">
             <div class="control-section">
-                <div class="control-title">Platforms</div>
+                <div class="control-header">
+                    <div class="control-title">Platforms</div>
+                    <div class="control-buttons">
+                        <button class="filter-btn" onclick="selectAllPlatforms()">All</button>
+                        <button class="filter-btn" onclick="clearPlatformFilters()">None</button>
+                    </div>
+                </div>
                 <div class="platform-checkboxes" id="platformCheckboxes"></div>
-                <button class="clear-filters" onclick="clearPlatformFilters()">Clear All</button>
             </div>
             
             <div class="control-section">
-                <div class="control-title">Tags</div>
+                <div class="control-header">
+                    <div class="control-title">Tags</div>
+                    <div class="control-buttons">
+                        <button class="filter-btn" onclick="selectAllTags()">All</button>
+                        <button class="filter-btn" onclick="clearTagFilters()">None</button>
+                    </div>
+                </div>
+                <div class="tag-search-container">
+                    <input type="text" id="tagSearch" placeholder="Search tags..." class="tag-search-input">
+                </div>
                 <div class="tag-checkboxes" id="tagCheckboxes"></div>
-                <button class="clear-filters" onclick="clearTagFilters()">Clear All</button>
             </div>
             
             <div class="control-section">
-                <div class="control-title">Status</div>
+                <div class="control-header">
+                    <div class="control-title">Status</div>
+                    <div class="control-buttons">
+                        <button class="filter-btn" onclick="selectAllStatuses()">All</button>
+                        <button class="filter-btn" onclick="clearStatusFilters()">None</button>
+                    </div>
+                </div>
                 <div class="platform-checkboxes" id="statusCheckboxes"></div>
-                <button class="clear-filters" onclick="clearStatusFilters()">Clear All</button>
             </div>
             
             <div class="control-section">
-                <div class="control-title">Ratings</div>
+                <div class="control-header">
+                    <div class="control-title">Ratings</div>
+                    <div class="control-buttons">
+                        <button class="filter-btn" onclick="selectAllRatings()">All</button>
+                        <button class="filter-btn" onclick="clearRatingFilters()">None</button>
+                    </div>
+                </div>
                 <div class="platform-checkboxes" id="ratingCheckboxes"></div>
-                <button class="clear-filters" onclick="clearRatingFilters()">Clear All</button>
             </div>
             
             <div class="control-section">
-                <div class="control-title">Date Range</div>
+                <div class="control-header">
+                    <div class="control-title">Date Range</div>
+                    <div class="control-buttons">
+                        <button class="filter-btn" onclick="clearDateFilter()">Reset</button>
+                    </div>
+                </div>
                 <div class="date-range">
                     <div class="date-input-group">
                         <label for="startDate">From</label>
@@ -51,18 +79,14 @@
                         <input type="date" id="endDate">
                     </div>
                 </div>
-                <button class="clear-filters" onclick="clearDateFilter()" style="margin-top: 10px;">Clear Range</button>
+            </div>
+            
+            <div class="control-section reset-section">
+                <button class="reset-all-btn" onclick="resetAllFilters()">🔄 Reset All Filters</button>
             </div>
         </div>
 
-        <div class="chart-container">
-            <div class="chart" id="chart"></div>
-            <div class="zoom-instructions">
-                🔍 Scroll to zoom • Click and drag to pan • Hover over points for details
-            </div>
-        </div>
-
-        <div class="table-container" style="margin-top: 30px;">
+        <div class="table-container">
             <div class="table-header">
                 <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📋 Games Table</h2>
                 <div class="table-controls">
@@ -97,6 +121,14 @@
         </div>
 
         <div class="chart-container" style="margin-top: 30px;">
+            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📅 Last Played vs Rating</h2>
+            <div class="chart" id="chart"></div>
+            <div class="zoom-instructions">
+                🔍 Scroll to zoom • Click and drag to pan • Hover over points for details
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 30px;">
             <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📊 Playtime by Category</h2>
             <div class="aggregation-controls" id="playtimeAggregationControls" style="text-align: center; margin-bottom: 20px;">
                 <!-- Aggregation type buttons will be populated by JavaScript -->
@@ -104,14 +136,6 @@
             <div class="chart" id="playtimeAggregationChart" style="height: 500px; overflow: hidden;"></div>
             <div class="zoom-instructions">
                 📊 Total playtime aggregated by category • Switch between Platform, Tag, Status, and Rating views • Hover over bars for details
-            </div>
-        </div>
-
-        <div class="chart-container" style="margin-top: 30px;">
-            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📊 Rating Distribution by Tag</h2>
-            <div class="chart" id="boxplotChart" style="height: 600px; overflow-y: auto;"></div>
-            <div class="zoom-instructions">
-                📈 Box plots show rating distributions • Tags ordered by average rating • Scroll to see all tags
             </div>
         </div>
 

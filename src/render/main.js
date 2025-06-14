@@ -2,11 +2,10 @@
 
 import { loadGameData } from './dataLoader.js';
 import { createTimelineChart, renderTimelinePoints } from './timelineChart.js';
-import { renderBoxplot } from './boxplotChart.js';
 import { renderPlaytimeChart } from './playtimeChart.js';
 import { initializePlaytimeAggregation, updatePlaytimeAggregation } from './playtimeAggregationChart.js';
 import { renderTable, initializeTableSorting, initializeTableSearch, downloadTableAsCSV, clearSearch } from './gamesTable.js';
-import { populateFilters, getFilteredData, clearPlatformFilters, clearTagFilters, clearStatusFilters, clearRatingFilters, clearDateFilter, selectOnlyPlatform, selectOnlyTag, selectOnlyStatus, selectOnlyRating } from './filters.js';
+import { populateFilters, getFilteredData, clearPlatformFilters, clearTagFilters, clearStatusFilters, clearRatingFilters, clearDateFilter, selectOnlyPlatform, selectOnlyTag, selectOnlyStatus, selectOnlyRating, selectAllPlatforms, selectAllTags, selectAllStatuses, selectAllRatings, resetAllFilters } from './filters.js';
 import { updateStats } from './statistics.js';
 
 /**
@@ -76,6 +75,15 @@ function setupClearFilterButtons() {
     window.clearStatusFilters = clearStatusFilters;
     window.clearRatingFilters = clearRatingFilters;
     window.clearDateFilter = clearDateFilter;
+    
+    // Make select all filter functions available globally
+    window.selectAllPlatforms = selectAllPlatforms;
+    window.selectAllTags = selectAllTags;
+    window.selectAllStatuses = selectAllStatuses;
+    window.selectAllRatings = selectAllRatings;
+    
+    // Make reset all filters function available globally
+    window.resetAllFilters = resetAllFilters;
 }
 
 /**
@@ -99,7 +107,6 @@ async function updateVisualization() {
     renderTimelinePoints(filteredData);
     renderTable(filteredData);
     updatePlaytimeAggregation(filteredData);
-    renderBoxplot(filteredData);
     renderPlaytimeChart(filteredData);
     
     // Update statistics (now async)

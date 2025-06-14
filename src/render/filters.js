@@ -3,6 +3,9 @@
 import { getPlatformColor } from './config.js';
 import { getGameData } from './dataLoader.js';
 
+// Store all tags for search functionality
+let allTags = [];
+
 /**
  * Populate all filter controls with data from the game dataset
  */
@@ -14,6 +17,38 @@ export function populateFilters() {
     populateStatusFilters(data);
     populateRatingFilters(data);
     populateDateFilters(data);
+    
+    // Set up tag search functionality
+    setupTagSearch();
+}
+
+/**
+ * Set up tag search functionality
+ */
+function setupTagSearch() {
+    const searchInput = document.getElementById('tagSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            filterTagDisplay(e.target.value.toLowerCase());
+        });
+    }
+}
+
+/**
+ * Filter tag display based on search term
+ * @param {string} searchTerm - Search term
+ */
+function filterTagDisplay(searchTerm) {
+    const tagItems = document.querySelectorAll('#tagCheckboxes .checkbox-item');
+    tagItems.forEach(item => {
+        const label = item.querySelector('label');
+        const tagName = label.textContent.toLowerCase();
+        if (tagName.includes(searchTerm)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
 
 /**
@@ -49,7 +84,7 @@ function populatePlatformFilters(data) {
  * @param {Array} data - Game data array
  */
 function populateTagFilters(data) {
-    const allTags = [...new Set(data.flatMap(d => d.tags))].sort();
+    allTags = [...new Set(data.flatMap(d => d.tags))].sort();
     const tagContainer = d3.select("#tagCheckboxes");
     
     allTags.forEach(tag => {
@@ -205,34 +240,34 @@ function getRatingRange(rating) {
 }
 
 /**
- * Clear all platform filters (select all)
+ * Clear all platform filters (uncheck all)
  */
 export function clearPlatformFilters() {
-    document.querySelectorAll('#platformCheckboxes input').forEach(cb => cb.checked = true);
+    document.querySelectorAll('#platformCheckboxes input').forEach(cb => cb.checked = false);
     document.dispatchEvent(new CustomEvent('filtersChanged'));
 }
 
 /**
- * Clear all tag filters (select all)
+ * Clear all tag filters (uncheck all)
  */
 export function clearTagFilters() {
-    document.querySelectorAll('#tagCheckboxes input').forEach(cb => cb.checked = true);
+    document.querySelectorAll('#tagCheckboxes input').forEach(cb => cb.checked = false);
     document.dispatchEvent(new CustomEvent('filtersChanged'));
 }
 
 /**
- * Clear all status filters (select all)
+ * Clear all status filters (uncheck all)
  */
 export function clearStatusFilters() {
-    document.querySelectorAll('#statusCheckboxes input').forEach(cb => cb.checked = true);
+    document.querySelectorAll('#statusCheckboxes input').forEach(cb => cb.checked = false);
     document.dispatchEvent(new CustomEvent('filtersChanged'));
 }
 
 /**
- * Clear all rating filters (select all)
+ * Clear all rating filters (uncheck all)
  */
 export function clearRatingFilters() {
-    document.querySelectorAll('#ratingCheckboxes input').forEach(cb => cb.checked = true);
+    document.querySelectorAll('#ratingCheckboxes input').forEach(cb => cb.checked = false);
     document.dispatchEvent(new CustomEvent('filtersChanged'));
 }
 
@@ -305,19 +340,84 @@ export function selectOnlyStatus(status) {
 }
 
 /**
- * Select only specific rating range filter
+ * Select only a specific rating range (used by table filtering)
  * @param {string} range - Rating range to select
  */
 export function selectOnlyRating(range) {
-    // Uncheck all rating ranges
-    document.querySelectorAll('#ratingCheckboxes input').forEach(cb => cb.checked = false);
-    // Check only the selected range by finding the checkbox with matching value
-    const checkboxes = document.querySelectorAll('#ratingCheckboxes input');
-    for (const checkbox of checkboxes) {
-        if (checkbox.value === range) {
-            checkbox.checked = true;
-            document.dispatchEvent(new CustomEvent('filtersChanged'));
-            break;
-        }
+    // First clear all ratings
+    document.querySelectorAll('#ratingCheckboxes input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+    });
+    
+    // Then select only the specified rating
+    const targetCheckbox = document.querySelector(`#rating-${range}`);
+    if (targetCheckbox) {
+        targetCheckbox.checked = true;
     }
+    
+    // Trigger filter update
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
+ * Select all platforms
+ */
+export function selectAllPlatforms() {
+    document.querySelectorAll('#platformCheckboxes input[type="checkbox"]').forEach(cb => {
+        cb.checked = true;
+    });
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
+ * Select all tags
+ */
+export function selectAllTags() {
+    document.querySelectorAll('#tagCheckboxes input[type="checkbox"]').forEach(cb => {
+        cb.checked = true;
+    });
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
+ * Select all statuses
+ */
+export function selectAllStatuses() {
+    document.querySelectorAll('#statusCheckboxes input[type="checkbox"]').forEach(cb => {
+        cb.checked = true;
+    });
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
+ * Select all ratings
+ */
+export function selectAllRatings() {
+    document.querySelectorAll('#ratingCheckboxes input[type="checkbox"]').forEach(cb => {
+        cb.checked = true;
+    });
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
+ * Reset all filters to their default state
+ */
+export function resetAllFilters() {
+    // Select all checkboxes
+    selectAllPlatforms();
+    selectAllTags();
+    selectAllStatuses();
+    selectAllRatings();
+    
+    // Reset date range to full extent
+    clearDateFilter();
+    
+    // Clear tag search
+    const tagSearch = document.getElementById('tagSearch');
+    if (tagSearch) {
+        tagSearch.value = '';
+        filterTagDisplay(''); // Show all tags
+    }
+    
+    console.log('🔄 All filters reset to default');
 } 
