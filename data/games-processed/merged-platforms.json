@@ -102,7 +102,7 @@
     "urls": [
       "https://store.steampowered.com/app/8930"
     ],
-    "game": "Sid Meier's Civilization® V"
+    "game": "Sid Meier's Civilization V"
   },
   {
     "platforms": [
@@ -122,7 +122,7 @@
     "urls": [
       "https://store.steampowered.com/app/373420"
     ],
-    "game": "Divinity: Original Sin Enhanced Edition"
+    "game": "Divinity: Original Sin - Enhanced Edition"
   },
   {
     "platforms": [
@@ -476,28 +476,23 @@
   },
   {
     "platforms": [
-      "Steam",
-      "PS5"
+      "Steam"
     ],
     "lastPlayedSingle": [
-      "2019-04-06",
-      "2022-10-28"
+      "2019-04-06"
     ],
-    "lastPlayedTotal": "2022-10-28",
+    "lastPlayedTotal": "2019-04-06",
     "hoursPlayedSingle": [
-      27.5,
-      34.4
+      27.5
     ],
-    "hoursPlayedTotal": 61.9,
+    "hoursPlayedTotal": 27.5,
     "ids": [
-      596970,
-      10001205
+      596970
     ],
     "urls": [
-      "https://store.steampowered.com/app/596970",
-      "https://store.playstation.com/concept/10001205"
+      "https://store.steampowered.com/app/596970"
     ],
-    "game": "Sunless Skies: Sovereign Edition"
+    "game": "Sunless Skies"
   },
   {
     "platforms": [
@@ -692,7 +687,7 @@
     "urls": [
       "https://store.steampowered.com/app/2100"
     ],
-    "game": "Dark Messiah of Might & Magic"
+    "game": "Dark Messiah of Might & Magic Single Player"
   },
   {
     "platforms": [
@@ -817,7 +812,7 @@
     "urls": [
       "https://store.steampowered.com/app/94300"
     ],
-    "game": "The Dream Machine: Chapter 1 & 2"
+    "game": "The Dream Machine"
   },
   {
     "platforms": [
@@ -1367,7 +1362,7 @@
     "urls": [
       "https://store.steampowered.com/app/211600"
     ],
-    "game": "Thief™ Gold"
+    "game": "Thief Gold"
   },
   {
     "platforms": [
@@ -1792,7 +1787,7 @@
     "urls": [
       "https://store.steampowered.com/app/94610"
     ],
-    "game": "Hector: Ep 2"
+    "game": "Hector: Episode 2"
   },
   {
     "platforms": [
@@ -2212,7 +2207,7 @@
     "urls": [
       "https://store.steampowered.com/app/94600"
     ],
-    "game": "Hector: Episode 1"
+    "game": "Hector: Ep 1"
   },
   {
     "platforms": [
@@ -2542,7 +2537,7 @@
     "urls": [
       "https://store.steampowered.com/app/35720"
     ],
-    "game": "Trine 2: Complete Story"
+    "game": "Trine 2"
   },
   {
     "platforms": [
@@ -2902,7 +2897,7 @@
     "urls": [
       "https://store.steampowered.com/app/35140"
     ],
-    "game": "Batman: Arkham Asylum Game of the Year Edition"
+    "game": "Batman: Arkham Asylum GOTY Edition"
   },
   {
     "platforms": [
@@ -3042,7 +3037,7 @@
     "urls": [
       "https://store.steampowered.com/app/57640"
     ],
-    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)"
+    "game": "Broken Sword: Director's Cut (2009)"
   },
   {
     "platforms": [
@@ -3362,7 +3357,7 @@
     "urls": [
       "https://store.steampowered.com/app/255420"
     ],
-    "game": "Magic 2015"
+    "game": "Magic 2015 - Duels of the Planeswalkers"
   },
   {
     "platforms": [
@@ -5223,6 +5218,26 @@
       "https://store.playstation.com/concept/232084"
     ],
     "game": "Divinity: Original Sin 2 - Definitive Edition"
+  },
+  {
+    "platforms": [
+      "PS5"
+    ],
+    "lastPlayedSingle": [
+      "2022-10-28"
+    ],
+    "lastPlayedTotal": "2022-10-28",
+    "hoursPlayedSingle": [
+      34.4
+    ],
+    "hoursPlayedTotal": 34.4,
+    "ids": [
+      10001205
+    ],
+    "urls": [
+      "https://store.playstation.com/concept/10001205"
+    ],
+    "game": "Sunless Skies: Sovereign Edition"
   },
   {
     "platforms": [
