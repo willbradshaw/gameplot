@@ -30,6 +30,13 @@ export function createTimelineChart(data) {
     g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // Add clipping path to constrain points to chart area
+    svg.append("defs").append("clipPath")
+        .attr("id", "timeline-clip")
+        .append("rect")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight);
+
     // Create scales - convert lastPlayedTotal strings to Date objects
     const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
     const xExtent = d3.extent(dates);
@@ -173,7 +180,8 @@ export function renderTimelinePoints(filteredData) {
 
     const circlesEnter = circles.enter()
         .append("circle")
-        .attr("class", "rating-circle");
+        .attr("class", "rating-circle")
+        .attr("clip-path", "url(#timeline-clip)");
 
     const circlesUpdate = circlesEnter.merge(circles);
 

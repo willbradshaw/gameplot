@@ -43,6 +43,13 @@ export function renderPlaytimeChart(filteredData) {
     const playtimeG = playtimeSvg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // Add clipping path to constrain points to chart area
+    playtimeSvg.append("defs").append("clipPath")
+        .attr("id", "playtime-clip")
+        .append("rect")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight);
+
     // Calculate dynamic domains based on filtered data
     const ratings = filteredData.map(d => d.rating).filter(r => r !== null && r !== undefined);
     const hours = filteredData.map(d => Math.max(d.hoursPlayedTotal, 0.1));
@@ -200,7 +207,8 @@ function renderPlaytimePoints(filteredData, g) {
 
     const circlesEnter = circles.enter()
         .append("circle")
-        .attr("class", "playtime-circle");
+        .attr("class", "playtime-circle")
+        .attr("clip-path", "url(#playtime-clip)");
 
     const circlesUpdate = circlesEnter.merge(circles);
 
