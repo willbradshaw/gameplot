@@ -4,7 +4,8 @@ import { loadGameData } from './dataLoader.js';
 import { createTimelineChart, renderTimelinePoints } from './timelineChart.js';
 import { renderBoxplot } from './boxplotChart.js';
 import { renderPlaytimeChart } from './playtimeChart.js';
-import { populateFilters, getFilteredData, clearPlatformFilters, clearTagFilters, clearStatusFilters, clearDateFilter } from './filters.js';
+import { renderTable, initializeTableSorting, initializeTableSearch, downloadTableAsCSV, clearSearch } from './gamesTable.js';
+import { populateFilters, getFilteredData, clearPlatformFilters, clearTagFilters, clearStatusFilters, clearRatingFilters, clearDateFilter, selectOnlyPlatform, selectOnlyTag, selectOnlyStatus, selectOnlyRating } from './filters.js';
 import { updateStats } from './statistics.js';
 
 /**
@@ -17,6 +18,12 @@ async function initializeDashboard() {
         
         // Create the main timeline chart
         createTimelineChart(data);
+        
+        // Initialize table sorting
+        initializeTableSorting();
+        
+        // Initialize table search
+        initializeTableSearch();
         
         // Populate filter controls
         populateFilters();
@@ -41,8 +48,14 @@ function setupEventListeners() {
     // Listen for filter changes
     document.addEventListener('filtersChanged', updateVisualization);
     
+    // Listen for table-based filter requests
+    document.addEventListener('tableFilterRequested', handleTableFilterRequest);
+    
     // Set up clear filter button handlers
     setupClearFilterButtons();
+    
+    // Set up CSV download button
+    setupCsvDownloadButton();
 }
 
 /**
@@ -53,7 +66,19 @@ function setupClearFilterButtons() {
     window.clearPlatformFilters = clearPlatformFilters;
     window.clearTagFilters = clearTagFilters;
     window.clearStatusFilters = clearStatusFilters;
+    window.clearRatingFilters = clearRatingFilters;
     window.clearDateFilter = clearDateFilter;
+}
+
+/**
+ * Set up CSV download button event handler
+ */
+function setupCsvDownloadButton() {
+    // Make CSV download function available globally for button onclick handler
+    window.downloadTableAsCSV = downloadTableAsCSV;
+    
+    // Make clear search function available globally for button onclick handler
+    window.clearGameSearch = clearSearch;
 }
 
 /**
@@ -62,8 +87,9 @@ function setupClearFilterButtons() {
 function updateVisualization() {
     const filteredData = getFilteredData();
     
-    // Update all charts with filtered data
+    // Update all charts and table with filtered data
     renderTimelinePoints(filteredData);
+    renderTable(filteredData);
     renderBoxplot(filteredData);
     renderPlaytimeChart(filteredData);
     
@@ -71,6 +97,31 @@ function updateVisualization() {
     updateStats(filteredData);
     
     console.log(`📊 Visualization updated with ${filteredData.length} games`);
+}
+
+/**
+ * Handle filter requests from table element clicks
+ * @param {CustomEvent} event - Filter request event
+ */
+function handleTableFilterRequest(event) {
+    const { type, value } = event.detail;
+    
+    switch (type) {
+        case 'platform':
+            selectOnlyPlatform(value);
+            break;
+        case 'tag':
+            selectOnlyTag(value);
+            break;
+        case 'status':
+            selectOnlyStatus(value);
+            break;
+        case 'rating':
+            selectOnlyRating(value);
+            break;
+        default:
+            console.warn('Unknown filter type:', type);
+    }
 }
 
 // Start the application when the DOM is loaded

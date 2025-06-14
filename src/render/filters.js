@@ -12,6 +12,7 @@ export function populateFilters() {
     populatePlatformFilters(data);
     populateTagFilters(data);
     populateStatusFilters(data);
+    populateRatingFilters(data);
     populateDateFilters(data);
 }
 
@@ -94,6 +95,31 @@ function populateStatusFilters(data) {
 }
 
 /**
+ * Populate rating filter checkboxes
+ * @param {Array} data - Game data array
+ */
+function populateRatingFilters(data) {
+    const ratingRanges = ['<5', '5-6', '6-7', '7-8', '8-9', '9-10'];
+    const ratingContainer = d3.select("#ratingCheckboxes");
+    
+    ratingRanges.forEach(range => {
+        const item = ratingContainer.append("div").attr("class", "checkbox-item");
+        const checkbox = item.append("input")
+            .attr("type", "checkbox")
+            .attr("id", `rating-${range}`)
+            .attr("value", range)
+            .attr("checked", true)
+            .on("change", () => {
+                document.dispatchEvent(new CustomEvent('filtersChanged'));
+            });
+        
+        item.append("label")
+            .attr("for", `rating-${range}`)
+            .text(range);
+    });
+}
+
+/**
  * Populate date range filters
  * @param {Array} data - Game data array
  */
@@ -132,6 +158,10 @@ export function getFilteredData() {
     const selectedStatuses = Array.from(document.querySelectorAll('#statusCheckboxes input:checked'))
         .map(cb => cb.value);
     
+    // Get selected rating ranges
+    const selectedRatingRanges = Array.from(document.querySelectorAll('#ratingCheckboxes input:checked'))
+        .map(cb => cb.value);
+    
     // Get date range
     const startDate = new Date(document.getElementById("startDate").value);
     const endDate = new Date(document.getElementById("endDate").value);
@@ -147,12 +177,31 @@ export function getFilteredData() {
         // Status filter
         const statusMatch = selectedStatuses.includes(d.status);
         
+        // Rating filter
+        const ratingMatch = selectedRatingRanges.length === 0 || 
+            selectedRatingRanges.includes(getRatingRange(d.rating));
+        
         // Date filter - convert lastPlayedTotal to Date for comparison
         const gameDate = new Date(d.lastPlayedTotal);
         const dateMatch = !isNaN(gameDate) && gameDate >= startDate && gameDate <= endDate;
         
-        return platformMatch && tagMatch && statusMatch && dateMatch;
+        return platformMatch && tagMatch && statusMatch && ratingMatch && dateMatch;
     });
+}
+
+/**
+ * Get rating range for a numeric rating
+ * @param {number} rating - Numeric rating
+ * @returns {string} Rating range string
+ */
+function getRatingRange(rating) {
+    if (rating === null || rating === undefined) return null;
+    if (rating >= 9.0) return '9-10';
+    if (rating >= 8.0) return '8-9';
+    if (rating >= 7.0) return '7-8';
+    if (rating >= 6.0) return '6-7';
+    if (rating >= 5.0) return '5-6';
+    return '<5';
 }
 
 /**
@@ -180,6 +229,14 @@ export function clearStatusFilters() {
 }
 
 /**
+ * Clear all rating filters (select all)
+ */
+export function clearRatingFilters() {
+    document.querySelectorAll('#ratingCheckboxes input').forEach(cb => cb.checked = true);
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
  * Clear date filter (reset to full range)
  */
 export function clearDateFilter() {
@@ -191,4 +248,76 @@ export function clearDateFilter() {
     document.getElementById("startDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[0]);
     document.getElementById("endDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[1]);
     document.dispatchEvent(new CustomEvent('filtersChanged'));
+}
+
+/**
+ * Select only specific platform filter
+ * @param {string} platform - Platform to select
+ */
+export function selectOnlyPlatform(platform) {
+    // Uncheck all platforms
+    document.querySelectorAll('#platformCheckboxes input').forEach(cb => cb.checked = false);
+    // Check only the selected platform by finding the checkbox with matching value
+    const checkboxes = document.querySelectorAll('#platformCheckboxes input');
+    for (const checkbox of checkboxes) {
+        if (checkbox.value === platform) {
+            checkbox.checked = true;
+            document.dispatchEvent(new CustomEvent('filtersChanged'));
+            break;
+        }
+    }
+}
+
+/**
+ * Select only specific tag filter
+ * @param {string} tag - Tag to select
+ */
+export function selectOnlyTag(tag) {
+    // Uncheck all tags
+    document.querySelectorAll('#tagCheckboxes input').forEach(cb => cb.checked = false);
+    // Check only the selected tag by finding the checkbox with matching value
+    const checkboxes = document.querySelectorAll('#tagCheckboxes input');
+    for (const checkbox of checkboxes) {
+        if (checkbox.value === tag) {
+            checkbox.checked = true;
+            document.dispatchEvent(new CustomEvent('filtersChanged'));
+            break;
+        }
+    }
+}
+
+/**
+ * Select only specific status filter
+ * @param {string} status - Status to select
+ */
+export function selectOnlyStatus(status) {
+    // Uncheck all statuses
+    document.querySelectorAll('#statusCheckboxes input').forEach(cb => cb.checked = false);
+    // Check only the selected status by finding the checkbox with matching value
+    const checkboxes = document.querySelectorAll('#statusCheckboxes input');
+    for (const checkbox of checkboxes) {
+        if (checkbox.value === status) {
+            checkbox.checked = true;
+            document.dispatchEvent(new CustomEvent('filtersChanged'));
+            break;
+        }
+    }
+}
+
+/**
+ * Select only specific rating range filter
+ * @param {string} range - Rating range to select
+ */
+export function selectOnlyRating(range) {
+    // Uncheck all rating ranges
+    document.querySelectorAll('#ratingCheckboxes input').forEach(cb => cb.checked = false);
+    // Check only the selected range by finding the checkbox with matching value
+    const checkboxes = document.querySelectorAll('#ratingCheckboxes input');
+    for (const checkbox of checkboxes) {
+        if (checkbox.value === range) {
+            checkbox.checked = true;
+            document.dispatchEvent(new CustomEvent('filtersChanged'));
+            break;
+        }
+    }
 } 

@@ -34,6 +34,12 @@
             </div>
             
             <div class="control-section">
+                <div class="control-title">Ratings</div>
+                <div class="platform-checkboxes" id="ratingCheckboxes"></div>
+                <button class="clear-filters" onclick="clearRatingFilters()">Clear All</button>
+            </div>
+            
+            <div class="control-section">
                 <div class="control-title">Date Range</div>
                 <div class="date-range">
                     <div class="date-input-group">
@@ -53,6 +59,40 @@
             <div class="chart" id="chart"></div>
             <div class="zoom-instructions">
                 🔍 Scroll to zoom • Click and drag to pan • Hover over points for details
+            </div>
+        </div>
+
+        <div class="table-container" style="margin-top: 30px;">
+            <div class="table-header">
+                <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📋 Games Table</h2>
+                <div class="table-controls">
+                    <div class="search-container">
+                        <input type="text" id="gameSearch" placeholder="Search games..." class="search-input">
+                        <button class="clear-search-btn" onclick="clearGameSearch()" title="Clear search">✕</button>
+                    </div>
+                    <button class="download-csv-btn" onclick="downloadTableAsCSV()">📥 Download CSV</button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="gamesTable" class="games-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-column="game">Game <span class="sort-indicator"></span></th>
+                            <th class="sortable" data-column="platforms">Platforms <span class="sort-indicator"></span></th>
+                            <th class="sortable" data-column="rating">Rating <span class="sort-indicator"></span></th>
+                            <th class="sortable" data-column="lastPlayedTotal">Last Played <span class="sort-indicator"></span></th>
+                            <th class="sortable" data-column="hoursPlayedTotal">Hours Played <span class="sort-indicator"></span></th>
+                            <th class="sortable" data-column="status">Status <span class="sort-indicator"></span></th>
+                            <th class="sortable" data-column="tags">Tags <span class="sort-indicator"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="gamesTableBody">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-info">
+                <span id="tableRowCount">Loading...</span>
             </div>
         </div>
 
