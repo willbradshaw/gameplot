@@ -1142,7 +1142,8 @@
   },
   {
     "game": "To the Moon",
-    "rating": 9.1,
+    "displayName": "To the Moon",
+    "rating": 9.5,
     "status": "Complete",
     "tags": ["Adventure", "Walking Simulator"]
   },
@@ -1623,7 +1624,8 @@
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG"],
     "game": "Dragon Age™: Inquisition",
-    "displayName": "Dragon Age: Inquisition"
+    "displayName": "Dragon Age: Inquisition",
+    "hoursPlayedTotal": 40.0
   },
   {
     "rating": 5.7,
@@ -2077,7 +2079,7 @@
   },
   {
     "game": "To The Moon",
-    "rating": 9.7,
+    "rating": 9.5,
     "status": "Complete",
     "tags": ["Walking Simulator", "Adventure"]
   },

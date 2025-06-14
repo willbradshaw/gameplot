@@ -16,7 +16,7 @@
     "url": "https://store.steampowered.com/app/780290"
   },
   {
-    "game": "Divinity: Original Sin 2 - Definitive Edition",
+    "game": "Divinity: Original Sin 2",
     "platform": "Steam",
     "lastPlayed": "2022-05-23",
     "hoursPlayed": 143.6,
@@ -48,7 +48,7 @@
     "url": "https://store.steampowered.com/app/373420"
   },
   {
-    "game": "Sid Meier’s Civilization® VI",
+    "game": "Sid Meier's Civilization VI",
     "platform": "Steam",
     "lastPlayed": "2021-01-10",
     "hoursPlayed": 72.7,
@@ -112,12 +112,20 @@
     "url": "https://store.steampowered.com/app/632470"
   },
   {
-    "game": "SUNLESS SEA",
+    "game": "Sunless Sea",
     "platform": "Steam",
     "lastPlayed": "2024-10-12",
     "hoursPlayed": 43.5,
     "id": 304650,
     "url": "https://store.steampowered.com/app/304650"
+  },
+  {
+    "game": "Blue Prince",
+    "platform": "Steam",
+    "lastPlayed": "2025-06-14",
+    "hoursPlayed": 42.2,
+    "id": 1569580,
+    "url": "https://store.steampowered.com/app/1569580"
   },
   {
     "game": "Mass Effect (2007)",
@@ -160,14 +168,6 @@
     "url": "https://store.steampowered.com/app/620"
   },
   {
-    "game": "Blue Prince",
-    "platform": "Steam",
-    "lastPlayed": "2025-06-09",
-    "hoursPlayed": 33.3,
-    "id": 1569580,
-    "url": "https://store.steampowered.com/app/1569580"
-  },
-  {
     "game": "Wasteland 2: Director's Cut",
     "platform": "Steam",
     "lastPlayed": "2024-10-10",
@@ -184,7 +184,7 @@
     "url": "https://store.steampowered.com/app/300550"
   },
   {
-    "game": "Sunless Skies",
+    "game": "Sunless Skies: Sovereign Edition",
     "platform": "Steam",
     "lastPlayed": "2019-04-06",
     "hoursPlayed": 27.5,
@@ -856,7 +856,7 @@
     "url": "https://store.steampowered.com/app/203810"
   },
   {
-    "game": "Hector: Ep 1",
+    "game": "Hector: Episode 1",
     "platform": "Steam",
     "lastPlayed": "2013-07-18",
     "hoursPlayed": 3.4,
