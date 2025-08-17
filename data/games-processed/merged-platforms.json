@@ -24,13 +24,33 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2025-06-05"
+      "2025-08-11"
     ],
-    "lastPlayedTotal": "2025-06-05",
+    "lastPlayedTotal": "2025-08-11",
     "hoursPlayedSingle": [
-      175.8
+      248.5
     ],
-    "hoursPlayedTotal": 175.8,
+    "hoursPlayedTotal": 248.5,
+    "ids": [
+      1569580
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1569580"
+    ],
+    "game": "Blue Prince"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-08-07"
+    ],
+    "lastPlayedTotal": "2025-08-07",
+    "hoursPlayedSingle": [
+      180.5
+    ],
+    "hoursPlayedTotal": 180.5,
     "ids": [
       780290
     ],
@@ -44,13 +64,13 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2022-05-23"
+      "2025-08-13"
     ],
-    "lastPlayedTotal": "2022-05-23",
+    "lastPlayedTotal": "2025-08-13",
     "hoursPlayedSingle": [
-      143.6
+      143.9
     ],
-    "hoursPlayedTotal": 143.6,
+    "hoursPlayedTotal": 143.9,
     "ids": [
       435150
     ],
@@ -66,14 +86,14 @@
     ],
     "lastPlayedSingle": [
       "2024-12-16",
-      "2025-06-03"
+      "2025-08-17"
     ],
-    "lastPlayedTotal": "2025-06-03",
+    "lastPlayedTotal": "2025-08-17",
     "hoursPlayedSingle": [
       136.4,
-      145.6
+      154.7
     ],
-    "hoursPlayedTotal": 282.0,
+    "hoursPlayedTotal": 291.1,
     "ids": [
       1086940,
       10007460
@@ -122,7 +142,7 @@
     "urls": [
       "https://store.steampowered.com/app/373420"
     ],
-    "game": "Divinity: Original Sin - Enhanced Edition"
+    "game": "Divinity: Original Sin Enhanced Edition"
   },
   {
     "platforms": [
@@ -202,7 +222,7 @@
     "urls": [
       "https://store.steampowered.com/app/22330"
     ],
-    "game": "The Elder Scrolls IV: Oblivion® Game of the Year Edition (2009)"
+    "game": "The Elder Scrolls IV: Oblivion Game of the Year Edition (2009)"
   },
   {
     "platforms": [
@@ -242,7 +262,7 @@
     "urls": [
       "https://store.steampowered.com/app/24980"
     ],
-    "game": "Mass Effect 2 (2010 Edition)"
+    "game": "Mass Effect 2 (2010)"
   },
   {
     "platforms": [
@@ -303,26 +323,6 @@
       "https://store.steampowered.com/app/304650"
     ],
     "game": "Sunless Sea"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2025-06-14"
-    ],
-    "lastPlayedTotal": "2025-06-14",
-    "hoursPlayedSingle": [
-      42.2
-    ],
-    "hoursPlayedTotal": 42.2,
-    "ids": [
-      1569580
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/1569580"
-    ],
-    "game": "Blue Prince"
   },
   {
     "platforms": [
@@ -1016,6 +1016,31 @@
   },
   {
     "platforms": [
+      "Steam",
+      "GOG"
+    ],
+    "lastPlayedSingle": [
+      "2025-06-15",
+      "2019-01-01"
+    ],
+    "lastPlayedTotal": "2025-06-15",
+    "hoursPlayedSingle": [
+      10,
+      12
+    ],
+    "hoursPlayedTotal": 22,
+    "ids": [
+      336140,
+      1637485057
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/336140",
+      "https://gogdb.org/product/1637485057"
+    ],
+    "game": "Unavowed"
+  },
+  {
+    "platforms": [
       "Steam"
     ],
     "lastPlayedSingle": [
@@ -1244,6 +1269,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-07-21"
+    ],
+    "lastPlayedTotal": "2025-07-21",
+    "hoursPlayedSingle": [
+      7.3
+    ],
+    "hoursPlayedTotal": 7.3,
+    "ids": [
+      1170570
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1170570"
+    ],
+    "game": "The Drifter"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2018-08-18"
     ],
     "lastPlayedTotal": "2018-08-18",
@@ -1258,31 +1303,6 @@
       "https://store.steampowered.com/app/50300"
     ],
     "game": "Spec Ops: The Line"
-  },
-  {
-    "platforms": [
-      "Steam",
-      "GOG"
-    ],
-    "lastPlayedSingle": [
-      "2025-06-07",
-      "2019-01-01"
-    ],
-    "lastPlayedTotal": "2025-06-07",
-    "hoursPlayedSingle": [
-      6.9,
-      12
-    ],
-    "hoursPlayedTotal": 18.9,
-    "ids": [
-      336140,
-      1637485057
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/336140",
-      "https://gogdb.org/product/1637485057"
-    ],
-    "game": "Unavowed"
   },
   {
     "platforms": [
@@ -1727,7 +1747,7 @@
     "urls": [
       "https://store.steampowered.com/app/6200"
     ],
-    "game": "Ghost Master®"
+    "game": "Ghost Master"
   },
   {
     "platforms": [
@@ -1787,7 +1807,7 @@
     "urls": [
       "https://store.steampowered.com/app/94610"
     ],
-    "game": "Hector: Episode 2"
+    "game": "Hector: Ep 2"
   },
   {
     "platforms": [
@@ -2457,7 +2477,7 @@
     "urls": [
       "https://store.steampowered.com/app/31260"
     ],
-    "game": "Sam & Max 305: The City That Dares Not Sleep"
+    "game": "Sam & Max 305: The City that Dares not Sleep"
   },
   {
     "platforms": [
@@ -2517,7 +2537,27 @@
     "urls": [
       "https://store.steampowered.com/app/2760"
     ],
-    "game": "Neverwinter Nights™ 2 Platinum"
+    "game": "Neverwinter Nights 2: Platinum"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-07-02"
+    ],
+    "lastPlayedTotal": "2025-07-02",
+    "hoursPlayedSingle": [
+      2.8
+    ],
+    "hoursPlayedTotal": 2.8,
+    "ids": [
+      736260
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/736260"
+    ],
+    "game": "Baba Is You"
   },
   {
     "platforms": [
@@ -2764,26 +2804,6 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2020-08-29"
-    ],
-    "lastPlayedTotal": "2020-08-29",
-    "hoursPlayedSingle": [
-      2.3
-    ],
-    "hoursPlayedTotal": 2.3,
-    "ids": [
-      736260
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/736260"
-    ],
-    "game": "Baba Is You"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
       "2012-08-13"
     ],
     "lastPlayedTotal": "2012-08-13",
@@ -2924,6 +2944,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-07-26"
+    ],
+    "lastPlayedTotal": "2025-07-26",
+    "hoursPlayedSingle": [
+      1.9
+    ],
+    "hoursPlayedTotal": 1.9,
+    "ids": [
+      2738630
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2738630"
+    ],
+    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2018-10-11"
     ],
     "lastPlayedTotal": "2018-10-11",
@@ -3037,7 +3077,7 @@
     "urls": [
       "https://store.steampowered.com/app/57640"
     ],
-    "game": "Broken Sword: Director's Cut (2009)"
+    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)"
   },
   {
     "platforms": [
@@ -3204,6 +3244,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-07-19"
+    ],
+    "lastPlayedTotal": "2025-07-19",
+    "hoursPlayedSingle": [
+      1.4
+    ],
+    "hoursPlayedTotal": 1.4,
+    "ids": [
+      1466390
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1466390"
+    ],
+    "game": "Kathy Rain 2: Soothsayer"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2014-04-04"
     ],
     "lastPlayedTotal": "2014-04-04",
@@ -3217,7 +3277,7 @@
     "urls": [
       "https://store.steampowered.com/app/22320"
     ],
-    "game": "The Elder Scrolls III: Morrowind® Game of the Year Edition"
+    "game": "The Elder Scrolls III: Morrowind"
   },
   {
     "platforms": [
@@ -3357,7 +3417,27 @@
     "urls": [
       "https://store.steampowered.com/app/255420"
     ],
-    "game": "Magic 2015 - Duels of the Planeswalkers"
+    "game": "Magic 2015"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-07-26"
+    ],
+    "lastPlayedTotal": "2025-07-26",
+    "hoursPlayedSingle": [
+      1.2
+    ],
+    "hoursPlayedTotal": 1.2,
+    "ids": [
+      1315320
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1315320"
+    ],
+    "game": "The Necromancer's Tale"
   },
   {
     "platforms": [
@@ -3424,6 +3504,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-07-02"
+    ],
+    "lastPlayedTotal": "2025-07-02",
+    "hoursPlayedSingle": [
+      1.1
+    ],
+    "hoursPlayedTotal": 1.1,
+    "ids": [
+      597760
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/597760"
+    ],
+    "game": "Yuppie Psycho"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2012-07-17"
     ],
     "lastPlayedTotal": "2012-07-17",
@@ -3437,7 +3537,7 @@
     "urls": [
       "https://store.steampowered.com/app/4570"
     ],
-    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition"
+    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition "
   },
   {
     "platforms": [
@@ -3957,7 +4057,7 @@
     "urls": [
       "https://store.steampowered.com/app/13520"
     ],
-    "game": "Far Cry®"
+    "game": "Far Cry"
   },
   {
     "platforms": [
@@ -3977,7 +4077,7 @@
     "urls": [
       "https://store.steampowered.com/app/20900"
     ],
-    "game": "The Witcher: Enhanced Edition Director's Cut"
+    "game": "The Witcher: Enhanced Edition"
   },
   {
     "platforms": [
@@ -4078,6 +4178,26 @@
       "https://store.steampowered.com/app/352520"
     ],
     "game": "The Silent Age"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-07-10"
+    ],
+    "lastPlayedTotal": "2025-07-10",
+    "hoursPlayedSingle": [
+      0.3
+    ],
+    "hoursPlayedTotal": 0.3,
+    "ids": [
+      569860
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/569860"
+    ],
+    "game": "Thimbleweed Park"
   },
   {
     "platforms": [
@@ -4357,7 +4477,7 @@
     "urls": [
       "https://store.steampowered.com/app/17410"
     ],
-    "game": "Mirror's Edge™"
+    "game": "Mirror's Edge"
   },
   {
     "platforms": [
@@ -4377,7 +4497,7 @@
     "urls": [
       "https://store.steampowered.com/app/15130"
     ],
-    "game": "Beyond Good and Evil™"
+    "game": "Beyond Good & Evil"
   },
   {
     "platforms": [
@@ -4417,7 +4537,7 @@
     "urls": [
       "https://store.steampowered.com/app/32460"
     ],
-    "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™"
+    "game": "Monkey Island 2: Special Edition"
   },
   {
     "platforms": [
@@ -4564,6 +4684,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-07-02"
+    ],
+    "lastPlayedTotal": "2025-07-02",
+    "hoursPlayedSingle": [
+      0.1
+    ],
+    "hoursPlayedTotal": 0.1,
+    "ids": [
+      247080
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/247080"
+    ],
+    "game": "Crypt of the NecroDancer"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2020-04-11"
     ],
     "lastPlayedTotal": "2020-04-11",
@@ -4578,6 +4718,26 @@
       "https://store.steampowered.com/app/330820"
     ],
     "game": "2064: Read Only Memories"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-07-02"
+    ],
+    "lastPlayedTotal": "2025-07-02",
+    "hoursPlayedSingle": [
+      0.1
+    ],
+    "hoursPlayedTotal": 0.1,
+    "ids": [
+      362680
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/362680"
+    ],
+    "game": "Fran Bow"
   },
   {
     "platforms": [
@@ -4764,13 +4924,13 @@
       "PS5"
     ],
     "lastPlayedSingle": [
-      "2025-01-26"
+      "2025-08-13"
     ],
-    "lastPlayedTotal": "2025-01-26",
+    "lastPlayedTotal": "2025-08-13",
     "hoursPlayedSingle": [
-      131.7
+      138.5
     ],
-    "hoursPlayedTotal": 131.7,
+    "hoursPlayedTotal": 138.5,
     "ids": [
       227445
     ],
@@ -5729,6 +5889,26 @@
       "PS5"
     ],
     "lastPlayedSingle": [
+      "2025-08-15"
+    ],
+    "lastPlayedTotal": "2025-08-15",
+    "hoursPlayedSingle": [
+      2
+    ],
+    "hoursPlayedTotal": 2,
+    "ids": [
+      10008805
+    ],
+    "urls": [
+      "https://store.playstation.com/concept/10008805"
+    ],
+    "game": "Solasta: Crown of the Magister"
+  },
+  {
+    "platforms": [
+      "PS5"
+    ],
+    "lastPlayedSingle": [
       "2023-08-12"
     ],
     "lastPlayedTotal": "2023-08-12",
@@ -5869,6 +6049,26 @@
       "PS5"
     ],
     "lastPlayedSingle": [
+      "2025-07-10"
+    ],
+    "lastPlayedTotal": "2025-07-10",
+    "hoursPlayedSingle": [
+      0.6
+    ],
+    "hoursPlayedTotal": 0.6,
+    "ids": [
+      230086
+    ],
+    "urls": [
+      "https://store.playstation.com/concept/230086"
+    ],
+    "game": "Wasteland 3"
+  },
+  {
+    "platforms": [
+      "PS5"
+    ],
+    "lastPlayedSingle": [
       "2022-06-19"
     ],
     "lastPlayedTotal": "2022-06-19",
@@ -5989,13 +6189,13 @@
       "Xbox"
     ],
     "lastPlayedSingle": [
-      "2025-05-29"
+      "2025-07-10"
     ],
-    "lastPlayedTotal": "2025-05-29",
+    "lastPlayedTotal": "2025-07-10",
     "hoursPlayedSingle": [
-      68.3
+      68.5
     ],
-    "hoursPlayedTotal": 68.3,
+    "hoursPlayedTotal": 68.5,
     "ids": [
       "1695979902"
     ],

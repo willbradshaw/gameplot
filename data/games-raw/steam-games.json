@@ -8,18 +8,26 @@
     "url": "https://store.steampowered.com/app/1184370"
   },
   {
+    "game": "Blue Prince",
+    "platform": "Steam",
+    "lastPlayed": "2025-08-11",
+    "hoursPlayed": 248.5,
+    "id": 1569580,
+    "url": "https://store.steampowered.com/app/1569580"
+  },
+  {
     "game": "Gloomhaven",
     "platform": "Steam",
-    "lastPlayed": "2025-06-05",
-    "hoursPlayed": 175.8,
+    "lastPlayed": "2025-08-07",
+    "hoursPlayed": 180.5,
     "id": 780290,
     "url": "https://store.steampowered.com/app/780290"
   },
   {
     "game": "Divinity: Original Sin 2",
     "platform": "Steam",
-    "lastPlayed": "2022-05-23",
-    "hoursPlayed": 143.6,
+    "lastPlayed": "2025-08-13",
+    "hoursPlayed": 143.9,
     "id": 435150,
     "url": "https://store.steampowered.com/app/435150"
   },
@@ -40,7 +48,7 @@
     "url": "https://store.steampowered.com/app/8930"
   },
   {
-    "game": "Divinity: Original Sin - Enhanced Edition",
+    "game": "Divinity: Original Sin Enhanced Edition",
     "platform": "Steam",
     "lastPlayed": "2018-08-09",
     "hoursPlayed": 74,
@@ -72,7 +80,7 @@
     "url": "https://store.steampowered.com/app/1028310"
   },
   {
-    "game": "The Elder Scrolls IV: Oblivion® Game of the Year Edition (2009)",
+    "game": "The Elder Scrolls IV: Oblivion Game of the Year Edition (2009)",
     "platform": "Steam",
     "lastPlayed": "2011-04-01",
     "hoursPlayed": 57.1,
@@ -88,7 +96,7 @@
     "url": "https://store.steampowered.com/app/47810"
   },
   {
-    "game": "Mass Effect 2 (2010 Edition)",
+    "game": "Mass Effect 2 (2010)",
     "platform": "Steam",
     "lastPlayed": "2014-03-01",
     "hoursPlayed": 48.5,
@@ -118,14 +126,6 @@
     "hoursPlayed": 43.5,
     "id": 304650,
     "url": "https://store.steampowered.com/app/304650"
-  },
-  {
-    "game": "Blue Prince",
-    "platform": "Steam",
-    "lastPlayed": "2025-06-14",
-    "hoursPlayed": 42.2,
-    "id": 1569580,
-    "url": "https://store.steampowered.com/app/1569580"
   },
   {
     "game": "Mass Effect (2007)",
@@ -392,6 +392,14 @@
     "url": "https://store.steampowered.com/app/26800"
   },
   {
+    "game": "Unavowed",
+    "platform": "Steam",
+    "lastPlayed": "2025-06-15",
+    "hoursPlayed": 10,
+    "id": 336140,
+    "url": "https://store.steampowered.com/app/336140"
+  },
+  {
     "game": "The Walking Dead: Season Two",
     "platform": "Steam",
     "lastPlayed": "2014-09-09",
@@ -480,20 +488,20 @@
     "url": "https://store.steampowered.com/app/32370"
   },
   {
+    "game": "The Drifter",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-21",
+    "hoursPlayed": 7.3,
+    "id": 1170570,
+    "url": "https://store.steampowered.com/app/1170570"
+  },
+  {
     "game": "Spec Ops: The Line",
     "platform": "Steam",
     "lastPlayed": "2018-08-18",
     "hoursPlayed": 7.2,
     "id": 50300,
     "url": "https://store.steampowered.com/app/50300"
-  },
-  {
-    "game": "Unavowed",
-    "platform": "Steam",
-    "lastPlayed": "2025-06-07",
-    "hoursPlayed": 6.9,
-    "id": 336140,
-    "url": "https://store.steampowered.com/app/336140"
   },
   {
     "game": "Goetia",
@@ -664,7 +672,7 @@
     "url": "https://store.steampowered.com/app/510420"
   },
   {
-    "game": "Ghost Master®",
+    "game": "Ghost Master",
     "platform": "Steam",
     "lastPlayed": "2016-11-02",
     "hoursPlayed": 5.4,
@@ -688,7 +696,7 @@
     "url": "https://store.steampowered.com/app/1609230"
   },
   {
-    "game": "Hector: Episode 2",
+    "game": "Hector: Ep 2",
     "platform": "Steam",
     "lastPlayed": "2013-07-21",
     "hoursPlayed": 5.1,
@@ -952,7 +960,7 @@
     "url": "https://store.steampowered.com/app/388880"
   },
   {
-    "game": "Sam & Max 305: The City That Dares Not Sleep",
+    "game": "Sam & Max 305: The City that Dares not Sleep",
     "platform": "Steam",
     "lastPlayed": "2012-11-21",
     "hoursPlayed": 2.9,
@@ -976,12 +984,20 @@
     "url": "https://store.steampowered.com/app/1084990"
   },
   {
-    "game": "Neverwinter Nights™ 2 Platinum",
+    "game": "Neverwinter Nights 2: Platinum",
     "platform": "Steam",
     "lastPlayed": "2011-12-29",
     "hoursPlayed": 2.8,
     "id": 2760,
     "url": "https://store.steampowered.com/app/2760"
+  },
+  {
+    "game": "Baba Is You",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-02",
+    "hoursPlayed": 2.8,
+    "id": 736260,
+    "url": "https://store.steampowered.com/app/736260"
   },
   {
     "game": "Trine 2",
@@ -1080,14 +1096,6 @@
     "url": "https://store.steampowered.com/app/501300"
   },
   {
-    "game": "Baba Is You",
-    "platform": "Steam",
-    "lastPlayed": "2020-08-29",
-    "hoursPlayed": 2.3,
-    "id": 736260,
-    "url": "https://store.steampowered.com/app/736260"
-  },
-  {
     "game": "Sam & Max 201: Ice Station Santa",
     "platform": "Steam",
     "lastPlayed": "2012-08-13",
@@ -1144,6 +1152,14 @@
     "url": "https://store.steampowered.com/app/2008920"
   },
   {
+    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-26",
+    "hoursPlayed": 1.9,
+    "id": 2738630,
+    "url": "https://store.steampowered.com/app/2738630"
+  },
+  {
     "game": "Subsurface Circular",
     "platform": "Steam",
     "lastPlayed": "2018-10-11",
@@ -1184,7 +1200,7 @@
     "url": "https://store.steampowered.com/app/22600"
   },
   {
-    "game": "Broken Sword: Director's Cut (2009)",
+    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)",
     "platform": "Steam",
     "lastPlayed": "2015-02-21",
     "hoursPlayed": 1.7,
@@ -1256,7 +1272,15 @@
     "url": "https://store.steampowered.com/app/303210"
   },
   {
-    "game": "The Elder Scrolls III: Morrowind® Game of the Year Edition",
+    "game": "Kathy Rain 2: Soothsayer",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-19",
+    "hoursPlayed": 1.4,
+    "id": 1466390,
+    "url": "https://store.steampowered.com/app/1466390"
+  },
+  {
+    "game": "The Elder Scrolls III: Morrowind",
     "platform": "Steam",
     "lastPlayed": "2014-04-04",
     "hoursPlayed": 1.3,
@@ -1312,12 +1336,20 @@
     "url": "https://store.steampowered.com/app/205100"
   },
   {
-    "game": "Magic 2015 - Duels of the Planeswalkers",
+    "game": "Magic 2015",
     "platform": "Steam",
     "lastPlayed": "2015-02-01",
     "hoursPlayed": 1.2,
     "id": 255420,
     "url": "https://store.steampowered.com/app/255420"
+  },
+  {
+    "game": "The Necromancer's Tale",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-26",
+    "hoursPlayed": 1.2,
+    "id": 1315320,
+    "url": "https://store.steampowered.com/app/1315320"
   },
   {
     "game": "Mouthwashing",
@@ -1344,7 +1376,15 @@
     "url": "https://store.steampowered.com/app/272270"
   },
   {
-    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition",
+    "game": "Yuppie Psycho",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-02",
+    "hoursPlayed": 1.1,
+    "id": 597760,
+    "url": "https://store.steampowered.com/app/597760"
+  },
+  {
+    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition ",
     "platform": "Steam",
     "lastPlayed": "2012-07-17",
     "hoursPlayed": 1,
@@ -1552,7 +1592,7 @@
     "url": "https://store.steampowered.com/app/440"
   },
   {
-    "game": "Far Cry®",
+    "game": "Far Cry",
     "platform": "Steam",
     "lastPlayed": "1970-01-02",
     "hoursPlayed": 0.3,
@@ -1560,7 +1600,7 @@
     "url": "https://store.steampowered.com/app/13520"
   },
   {
-    "game": "The Witcher: Enhanced Edition Director's Cut",
+    "game": "The Witcher: Enhanced Edition",
     "platform": "Steam",
     "lastPlayed": "2020-12-13",
     "hoursPlayed": 0.3,
@@ -1606,6 +1646,14 @@
     "hoursPlayed": 0.3,
     "id": 352520,
     "url": "https://store.steampowered.com/app/352520"
+  },
+  {
+    "game": "Thimbleweed Park",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-10",
+    "hoursPlayed": 0.3,
+    "id": 569860,
+    "url": "https://store.steampowered.com/app/569860"
   },
   {
     "game": "Fallout Shelter",
@@ -1712,7 +1760,7 @@
     "url": "https://store.steampowered.com/app/8210"
   },
   {
-    "game": "Mirror's Edge™",
+    "game": "Mirror's Edge",
     "platform": "Steam",
     "lastPlayed": "1970-01-02",
     "hoursPlayed": 0.1,
@@ -1720,7 +1768,7 @@
     "url": "https://store.steampowered.com/app/17410"
   },
   {
-    "game": "Beyond Good and Evil™",
+    "game": "Beyond Good & Evil",
     "platform": "Steam",
     "lastPlayed": "1970-01-02",
     "hoursPlayed": 0.1,
@@ -1736,7 +1784,7 @@
     "url": "https://store.steampowered.com/app/15320"
   },
   {
-    "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™",
+    "game": "Monkey Island 2: Special Edition",
     "platform": "Steam",
     "lastPlayed": "2015-03-29",
     "hoursPlayed": 0.1,
@@ -1800,12 +1848,28 @@
     "url": "https://store.steampowered.com/app/269150"
   },
   {
+    "game": "Crypt of the NecroDancer",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-02",
+    "hoursPlayed": 0.1,
+    "id": 247080,
+    "url": "https://store.steampowered.com/app/247080"
+  },
+  {
     "game": "2064: Read Only Memories",
     "platform": "Steam",
     "lastPlayed": "2020-04-11",
     "hoursPlayed": 0.1,
     "id": 330820,
     "url": "https://store.steampowered.com/app/330820"
+  },
+  {
+    "game": "Fran Bow",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-02",
+    "hoursPlayed": 0.1,
+    "id": 362680,
+    "url": "https://store.steampowered.com/app/362680"
   },
   {
     "game": "STEINS;GATE",

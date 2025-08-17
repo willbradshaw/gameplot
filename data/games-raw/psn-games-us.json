@@ -10,10 +10,18 @@
   {
     "game": "Baldur's Gate 3",
     "platform": "PS5",
-    "lastPlayed": "2025-06-03",
-    "hoursPlayed": 145.6,
+    "lastPlayed": "2025-08-17",
+    "hoursPlayed": 154.7,
     "id": 10007460,
     "url": "https://store.playstation.com/concept/10007460"
+  },
+  {
+    "game": "Pillars of Eternity: Complete Edition",
+    "platform": "PS5",
+    "lastPlayed": "2025-08-13",
+    "hoursPlayed": 73.4,
+    "id": 227445,
+    "url": "https://store.playstation.com/concept/227445"
   },
   {
     "game": "Divinity : Original Sin Enhanced Edition",
@@ -22,14 +30,6 @@
     "hoursPlayed": 69.4,
     "id": 200919,
     "url": "https://store.playstation.com/concept/200919"
-  },
-  {
-    "game": "Pillars of Eternity: Complete Edition",
-    "platform": "PS5",
-    "lastPlayed": "2025-01-26",
-    "hoursPlayed": 66.6,
-    "id": 227445,
-    "url": "https://store.playstation.com/concept/227445"
   },
   {
     "game": "The Elder Scrolls V: Skyrim Special Edition",
@@ -304,6 +304,14 @@
     "url": "https://store.playstation.com/concept/10001114"
   },
   {
+    "game": "Solasta: Crown of the Magister",
+    "platform": "PS5",
+    "lastPlayed": "2025-08-15",
+    "hoursPlayed": 2,
+    "id": 10008805,
+    "url": "https://store.playstation.com/concept/10008805"
+  },
+  {
     "game": "Persona 5",
     "platform": "PS5",
     "lastPlayed": "2023-08-12",
@@ -374,6 +382,14 @@
     "hoursPlayed": 0.7,
     "id": 10003841,
     "url": "https://store.playstation.com/concept/10003841"
+  },
+  {
+    "game": "Wasteland 3",
+    "platform": "PS5",
+    "lastPlayed": "2025-07-10",
+    "hoursPlayed": 0.6,
+    "id": 230086,
+    "url": "https://store.playstation.com/concept/230086"
   },
   {
     "game": "Returnal",

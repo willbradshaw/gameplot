@@ -21,7 +21,7 @@
   },
   {
     "game": "Baldur's Gate 3",
-    "rating": 9.4,
+    "rating": 9.6,
     "status": "Complete",
     "tags": ["Fantasy", "RPG", "Coop"]
   },
@@ -952,7 +952,7 @@
     "game": "Subsurface Circular",
     "rating": 6.6,
     "status": "Complete",
-    "tags": ["Vissual Novel", "Sci-Fi"]
+    "tags": ["Visual Novel", "Sci-Fi"]
   },
   {
     "game": "Slay the Princess — The Pristine Cut",
@@ -1142,7 +1142,7 @@
   },
   {
     "game": "To the Moon",
-    "displayName": "To the Moon",
+    "displayName": "To The Moon",
     "rating": 9.5,
     "status": "Complete",
     "tags": ["Adventure", "Walking Simulator"]
