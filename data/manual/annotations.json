@@ -16,7 +16,13 @@
     "game": "Divinity: Original Sin 2 - Definitive Edition",
     "displayName": "Divinity: Original Sin 2",
     "rating": 7.6,
-    "status": "Abandoned",
+    "status": "In Progress",
+    "tags": ["Fantasy", "RPG", "Coop"]
+  },
+  {
+    "game": "Divinity: Original Sin 2",
+    "rating": 7.6,
+    "status": "In Progress",
     "tags": ["Fantasy", "RPG", "Coop"]
   },
   {
@@ -28,6 +34,12 @@
   {
     "game": "Sid Meier's Civilization® V",
     "displayName": "Sid Meier's Civilization V",
+    "rating": 6.0,
+    "status": "Abandoned",
+    "tags": ["Strategy"]
+  },
+  {
+    "game": "Sid Meier's Civilization V",
     "rating": 6.0,
     "status": "Abandoned",
     "tags": ["Strategy"]
@@ -94,6 +106,13 @@
     "tags": ["Fantasy", "RPG"]
   },
   {
+    "game": "The Elder Scrolls IV: Oblivion Game of the Year Edition (2009)",
+    "displayName": "The Elder Scrolls IV: Oblivion",
+    "rating": 6.8,
+    "status": "Complete",
+    "tags": ["Fantasy", "RPG"]
+  },
+  {
     "game": "Dragon Age: Origins - Ultimate Edition",
     "displayName": "Dragon Age: Origins",
     "rating": 8.6,
@@ -102,6 +121,13 @@
   },
   {
     "game": "Mass Effect 2 (2010 Edition)",
+    "displayName": "Mass Effect 2",
+    "rating": 8.8,
+    "status": "Complete",
+    "tags": ["Sci-Fi", "RPG"]
+  },
+  {
+    "game": "Mass Effect 2 (2010)",
     "displayName": "Mass Effect 2",
     "rating": 8.8,
     "status": "Complete",
@@ -255,6 +281,14 @@
     "lastPlayedTotal": "2009-01-01"
   },
   {
+    "game": "Dark Messiah of Might & Magic Single Player",
+    "displayName": "Dark Messiah of Might & Magic",
+    "rating": 6.6,
+    "status": "Complete",
+    "tags": ["RPG", "Action" , "Fantasy"],
+    "lastPlayedTotal": "2009-01-01"
+  },
+  {
     "game": "Citizen Sleeper",
     "rating": 7.3,
     "status": "Complete",
@@ -287,6 +321,12 @@
   {
     "game": "The Dream Machine: Chapter 1 & 2",
     "displayName": "The Dream Machine",
+    "rating": 7.4,
+    "status": "Complete",
+    "tags": ["Puzzle", "Horror", "Adventure"]
+  },
+  {
+    "game": "The Dream Machine",
     "rating": 7.4,
     "status": "Complete",
     "tags": ["Puzzle", "Horror", "Adventure"]
@@ -569,6 +609,12 @@
     "tags": ["Tactics", "Puzzle", "Comedy"]
   },
   {
+    "game": "Ghost Master",
+    "rating": 7.6,
+    "status": "Complete",
+    "tags": ["Tactics", "Puzzle", "Comedy"]
+  },
+  {
     "game": "Deponia",
     "rating": 6.0,
     "status": "Complete",
@@ -715,6 +761,13 @@
     "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
   },
   {
+    "game": "Hector: Ep 1",
+    "displayName": "Hector: Episode 1",
+    "rating": 6.6,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
+  },
+  {
     "game": "Impostor Factory",
     "rating": 5.2,
     "status": "Complete",
@@ -814,6 +867,20 @@
   },
   {
     "game": "Neverwinter Nights™ 2 Platinum",
+    "displayName": "Neverwinter Nights 2",
+    "rating": 6.8,
+    "status": "Complete",
+    "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "Neverwinter Nights 2: Platinum",
+    "displayName": "Neverwinter Nights 2",
+    "rating": 6.8,
+    "status": "Complete",
+    "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition",
     "displayName": "Neverwinter Nights 2",
     "rating": 6.8,
     "status": "Complete",
@@ -943,6 +1010,13 @@
     "tags": ["Stealth", "Action"]
   },
   {
+    "game": "Batman: Arkham Asylum GOTY Edition",
+    "displayName": "Batman: Arkham Asylum",
+    "rating": 5.5,
+    "status": "Abandoned",
+    "tags": ["Stealth", "Action"]
+  },
+  {
     "game": "Lorelei and the Laser Eyes",
     "rating": null,
     "status": "In Progress",
@@ -1042,6 +1116,12 @@
     "tags": []
   },
   {
+    "game": "The Elder Scrolls III: Morrowind",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
     "game": "Shadow Tactics: Blades of the Shogun",
     "rating": null,
     "status": "Abandoned",
@@ -1111,6 +1191,13 @@
   },
   {
     "game": "Warhammer 40,000: Dawn of War - Anniversary Edition",
+    "displayName": "Warhammer 40,000: Dawn of War",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
+    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition ",
     "displayName": "Warhammer 40,000: Dawn of War",
     "rating": null,
     "status": "Abandoned",
@@ -1270,12 +1357,27 @@
   },
   {
     "game": "Far Cry®",
+    "displayName": "Far Cry",
     "rating": null,
     "status": "Abandoned",
     "tags": []
   },
   {
+    "game": "Far Cry",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+
+  {
     "game": "The Witcher: Enhanced Edition Director's Cut",
+    "displayName": "The Witcher",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
+    "game": "The Witcher: Enhanced Edition",
     "displayName": "The Witcher",
     "rating": null,
     "status": "Abandoned",
@@ -1399,12 +1501,25 @@
     "tags": []
   },
   {
+    "game": "Mirror's Edge",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
     "game": "Beyond Good and Evil™",
     "displayName": "Beyond Good and Evil",
     "rating": null,
     "status": "Abandoned",
     "tags": []
   },
+  {
+    "game": "Beyond Good & Evil",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+
   {
     "game": "IL-2 Sturmovik: 1946",
     "rating": null,
@@ -1413,6 +1528,13 @@
   },
   {
     "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™",
+    "displayName": "Monkey Island 2: LeChuck's Revenge",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
+    "game": "Monkey Island 2: Special Edition",
     "displayName": "Monkey Island 2: LeChuck's Revenge",
     "rating": null,
     "status": "Abandoned",
@@ -2256,5 +2378,59 @@
     "rating": 7.8,
     "status": "Complete",
     "tags": ["Puzzle", "Crime", "Historical"]
+  },
+  {
+    "game": "The Drifter",
+    "rating": 8.3,
+    "status": "Complete",
+    "tags": ["Adventure", "Puzzle", "Sci-Fi", "Horror"]
+  },
+  {
+    "game": "Crypt of the NecroDancer",
+    "rating": 5.0,
+    "status": "Abandoned",
+    "tags": ["Roguelike", "Rhythm"]
+  },
+  {
+    "game": "The Necromancer's Tale",
+    "rating": null,
+    "status": "In Progress",
+    "tags": []
+  },
+  {
+    "game": "Wasteland 3",
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Sci-Fi", "RPG"]
+  },
+  {
+    "game": "Fran Bow",
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Adventure", "Puzzle", "Horror"]
+  },
+  {
+    "game": "Thimbleweed Park",
+    "rating": 7.3,
+    "status": "In Progress",
+    "tags": ["Adventure", "Puzzle", "Comedy"]
+  },
+  {
+    "game": "Kathy Rain 2: Soothsayer",
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Adventure", "Puzzle", "Crime"]
+  },
+  {
+    "game": "Solasta: Crown of the Magister",
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Fantasy", "RPG"]
+  },
+  {
+    "game": "Yuppie Psycho",
+    "rating": 5.1,
+    "status": "Abandoned",
+    "tags": ["Horror"]
   }
 ]
