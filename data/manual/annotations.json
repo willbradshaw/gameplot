@@ -406,12 +406,6 @@
     "tags": ["Exploration", "Puzzle"]
   },
   {
-    "game": "Blue Prince",
-    "rating": null,
-    "status": "In Progress",
-    "tags": []
-  },
-  {
     "game": "Loco Motive",
     "rating": 4.6,
     "status": "Complete",
@@ -2432,5 +2426,12 @@
     "rating": 5.1,
     "status": "Abandoned",
     "tags": ["Horror"]
+  },
+    {
+    "game": "Blue Prince",
+    "rating": 8.1,
+    "status": "In Progress",
+    "hoursPlayedTotal": 135,
+    "tags": []
   }
 ]
