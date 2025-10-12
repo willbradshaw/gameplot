@@ -2431,7 +2431,53 @@
     "game": "Blue Prince",
     "rating": 8.1,
     "status": "In Progress",
-    "hoursPlayedTotal": 135,
+    "hoursPlayedTotal": 145,
     "tags": ["Puzzle"]
+  },
+    {
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Fantasy", "RPG"],
+    "game": "Pillars of Eternity 2 Deadfire",
+    "displayName": "Pillars of Eternity 2: Deadfire"
+  },
+  {
+    "rating": null,
+    "status": "Abandoned",
+    "tags": [],
+    "game": "Eternal Strands"
+  },
+  {
+    "game": "Thief™ Gold",
+    "displayName": "Thief",
+    "rating": 6.8,
+    "status": "Abandoned",
+    "tags": ["Stealth"]
+  },
+  {
+    "rating": null,
+    "status": "In Progress",
+    "tags": [],
+    "game": "Sultan's Game"
+  },
+  {
+    "rating": null,
+    "status": "In Progress",
+    "tags": [],
+    "game": "Tower of Time"
+  },
+  {
+    "game": "Broken Sword: Director's Cut (2009)",
+    "displayName": "Broken Sword 1: Shadow of the Templars",
+    "rating": null,
+    "status": "Abandoned",
+    "tags": []
+  },
+  {
+    "rating": 7.1,
+    "status": "In Progress",
+    "tags": ["Puzzle", "Fantasy"],
+    "game": "Strange Antiquities"
   }
+
 ]

@@ -1,9 +1,17 @@
 [
   {
+    "game": "Eternal Strands",
+    "platform": "Xbox",
+    "lastPlayed": "2025-08-30",
+    "hoursPlayed": 0.2,
+    "id": "1662474270",
+    "url": ""
+  },
+  {
     "game": "The Elder Scrolls IV: Oblivion Remastered",
     "platform": "Xbox",
-    "lastPlayed": "2025-07-10",
-    "hoursPlayed": 68.5,
+    "lastPlayed": "2025-08-22",
+    "hoursPlayed": 68.9,
     "id": "1695979902",
     "url": ""
   },
