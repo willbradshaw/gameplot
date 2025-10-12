@@ -9,19 +9,19 @@
   {
     "game": "Gloomhaven",
     "rating": 7.5,
-    "status": "In Progress",
+    "status": "Complete",
     "tags": ["Fantasy", "Strategy", "Coop", "Board Game"]
   },
   {
     "game": "Divinity: Original Sin 2 - Definitive Edition",
     "displayName": "Divinity: Original Sin 2",
-    "rating": 7.6,
+    "rating": 8.4,
     "status": "In Progress",
     "tags": ["Fantasy", "RPG", "Coop"]
   },
   {
     "game": "Divinity: Original Sin 2",
-    "rating": 7.6,
+    "rating": 8.4,
     "status": "In Progress",
     "tags": ["Fantasy", "RPG", "Coop"]
   },
