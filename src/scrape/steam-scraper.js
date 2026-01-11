@@ -174,10 +174,13 @@ function convertToProjectFormat(steamGames) {
     const gamesMap = new Map();
     
     steamGames
-        .filter(game => game.playtime_forever > 0) // Only include games with playtime
+        // Include games with any playtime (regular OR disconnected/offline playtime)
+        .filter(game => (game.playtime_forever || 0) + (game.playtime_disconnected || 0) > 0)
         .forEach(game => {
             // Convert playtime from minutes to hours
-            const hoursPlayed = Math.round((game.playtime_forever / 60) * 10) / 10;
+            // Include both regular playtime AND disconnected/offline playtime
+            const totalMinutes = (game.playtime_forever || 0) + (game.playtime_disconnected || 0);
+            const hoursPlayed = Math.round((totalMinutes / 60) * 10) / 10;
             
             // Calculate last played date (Steam provides last played as Unix timestamp)
             let lastPlayed = null;
