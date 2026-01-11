@@ -1723,9 +1723,9 @@
     "game": "Prey"
   },
   {
-    "rating": null,
-    "status": null,
-    "tags": [],
+    "rating": 9.2,
+    "status": "Complete",
+    "tags": ["Sci-Fi", "RPG"],
     "game": "Warhammer 40,000: Rogue Trader"
   },
   {
@@ -2478,6 +2478,11 @@
     "status": "In Progress",
     "tags": ["Puzzle", "Fantasy"],
     "game": "Strange Antiquities"
+  },
+  {
+    "rating": 7.7,
+    "status": "Complete",
+    "tags": ["Comedy", "Adventure", "Superhero", "Visual Novel"],
+    "game": "Dispatch"
   }
-
 ]

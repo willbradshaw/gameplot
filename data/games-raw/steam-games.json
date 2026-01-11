@@ -3,7 +3,7 @@
     "game": "Pathfinder: Wrath of the Righteous - Enhanced Edition",
     "platform": "Steam",
     "lastPlayed": "2024-01-06",
-    "hoursPlayed": 418.6,
+    "hoursPlayed": 419.9,
     "id": 1184370,
     "url": "https://store.steampowered.com/app/1184370"
   },
@@ -11,15 +11,15 @@
     "game": "Blue Prince",
     "platform": "Steam",
     "lastPlayed": "2025-08-11",
-    "hoursPlayed": 248.5,
+    "hoursPlayed": 358,
     "id": 1569580,
     "url": "https://store.steampowered.com/app/1569580"
   },
   {
     "game": "Divinity: Original Sin 2",
     "platform": "Steam",
-    "lastPlayed": "2025-10-12",
-    "hoursPlayed": 210.2,
+    "lastPlayed": "2026-01-08",
+    "hoursPlayed": 227.4,
     "id": 435150,
     "url": "https://store.steampowered.com/app/435150"
   },
@@ -32,15 +32,23 @@
     "url": "https://store.steampowered.com/app/780290"
   },
   {
+    "game": "Warhammer 40,000: Rogue Trader",
+    "platform": "Steam",
+    "lastPlayed": "2025-12-31",
+    "hoursPlayed": 185.9,
+    "id": 2186680,
+    "url": "https://store.steampowered.com/app/2186680"
+  },
+  {
     "game": "Baldur's Gate 3",
     "platform": "Steam",
     "lastPlayed": "2024-12-16",
-    "hoursPlayed": 136.4,
+    "hoursPlayed": 140.9,
     "id": 1086940,
     "url": "https://store.steampowered.com/app/1086940"
   },
   {
-    "game": "Sid Meier's Civilization® V",
+    "game": "Sid Meier's Civilization V",
     "platform": "Steam",
     "lastPlayed": "2018-10-13",
     "hoursPlayed": 95.7,
@@ -48,7 +56,7 @@
     "url": "https://store.steampowered.com/app/8930"
   },
   {
-    "game": "Divinity: Original Sin Enhanced Edition",
+    "game": "Divinity: Original Sin - Enhanced Edition",
     "platform": "Steam",
     "lastPlayed": "2018-08-09",
     "hoursPlayed": 74,
@@ -56,7 +64,7 @@
     "url": "https://store.steampowered.com/app/373420"
   },
   {
-    "game": "Sid Meier's Civilization VI",
+    "game": "Sid Meier’s Civilization® VI",
     "platform": "Steam",
     "lastPlayed": "2021-01-10",
     "hoursPlayed": 72.7,
@@ -112,10 +120,10 @@
     "url": "https://store.steampowered.com/app/1092790"
   },
   {
-    "game": "Disco Elysium",
+    "game": "Disco Elysium - The Final Cut",
     "platform": "Steam",
     "lastPlayed": "2023-11-19",
-    "hoursPlayed": 44.4,
+    "hoursPlayed": 44.5,
     "id": 632470,
     "url": "https://store.steampowered.com/app/632470"
   },
@@ -128,20 +136,20 @@
     "url": "https://store.steampowered.com/app/304650"
   },
   {
+    "game": "Slay the Spire",
+    "platform": "Steam",
+    "lastPlayed": "2025-01-01",
+    "hoursPlayed": 37.7,
+    "id": 646570,
+    "url": "https://store.steampowered.com/app/646570"
+  },
+  {
     "game": "Mass Effect (2007)",
     "platform": "Steam",
     "lastPlayed": "2013-12-15",
     "hoursPlayed": 35.8,
     "id": 17460,
     "url": "https://store.steampowered.com/app/17460"
-  },
-  {
-    "game": "Slay the Spire",
-    "platform": "Steam",
-    "lastPlayed": "2025-01-01",
-    "hoursPlayed": 35.2,
-    "id": 646570,
-    "url": "https://store.steampowered.com/app/646570"
   },
   {
     "game": "The Talos Principle",
@@ -176,6 +184,14 @@
     "url": "https://store.steampowered.com/app/404730"
   },
   {
+    "game": "Tactical Breach Wizards",
+    "platform": "Steam",
+    "lastPlayed": "2025-04-30",
+    "hoursPlayed": 28.6,
+    "id": 1043810,
+    "url": "https://store.steampowered.com/app/1043810"
+  },
+  {
     "game": "Shadowrun: Dragonfall - Director's Cut",
     "platform": "Steam",
     "lastPlayed": "2018-04-15",
@@ -200,12 +216,12 @@
     "url": "https://store.steampowered.com/app/489830"
   },
   {
-    "game": "Tactical Breach Wizards",
+    "game": "Dispatch",
     "platform": "Steam",
-    "lastPlayed": "2025-04-30",
-    "hoursPlayed": 26.9,
-    "id": 1043810,
-    "url": "https://store.steampowered.com/app/1043810"
+    "lastPlayed": "2025-12-25",
+    "hoursPlayed": 27.3,
+    "id": 2592160,
+    "url": "https://store.steampowered.com/app/2592160"
   },
   {
     "game": "Shadowrun: Hong Kong - Extended Edition",
@@ -216,20 +232,20 @@
     "url": "https://store.steampowered.com/app/346940"
   },
   {
+    "game": "Cultist Simulator",
+    "platform": "Steam",
+    "lastPlayed": "2025-11-17",
+    "hoursPlayed": 22.1,
+    "id": 718670,
+    "url": "https://store.steampowered.com/app/718670"
+  },
+  {
     "game": "Shadows Over Loathing",
     "platform": "Steam",
     "lastPlayed": "2023-08-03",
     "hoursPlayed": 21.8,
     "id": 1939160,
     "url": "https://store.steampowered.com/app/1939160"
-  },
-  {
-    "game": "Cultist Simulator",
-    "platform": "Steam",
-    "lastPlayed": "2024-06-16",
-    "hoursPlayed": 19.8,
-    "id": 718670,
-    "url": "https://store.steampowered.com/app/718670"
   },
   {
     "game": "Hadean Lands",
@@ -336,6 +352,14 @@
     "url": "https://store.steampowered.com/app/268540"
   },
   {
+    "game": "I Was a Teenage Exocolonist",
+    "platform": "Steam",
+    "lastPlayed": "2024-10-10",
+    "hoursPlayed": 12.2,
+    "id": 1148760,
+    "url": "https://store.steampowered.com/app/1148760"
+  },
+  {
     "game": "Wildermyth",
     "platform": "Steam",
     "lastPlayed": "2025-04-11",
@@ -350,14 +374,6 @@
     "hoursPlayed": 11,
     "id": 42910,
     "url": "https://store.steampowered.com/app/42910"
-  },
-  {
-    "game": "I Was a Teenage Exocolonist",
-    "platform": "Steam",
-    "lastPlayed": "2024-10-10",
-    "hoursPlayed": 10.9,
-    "id": 1148760,
-    "url": "https://store.steampowered.com/app/1148760"
   },
   {
     "game": "Neverwinter Nights: Enhanced Edition",
@@ -398,6 +414,14 @@
     "hoursPlayed": 10,
     "id": 336140,
     "url": "https://store.steampowered.com/app/336140"
+  },
+  {
+    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-26",
+    "hoursPlayed": 9.9,
+    "id": 2738630,
+    "url": "https://store.steampowered.com/app/2738630"
   },
   {
     "game": "The Walking Dead: Season Two",
@@ -528,7 +552,15 @@
     "url": "https://store.steampowered.com/app/234650"
   },
   {
-    "game": "Thief™ Gold",
+    "game": "Strange Antiquities",
+    "platform": "Steam",
+    "lastPlayed": "2025-10-06",
+    "hoursPlayed": 6.8,
+    "id": 2885870,
+    "url": "https://store.steampowered.com/app/2885870"
+  },
+  {
+    "game": "Thief Gold",
     "platform": "Steam",
     "lastPlayed": "2014-03-29",
     "hoursPlayed": 6.7,
@@ -590,14 +622,6 @@
     "hoursPlayed": 6.1,
     "id": 221260,
     "url": "https://store.steampowered.com/app/221260"
-  },
-  {
-    "game": "Strange Antiquities",
-    "platform": "Steam",
-    "lastPlayed": "2025-10-06",
-    "hoursPlayed": 6.1,
-    "id": 2885870,
-    "url": "https://store.steampowered.com/app/2885870"
   },
   {
     "game": "Botanicula",
@@ -816,6 +840,14 @@
     "url": "https://store.steampowered.com/app/232430"
   },
   {
+    "game": "Pathfinder: Kingmaker",
+    "platform": "Steam",
+    "lastPlayed": "2025-10-25",
+    "hoursPlayed": 4.2,
+    "id": 640820,
+    "url": "https://store.steampowered.com/app/640820"
+  },
+  {
     "game": "Sam & Max 202: Moai Better Blues",
     "platform": "Steam",
     "lastPlayed": "2012-08-20",
@@ -862,6 +894,14 @@
     "hoursPlayed": 3.6,
     "id": 272040,
     "url": "https://store.steampowered.com/app/272040"
+  },
+  {
+    "game": "Tyranny",
+    "platform": "Steam",
+    "lastPlayed": "2025-01-04",
+    "hoursPlayed": 3.6,
+    "id": 362960,
+    "url": "https://store.steampowered.com/app/362960"
   },
   {
     "game": "LIMBO",
@@ -912,22 +952,6 @@
     "url": "https://store.steampowered.com/app/471550"
   },
   {
-    "game": "Tyranny",
-    "platform": "Steam",
-    "lastPlayed": "2025-01-04",
-    "hoursPlayed": 3.2,
-    "id": 362960,
-    "url": "https://store.steampowered.com/app/362960"
-  },
-  {
-    "game": "Pathfinder: Kingmaker",
-    "platform": "Steam",
-    "lastPlayed": "2023-03-03",
-    "hoursPlayed": 3.2,
-    "id": 640820,
-    "url": "https://store.steampowered.com/app/640820"
-  },
-  {
     "game": "Sam & Max 304: Beyond the Alley of the Dolls",
     "platform": "Steam",
     "lastPlayed": "2012-11-18",
@@ -976,7 +1000,7 @@
     "url": "https://store.steampowered.com/app/388880"
   },
   {
-    "game": "Sam & Max 305: The City that Dares not Sleep",
+    "game": "Sam & Max 305: The City That Dares Not Sleep",
     "platform": "Steam",
     "lastPlayed": "2012-11-21",
     "hoursPlayed": 2.9,
@@ -1136,6 +1160,14 @@
     "url": "https://store.steampowered.com/app/1769980"
   },
   {
+    "game": "Cobalt Core",
+    "platform": "Steam",
+    "lastPlayed": "2025-05-02",
+    "hoursPlayed": 2.1,
+    "id": 2179850,
+    "url": "https://store.steampowered.com/app/2179850"
+  },
+  {
     "game": "Hate Plus",
     "platform": "Steam",
     "lastPlayed": "2014-11-12",
@@ -1174,14 +1206,6 @@
     "hoursPlayed": 1.9,
     "id": 2008920,
     "url": "https://store.steampowered.com/app/2008920"
-  },
-  {
-    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition",
-    "platform": "Steam",
-    "lastPlayed": "2025-07-26",
-    "hoursPlayed": 1.9,
-    "id": 2738630,
-    "url": "https://store.steampowered.com/app/2738630"
   },
   {
     "game": "Subsurface Circular",
@@ -1254,14 +1278,6 @@
     "hoursPlayed": 1.6,
     "id": 945360,
     "url": "https://store.steampowered.com/app/945360"
-  },
-  {
-    "game": "Cobalt Core",
-    "platform": "Steam",
-    "lastPlayed": "2025-05-02",
-    "hoursPlayed": 1.6,
-    "id": 2179850,
-    "url": "https://store.steampowered.com/app/2179850"
   },
   {
     "game": "A Bird Story",
@@ -1464,6 +1480,22 @@
     "url": "https://store.steampowered.com/app/252110"
   },
   {
+    "game": "The Darkside Detective",
+    "platform": "Steam",
+    "lastPlayed": "2023-12-30",
+    "hoursPlayed": 0.8,
+    "id": 368390,
+    "url": "https://store.steampowered.com/app/368390"
+  },
+  {
+    "game": "Thimbleweed Park™",
+    "platform": "Steam",
+    "lastPlayed": "2025-07-10",
+    "hoursPlayed": 0.8,
+    "id": 569860,
+    "url": "https://store.steampowered.com/app/569860"
+  },
+  {
     "game": "Divine Divinity",
     "platform": "Steam",
     "lastPlayed": "2012-07-23",
@@ -1576,6 +1608,14 @@
     "url": "https://store.steampowered.com/app/230980"
   },
   {
+    "game": "Technobabylon",
+    "platform": "Steam",
+    "lastPlayed": "2026-01-11",
+    "hoursPlayed": 0.4,
+    "id": 307580,
+    "url": "https://store.steampowered.com/app/307580"
+  },
+  {
     "game": "The Moon Sliver",
     "platform": "Steam",
     "lastPlayed": "2017-12-16",
@@ -1616,7 +1656,7 @@
     "url": "https://store.steampowered.com/app/631570"
   },
   {
-    "game": "Far Cry",
+    "game": "Far Cry®",
     "platform": "Steam",
     "lastPlayed": "1970-01-02",
     "hoursPlayed": 0.3,
@@ -1670,14 +1710,6 @@
     "hoursPlayed": 0.3,
     "id": 352520,
     "url": "https://store.steampowered.com/app/352520"
-  },
-  {
-    "game": "Thimbleweed Park",
-    "platform": "Steam",
-    "lastPlayed": "2025-07-10",
-    "hoursPlayed": 0.3,
-    "id": 569860,
-    "url": "https://store.steampowered.com/app/569860"
   },
   {
     "game": "Fallout Shelter",
@@ -1744,12 +1776,12 @@
     "url": "https://store.steampowered.com/app/319970"
   },
   {
-    "game": "The Darkside Detective",
+    "game": "Fran Bow",
     "platform": "Steam",
-    "lastPlayed": "2023-12-30",
+    "lastPlayed": "2025-07-02",
     "hoursPlayed": 0.2,
-    "id": 368390,
-    "url": "https://store.steampowered.com/app/368390"
+    "id": 362680,
+    "url": "https://store.steampowered.com/app/362680"
   },
   {
     "game": "The Mirror Lied",
@@ -1808,7 +1840,7 @@
     "url": "https://store.steampowered.com/app/17410"
   },
   {
-    "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™",
+    "game": "Monkey Island 2: Special Edition",
     "platform": "Steam",
     "lastPlayed": "2015-03-29",
     "hoursPlayed": 0.1,
@@ -1888,14 +1920,6 @@
     "url": "https://store.steampowered.com/app/330820"
   },
   {
-    "game": "Fran Bow",
-    "platform": "Steam",
-    "lastPlayed": "2025-07-02",
-    "hoursPlayed": 0.1,
-    "id": 362680,
-    "url": "https://store.steampowered.com/app/362680"
-  },
-  {
     "game": "STEINS;GATE",
     "platform": "Steam",
     "lastPlayed": "2019-12-29",
@@ -1958,5 +1982,21 @@
     "hoursPlayed": 0,
     "id": 1369520,
     "url": "https://store.steampowered.com/app/1369520"
+  },
+  {
+    "game": "Sam & Max Save the World",
+    "platform": "Steam",
+    "lastPlayed": "2025-12-25",
+    "hoursPlayed": 0,
+    "id": 1440440,
+    "url": "https://store.steampowered.com/app/1440440"
+  },
+  {
+    "game": "Persona 5 Royal",
+    "platform": "Steam",
+    "lastPlayed": "2026-01-11",
+    "hoursPlayed": 0,
+    "id": 1687950,
+    "url": "https://store.steampowered.com/app/1687950"
   }
 ]

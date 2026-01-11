@@ -8,9 +8,9 @@
     ],
     "lastPlayedTotal": "2024-01-06",
     "hoursPlayedSingle": [
-      418.6
+      419.9
     ],
-    "hoursPlayedTotal": 418.6,
+    "hoursPlayedTotal": 419.9,
     "ids": [
       1184370
     ],
@@ -28,9 +28,9 @@
     ],
     "lastPlayedTotal": "2025-08-11",
     "hoursPlayedSingle": [
-      248.5
+      358
     ],
-    "hoursPlayedTotal": 248.5,
+    "hoursPlayedTotal": 358,
     "ids": [
       1569580
     ],
@@ -44,13 +44,13 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2025-10-12"
+      "2026-01-08"
     ],
-    "lastPlayedTotal": "2025-10-12",
+    "lastPlayedTotal": "2026-01-08",
     "hoursPlayedSingle": [
-      210.2
+      227.4
     ],
-    "hoursPlayedTotal": 210.2,
+    "hoursPlayedTotal": 227.4,
     "ids": [
       435150
     ],
@@ -85,15 +85,40 @@
       "PS5"
     ],
     "lastPlayedSingle": [
-      "2024-12-16",
-      "2025-10-03"
+      "2025-12-31",
+      "2024-02-24"
     ],
-    "lastPlayedTotal": "2025-10-03",
+    "lastPlayedTotal": "2025-12-31",
     "hoursPlayedSingle": [
-      136.4,
-      205.1
+      185.9,
+      15.6
     ],
-    "hoursPlayedTotal": 341.5,
+    "hoursPlayedTotal": 201.5,
+    "ids": [
+      2186680,
+      10008102
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2186680",
+      "https://store.playstation.com/concept/10008102"
+    ],
+    "game": "Warhammer 40,000: Rogue Trader"
+  },
+  {
+    "platforms": [
+      "Steam",
+      "PS5"
+    ],
+    "lastPlayedSingle": [
+      "2024-12-16",
+      "2025-12-22"
+    ],
+    "lastPlayedTotal": "2025-12-22",
+    "hoursPlayedSingle": [
+      140.9,
+      237.4
+    ],
+    "hoursPlayedTotal": 378.3,
     "ids": [
       1086940,
       10007460
@@ -122,7 +147,7 @@
     "urls": [
       "https://store.steampowered.com/app/8930"
     ],
-    "game": "Sid Meier's Civilization® V"
+    "game": "Sid Meier's Civilization V"
   },
   {
     "platforms": [
@@ -142,7 +167,7 @@
     "urls": [
       "https://store.steampowered.com/app/373420"
     ],
-    "game": "Divinity: Original Sin Enhanced Edition"
+    "game": "Divinity: Original Sin - Enhanced Edition"
   },
   {
     "platforms": [
@@ -162,7 +187,7 @@
     "urls": [
       "https://store.steampowered.com/app/289070"
     ],
-    "game": "Sid Meier's Civilization VI"
+    "game": "Sid Meier’s Civilization® VI"
   },
   {
     "platforms": [
@@ -293,16 +318,16 @@
     ],
     "lastPlayedTotal": "2023-11-19",
     "hoursPlayedSingle": [
-      44.4
+      44.5
     ],
-    "hoursPlayedTotal": 44.4,
+    "hoursPlayedTotal": 44.5,
     "ids": [
       632470
     ],
     "urls": [
       "https://store.steampowered.com/app/632470"
     ],
-    "game": "Disco Elysium"
+    "game": "Disco Elysium - The Final Cut"
   },
   {
     "platforms": [
@@ -329,6 +354,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-01-01"
+    ],
+    "lastPlayedTotal": "2025-01-01",
+    "hoursPlayedSingle": [
+      37.7
+    ],
+    "hoursPlayedTotal": 37.7,
+    "ids": [
+      646570
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/646570"
+    ],
+    "game": "Slay the Spire"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2013-12-15"
     ],
     "lastPlayedTotal": "2013-12-15",
@@ -343,26 +388,6 @@
       "https://store.steampowered.com/app/17460"
     ],
     "game": "Mass Effect (2007)"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2025-01-01"
-    ],
-    "lastPlayedTotal": "2025-01-01",
-    "hoursPlayedSingle": [
-      35.2
-    ],
-    "hoursPlayedTotal": 35.2,
-    "ids": [
-      646570
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/646570"
-    ],
-    "game": "Slay the Spire"
   },
   {
     "platforms": [
@@ -459,6 +484,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-04-30"
+    ],
+    "lastPlayedTotal": "2025-04-30",
+    "hoursPlayedSingle": [
+      28.6
+    ],
+    "hoursPlayedTotal": 28.6,
+    "ids": [
+      1043810
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1043810"
+    ],
+    "game": "Tactical Breach Wizards"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2018-04-15"
     ],
     "lastPlayedTotal": "2018-04-15",
@@ -524,20 +569,20 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2025-04-30"
+      "2025-12-25"
     ],
-    "lastPlayedTotal": "2025-04-30",
+    "lastPlayedTotal": "2025-12-25",
     "hoursPlayedSingle": [
-      26.9
+      27.3
     ],
-    "hoursPlayedTotal": 26.9,
+    "hoursPlayedTotal": 27.3,
     "ids": [
-      1043810
+      2592160
     ],
     "urls": [
-      "https://store.steampowered.com/app/1043810"
+      "https://store.steampowered.com/app/2592160"
     ],
-    "game": "Tactical Breach Wizards"
+    "game": "Dispatch"
   },
   {
     "platforms": [
@@ -561,6 +606,31 @@
   },
   {
     "platforms": [
+      "Steam",
+      "GOG"
+    ],
+    "lastPlayedSingle": [
+      "2025-11-17",
+      "2023-08-01"
+    ],
+    "lastPlayedTotal": "2025-11-17",
+    "hoursPlayedSingle": [
+      22.1,
+      16
+    ],
+    "hoursPlayedTotal": 38.1,
+    "ids": [
+      718670,
+      1456702644
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/718670",
+      "https://gogdb.org/product/1456702644"
+    ],
+    "game": "Cultist Simulator"
+  },
+  {
+    "platforms": [
       "Steam"
     ],
     "lastPlayedSingle": [
@@ -578,31 +648,6 @@
       "https://store.steampowered.com/app/1939160"
     ],
     "game": "Shadows Over Loathing"
-  },
-  {
-    "platforms": [
-      "Steam",
-      "GOG"
-    ],
-    "lastPlayedSingle": [
-      "2024-06-16",
-      "2023-08-01"
-    ],
-    "lastPlayedTotal": "2024-06-16",
-    "hoursPlayedSingle": [
-      19.8,
-      16
-    ],
-    "hoursPlayedTotal": 35.8,
-    "ids": [
-      718670,
-      1456702644
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/718670",
-      "https://gogdb.org/product/1456702644"
-    ],
-    "game": "Cultist Simulator"
   },
   {
     "platforms": [
@@ -879,6 +924,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2024-10-10"
+    ],
+    "lastPlayedTotal": "2024-10-10",
+    "hoursPlayedSingle": [
+      12.2
+    ],
+    "hoursPlayedTotal": 12.2,
+    "ids": [
+      1148760
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1148760"
+    ],
+    "game": "I Was a Teenage Exocolonist"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2025-04-11"
     ],
     "lastPlayedTotal": "2025-04-11",
@@ -913,26 +978,6 @@
       "https://store.steampowered.com/app/42910"
     ],
     "game": "Magicka"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2024-10-10"
-    ],
-    "lastPlayedTotal": "2024-10-10",
-    "hoursPlayedSingle": [
-      10.9
-    ],
-    "hoursPlayedTotal": 10.9,
-    "ids": [
-      1148760
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/1148760"
-    ],
-    "game": "I Was a Teenage Exocolonist"
   },
   {
     "platforms": [
@@ -1038,6 +1083,26 @@
       "https://gogdb.org/product/1637485057"
     ],
     "game": "Unavowed"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-07-26"
+    ],
+    "lastPlayedTotal": "2025-07-26",
+    "hoursPlayedSingle": [
+      9.9
+    ],
+    "hoursPlayedTotal": 9.9,
+    "ids": [
+      2738630
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2738630"
+    ],
+    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition"
   },
   {
     "platforms": [
@@ -1369,6 +1434,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-10-06"
+    ],
+    "lastPlayedTotal": "2025-10-06",
+    "hoursPlayedSingle": [
+      6.8
+    ],
+    "hoursPlayedTotal": 6.8,
+    "ids": [
+      2885870
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2885870"
+    ],
+    "game": "Strange Antiquities"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2014-03-29"
     ],
     "lastPlayedTotal": "2014-03-29",
@@ -1382,7 +1467,7 @@
     "urls": [
       "https://store.steampowered.com/app/211600"
     ],
-    "game": "Thief™ Gold"
+    "game": "Thief Gold"
   },
   {
     "platforms": [
@@ -1528,26 +1613,6 @@
       "https://store.steampowered.com/app/221260"
     ],
     "game": "Little Inferno"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2025-10-06"
-    ],
-    "lastPlayedTotal": "2025-10-06",
-    "hoursPlayedSingle": [
-      6.1
-    ],
-    "hoursPlayedTotal": 6.1,
-    "ids": [
-      2885870
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/2885870"
-    ],
-    "game": "Strange Antiquities"
   },
   {
     "platforms": [
@@ -2091,6 +2156,31 @@
   },
   {
     "platforms": [
+      "Steam",
+      "PS5"
+    ],
+    "lastPlayedSingle": [
+      "2025-10-25",
+      "2021-11-27"
+    ],
+    "lastPlayedTotal": "2025-10-25",
+    "hoursPlayedSingle": [
+      4.2,
+      35.1
+    ],
+    "hoursPlayedTotal": 39.300000000000004,
+    "ids": [
+      640820,
+      233355
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/640820",
+      "https://store.playstation.com/concept/233355"
+    ],
+    "game": "Pathfinder: Kingmaker"
+  },
+  {
+    "platforms": [
       "Steam"
     ],
     "lastPlayedSingle": [
@@ -2211,6 +2301,31 @@
   },
   {
     "platforms": [
+      "Steam",
+      "GOG"
+    ],
+    "lastPlayedSingle": [
+      "2025-01-04",
+      "2019-02-01"
+    ],
+    "lastPlayedTotal": "2025-01-04",
+    "hoursPlayedSingle": [
+      3.6,
+      12
+    ],
+    "hoursPlayedTotal": 15.6,
+    "ids": [
+      362960,
+      1266051739
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/362960",
+      "https://gogdb.org/product/1266051739"
+    ],
+    "game": "Tyranny"
+  },
+  {
+    "platforms": [
       "Steam"
     ],
     "lastPlayedSingle": [
@@ -2328,56 +2443,6 @@
       "https://store.steampowered.com/app/471550"
     ],
     "game": "Nine Parchments"
-  },
-  {
-    "platforms": [
-      "Steam",
-      "GOG"
-    ],
-    "lastPlayedSingle": [
-      "2025-01-04",
-      "2019-02-01"
-    ],
-    "lastPlayedTotal": "2025-01-04",
-    "hoursPlayedSingle": [
-      3.2,
-      12
-    ],
-    "hoursPlayedTotal": 15.2,
-    "ids": [
-      362960,
-      1266051739
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/362960",
-      "https://gogdb.org/product/1266051739"
-    ],
-    "game": "Tyranny"
-  },
-  {
-    "platforms": [
-      "Steam",
-      "PS5"
-    ],
-    "lastPlayedSingle": [
-      "2023-03-03",
-      "2021-11-27"
-    ],
-    "lastPlayedTotal": "2023-03-03",
-    "hoursPlayedSingle": [
-      3.2,
-      35.1
-    ],
-    "hoursPlayedTotal": 38.300000000000004,
-    "ids": [
-      640820,
-      233355
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/640820",
-      "https://store.playstation.com/concept/233355"
-    ],
-    "game": "Pathfinder: Kingmaker"
   },
   {
     "platforms": [
@@ -2517,7 +2582,7 @@
     "urls": [
       "https://store.steampowered.com/app/31260"
     ],
-    "game": "Sam & Max 305: The City that Dares not Sleep"
+    "game": "Sam & Max 305: The City That Dares Not Sleep"
   },
   {
     "platforms": [
@@ -2909,6 +2974,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2025-05-02"
+    ],
+    "lastPlayedTotal": "2025-05-02",
+    "hoursPlayedSingle": [
+      2.1
+    ],
+    "hoursPlayedTotal": 2.1,
+    "ids": [
+      2179850
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2179850"
+    ],
+    "game": "Cobalt Core"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2014-11-12"
     ],
     "lastPlayedTotal": "2014-11-12",
@@ -3003,26 +3088,6 @@
       "https://store.steampowered.com/app/2008920"
     ],
     "game": "Lorelei and the Laser Eyes"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2025-07-26"
-    ],
-    "lastPlayedTotal": "2025-07-26",
-    "hoursPlayedSingle": [
-      1.9
-    ],
-    "hoursPlayedTotal": 1.9,
-    "ids": [
-      2738630
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/2738630"
-    ],
-    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition"
   },
   {
     "platforms": [
@@ -3203,26 +3268,6 @@
       "https://store.steampowered.com/app/945360"
     ],
     "game": "Among Us"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2025-05-02"
-    ],
-    "lastPlayedTotal": "2025-05-02",
-    "hoursPlayedSingle": [
-      1.6
-    ],
-    "hoursPlayedTotal": 1.6,
-    "ids": [
-      2179850
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/2179850"
-    ],
-    "game": "Cobalt Core"
   },
   {
     "platforms": [
@@ -3729,6 +3774,46 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2023-12-30"
+    ],
+    "lastPlayedTotal": "2023-12-30",
+    "hoursPlayedSingle": [
+      0.8
+    ],
+    "hoursPlayedTotal": 0.8,
+    "ids": [
+      368390
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/368390"
+    ],
+    "game": "The Darkside Detective"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-07-10"
+    ],
+    "lastPlayedTotal": "2025-07-10",
+    "hoursPlayedSingle": [
+      0.8
+    ],
+    "hoursPlayedTotal": 0.8,
+    "ids": [
+      569860
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/569860"
+    ],
+    "game": "Thimbleweed Park™"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2012-07-23"
     ],
     "lastPlayedTotal": "2012-07-23",
@@ -4006,6 +4091,31 @@
   },
   {
     "platforms": [
+      "Steam",
+      "GOG"
+    ],
+    "lastPlayedSingle": [
+      "2026-01-11",
+      "2016-07-01"
+    ],
+    "lastPlayedTotal": "2026-01-11",
+    "hoursPlayedSingle": [
+      0.4,
+      12
+    ],
+    "hoursPlayedTotal": 12.4,
+    "ids": [
+      307580,
+      1430234218
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/307580",
+      "https://gogdb.org/product/1430234218"
+    ],
+    "game": "Technobabylon"
+  },
+  {
+    "platforms": [
       "Steam"
     ],
     "lastPlayedSingle": [
@@ -4122,7 +4232,7 @@
     "urls": [
       "https://store.steampowered.com/app/13520"
     ],
-    "game": "Far Cry"
+    "game": "Far Cry®"
   },
   {
     "platforms": [
@@ -4243,26 +4353,6 @@
       "https://store.steampowered.com/app/352520"
     ],
     "game": "The Silent Age"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2025-07-10"
-    ],
-    "lastPlayedTotal": "2025-07-10",
-    "hoursPlayedSingle": [
-      0.3
-    ],
-    "hoursPlayedTotal": 0.3,
-    "ids": [
-      569860
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/569860"
-    ],
-    "game": "Thimbleweed Park"
   },
   {
     "platforms": [
@@ -4429,20 +4519,20 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2023-12-30"
+      "2025-07-02"
     ],
-    "lastPlayedTotal": "2023-12-30",
+    "lastPlayedTotal": "2025-07-02",
     "hoursPlayedSingle": [
       0.2
     ],
     "hoursPlayedTotal": 0.2,
     "ids": [
-      368390
+      362680
     ],
     "urls": [
-      "https://store.steampowered.com/app/368390"
+      "https://store.steampowered.com/app/362680"
     ],
-    "game": "The Darkside Detective"
+    "game": "Fran Bow"
   },
   {
     "platforms": [
@@ -4602,7 +4692,7 @@
     "urls": [
       "https://store.steampowered.com/app/32460"
     ],
-    "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™"
+    "game": "Monkey Island 2: Special Edition"
   },
   {
     "platforms": [
@@ -4789,26 +4879,6 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2025-07-02"
-    ],
-    "lastPlayedTotal": "2025-07-02",
-    "hoursPlayedSingle": [
-      0.1
-    ],
-    "hoursPlayedTotal": 0.1,
-    "ids": [
-      362680
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/362680"
-    ],
-    "game": "Fran Bow"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
       "2019-12-29"
     ],
     "lastPlayedTotal": "2019-12-29",
@@ -4963,6 +5033,46 @@
       "https://store.steampowered.com/app/1369520"
     ],
     "game": "Strangeland"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2025-12-25"
+    ],
+    "lastPlayedTotal": "2025-12-25",
+    "hoursPlayedSingle": [
+      0
+    ],
+    "hoursPlayedTotal": 0,
+    "ids": [
+      1440440
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1440440"
+    ],
+    "game": "Sam & Max Save the World"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2026-01-11"
+    ],
+    "lastPlayedTotal": "2026-01-11",
+    "hoursPlayedSingle": [
+      0
+    ],
+    "hoursPlayedTotal": 0,
+    "ids": [
+      1687950
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/1687950"
+    ],
+    "game": "Persona 5 Royal"
   },
   {
     "platforms": [
@@ -5483,26 +5593,6 @@
       "https://store.playstation.com/concept/232735"
     ],
     "game": "Kingdom: Two Crowns"
-  },
-  {
-    "platforms": [
-      "PS5"
-    ],
-    "lastPlayedSingle": [
-      "2024-02-24"
-    ],
-    "lastPlayedTotal": "2024-02-24",
-    "hoursPlayedSingle": [
-      15.6
-    ],
-    "hoursPlayedTotal": 15.6,
-    "ids": [
-      10008102
-    ],
-    "urls": [
-      "https://store.playstation.com/concept/10008102"
-    ],
-    "game": "Warhammer 40,000: Rogue Trader"
   },
   {
     "platforms": [
@@ -7228,26 +7318,6 @@
       "https://gogdb.org/product/1207658848"
     ],
     "game": "Syberia"
-  },
-  {
-    "platforms": [
-      "GOG"
-    ],
-    "lastPlayedSingle": [
-      "2016-07-01"
-    ],
-    "lastPlayedTotal": "2016-07-01",
-    "hoursPlayedSingle": [
-      12
-    ],
-    "hoursPlayedTotal": 12,
-    "ids": [
-      1430234218
-    ],
-    "urls": [
-      "https://gogdb.org/product/1430234218"
-    ],
-    "game": "Technobabylon"
   },
   {
     "platforms": [
