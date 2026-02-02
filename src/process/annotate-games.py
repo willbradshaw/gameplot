@@ -90,6 +90,34 @@ def parse_annotations_file(annotations_file: str) -> dict[str, dict[str, object]
     logger.info(f"Parsed {len(game_dict)} games from {annotations_file}")
     return game_dict
 
+def expand_aliases(annotations: dict[str, dict[str, object]]) -> dict[str, dict[str, object]]:
+    """
+    Expands the annotations dictionary to include entries for all aliases.
+    Each alias gets its own entry pointing to the same game data (with a marker).
+    
+    Args:
+        annotations: Dictionary of annotations, keyed by game name.
+    Returns:
+        Dictionary of annotations with alias entries added.
+    """
+    expanded = annotations.copy()
+    alias_count = 0
+    for game_name, game_data in annotations.items():
+        if 'aliases' in game_data and game_data['aliases']:
+            for alias in game_data['aliases']:
+                if alias in expanded:
+                    logger.warning(f"Alias '{alias}' for '{game_name}' conflicts with existing game")
+                    continue
+                # Create an entry for the alias that points back to the main game
+                # Mark it as an alias so we know not to double-count it
+                alias_entry = game_data.copy()
+                alias_entry['_isAliasOf'] = game_name
+                expanded[alias] = alias_entry
+                alias_count += 1
+    if alias_count > 0:
+        logger.info(f"Expanded {alias_count} aliases from annotations")
+    return expanded
+
 #==============================================================================
 # Merging functions
 #==============================================================================
@@ -145,9 +173,23 @@ def merge_annotations(
     for game in games_to_delete:
         del annotations_filtered[game]
     logger.info(f"{len(annotations_filtered)} games remaining after filtering")
+    
+    # Expand aliases so that platform names matching aliases will be included
+    annotations_expanded = expand_aliases(annotations_filtered)
+    logger.info(f"{len(annotations_expanded)} annotation entries after alias expansion")
+    
     # Merge the dictionaries
     logger.info(f"Merging platform data and annotations")
-    merged_dict = inner_join_dicts(platform_data, annotations_filtered)
+    merged_dict = inner_join_dicts(platform_data, annotations_expanded)
+    
+    # Remove the _isAliasOf marker before further processing
+    for game_data in merged_dict.values():
+        if '_isAliasOf' in game_data:
+            del game_data['_isAliasOf']
+        # Also remove the aliases field as it's no longer needed after merging
+        if 'aliases' in game_data:
+            del game_data['aliases']
+    
     # Collapse games with the same displayName
     collapsed_dict = collapse_by_display_name(merged_dict)
     # Determine display URL
@@ -276,15 +318,44 @@ def report_missing_games(annotations: dict[str, dict[str, object]],
                         blank_annotations: dict[str, dict[str, object]]) -> None:
     """
     Reports games that are present in the platform data but not in the annotations file,
-    and vice versa.
+    and vice versa. Uses expanded aliases when comparing.
     Args:
         annotations: Dictionary of annotations, keyed by game name.
         platform_data: Dictionary of platform data, keyed by game name.
     """
-    games_annotation = set(annotations.keys())
+    # Expand aliases for comparison purposes
+    annotations_expanded = expand_aliases(annotations)
+    
+    # Get base annotation names (excluding aliases) for reporting
+    # We only want to report on base games, not their aliases
+    base_annotation_names = set(
+        name for name, data in annotations.items()
+        if '_isAliasOf' not in data
+    )
+    
+    # Get all annotation keys including aliases for matching
+    all_annotation_keys = set(annotations_expanded.keys())
     games_platform = set(platform_data.keys())
-    missing_annotation = games_platform - games_annotation
-    missing_platform = games_annotation - games_platform
+    
+    # Games in platform data but not matching any annotation (including aliases)
+    missing_platform = games_platform - all_annotation_keys
+    
+    # Games in annotations (base names only) but not in platform data
+    # For each base annotation, check if it OR any of its aliases exist in platform data
+    missing_annotation = set()
+    for game_name, game_data in annotations.items():
+        if '_isAliasOf' in game_data:
+            continue  # Skip alias entries
+        # Check if the game itself is in platform data
+        if game_name in games_platform:
+            continue
+        # Check if any of its aliases are in platform data
+        aliases = game_data.get('aliases', [])
+        if any(alias in games_platform for alias in aliases):
+            continue
+        # Neither the game nor any alias found
+        missing_annotation.add(game_name)
+    
     if missing_annotation:
         logger.info(
             f'{len(missing_annotation)} games present in annotations but not in platform data:'

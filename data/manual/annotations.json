@@ -32,49 +32,23 @@
     "tags": ["Fantasy", "RPG", "Coop"]
   },
   {
-    "game": "Sid Meier's Civilization® V",
-    "displayName": "Sid Meier's Civilization V",
-    "rating": 6.0,
-    "status": "Abandoned",
-    "tags": ["Strategy"]
-  },
-  {
     "game": "Sid Meier's Civilization V",
+    "aliases": ["Sid Meier's Civilization® V"],
     "rating": 6.0,
     "status": "Abandoned",
     "tags": ["Strategy"]
   },
   {
-    "game": "Divinity: Original Sin - Enhanced Edition",
+    "game": "Divinity: Original Sin",
     "displayName": "Divinity: Original Sin",
+    "aliases": ["Divinity: Original Sin - Enhanced Edition", "Divinity : Original Sin Enhanced Edition", "Divinity: Original Sin Enhanced Edition"],
     "rating": 7.3,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG", "Coop"]
-  },
-  {
-    "game": "Divinity: Original Sin Enhanced Edition",
-    "displayName": "Divinity: Original Sin",
-    "rating": 7.3,
-    "status": "Abandoned",
-    "tags": ["Fantasy", "RPG", "Coop"]
-  },
-  {
-    "game": "Sid Meier’s Civilization VI",
-    "displayName": "Sid Meier's Civilization VI",
-    "rating": 6.2,
-    "status": "Abandoned",
-    "tags": ["Strategy"]
   },
   {
     "game": "Sid Meier's Civilization VI",
-    "displayName": "Sid Meier's Civilization VI",
-    "rating": 6.2,
-    "status": "Abandoned",
-    "tags": ["Strategy"]
-  },
-  {
-    "game": "Sid Meier’s Civilization® VI",
-    "displayName": "Sid Meier's Civilization VI",
+    "aliases": ["Sid Meier's Civilization VI", "Sid Meier's Civilization® VI"],
     "rating": 6.2,
     "status": "Abandoned",
     "tags": ["Strategy"]
@@ -87,27 +61,15 @@
     "tags": ["Fantasy", "RPG"]
   },
   {
-    "game": "BOOK OF HOURS",
-    "rating": 7.6,
-    "status": "In Progress",
-    "tags": ["Fantasy", "Management", "Exploration"]
-  },
-  {
     "game": "Book of Hours",
+    "aliases": ["BOOK OF HOURS"],
     "rating": 7.6,
     "status": "In Progress",
     "tags": ["Fantasy", "Management", "Exploration"]
   },
   {
-    "game": "The Elder Scrolls IV: Oblivion® Game of the Year Edition (2009)",
-    "displayName": "The Elder Scrolls IV: Oblivion",
-    "rating": 6.8,
-    "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
-  },
-  {
-    "game": "The Elder Scrolls IV: Oblivion Game of the Year Edition (2009)",
-    "displayName": "The Elder Scrolls IV: Oblivion",
+    "game": "The Elder Scrolls IV: Oblivion",
+    "aliases": ["The Elder Scrolls IV: Oblivion® Game of the Year Edition (2009)", "The Elder Scrolls IV: Oblivion Game of the Year Edition (2009)"],
     "rating": 6.8,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
@@ -120,15 +82,8 @@
     "tags": ["Fantasy", "RPG"]
   },
   {
-    "game": "Mass Effect 2 (2010 Edition)",
-    "displayName": "Mass Effect 2",
-    "rating": 8.8,
-    "status": "Complete",
-    "tags": ["Sci-Fi", "RPG"]
-  },
-  {
-    "game": "Mass Effect 2 (2010)",
-    "displayName": "Mass Effect 2",
+    "game": "Mass Effect 2",
+    "aliases": ["Mass Effect 2 (2010)", "Mass Effect 2 (2010 Edition)"],
     "rating": 8.8,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"]
@@ -141,25 +96,14 @@
   },
   {
     "game": "Disco Elysium",
+    "aliases": ["Disco Elysium - The Final Cut"],
     "rating": 9.6,
     "status": "Complete",
     "tags": ["RPG", "Crime", "Comedy"]
-  },
-  {
-    "game": "Disco Elysium - The Final Cut",
-    "displayName": "Disco Elysium",
-    "rating": 9.6,
-    "status": "Complete",
-    "tags": ["RPG", "Crime", "Comedy"]
-  },
-  {
-    "game": "SUNLESS SEA",
-    "rating": 8.0,
-    "status": "Abandoned",
-    "tags": ["Roguelike", "Exploration", "Horror"]
   },
   {
     "game": "Sunless Sea",
+    "aliases": ["SUNLESS SEA"],
     "rating": 8.0,
     "status": "Abandoned",
     "tags": ["Roguelike", "Exploration", "Horror"]
@@ -173,16 +117,10 @@
   },
   {
     "game": "Slay the Spire",
-    "rating": 8.9,
-    "status": "Abandoned",
-    "tags": ["Roguelike", "Deckbuilder", "Fantasy"]
-  },
-  {
-    "game": "Slay The Spire",
-    "displayName": "Slay the Spire",
-    "rating": 8.9,
-    "status": "Abandoned",
+    "aliases": ["Slay The Spire"],
     "hoursPlayedTotal": 100.0,
+    "rating": 8.9,
+    "status": "Abandoned",
     "tags": ["Roguelike", "Deckbuilder", "Fantasy"]
   },
   {
@@ -275,14 +213,7 @@
   },
   {
     "game": "Dark Messiah of Might & Magic",
-    "rating": 6.6,
-    "status": "Complete",
-    "tags": ["RPG", "Action" , "Fantasy"],
-    "lastPlayedTotal": "2009-01-01"
-  },
-  {
-    "game": "Dark Messiah of Might & Magic Single Player",
-    "displayName": "Dark Messiah of Might & Magic",
+    "aliases": ["Dark Messiah of Might & Magic Single Player"],
     "rating": 6.6,
     "status": "Complete",
     "tags": ["RPG", "Action" , "Fantasy"],
@@ -319,14 +250,8 @@
     "tags": ["Adventure", "Puzzle", "Fantasy"]
   },
   {
-    "game": "The Dream Machine: Chapter 1 & 2",
-    "displayName": "The Dream Machine",
-    "rating": 7.4,
-    "status": "Complete",
-    "tags": ["Puzzle", "Horror", "Adventure"]
-  },
-  {
     "game": "The Dream Machine",
+    "aliases": ["The Dream Machine: Chapter 1 & 2"],
     "rating": 7.4,
     "status": "Complete",
     "tags": ["Puzzle", "Horror", "Adventure"]
@@ -488,6 +413,7 @@
   {
     "game": "Thief Gold",
     "displayName": "Thief",
+    "aliases": ["Thief™ Gold"],
     "rating": 6.8,
     "status": "Abandoned",
     "tags": ["Stealth"]
@@ -596,14 +522,8 @@
     "tags": ["Adventure"]
   },
   {
-    "game": "Ghost Master®",
-    "displayName": "Ghost Master",
-    "rating": 7.6,
-    "status": "Complete",
-    "tags": ["Tactics", "Puzzle", "Comedy"]
-  },
-  {
     "game": "Ghost Master",
+    "aliases": ["Ghost Master®"],
     "rating": 7.6,
     "status": "Complete",
     "tags": ["Tactics", "Puzzle", "Comedy"]
@@ -622,13 +542,7 @@
   },
   {
     "game": "Hector: Episode 2",
-    "rating": 7.0,
-    "status": "Complete",
-    "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
-  },
-  {
-    "game": "Hector: Ep 2",
-    "displayName": "Hector: Episode 2",
+    "aliases": ["Hector: Ep 2"],
     "rating": 7.0,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
@@ -750,13 +664,7 @@
   },
   {
     "game": "Hector: Episode 1",
-    "rating": 6.6,
-    "status": "Complete",
-    "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
-  },
-  {
-    "game": "Hector: Ep 1",
-    "displayName": "Hector: Episode 1",
+    "aliases": ["Hector: Ep 1"],
     "rating": 6.6,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
@@ -787,6 +695,7 @@
   },
   {
     "game": "Pathfinder: Kingmaker",
+    "aliases": ["Pathfinder: Kingmaker — Enhanced Plus Edition"],
     "rating": 5.6,
     "status": "Abandoned",
     "tags": ["RPG", "Fantasy"]
@@ -818,13 +727,7 @@
   {
     "game": "Hector: Badge of Carnage - Full Series",
     "displayName": "Hector: Episode 3",
-    "rating": 6.8,
-    "status": "Complete",
-    "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
-  },
-  {
-    "game": "Hector: Ep 3",
-    "displayName": "Hector: Episode 3",
+    "aliases": ["Hector: Ep 3"],
     "rating": 6.8,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
@@ -836,13 +739,8 @@
     "tags": ["Walking Simulator"]
   },
   {
-    "game": "Sam & Max 305: The City that Dares not Sleep",
-    "rating": 7.2,
-    "status": "Complete",
-    "tags": ["Adventure", "Puzzle", "Comedy"]
-  },
-  {
     "game": "Sam & Max 305: The City That Dares Not Sleep",
+    "aliases": ["Sam & Max 305: The City that Dares not Sleep"],
     "rating": 7.2,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Comedy"]
@@ -860,22 +758,8 @@
     "tags": ["Walking Simulator"]
   },
   {
-    "game": "Neverwinter Nights™ 2 Platinum",
-    "displayName": "Neverwinter Nights 2",
-    "rating": 6.8,
-    "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
-  },
-  {
-    "game": "Neverwinter Nights 2: Platinum",
-    "displayName": "Neverwinter Nights 2",
-    "rating": 6.8,
-    "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
-  },
-  {
-    "game": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition",
-    "displayName": "Neverwinter Nights 2",
+    "game": "Neverwinter Nights 2",
+    "aliases": ["Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition", "Neverwinter Nights™ 2 Platinum", "Neverwinter Nights 2: Platinum"],
     "rating": 6.8,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
@@ -1223,7 +1107,7 @@
   },
   {
     "game": "To the Moon",
-    "displayName": "To The Moon",
+    "aliases": ["To The Moon"],
     "rating": 9.5,
     "status": "Complete",
     "tags": ["Adventure", "Walking Simulator"]
@@ -1665,13 +1549,6 @@
     "game": "God of War"
   },
   {
-    "displayName": "Divinity: Original Sin",
-    "rating": 7.3,
-    "status": "Abandoned",
-    "tags": ["Fantasy", "RPG", "Coop"],
-    "game": "Divinity : Original Sin Enhanced Edition"
-  },
-  {
     "displayName": "Mass Effect",
     "rating": 7.7,
     "status": "Complete",
@@ -1727,13 +1604,6 @@
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"],
     "game": "Warhammer 40,000: Rogue Trader"
-  },
-  {
-    "rating": 5.6,
-    "status": "Abandoned",
-    "tags": ["Fantasy", "RPG"],
-    "game": "Pathfinder: Kingmaker — Enhanced Plus Edition",
-    "displayName": "Pathfinder: Kingmaker"
   },
   {
     "rating": 5.4,
@@ -2194,12 +2064,6 @@
     "tags": ["Fantasy", "RPG"]
   },
   {
-    "game": "To The Moon",
-    "rating": 9.5,
-    "status": "Complete",
-    "tags": ["Walking Simulator", "Adventure"]
-  },
-  {
     "game": "Unavowed",
     "rating": 8.9,
     "status": "Complete",
@@ -2446,13 +2310,6 @@
     "status": "Abandoned",
     "tags": [],
     "game": "Eternal Strands"
-  },
-  {
-    "game": "Thief™ Gold",
-    "displayName": "Thief",
-    "rating": 6.8,
-    "status": "Abandoned",
-    "tags": ["Stealth"]
   },
   {
     "rating": null,
