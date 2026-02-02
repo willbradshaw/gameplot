@@ -1572,7 +1572,8 @@
     "rating": null,
     "status": null,
     "tags": [],
-    "game": "Persona 5"
+    "game": "Persona 5",
+    "aliases": ["Persona 5 Royal"]
   },
   {
     "rating": 3.9,
