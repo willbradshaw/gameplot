@@ -1,10 +1,10 @@
 [
   {
-    "game": "Pathfinder: Wrath of the Righteous - Enhanced Edition",
-    "displayName": "Pathfinder: Wrath of the Righteous",
+    "game": "Pathfinder: Wrath of the Righteous",
     "rating": 8.5,
     "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
+    "tags": ["Fantasy", "RPG"],
+    "aliases": ["Pathfinder: Wrath of the Righteous - Enhanced Edition"]
   },
   {
     "game": "Gloomhaven",
@@ -13,11 +13,11 @@
     "tags": ["Fantasy", "Strategy", "Coop", "Board Game"]
   },
   {
-    "game": "Divinity: Original Sin 2 - Definitive Edition",
-    "displayName": "Divinity: Original Sin 2",
+    "game": "Divinity: Original Sin 2",
     "rating": 8.4,
     "status": "In Progress",
-    "tags": ["Fantasy", "RPG", "Coop"]
+    "tags": ["Fantasy", "RPG", "Coop"],
+    "aliases": ["Divinity: Original Sin 2 - Definitive Edition"]
   },
   {
     "game": "Divinity: Original Sin 2",
@@ -40,7 +40,6 @@
   },
   {
     "game": "Divinity: Original Sin",
-    "displayName": "Divinity: Original Sin",
     "aliases": ["Divinity: Original Sin - Enhanced Edition", "Divinity : Original Sin Enhanced Edition", "Divinity: Original Sin Enhanced Edition"],
     "rating": 7.3,
     "status": "Abandoned",
@@ -55,7 +54,6 @@
   },
   {
     "game": "The Elder Scrolls V: Skyrim",
-    "displayName": "The Elder Scrolls V: Skyrim",
     "rating": 9.1,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"]
@@ -75,11 +73,11 @@
     "tags": ["Fantasy", "RPG"]
   },
   {
-    "game": "Dragon Age: Origins - Ultimate Edition",
-    "displayName": "Dragon Age: Origins",
+    "game": "Dragon Age: Origins",
     "rating": 8.6,
     "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
+    "tags": ["Fantasy", "RPG"],
+    "aliases": ["Dragon Age: Origins - Ultimate Edition"]
   },
   {
     "game": "Mass Effect 2",
@@ -109,11 +107,11 @@
     "tags": ["Roguelike", "Exploration", "Horror"]
   },
   {
-    "game": "Mass Effect (2007)",
-    "displayName": "Mass Effect",
+    "game": "Mass Effect",
     "rating": 7.7,
     "status": "Complete",
-    "tags": ["Sci-Fi", "RPG"]
+    "tags": ["Sci-Fi", "RPG"],
+    "aliases": ["Mass Effect (2007)"]
   },
   {
     "game": "Slay the Spire",
@@ -142,18 +140,18 @@
     "tags": ["Puzzle", "Sci-Fi", "Comedy"]
   },
   {
-    "game": "Wasteland 2: Director's Cut",
-    "displayName": "Wasteland 2",
+    "game": "Wasteland 2",
     "rating": 6.2,
     "status": "Abandoned",
-    "tags": ["Sci-Fi", "RPG"]
+    "tags": ["Sci-Fi", "RPG"],
+    "aliases": ["Wasteland 2: Director's Cut"]
   },
   {
-    "game": "Shadowrun: Dragonfall - Director's Cut",
-    "displayName": "Shadowrun: Dragonfall",
+    "game": "Shadowrun: Dragonfall",
     "rating": 8.8,
     "status": "Complete",
-    "tags": ["Sci-Fi", "Fantasy", "RPG"]
+    "tags": ["Sci-Fi", "Fantasy", "RPG"],
+    "aliases": ["Shadowrun: Dragonfall - Director's Cut"]
   },
   {
     "game": "Sunless Skies",
@@ -162,11 +160,11 @@
     "tags": ["Roguelike", "Exploration"]
   },
   {
-    "game": "The Elder Scrolls V: Skyrim Special Edition",
-    "displayName": "The Elder Scrolls V: Skyrim",
+    "game": "The Elder Scrolls V: Skyrim",
     "rating": 9.1,
     "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
+    "tags": ["Fantasy", "RPG"],
+    "aliases": ["The Elder Scrolls V: Skyrim Special Edition"]
   },
   {
     "game": "Tactical Breach Wizards",
@@ -175,11 +173,11 @@
     "tags": ["Fantasy", "Tactics", "Puzzle", "Comedy"]
   },
   {
-    "game": "Shadowrun: Hong Kong - Extended Edition",
-    "displayName": "Shadowrun: Hong Kong",
+    "game": "Shadowrun: Hong Kong",
     "rating": 9.0,
     "status": "Complete",
-    "tags": ["Fantasy", "RPG", "Sci-Fi"]
+    "tags": ["Fantasy", "RPG", "Sci-Fi"],
+    "aliases": ["Shadowrun: Hong Kong - Extended Edition"]
   },
   {
     "game": "Shadows Over Loathing",
@@ -216,7 +214,7 @@
     "aliases": ["Dark Messiah of Might & Magic Single Player"],
     "rating": 6.6,
     "status": "Complete",
-    "tags": ["RPG", "Action" , "Fantasy"],
+    "tags": ["RPG", "Action", "Fantasy"],
     "lastPlayedTotal": "2009-01-01"
   },
   {
@@ -269,11 +267,11 @@
     "tags": ["Puzzle"]
   },
   {
-    "game": "The Whispered World Special Edition",
-    "displayName": "The Whispered World",
+    "game": "The Whispered World",
     "rating": 5.7,
     "status": "Complete",
-    "tags": ["Adventure", "Puzzle", "Fantasy"]
+    "tags": ["Adventure", "Puzzle", "Fantasy"],
+    "aliases": ["The Whispered World Special Edition"]
   },
   {
     "game": "Wildermyth",
@@ -294,11 +292,11 @@
     "tags": ["Visual Novel", "Deckbuilder", "Management"]
   },
   {
-    "game": "Neverwinter Nights: Enhanced Edition",
-    "displayName": "Neverwinter Nights",
+    "game": "Neverwinter Nights",
     "rating": 6.8,
     "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
+    "tags": ["Fantasy", "RPG"],
+    "aliases": ["Neverwinter Nights: Enhanced Edition"]
   },
   {
     "game": "Citizen Sleeper 2: Starward Vector",
@@ -361,11 +359,11 @@
     "tags": ["Board Game"]
   },
   {
-    "game": "The Secret of Monkey Island: Special Edition",
-    "displayName": "The Secret of Monkey Island",
+    "game": "The Secret of Monkey Island",
     "rating": 6.6,
     "status": "Complete",
-    "tags": ["Adventure", "Puzzle", "Comedy"]
+    "tags": ["Adventure", "Puzzle", "Comedy"],
+    "aliases": ["The Secret of Monkey Island: Special Edition"]
   },
   {
     "game": "Old Skies",
@@ -380,11 +378,11 @@
     "tags": ["Adventure", "Comedy", "Puzzle"]
   },
   {
-    "game": "STAR WARS™ Knights of the Old Republic™",
-    "displayName": "Star Wars: Knights of the Old Republic",
+    "game": "Star Wars: Knights of the Old Republic",
     "rating": null,
     "status": "Abandoned",
-    "tags": []
+    "tags": [],
+    "aliases": ["STAR WARS™ Knights of the Old Republic™"]
   },
   {
     "game": "Spec Ops: The Line",
@@ -411,9 +409,8 @@
     "tags": ["RPG", "Sci-Fi", "Fantasy"]
   },
   {
-    "game": "Thief Gold",
-    "displayName": "Thief",
-    "aliases": ["Thief™ Gold"],
+    "game": "Thief",
+    "aliases": ["Thief Gold", "Thief™ Gold"],
     "rating": 6.8,
     "status": "Abandoned",
     "tags": ["Stealth"]
@@ -626,11 +623,11 @@
     "tags": ["Adventure", "Comedy", "Puzzle"]
   },
   {
-    "game": "The Vanishing of Ethan Carter Redux",
-    "displayName": "The Vanishing of Ethan Carter",
+    "game": "The Vanishing of Ethan Carter",
     "rating": 6.6,
     "status": "Complete",
-    "tags": ["Exploration", "Walking Simulator"]
+    "tags": ["Exploration", "Walking Simulator"],
+    "aliases": ["The Vanishing of Ethan Carter Redux"]
   },
   {
     "game": "Undertale",
@@ -725,9 +722,8 @@
     "tags": ["Walking Simulator", "Sci-Fi"]
   },
   {
-    "game": "Hector: Badge of Carnage - Full Series",
-    "displayName": "Hector: Episode 3",
-    "aliases": ["Hector: Ep 3"],
+    "game": "Hector: Episode 3",
+    "aliases": ["Hector: Badge of Carnage - Full Series", "Hector: Ep 3"],
     "rating": 6.8,
     "status": "Complete",
     "tags": ["Adventure", "Puzzle", "Comedy", "Crime"]
@@ -772,11 +768,11 @@
     "tags": []
   },
   {
-    "game": "Deus Ex: Game of the Year Edition",
-    "displayName": "Deus Ex",
+    "game": "Deus Ex",
     "rating": null,
     "status": "Abandoned",
-    "tags": []
+    "tags": [],
+    "aliases": ["Deus Ex: Game of the Year Edition"]
   },
   {
     "game": "The Journey Down: Chapter One",
@@ -875,9 +871,8 @@
     "tags": ["Survival", "Coop"]
   },
   {
-    "game": "Batman: Arkham Asylum GOTY Edition",
-    "displayName": "Batman: Arkham Asylum",
-    "aliases": ["Batman: Arkham Asylum Game of the Year Edition"],
+    "game": "Batman: Arkham Asylum",
+    "aliases": ["Batman: Arkham Asylum GOTY Edition", "Batman: Arkham Asylum Game of the Year Edition"],
     "rating": 5.5,
     "status": "Abandoned",
     "tags": ["Stealth", "Action"]
@@ -895,11 +890,11 @@
     "tags": ["Visual Novel", "Sci-Fi"]
   },
   {
-    "game": "Slay the Princess — The Pristine Cut",
-    "displayName": "Slay the Princess",
+    "game": "Slay the Princess",
     "rating": 5.9,
     "status": "Complete",
-    "tags": ["Visual Novel"]
+    "tags": ["Visual Novel"],
+    "aliases": ["Slay the Princess — The Pristine Cut"]
   },
   {
     "game": "DICEOMANCER",
@@ -920,9 +915,8 @@
     "tags": []
   },
   {
-    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)",
-    "displayName": "Broken Sword 1: Shadow of the Templars",
-    "aliases": ["Broken Sword: Director's Cut (2009)"],
+    "game": "Broken Sword 1: Shadow of the Templars",
+    "aliases": ["Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)", "Broken Sword: Director's Cut (2009)"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -995,11 +989,11 @@
     "tags": ["Puzzle"]
   },
   {
-    "game": "Dear Esther: Landmark Edition",
-    "displayName": "Dear Esther",
+    "game": "Dear Esther",
     "rating": 9.0,
     "status": "Complete",
-    "tags": ["Walking Simulator"]
+    "tags": ["Walking Simulator"],
+    "aliases": ["Dear Esther: Landmark Edition"]
   },
   {
     "game": "Crusader Kings II",
@@ -1045,9 +1039,8 @@
     "tags": []
   },
   {
-    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition",
-    "displayName": "Warhammer 40,000: Dawn of War",
-    "aliases": ["Warhammer 40,000: Dawn of War - Anniversary Edition "],
+    "game": "Warhammer 40,000: Dawn of War",
+    "aliases": ["Warhammer 40,000: Dawn of War - Anniversary Edition", "Warhammer 40,000: Dawn of War - Anniversary Edition "],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1102,11 +1095,11 @@
     "tags": []
   },
   {
-    "game": "The Witcher 2: Assassins of Kings Enhanced Edition",
-    "displayName": "The Witcher 2: Assassins of Kings",
+    "game": "The Witcher 2: Assassins of Kings",
     "rating": null,
     "status": "Abandoned",
-    "tags": []
+    "tags": [],
+    "aliases": ["The Witcher 2: Assassins of Kings Enhanced Edition"]
   },
   {
     "game": "Sam & Max 103: The Mole, the Mob and the Meatball",
@@ -1211,11 +1204,9 @@
     "status": "Abandoned",
     "tags": []
   },
-
   {
-    "game": "The Witcher: Enhanced Edition",
-    "displayName": "The Witcher",
-    "aliases": ["The Witcher: Enhanced Edition Director's Cut"],
+    "game": "The Witcher",
+    "aliases": ["The Witcher: Enhanced Edition", "The Witcher: Enhanced Edition Director's Cut"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1344,7 +1335,6 @@
     "status": "Abandoned",
     "tags": []
   },
-
   {
     "game": "IL-2 Sturmovik: 1946",
     "rating": null,
@@ -1352,9 +1342,8 @@
     "tags": []
   },
   {
-    "game": "Monkey Island 2: Special Edition",
-    "displayName": "Monkey Island 2: LeChuck's Revenge",
-    "aliases": ["Monkey Island™ 2 Special Edition: LeChuck's Revenge™"],
+    "game": "Monkey Island 2: LeChuck's Revenge",
+    "aliases": ["Monkey Island 2: Special Edition", "Monkey Island™ 2 Special Edition: LeChuck's Revenge™"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1372,18 +1361,18 @@
     "tags": []
   },
   {
-    "game": "Lone Survivor: The Director's Cut",
-    "displayName": "Lone Survivor",
+    "game": "Lone Survivor",
     "rating": null,
     "status": "Abandoned",
-    "tags": []
+    "tags": [],
+    "aliases": ["Lone Survivor: The Director's Cut"]
   },
   {
-    "game": "Myst: Masterpiece Edition",
-    "displayName": "Myst",
+    "game": "Myst",
     "rating": null,
     "status": "Abandoned",
-    "tags": []
+    "tags": [],
+    "aliases": ["Myst: Masterpiece Edition"]
   },
   {
     "game": "Quantum Conundrum",
@@ -1490,11 +1479,11 @@
     "game": "God of War"
   },
   {
-    "displayName": "Mass Effect",
     "rating": 7.7,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"],
-    "game": "Mass Effect™ Legendary Edition"
+    "game": "Mass Effect",
+    "aliases": ["Mass Effect™ Legendary Edition"]
   },
   {
     "rating": null,
@@ -1506,8 +1495,8 @@
     "rating": 7.4,
     "status": "In Progress",
     "tags": ["Adventure", "Walking Simulator"],
-    "game": "Kentucky Route Zero: TV Edition",
-    "displayName": "Kentucky Route Zero"
+    "game": "Kentucky Route Zero",
+    "aliases": ["Kentucky Route Zero: TV Edition"]
   },
   {
     "rating": null,
@@ -1526,8 +1515,8 @@
     "rating": 6.0,
     "status": "Abandoned",
     "tags": ["Action", "RPG", "Fantasy", "Coop"],
-    "game": "Diablo III: Eternal Collection",
-    "displayName": "Diablo III"
+    "game": "Diablo III",
+    "aliases": ["Diablo III: Eternal Collection"]
   },
   {
     "rating": 4.4,
@@ -1551,9 +1540,9 @@
     "rating": 5.4,
     "status": "Abandoned",
     "tags": ["Fantasy", "RPG"],
-    "game": "Dragon Age™: Inquisition",
-    "displayName": "Dragon Age: Inquisition",
-    "hoursPlayedTotal": 40.0
+    "game": "Dragon Age: Inquisition",
+    "hoursPlayedTotal": 40.0,
+    "aliases": ["Dragon Age™: Inquisition"]
   },
   {
     "rating": 5.7,
@@ -1565,9 +1554,9 @@
     "rating": 7.0,
     "status": "Complete",
     "tags": ["Platformer", "Puzzle"],
-    "game": "ASTRO's PLAYROOM",
-    "displayName": "Astro's Playroom",
-    "hoursPlayedTotal": 4.5
+    "game": "Astro's Playroom",
+    "hoursPlayedTotal": 4.5,
+    "aliases": ["ASTRO's PLAYROOM"]
   },
   {
     "rating": 6.1,
@@ -1585,16 +1574,16 @@
     "rating": 6.8,
     "status": "Complete",
     "tags": ["RPG", "Fantasy"],
-    "game": "FINAL FANTASY IX",
-    "displayName": "Final Fantasy IX",
-    "hoursPlayedTotal": 80.0
+    "game": "Final Fantasy IX",
+    "hoursPlayedTotal": 80.0,
+    "aliases": ["FINAL FANTASY IX"]
   },
   {
     "rating": 6.4,
     "status": "Complete",
     "tags": ["Management", "Fantasy"],
-    "game": "Kingdom Two Crowns",
-    "displayName": "Kingdom: Two Crowns"
+    "game": "Kingdom: Two Crowns",
+    "aliases": ["Kingdom Two Crowns"]
   },
   {
     "rating": 5.2,
@@ -1618,15 +1607,15 @@
     "rating": 8.9,
     "status": "In Progress",
     "tags": ["Fantasy", "RPG"],
-    "game": "Pillars of Eternity: Complete Edition",
-    "displayName": "Pillars of Eternity"
+    "game": "Pillars of Eternity",
+    "aliases": ["Pillars of Eternity: Complete Edition"]
   },
   {
     "rating": 7.9,
     "status": "In Progress",
     "tags": ["Soulslike", "Fantasy", "RPG"],
-    "game": "ELDEN RING",
-    "displayName": "Elden Ring"
+    "game": "Elden Ring",
+    "aliases": ["ELDEN RING"]
   },
   {
     "rating": 5.4,
@@ -1662,8 +1651,8 @@
     "rating": 5.7,
     "status": "Abandoned",
     "tags": ["Exploration", "Stealth", "Action"],
-    "game": "Assassin's Creed® Origins",
-    "displayName": "Assassin's Creed Origins"
+    "game": "Assassin's Creed Origins",
+    "aliases": ["Assassin's Creed® Origins"]
   },
   {
     "rating": 6.0,
@@ -1675,22 +1664,22 @@
     "rating": 8.4,
     "status": "Complete",
     "tags": ["RPG", "Fantasy"],
-    "game": "FINAL FANTASY X/X-2 HD Remaster",
-    "displayName": "Final Fantasy X"
+    "game": "Final Fantasy X",
+    "aliases": ["FINAL FANTASY X/X-2 HD Remaster"]
   },
   {
     "rating": 5.4,
     "status": "Abandoned",
     "tags": ["RPG", "Fantasy", "Action"],
-    "game": "FINAL FANTASY XVI",
-    "displayName": "Final Fantasy XVI"
+    "game": "Final Fantasy XVI",
+    "aliases": ["FINAL FANTASY XVI"]
   },
   {
     "rating": 6.5,
     "status": "Abandoned",
     "tags": ["Adventure", "Action", "Fantasy"],
-    "game": "SHADOW OF THE COLOSSUS™",
-    "displayName": "Shadow of the Colossus"
+    "game": "Shadow of the Colossus",
+    "aliases": ["SHADOW OF THE COLOSSUS™"]
   },
   {
     "rating": 7.1,
@@ -1714,8 +1703,8 @@
     "rating": 7.9,
     "status": "Complete",
     "tags": ["Coop", "Platformer", "Puzzle"],
-    "game": "It Takes Two  PS4™ & PS5™",
-    "displayName": "It Takes Two"
+    "game": "It Takes Two",
+    "aliases": ["It Takes Two  PS4™ & PS5™"]
   },
   {
     "rating": 7.2,
@@ -1733,8 +1722,8 @@
     "rating": 4.4,
     "status": "Abandoned",
     "tags": ["Adventure", "Puzzle"],
-    "game": "The Last Door - Complete Edition",
-    "displayName": "The Last Door"
+    "game": "The Last Door",
+    "aliases": ["The Last Door - Complete Edition"]
   },
   {
     "rating": 7.3,
@@ -1746,8 +1735,8 @@
     "rating": 6.5,
     "status": "Abandoned",
     "tags": ["Roguelike", "Exploration"],
-    "game": "Sunless Skies: Sovereign Edition",
-    "displayName": "Sunless Skies"
+    "game": "Sunless Skies",
+    "aliases": ["Sunless Skies: Sovereign Edition"]
   },
   {
     "rating": null,
@@ -1759,8 +1748,8 @@
     "rating": 5.5,
     "status": "Abandoned",
     "tags": ["Western", "Action", "RPG"],
-    "game": "Weird West: Definitive Edition",
-    "displayName": "Weird West"
+    "game": "Weird West",
+    "aliases": ["Weird West: Definitive Edition"]
   },
   {
     "rating": null,
@@ -1778,8 +1767,8 @@
     "rating": 6.1,
     "status": "Abandoned",
     "tags": ["First-Person Shooter", "Action", "RPG", "Coop", "Comedy", "Sci-Fi"],
-    "game": "Borderlands: The Handsome Collection",
-    "displayName": "Borderlands 2"
+    "game": "Borderlands 2",
+    "aliases": ["Borderlands: The Handsome Collection"]
   },
   {
     "rating": 6.4,
@@ -1827,8 +1816,8 @@
     "rating": 9.4,
     "status": "Complete",
     "tags": ["Walking Simulator", "Comedy"],
-    "game": "The Stanley Parable: Ultra Deluxe",
-    "displayName": "The Stanley Parable"
+    "game": "The Stanley Parable",
+    "aliases": ["The Stanley Parable: Ultra Deluxe"]
   },
   {
     "rating": 5.4,
@@ -1927,11 +1916,11 @@
     "tags": ["Adventure", "Mystery", "Puzzle"]
   },
   {
-    "game": "Neverwinter Nights Diamond",
-    "displayName": "Neverwinter Nights",
+    "game": "Neverwinter Nights",
     "rating": 6.8,
     "status": "Complete",
-    "tags": ["RPG", "Fantasy"]
+    "tags": ["RPG", "Fantasy"],
+    "aliases": ["Neverwinter Nights Diamond"]
   },
   {
     "game": "Papers, Please",
@@ -2012,11 +2001,11 @@
     "tags": ["Adventure", "Puzzle", "Fantasy"]
   },
   {
-    "game": "Kathy Rain: Director's Cut",
-    "displayName": "Kathy Rain",
+    "game": "Kathy Rain",
     "rating": 7.3,
     "status": "Complete",
-    "tags": ["Adventure", "Mystery", "Puzzle"]
+    "tags": ["Adventure", "Mystery", "Puzzle"],
+    "aliases": ["Kathy Rain: Director's Cut"]
   },
   {
     "game": "The Elder Scrolls IV: Oblivion Remastered",
@@ -2056,11 +2045,11 @@
     "tags": ["Exploration"]
   },
   {
-    "game": "Chants of Sennaar (Windows)",
-    "displayName": "Chants of Sennaar",
+    "game": "Chants of Sennaar",
     "rating": 7.6,
     "status": "Complete",
-    "tags": ["Puzzle"]
+    "tags": ["Puzzle"],
+    "aliases": ["Chants of Sennaar (Windows)"]
   },
   {
     "game": "ASTRONEER",
@@ -2070,14 +2059,14 @@
     "tags": []
   },
   {
-    "game": "Diablo\u00ae IV",
-    "displayName": "Diablo IV",
+    "game": "Diablo IV",
     "status": "Abandoned",
     "rating": 5.8,
-    "tags": ["Action", "RPG", "Coop", "Fantasy"]
+    "tags": ["Action", "RPG", "Coop", "Fantasy"],
+    "aliases": ["Diablo® IV"]
   },
   {
-    "game": "MLB\u00ae The Show\u2122 24 Xbox One",
+    "game": "MLB® The Show™ 24 Xbox One",
     "rating": null,
     "status": null,
     "hoursPlayedTotal": 0,
@@ -2125,19 +2114,19 @@
     "tags": []
   },
   {
-    "game": "Dishonored\u00ae Definitive Edition",
-    "displayName": "Dishonored",
+    "game": "Dishonored",
     "rating": 7.5,
     "hoursPlayedTotal": 12.0,
     "status": "Abandoned",
-    "tags": ["Stealth", "Action"]
+    "tags": ["Stealth", "Action"],
+    "aliases": ["Dishonored® Definitive Edition"]
   },
   {
-    "game": "TUNIC",
-    "displayName": "Tunic",
+    "game": "Tunic",
     "rating": 4.1,
     "status": "Abandoned",
-    "tags": ["Exploration", "Puzzle", "Soulslike"]
+    "tags": ["Exploration", "Puzzle", "Soulslike"],
+    "aliases": ["TUNIC"]
   },
   {
     "game": "Beacon Pines",
@@ -2147,11 +2136,11 @@
     "tags": []
   },
   {
-    "game": "Darkest Dungeon\u00ae",
-    "displayName": "Darkest Dungeon",
+    "game": "Darkest Dungeon",
     "rating": 6.2,
     "status": "Abandoned",
-    "tags": ["Roguelike"]
+    "tags": ["Roguelike"],
+    "aliases": ["Darkest Dungeon®"]
   },
   {
     "game": "Halo: The Master Chief Collection",
@@ -2233,19 +2222,19 @@
     "status": "Abandoned",
     "tags": ["Horror"]
   },
-    {
+  {
     "game": "Blue Prince",
     "rating": 8.1,
     "status": "In Progress",
     "hoursPlayedTotal": 145,
     "tags": ["Puzzle"]
   },
-    {
+  {
     "rating": null,
     "status": "In Progress",
     "tags": ["Fantasy", "RPG"],
-    "game": "Pillars of Eternity 2 Deadfire",
-    "displayName": "Pillars of Eternity 2: Deadfire"
+    "game": "Pillars of Eternity 2: Deadfire",
+    "aliases": ["Pillars of Eternity 2 Deadfire"]
   },
   {
     "rating": null,
