@@ -765,14 +765,8 @@
     "tags": ["Fantasy", "RPG"]
   },
   {
-    "game": "Trine 2: Complete Story",
-    "displayName": "Trine 2",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "Trine 2",
+    "aliases": ["Trine 2: Complete Story"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -881,15 +875,9 @@
     "tags": ["Survival", "Coop"]
   },
   {
-    "game": "Batman: Arkham Asylum Game of the Year Edition",
-    "displayName": "Batman: Arkham Asylum",
-    "rating": 5.5,
-    "status": "Abandoned",
-    "tags": ["Stealth", "Action"]
-  },
-  {
     "game": "Batman: Arkham Asylum GOTY Edition",
     "displayName": "Batman: Arkham Asylum",
+    "aliases": ["Batman: Arkham Asylum Game of the Year Edition"],
     "rating": 5.5,
     "status": "Abandoned",
     "tags": ["Stealth", "Action"]
@@ -934,6 +922,7 @@
   {
     "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)",
     "displayName": "Broken Sword 1: Shadow of the Templars",
+    "aliases": ["Broken Sword: Director's Cut (2009)"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -987,14 +976,8 @@
     "tags": ["Walking Simulator"]
   },
   {
-    "game": "The Elder Scrolls III: Morrowind® Game of the Year Edition",
-    "displayName": "The Elder Scrolls III: Morrowind",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "The Elder Scrolls III: Morrowind",
+    "aliases": ["The Elder Scrolls III: Morrowind® Game of the Year Edition"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1038,13 +1021,7 @@
   },
   {
     "game": "Magic 2015",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
-    "game": "Magic 2015 - Duels of the Planeswalkers",
-    "displayName": "Magic 2015",
+    "aliases": ["Magic 2015 - Duels of the Planeswalkers"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1070,13 +1047,7 @@
   {
     "game": "Warhammer 40,000: Dawn of War - Anniversary Edition",
     "displayName": "Warhammer 40,000: Dawn of War",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
-    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition ",
-    "displayName": "Warhammer 40,000: Dawn of War",
+    "aliases": ["Warhammer 40,000: Dawn of War - Anniversary Edition "],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1234,29 +1205,17 @@
     "tags": []
   },
   {
-    "game": "Far Cry®",
-    "displayName": "Far Cry",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "Far Cry",
+    "aliases": ["Far Cry®"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
   },
 
   {
-    "game": "The Witcher: Enhanced Edition Director's Cut",
-    "displayName": "The Witcher",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "The Witcher: Enhanced Edition",
     "displayName": "The Witcher",
+    "aliases": ["The Witcher: Enhanced Edition Director's Cut"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1372,27 +1331,15 @@
     "tags": ["Adventure", "Comedy", "Puzzle"]
   },
   {
-    "game": "Mirror's Edge™",
-    "displayName": "Mirror's Edge",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "Mirror's Edge",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
-    "game": "Beyond Good and Evil™",
-    "displayName": "Beyond Good and Evil",
+    "aliases": ["Mirror's Edge™"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Beyond Good & Evil",
+    "aliases": ["Beyond Good and Evil™"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1405,15 +1352,9 @@
     "tags": []
   },
   {
-    "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™",
-    "displayName": "Monkey Island 2: LeChuck's Revenge",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "Monkey Island 2: Special Edition",
     "displayName": "Monkey Island 2: LeChuck's Revenge",
+    "aliases": ["Monkey Island™ 2 Special Edition: LeChuck's Revenge™"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -2323,13 +2264,6 @@
     "status": "In Progress",
     "tags": [],
     "game": "Tower of Time"
-  },
-  {
-    "game": "Broken Sword: Director's Cut (2009)",
-    "displayName": "Broken Sword 1: Shadow of the Templars",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
   },
   {
     "rating": 7.1,
