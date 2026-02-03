@@ -20,12 +20,6 @@
     "aliases": ["Divinity: Original Sin 2 - Definitive Edition"]
   },
   {
-    "game": "Divinity: Original Sin 2",
-    "rating": 8.4,
-    "status": "In Progress",
-    "tags": ["Fantasy", "RPG", "Coop"]
-  },
-  {
     "game": "Baldur's Gate 3",
     "rating": 9.6,
     "status": "Complete",
@@ -51,12 +45,6 @@
     "rating": 6.2,
     "status": "Abandoned",
     "tags": ["Strategy"]
-  },
-  {
-    "game": "The Elder Scrolls V: Skyrim",
-    "rating": 9.1,
-    "status": "Complete",
-    "tags": ["Fantasy", "RPG"]
   },
   {
     "game": "Book of Hours",
@@ -111,7 +99,7 @@
     "rating": 7.7,
     "status": "Complete",
     "tags": ["Sci-Fi", "RPG"],
-    "aliases": ["Mass Effect (2007)"]
+    "aliases": ["Mass Effect (2007)", "Mass Effect™ Legendary Edition"]
   },
   {
     "game": "Slay the Spire",
@@ -152,12 +140,6 @@
     "status": "Complete",
     "tags": ["Sci-Fi", "Fantasy", "RPG"],
     "aliases": ["Shadowrun: Dragonfall - Director's Cut"]
-  },
-  {
-    "game": "Sunless Skies",
-    "rating": 6.5,
-    "status": "Abandoned",
-    "tags": ["Roguelike", "Exploration"]
   },
   {
     "game": "The Elder Scrolls V: Skyrim",
@@ -296,7 +278,7 @@
     "rating": 6.8,
     "status": "Complete",
     "tags": ["Fantasy", "RPG"],
-    "aliases": ["Neverwinter Nights: Enhanced Edition"]
+    "aliases": ["Neverwinter Nights: Enhanced Edition", "Neverwinter Nights Diamond"]
   },
   {
     "game": "Citizen Sleeper 2: Starward Vector",
@@ -557,12 +539,6 @@
     "tags": ["Platformer"]
   },
   {
-    "game": "The Stanley Parable",
-    "rating": 9.4,
-    "status": "Complete",
-    "tags": ["Walking Simulator", "Comedy"]
-  },
-  {
     "game": "The Rise of the Golden Idol",
     "rating": null,
     "status": "In Progress",
@@ -652,12 +628,6 @@
     "rating": 8.2,
     "status": "Complete",
     "tags": ["Platformer", "Horror"]
-  },
-  {
-    "game": "Dear Esther",
-    "rating": 9.0,
-    "status": "Complete",
-    "tags": ["Walking Simulator"]
   },
   {
     "game": "Hector: Episode 1",
@@ -1008,12 +978,6 @@
     "tags": []
   },
   {
-    "game": "Dishonored",
-    "rating": 7.5,
-    "status": "Abandoned",
-    "tags": ["Stealth", "Action"]
-  },
-  {
     "game": "Magic 2015",
     "aliases": ["Magic 2015 - Duels of the Planeswalkers"],
     "rating": null,
@@ -1279,12 +1243,6 @@
     "tags": []
   },
   {
-    "game": "The Vanishing of Ethan Carter",
-    "rating": 6.6,
-    "status": "Complete",
-    "tags": ["Exploration", "Walking Simulator"]
-  },
-  {
     "game": "The Detail",
     "rating": null,
     "status": "Abandoned",
@@ -1477,13 +1435,6 @@
     "status": "Abandoned",
     "tags": ["Action", "Fantasy"],
     "game": "God of War"
-  },
-  {
-    "rating": 7.7,
-    "status": "Complete",
-    "tags": ["Sci-Fi", "RPG"],
-    "game": "Mass Effect",
-    "aliases": ["Mass Effect™ Legendary Edition"]
   },
   {
     "rating": null,
@@ -1910,29 +1861,10 @@
     "tags": ["Platformer", "Puzzle", "Horror"]
   },
   {
-    "game": "Kathy Rain",
-    "rating": 7.3,
-    "status": "Complete",
-    "tags": ["Adventure", "Mystery", "Puzzle"]
-  },
-  {
-    "game": "Neverwinter Nights",
-    "rating": 6.8,
-    "status": "Complete",
-    "tags": ["RPG", "Fantasy"],
-    "aliases": ["Neverwinter Nights Diamond"]
-  },
-  {
     "game": "Papers, Please",
     "rating": 7.7,
     "status": "Abandoned",
     "tags": ["Puzzle"]
-  },
-  {
-    "game": "Pillars of Eternity",
-    "rating": 8.9,
-    "status": "In Progress",
-    "tags": ["RPG", "Fantasy"]
   },
   {
     "game": "Planescape: Torment",
