@@ -402,7 +402,7 @@ def main():
     platform_data = parse_platform_data(args.platform_data)
     annotations = parse_annotations_file(args.annotations)
     # Check for missing games in annotations file
-    report_missing_games(platform_data, annotations, args.blank_annotations)
+    report_missing_games(annotations, platform_data, args.blank_annotations)
     # Merge games data
     logger.info("Merging games data.")
     output_data = merge_annotations(
