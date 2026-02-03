@@ -873,6 +873,12 @@
     "tags": []
   },
   {
+    "game": "Sam & Max Save the World",
+    "rating": null,
+    "status": null,
+    "tags": []
+  },
+  {
     "game": "Sam & Max 101: Culture Shock",
     "rating": 6.6,
     "status": "Complete",
@@ -1156,12 +1162,6 @@
     "tags": []
   },
   {
-    "game": "Team Fortress 2",
-    "rating": null,
-    "status": "Abandoned",
-    "tags": []
-  },
-  {
     "game": "Far Cry",
     "aliases": ["Far Cry®"],
     "rating": null,
@@ -1301,7 +1301,7 @@
   },
   {
     "game": "Monkey Island 2: LeChuck's Revenge",
-    "aliases": ["Monkey Island 2: Special Edition", "Monkey Island™ 2 Special Edition: LeChuck's Revenge™"],
+    "aliases": ["Monkey Island 2: Special Edition", "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™", "Monkey Island™ 2 Special Edition: LeChuck's Revenge™"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -1720,12 +1720,6 @@
     "tags": ["First-Person Shooter", "Action", "RPG", "Coop", "Comedy", "Sci-Fi"],
     "game": "Borderlands 2",
     "aliases": ["Borderlands: The Handsome Collection"]
-  },
-  {
-    "rating": 6.4,
-    "status": "Complete",
-    "tags": ["Management", "Fantasy"],
-    "game": "Kingdom: Two Crowns"
   },
   {
     "rating": 7.6,
