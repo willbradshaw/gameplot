@@ -570,6 +570,7 @@
   },
   {
     "game": "Finding Paradise",
+    "aliases": ["Finding Paradise (To the Moon 2)"],
     "rating": 7.4,
     "status": "Complete",
     "tags": ["Walking Simulator", "Adventure"]
@@ -1232,6 +1233,7 @@
   },
   {
     "game": "Poker Night at the Inventory",
+    "aliases": ["Poker Night at the Inventory (2010 Original Version)"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -2126,6 +2128,7 @@
   },
   {
     "game": "Thimbleweed Park",
+    "aliases": ["Thimbleweed Park™"],
     "rating": 7.3,
     "status": "In Progress",
     "tags": ["Adventure", "Puzzle", "Comedy"]
@@ -2187,9 +2190,47 @@
     "game": "Strange Antiquities"
   },
   {
-    "rating": 7.7,
+    "rating": 7.4,
     "status": "Complete",
     "tags": ["Comedy", "Adventure", "Superhero", "Visual Novel"],
     "game": "Dispatch"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Foolish Mortals"
+  },
+  {
+    "rating": 8.5,
+    "status": "Complete",
+    "tags": ["Horror", "Adventure", "Puzzle"],
+    "game": "The Seance of Blake Manor"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Death Howl",
+    "aliases": ["Death Howl Demo"]
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Warhammer 40,000: Space Marine",
+    "aliases": ["Warhammer 40,000: Space Marine - Anniversary Edition"]
+  },
+  {
+    "rating": 7.6,
+    "status": "Complete",
+    "tags": ["Puzzle"],
+    "game": "TR-49"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Little Nightmares"
   }
 ]
