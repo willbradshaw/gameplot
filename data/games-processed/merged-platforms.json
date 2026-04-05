@@ -4,13 +4,13 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2026-03-01"
+      "2026-03-09"
     ],
-    "lastPlayedTotal": "2026-03-01",
+    "lastPlayedTotal": "2026-03-09",
     "hoursPlayedSingle": [
-      512.1
+      515.7
     ],
-    "hoursPlayedTotal": 512.1,
+    "hoursPlayedTotal": 515.7,
     "ids": [
       1184370
     ],
@@ -44,13 +44,13 @@
       "Steam"
     ],
     "lastPlayedSingle": [
-      "2026-01-29"
+      "2026-04-02"
     ],
-    "lastPlayedTotal": "2026-01-29",
+    "lastPlayedTotal": "2026-04-02",
     "hoursPlayedSingle": [
-      229.5
+      237
     ],
-    "hoursPlayedTotal": 229.5,
+    "hoursPlayedTotal": 237,
     "ids": [
       435150
     ],
@@ -85,15 +85,15 @@
       "PS5"
     ],
     "lastPlayedSingle": [
-      "2026-02-23",
+      "2026-03-26",
       "2024-02-24"
     ],
-    "lastPlayedTotal": "2026-02-23",
+    "lastPlayedTotal": "2026-03-26",
     "hoursPlayedSingle": [
-      186.3,
+      186.9,
       15.6
     ],
-    "hoursPlayedTotal": 201.9,
+    "hoursPlayedTotal": 202.5,
     "ids": [
       2186680,
       10008102
@@ -147,7 +147,7 @@
     "urls": [
       "https://store.steampowered.com/app/8930"
     ],
-    "game": "Sid Meier's Civilization® V"
+    "game": "Sid Meier's Civilization V"
   },
   {
     "platforms": [
@@ -208,6 +208,26 @@
       "https://store.steampowered.com/app/72850"
     ],
     "game": "The Elder Scrolls V: Skyrim"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2026-03-20"
+    ],
+    "lastPlayedTotal": "2026-03-20",
+    "hoursPlayedSingle": [
+      64.9
+    ],
+    "hoursPlayedTotal": 64.9,
+    "ids": [
+      2057760
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2057760"
+    ],
+    "game": "Esoteric Ebb"
   },
   {
     "platforms": [
@@ -347,7 +367,7 @@
     "urls": [
       "https://store.steampowered.com/app/304650"
     ],
-    "game": "SUNLESS SEA"
+    "game": "Sunless Sea"
   },
   {
     "platforms": [
@@ -752,7 +772,7 @@
     "urls": [
       "https://store.steampowered.com/app/2100"
     ],
-    "game": "Dark Messiah of Might & Magic"
+    "game": "Dark Messiah of Might & Magic Single Player"
   },
   {
     "platforms": [
@@ -877,7 +897,7 @@
     "urls": [
       "https://store.steampowered.com/app/94300"
     ],
-    "game": "The Dream Machine: Chapter 1 & 2"
+    "game": "The Dream Machine"
   },
   {
     "platforms": [
@@ -1872,7 +1892,7 @@
     "urls": [
       "https://store.steampowered.com/app/6200"
     ],
-    "game": "Ghost Master®"
+    "game": "Ghost Master"
   },
   {
     "platforms": [
@@ -1952,7 +1972,7 @@
     "urls": [
       "https://store.steampowered.com/app/94610"
     ],
-    "game": "Hector: Episode 2"
+    "game": "Hector: Ep 2"
   },
   {
     "platforms": [
@@ -2152,7 +2172,7 @@
     "urls": [
       "https://store.steampowered.com/app/337340"
     ],
-    "game": "Finding Paradise (To the Moon 2)"
+    "game": "Finding Paradise"
   },
   {
     "platforms": [
@@ -2402,7 +2422,7 @@
     "urls": [
       "https://store.steampowered.com/app/94600"
     ],
-    "game": "Hector: Episode 1"
+    "game": "Hector: Ep 1"
   },
   {
     "platforms": [
@@ -2569,6 +2589,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2026-03-29"
+    ],
+    "lastPlayedTotal": "2026-03-29",
+    "hoursPlayedSingle": [
+      3
+    ],
+    "hoursPlayedTotal": 3,
+    "ids": [
+      55150
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/55150"
+    ],
+    "game": "Warhammer 40,000: Space Marine - Anniversary Edition"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2013-07-22"
     ],
     "lastPlayedTotal": "2013-07-22",
@@ -2622,7 +2662,7 @@
     "urls": [
       "https://store.steampowered.com/app/31260"
     ],
-    "game": "Sam & Max 305: The City That Dares Not Sleep"
+    "game": "Sam & Max 305: The City that Dares not Sleep"
   },
   {
     "platforms": [
@@ -2682,7 +2722,7 @@
     "urls": [
       "https://store.steampowered.com/app/2760"
     ],
-    "game": "Neverwinter Nights™ 2 Platinum"
+    "game": "Neverwinter Nights 2: Platinum"
   },
   {
     "platforms": [
@@ -2722,7 +2762,7 @@
     "urls": [
       "https://store.steampowered.com/app/35720"
     ],
-    "game": "Trine 2: Complete Story"
+    "game": "Trine 2"
   },
   {
     "platforms": [
@@ -3107,7 +3147,7 @@
     "urls": [
       "https://store.steampowered.com/app/35140"
     ],
-    "game": "Batman: Arkham Asylum Game of the Year Edition"
+    "game": "Batman: Arkham Asylum GOTY Edition"
   },
   {
     "platforms": [
@@ -3247,7 +3287,7 @@
     "urls": [
       "https://store.steampowered.com/app/57640"
     ],
-    "game": "Broken Sword: Director's Cut (2009)"
+    "game": "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)"
   },
   {
     "platforms": [
@@ -3427,7 +3467,7 @@
     "urls": [
       "https://store.steampowered.com/app/22320"
     ],
-    "game": "The Elder Scrolls III: Morrowind® Game of the Year Edition"
+    "game": "The Elder Scrolls III: Morrowind"
   },
   {
     "platforms": [
@@ -3687,7 +3727,7 @@
     "urls": [
       "https://store.steampowered.com/app/4570"
     ],
-    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition"
+    "game": "Warhammer 40,000: Dawn of War - Anniversary Edition "
   },
   {
     "platforms": [
@@ -3708,26 +3748,6 @@
       "https://store.steampowered.com/app/22000"
     ],
     "game": "World of Goo"
-  },
-  {
-    "platforms": [
-      "Steam"
-    ],
-    "lastPlayedSingle": [
-      "2026-02-21"
-    ],
-    "lastPlayedTotal": "2026-02-21",
-    "hoursPlayedSingle": [
-      0.9
-    ],
-    "hoursPlayedTotal": 0.9,
-    "ids": [
-      55150
-    ],
-    "urls": [
-      "https://store.steampowered.com/app/55150"
-    ],
-    "game": "Warhammer 40,000: Space Marine - Anniversary Edition"
   },
   {
     "platforms": [
@@ -3788,6 +3808,26 @@
       "https://store.steampowered.com/app/557600"
     ],
     "game": "Gorogoa"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2026-03-28"
+    ],
+    "lastPlayedTotal": "2026-03-28",
+    "hoursPlayedSingle": [
+      0.9
+    ],
+    "hoursPlayedTotal": 0.9,
+    "ids": [
+      924750
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/924750"
+    ],
+    "game": "Harold Halibut"
   },
   {
     "platforms": [
@@ -3867,7 +3907,7 @@
     "urls": [
       "https://store.steampowered.com/app/569860"
     ],
-    "game": "Thimbleweed Park™"
+    "game": "Thimbleweed Park"
   },
   {
     "platforms": [
@@ -3948,6 +3988,26 @@
       "https://store.steampowered.com/app/1848440"
     ],
     "game": "Foolish Mortals"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
+      "2026-03-29"
+    ],
+    "lastPlayedTotal": "2026-03-29",
+    "hoursPlayedSingle": [
+      0.6
+    ],
+    "hoursPlayedTotal": 0.6,
+    "ids": [
+      2058730
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/2058730"
+    ],
+    "game": "The Darkest Files"
   },
   {
     "platforms": [
@@ -4312,7 +4372,7 @@
     "urls": [
       "https://store.steampowered.com/app/13520"
     ],
-    "game": "Far Cry®"
+    "game": "Far Cry"
   },
   {
     "platforms": [
@@ -4332,7 +4392,7 @@
     "urls": [
       "https://store.steampowered.com/app/20900"
     ],
-    "game": "The Witcher: Enhanced Edition Director's Cut"
+    "game": "The Witcher: Enhanced Edition"
   },
   {
     "platforms": [
@@ -4719,6 +4779,26 @@
       "Steam"
     ],
     "lastPlayedSingle": [
+      "2026-03-07"
+    ],
+    "lastPlayedTotal": "2026-03-07",
+    "hoursPlayedSingle": [
+      0.2
+    ],
+    "hoursPlayedTotal": 0.2,
+    "ids": [
+      3172700
+    ],
+    "urls": [
+      "https://store.steampowered.com/app/3172700"
+    ],
+    "game": "Banquet for Fools"
+  },
+  {
+    "platforms": [
+      "Steam"
+    ],
+    "lastPlayedSingle": [
       "2012-07-08"
     ],
     "lastPlayedTotal": "2012-07-08",
@@ -4752,7 +4832,7 @@
     "urls": [
       "https://store.steampowered.com/app/15130"
     ],
-    "game": "Beyond Good and Evil™"
+    "game": "Beyond Good & Evil"
   },
   {
     "platforms": [
@@ -4792,7 +4872,7 @@
     "urls": [
       "https://store.steampowered.com/app/17410"
     ],
-    "game": "Mirror's Edge™"
+    "game": "Mirror's Edge"
   },
   {
     "platforms": [
@@ -4812,7 +4892,7 @@
     "urls": [
       "https://store.steampowered.com/app/32460"
     ],
-    "game": "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™"
+    "game": "Monkey Island 2: Special Edition"
   },
   {
     "platforms": [
@@ -6464,13 +6544,13 @@
       "Xbox"
     ],
     "lastPlayedSingle": [
-      "2026-01-27"
+      "2026-03-04"
     ],
-    "lastPlayedTotal": "2026-01-27",
+    "lastPlayedTotal": "2026-03-04",
     "hoursPlayedSingle": [
-      3.8
+      6.4
     ],
-    "hoursPlayedTotal": 3.8,
+    "hoursPlayedTotal": 6.4,
     "ids": [
       "1769971395"
     ],
