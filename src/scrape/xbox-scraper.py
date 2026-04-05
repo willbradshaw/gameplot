@@ -97,7 +97,18 @@ def make_openxbl_request(api_key: str,
             )
             logger.error(msg)
             raise ValueError(msg)
-        return response.json()
+        result = response.json()
+        # OpenXBL may wrap responses in a {'content': ..., 'code': ...} envelope
+        if isinstance(result, dict) and 'content' in result and 'code' in result:
+            if result['code'] in (401, 403):
+                msg = (
+                    f"❌ OpenXBL API auth error (code {result['code']}). "
+                    "API key may be invalid or expired."
+                )
+                logger.error(msg)
+                raise ValueError(msg)
+            result = result['content']
+        return result
     except requests.RequestException as e:
         msg = f"❌ Request failed: {e}"
         logger.error(msg)
@@ -314,6 +325,11 @@ def scrape_xbox_data(api_key: str, output_file: str) -> None:
     # Step 1: Get XUID (Xbox User ID) from authenticated account and parse data
     logger.info("Getting account info for authenticated user.")
     account_info = get_account_info(api_key)
+    if 'profileUsers' not in account_info:
+        raise ValueError(
+            "OpenXBL /account response format may have changed — "
+            f"'profileUsers' key not found. Response: {account_info}"
+        )
     profile = account_info['profileUsers'][0]
     xuid = profile['id']
     if not xuid:
