@@ -41,6 +41,12 @@ logger.addHandler(handler)
 # OpenXBL API configuration
 OPENXBL_BASE_URL = 'https://xbl.io/api/v2'
 
+# Rate-limit retry configuration. OpenXBL enforces a shared 60-requests-per-
+# 300s window (separate from the per-key quota) that can be exhausted by other
+# users' traffic, so waiting and retrying is the only way through.
+RATE_LIMIT_MAX_RETRIES = 8
+RATE_LIMIT_WAIT_SECONDS = 60
+
 # Description epilog
 DESC_EPILOG = """
 Examples:
@@ -57,12 +63,24 @@ To get your OpenXBL API key:
 # API functions
 #==============================================================================
 
+def is_rate_limit_response(result) -> bool:
+    """
+    Check whether a parsed OpenXBL response body is a rate-limit notice
+    rather than real endpoint data.
+    Args:
+        result: Parsed JSON response body
+    Returns:
+        bool: True if the body reports an exceeded rate limit
+    """
+    return isinstance(result, dict) and result.get('limitType') == 'Rate'
+
 def make_openxbl_request(api_key: str,
                          endpoint: str,
                          method: Literal['GET', 'POST'] = 'GET',
                          data: dict|None = None) -> dict:
     """
-    Make an authenticated API call to OpenXBL
+    Make an authenticated API call to OpenXBL, waiting and retrying if the
+    API reports an exceeded rate limit
     Args:
         api_key [str]: OpenXBL API key
         endpoint [str]: API endpoint (e.g., '/account', '/search/gamertag')
@@ -82,41 +100,61 @@ def make_openxbl_request(api_key: str,
     }
     if method == 'POST' and data:
         headers['Content-Type'] = 'application/json'
-    # Make request
-    try:
-        if method == 'GET':
-            response = requests.get(url, headers=headers)
-        elif method == 'POST':
-            response = requests.post(url, headers=headers, json=data)
-        else:
-            raise ValueError(f"Unsupported method: {method}")
-        if response.status_code != 200:
-            msg = (
-                f"❌ OpenXBL API Error: {response.status_code} ({response.reason})."
-                f"Response: {response.text}"
-            )
-            logger.error(msg)
-            raise ValueError(msg)
-        result = response.json()
-        # OpenXBL may wrap responses in a {'content': ..., 'code': ...} envelope
-        if isinstance(result, dict) and 'content' in result and 'code' in result:
-            if result['code'] in (401, 403):
+    # Make request, retrying on rate-limit responses
+    rate_limit_info = None
+    for attempt in range(RATE_LIMIT_MAX_RETRIES + 1):
+        try:
+            if method == 'GET':
+                response = requests.get(url, headers=headers)
+            elif method == 'POST':
+                response = requests.post(url, headers=headers, json=data)
+            else:
+                raise ValueError(f"Unsupported method: {method}")
+            if response.status_code != 200 and response.status_code != 429:
                 msg = (
-                    f"❌ OpenXBL API auth error (code {result['code']}). "
-                    "API key may be invalid or expired."
+                    f"❌ OpenXBL API Error: {response.status_code} ({response.reason})."
+                    f"Response: {response.text}"
                 )
                 logger.error(msg)
                 raise ValueError(msg)
-            result = result['content']
-        return result
-    except requests.RequestException as e:
-        msg = f"❌ Request failed: {e}"
-        logger.error(msg)
-        raise e
-    except json.JSONDecodeError as e:
-        msg = f"❌ JSON parse error: {e}"
-        logger.error(msg)
-        raise e
+            result = response.json()
+            # OpenXBL may wrap responses in a {'content': ..., 'code': ...} envelope
+            if isinstance(result, dict) and 'content' in result and 'code' in result:
+                if result['code'] in (401, 403):
+                    msg = (
+                        f"❌ OpenXBL API auth error (code {result['code']}). "
+                        "API key may be invalid or expired."
+                    )
+                    logger.error(msg)
+                    raise ValueError(msg)
+                result = result['content']
+            # Detect rate-limit responses (HTTP 429, or a rate-limit body
+            # delivered with HTTP 200) and wait before retrying
+            if response.status_code == 429 or is_rate_limit_response(result):
+                rate_limit_info = result
+                if attempt < RATE_LIMIT_MAX_RETRIES:
+                    logger.warning(
+                        f"Rate limited by OpenXBL ({result}). Waiting "
+                        f"{RATE_LIMIT_WAIT_SECONDS}s before retrying "
+                        f"(attempt {attempt + 1}/{RATE_LIMIT_MAX_RETRIES})."
+                    )
+                    time.sleep(RATE_LIMIT_WAIT_SECONDS)
+                continue
+            return result
+        except requests.RequestException as e:
+            msg = f"❌ Request failed: {e}"
+            logger.error(msg)
+            raise e
+        except json.JSONDecodeError as e:
+            msg = f"❌ JSON parse error: {e}"
+            logger.error(msg)
+            raise e
+    msg = (
+        f"❌ OpenXBL rate limit still exceeded after {RATE_LIMIT_MAX_RETRIES} "
+        f"retries. Last response: {rate_limit_info}"
+    )
+    logger.error(msg)
+    raise ValueError(msg)
 
 def get_account_info(api_key: str) -> dict:
     """

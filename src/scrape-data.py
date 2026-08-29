@@ -195,7 +195,9 @@ def scrape_xbox(config: dict[str, dict[str, str]]) -> None:
         "--api_key", xbox_config["api_key"],
         "--output", str(RAW_DATA_DIR / EXPECTED_OUTPUTS["xbox"])
     ]
-    run_command(command, "Xbox data scraping", timeout=600)  # 10 minute timeout
+    # Generous timeout: the scraper may wait out OpenXBL rate-limit windows
+    # (up to ~8 minutes per API call) before its requests get through
+    run_command(command, "Xbox data scraping", timeout=1800)  # 30 minute timeout
     logger.info("Xbox data scraping completed")
 
 #==============================================================================
