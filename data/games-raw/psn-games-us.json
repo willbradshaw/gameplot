@@ -3,7 +3,7 @@
     "game": "Baldur's Gate 3",
     "platform": "PS5",
     "lastPlayed": "2026-01-24",
-    "hoursPlayed": 240.2,
+    "hoursPlayed": 242,
     "id": 10007460,
     "url": "https://store.playstation.com/concept/10007460"
   },
@@ -74,8 +74,8 @@
   {
     "game": "Kingdom: Two Crowns",
     "platform": "PS5",
-    "lastPlayed": "2023-06-12",
-    "hoursPlayed": 18.3,
+    "lastPlayed": "2026-07-16",
+    "hoursPlayed": 20.1,
     "id": 232735,
     "url": "https://store.playstation.com/concept/232735"
   },
@@ -414,6 +414,14 @@
     "hoursPlayed": 0.5,
     "id": 10000602,
     "url": "https://store.playstation.com/concept/10000602"
+  },
+  {
+    "game": "Gothic 1 Remake",
+    "platform": "PS5",
+    "lastPlayed": "2026-06-07",
+    "hoursPlayed": 0.4,
+    "id": 10005976,
+    "url": "https://store.playstation.com/concept/10005976"
   },
   {
     "game": "Dead Cells",

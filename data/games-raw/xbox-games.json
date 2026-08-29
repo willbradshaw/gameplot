@@ -1,8 +1,16 @@
 [
   {
+    "game": "Vampire Survivors",
+    "platform": "Xbox",
+    "lastPlayed": "2026-05-10",
+    "hoursPlayed": 104.6,
+    "id": "1695638358",
+    "url": ""
+  },
+  {
     "game": "Clair Obscur: Expedition 33",
     "platform": "Xbox",
-    "lastPlayed": "2026-03-04",
+    "lastPlayed": "2026-05-10",
     "hoursPlayed": 6.4,
     "id": "1769971395",
     "url": ""
@@ -29,14 +37,6 @@
     "lastPlayed": "2025-05-10",
     "hoursPlayed": 3.1,
     "id": "2046562785",
-    "url": ""
-  },
-  {
-    "game": "Vampire Survivors",
-    "platform": "Xbox",
-    "lastPlayed": "2025-03-10",
-    "hoursPlayed": 100.6,
-    "id": "1695638358",
     "url": ""
   },
   {
@@ -112,7 +112,7 @@
     "url": ""
   },
   {
-    "game": "Sea of Stars",
+    "game": "Sea of Stars: Sunset Edition",
     "platform": "Xbox",
     "lastPlayed": "2023-12-08",
     "hoursPlayed": 65.3,
@@ -213,6 +213,14 @@
     "lastPlayed": "2022-12-22",
     "hoursPlayed": 23.2,
     "id": "2100880776",
+    "url": ""
+  },
+  {
+    "game": "Minecraft Launcher",
+    "platform": "Xbox",
+    "lastPlayed": "2022-04-09",
+    "hoursPlayed": 0,
+    "id": "1794566092",
     "url": ""
   }
 ]

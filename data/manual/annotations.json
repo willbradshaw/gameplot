@@ -219,6 +219,7 @@
   },
   {
     "game": "ENDLESS™ Legend",
+    "aliases": ["ENDLESS Legend™"],
     "rating": 5.7,
     "status": "Abandoned",
     "tags": ["Strategy", "Fantasy"]
@@ -392,7 +393,7 @@
   },
   {
     "game": "Thief",
-    "aliases": ["Thief Gold", "Thief™ Gold"],
+    "aliases": ["Thief Gold", "Thief™ Gold", "Thief Gold (1999)"],
     "rating": 6.8,
     "status": "Abandoned",
     "tags": ["Stealth"]
@@ -1011,7 +1012,7 @@
   },
   {
     "game": "Warhammer 40,000: Dawn of War",
-    "aliases": ["Warhammer 40,000: Dawn of War - Anniversary Edition", "Warhammer 40,000: Dawn of War - Anniversary Edition "],
+    "aliases": ["Warhammer 40,000: Dawn of War - Anniversary Edition", "Warhammer 40,000: Dawn of War - Anniversary Edition ", "Warhammer 40,000: Dawn of War - Anniversary Edition (Classic)"],
     "rating": null,
     "status": "Abandoned",
     "tags": []
@@ -2009,6 +2010,7 @@
   },
   {
     "game": "Sea of Stars",
+    "aliases": ["Sea of Stars: Sunset Edition"],
     "rating": null,
     "status": null,
     "hoursPlayedTotal": 0,
@@ -2209,13 +2211,6 @@
   },
   {
     "rating": null,
-    "status": null,
-    "tags": [],
-    "game": "Death Howl",
-    "aliases": ["Death Howl Demo"]
-  },
-  {
-    "rating": null,
     "status": "In Progress",
     "tags": ["First-Person Shooter", "Sci-Fi"],
     "game": "Warhammer 40,000: Space Marine",
@@ -2256,5 +2251,65 @@
     "status": null,
     "tags": [],
     "game": "Harold Halibut"
+  },
+  {
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Horror", "Adventure", "Crime", "Puzzle"],
+    "game": "The Dark Rites of Arkham"
+  },
+  {
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Sci-Fi", "Tactics"],
+    "game": "Warhammer 40,000: Mechanicus"
+  },
+  {
+    "rating": null,
+    "status": "In Progress",
+    "tags": ["Roguelike", "Deckbuilder", "Fantasy"],
+    "game": "Monster Train 2"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Minecraft Launcher"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Titanium Court Demo"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Gothic 1 Remake"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Chained Echoes"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "The Stone of Madness"
+  },
+  {
+    "rating": null,
+    "status": null,
+    "tags": [],
+    "game": "Seven: Enhanced Edition"
+  },
+  {
+    "rating": 7.6,
+    "status": "Complete",
+    "tags": ["Horror", "Puzzle", "Crime"],
+    "game": "The Incident at Galley House"
   }
 ]
