@@ -8,6 +8,14 @@
     "url": "https://store.steampowered.com/app/1184370"
   },
   {
+    "game": "Warhammer 40,000: Rogue Trader",
+    "platform": "Steam",
+    "lastPlayed": "2026-08-29",
+    "hoursPlayed": 393.2,
+    "id": 2186680,
+    "url": "https://store.steampowered.com/app/2186680"
+  },
+  {
     "game": "Blue Prince",
     "platform": "Steam",
     "lastPlayed": "2025-08-11",
@@ -18,8 +26,8 @@
   {
     "game": "Divinity: Original Sin 2",
     "platform": "Steam",
-    "lastPlayed": "2026-04-02",
-    "hoursPlayed": 237,
+    "lastPlayed": "2026-08-27",
+    "hoursPlayed": 254.2,
     "id": 435150,
     "url": "https://store.steampowered.com/app/435150"
   },
@@ -32,18 +40,10 @@
     "url": "https://store.steampowered.com/app/780290"
   },
   {
-    "game": "Warhammer 40,000: Rogue Trader",
-    "platform": "Steam",
-    "lastPlayed": "2026-03-26",
-    "hoursPlayed": 186.9,
-    "id": 2186680,
-    "url": "https://store.steampowered.com/app/2186680"
-  },
-  {
     "game": "Baldur's Gate 3",
     "platform": "Steam",
-    "lastPlayed": "2024-12-16",
-    "hoursPlayed": 140.9,
+    "lastPlayed": "2026-08-25",
+    "hoursPlayed": 148.5,
     "id": 1086940,
     "url": "https://store.steampowered.com/app/1086940"
   },
@@ -320,7 +320,7 @@
     "url": "https://store.steampowered.com/app/2754380"
   },
   {
-    "game": "ENDLESS™ Legend",
+    "game": "ENDLESS Legend™",
     "platform": "Steam",
     "lastPlayed": "2020-12-18",
     "hoursPlayed": 14.5,
@@ -454,6 +454,14 @@
     "hoursPlayed": 8.9,
     "id": 753640,
     "url": "https://store.steampowered.com/app/753640"
+  },
+  {
+    "game": "The Incident at Galley House",
+    "platform": "Steam",
+    "lastPlayed": "2026-08-22",
+    "hoursPlayed": 8.9,
+    "id": 3641000,
+    "url": "https://store.steampowered.com/app/3641000"
   },
   {
     "game": "Loco Motive",
@@ -1240,6 +1248,14 @@
     "url": "https://store.steampowered.com/app/2008920"
   },
   {
+    "game": "Warhammer 40,000: Mechanicus",
+    "platform": "Steam",
+    "lastPlayed": "2026-05-24",
+    "hoursPlayed": 1.8,
+    "id": 673880,
+    "url": "https://store.steampowered.com/app/673880"
+  },
+  {
     "game": "Subsurface Circular",
     "platform": "Steam",
     "lastPlayed": "2018-10-11",
@@ -1328,6 +1344,14 @@
     "url": "https://store.steampowered.com/app/1221250"
   },
   {
+    "game": "Monster Train 2",
+    "platform": "Steam",
+    "lastPlayed": "2026-05-15",
+    "hoursPlayed": 1.5,
+    "id": 2742830,
+    "url": "https://store.steampowered.com/app/2742830"
+  },
+  {
     "game": "Jazzpunk: Director's Cut",
     "platform": "Steam",
     "lastPlayed": "2018-11-29",
@@ -1350,6 +1374,14 @@
     "hoursPlayed": 1.4,
     "id": 1466390,
     "url": "https://store.steampowered.com/app/1466390"
+  },
+  {
+    "game": "The Dark Rites of Arkham",
+    "platform": "Steam",
+    "lastPlayed": "2026-05-03",
+    "hoursPlayed": 1.4,
+    "id": 3566870,
+    "url": "https://store.steampowered.com/app/3566870"
   },
   {
     "game": "The Elder Scrolls III: Morrowind",
@@ -1800,6 +1832,14 @@
     "url": "https://store.steampowered.com/app/1885110"
   },
   {
+    "game": "Titanium Court Demo",
+    "platform": "Steam",
+    "lastPlayed": "2026-06-08",
+    "hoursPlayed": 0.3,
+    "id": 4210280,
+    "url": "https://store.steampowered.com/app/4210280"
+  },
+  {
     "game": "Poker Night at the Inventory (2010 Original Version)",
     "platform": "Steam",
     "lastPlayed": "2014-09-19",
@@ -2016,6 +2056,14 @@
     "url": "https://store.steampowered.com/app/421120"
   },
   {
+    "game": "Seven: Enhanced Edition",
+    "platform": "Steam",
+    "lastPlayed": "2026-08-24",
+    "hoursPlayed": 0.1,
+    "id": 471010,
+    "url": "https://store.steampowered.com/app/471010"
+  },
+  {
     "game": "A Case of Distrust",
     "platform": "Steam",
     "lastPlayed": "2020-11-16",
@@ -2024,20 +2072,28 @@
     "url": "https://store.steampowered.com/app/717610"
   },
   {
+    "game": "Chained Echoes",
+    "platform": "Steam",
+    "lastPlayed": "2026-08-23",
+    "hoursPlayed": 0.1,
+    "id": 1229240,
+    "url": "https://store.steampowered.com/app/1229240"
+  },
+  {
+    "game": "The Stone of Madness",
+    "platform": "Steam",
+    "lastPlayed": "2026-08-24",
+    "hoursPlayed": 0.1,
+    "id": 1309710,
+    "url": "https://store.steampowered.com/app/1309710"
+  },
+  {
     "game": "Balatro",
     "platform": "Steam",
     "lastPlayed": "2024-11-30",
     "hoursPlayed": 0.1,
     "id": 2379780,
     "url": "https://store.steampowered.com/app/2379780"
-  },
-  {
-    "game": "Death Howl Demo",
-    "platform": "Steam",
-    "lastPlayed": "2026-02-21",
-    "hoursPlayed": 0.1,
-    "id": 3365740,
-    "url": "https://store.steampowered.com/app/3365740"
   },
   {
     "game": "Sam & Max 302: The Tomb of Sammun-Mak",
