@@ -61,14 +61,20 @@ it; giving a list replaces the remembered one.
 
 Each source runs exactly as its single-platform command would, including
 credential handling, but only the combined file is written: the per-source
-files under `data/raw/` are left untouched. A failing source does not stop the others, but the
-combined file is written only when every source succeeds, so a partial run
-never replaces a previous good file; the summary at the end names what failed
-and the exit code is non-zero. `--verbose` and `--quiet` apply to the whole
-batch. `--suffix` names the batch: it goes on the output filename
-(`batch-<suffix>.json`) and the remembered list (`GAMEPLOT_BATCH_<SUFFIX>`),
-and is the suffix used by any source in the list that does not carry its own,
-so two complete sets of accounts can be kept apart as two batches.
+files under `data/raw/` are left untouched. A failing source does not stop
+the others, but the combined file is written only when every source succeeds,
+so a partial run never replaces a previous good file; the summary at the end
+names what failed and the exit code is non-zero. `--verbose` and `--quiet`
+apply to the whole batch.
+
+`--suffix` names the batch, so that several batches (for example two complete
+sets of accounts) can coexist. With `--suffix alt`:
+
+- the output file is `data/raw/batch-alt.json`;
+- the list is remembered as `GAMEPLOT_BATCH_ALT`, and `gameplot scrape batch
+  --suffix alt` alone re-runs that list;
+- sources in the list that carry no suffix of their own use `alt`, so
+  `steam,psn:uk` reads `STEAM_API_KEY_ALT` but `PSN_REFRESH_TOKEN_UK`.
 
 The combined file may contain the same game more than once when it is owned
 on several platforms or in several accounts; later stages merge those.
