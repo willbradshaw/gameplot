@@ -51,5 +51,5 @@ const psn = withCommonOptions(
 });
 
 export const scrapeCommand = new Command('scrape')
-  .description('download playtime data from a platform into data/games-raw/')
+  .description('Download online playtime data')
   .addCommand(psn);
