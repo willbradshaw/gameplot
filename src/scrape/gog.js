@@ -127,11 +127,17 @@ export async function fetchOwnedIds(ctx) {
  * @returns {Promise<{ id: number, title: string }[]>}
  */
 export async function fetchTitles(ctx, ids) {
-  return mapWithConcurrency(ids, DETAIL_CONCURRENCY, async (id) => {
+  const products = await mapWithConcurrency(ids, DETAIL_CONCURRENCY, async (id) => {
     const detail = await embedGet(ctx, `/account/gameDetails/${id}.json`);
-    if (!detail?.title) throw new Error(`GOG returned no title for product ${id}`);
+    if (!detail?.title) {
+      // Owned entries that aren't games in their own right (DLC and upgrade
+      // packs, delisted products) come back without details.
+      ctx.log?.warn(`Product ${id} has no game details (https://www.gogdb.org/product/${id}); skipping`);
+      return null;
+    }
     return { id, title: detail.title };
   });
+  return products.filter(Boolean);
 }
 
 // ---------------------------------------------------------------------------

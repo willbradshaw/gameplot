@@ -129,7 +129,8 @@ untrusted.
   GOG Galaxy client uses, then fetches each product's title (a few requests at
   a time). GOG reports ownership only, so every owned title becomes a row with
   `hoursPlayed` and `lastPlayed` null; playtime has to be supplied later by
-  hand.
+  hand. Owned entries with no game details of their own (DLC and upgrade
+  packs, delisted products) are skipped with a warning.
 - Authenticates with GOG's OAuth flow. A long-lived **refresh token** is read
   from `GOG_REFRESH_TOKEN` (suffixed with `--suffix`) and exchanged for an
   access token. If it is missing or rejected, the GOG login page is opened in

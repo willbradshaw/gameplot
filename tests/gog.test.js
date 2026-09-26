@@ -74,9 +74,17 @@ test('extractAuthCode accepts the redirect URL or the bare code', () => {
   assert.equal(extractAuthCode(''), null);
 });
 
-test('fetchTitles fails loudly on a product without a title', async () => {
-  const fetchImpl = fakeFetch([['gameDetails/1', { body: {} }]]);
-  await assert.rejects(fetchTitles({ accessToken: 'a', fetchImpl }, [1]), /no title for product 1/);
+test('fetchTitles skips products without details (DLC, upgrade packs) with a warning', async () => {
+  const warnings = [];
+  const log = { warn: (m) => warnings.push(m) };
+  const fetchImpl = fakeFetch([
+    ['gameDetails/1', { body: {} }],
+    ['gameDetails/2', { body: { title: 'A Game' } }],
+  ]);
+  const products = await fetchTitles({ accessToken: 'a', fetchImpl, log }, [1, 2]);
+  assert.deepEqual(products, [{ id: 2, title: 'A Game' }]);
+  assert.equal(warnings.length, 1);
+  assert.match(warnings[0], /Product 1 has no game details/);
 });
 
 test('converts products to ownership-only rows sorted by name', () => {
