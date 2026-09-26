@@ -130,27 +130,31 @@ export async function fetchOwnedIds(ctx) {
  * @returns {Promise<{ id: number, title: string }[]>}
  */
 export async function fetchProducts({ fetchImpl = fetch, log }, ids) {
-  const skipped = [];
+  const skipped = { dlc: [], pack: [], unlisted: [] };
   const products = await mapWithConcurrency(ids, DETAIL_CONCURRENCY, async (id) => {
     const res = await fetchImpl(`${PRODUCTS_URL}/${id}`);
     if (res.status === 404) {
-      log?.warn(`Product ${id} is not in GOG's catalogue any more; skipping`);
+      // Owned but not in the catalogue: upgrades, gifts, retired editions.
+      skipped.unlisted.push(`${id} (https://www.gogdb.org/product/${id})`);
       return null;
     }
     if (!res.ok) throw new Error(`GOG catalogue request failed (HTTP ${res.status}) for product ${id}`);
     const product = await res.json();
     if (!product?.title) throw new Error(`GOG catalogue returned no title for product ${id}`);
     if (product.game_type !== 'game') {
-      skipped.push(`${product.title} (${product.game_type})`);
+      (skipped[product.game_type] ?? skipped.pack).push(`${product.title} (${product.game_type})`);
       return null;
     }
     return { id, title: product.title };
   });
-  if (skipped.length) {
+
+  const total = skipped.dlc.length + skipped.pack.length + skipped.unlisted.length;
+  if (total) {
     log?.info(
-      `Skipped ${skipped.length} owned products that are DLC or packs rather than games; --verbose lists them`,
+      `Skipped ${total} owned products: ${skipped.dlc.length} DLC, ${skipped.pack.length} bundles, ` +
+        `${skipped.unlisted.length} no longer in catalogue`,
     );
-    for (const s of skipped) log?.debug(`  ${s}`);
+    for (const s of [...skipped.dlc, ...skipped.pack, ...skipped.unlisted]) log?.debug(`  ${s}`);
   }
   return products.filter(Boolean);
 }

@@ -74,7 +74,7 @@ test('extractAuthCode accepts the redirect URL or the bare code', () => {
   assert.equal(extractAuthCode(''), null);
 });
 
-test('fetchProducts keeps games, skips DLC and packs with one summary line, and warns on 404', async () => {
+test('fetchProducts keeps games and summarises DLC, bundles and unlisted products in one line', async () => {
   const info = [];
   const debug = [];
   const warn = [];
@@ -88,11 +88,20 @@ test('fetchProducts keeps games, skips DLC and packs with one summary line, and 
   const products = await fetchProducts({ fetchImpl, log }, [1, 2, 3, 4]);
   assert.deepEqual(products, [{ id: 2, title: 'A Game' }]);
   assert.equal(fetchImpl.calls[0].init, undefined, 'catalogue calls carry no auth header');
-  assert.equal(info.length, 1);
-  assert.match(info[0], /Skipped 2 owned products/);
-  assert.deepEqual(debug, ['  Some DLC (dlc)', '  A Bundle (pack)']);
-  assert.equal(warn.length, 1);
-  assert.match(warn[0], /Product 4 is not in GOG's catalogue/);
+  assert.deepEqual(info, ['Skipped 3 owned products: 1 DLC, 1 bundles, 1 no longer in catalogue']);
+  assert.equal(debug.length, 3);
+  assert.match(debug[2], /gogdb.org\/product\/4/);
+  assert.deepEqual(warn, []);
+});
+
+test('fetchProducts says nothing when every owned product is a game', async () => {
+  const info = [];
+  const log = { info: (m) => info.push(m), debug() {} };
+  await fetchProducts(
+    { fetchImpl: fakeFetch([['products/1', { body: { title: 'G', game_type: 'game' } }]]), log },
+    [1],
+  );
+  assert.deepEqual(info, []);
 });
 
 test('fetchProducts fails on server errors and missing titles', async () => {
