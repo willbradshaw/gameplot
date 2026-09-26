@@ -20,6 +20,7 @@ See [scrape.md](scrape.md) for how the input is produced.
 |---|---|
 | `[input]` | Scraped data file (default `data/raw/batch.json`) |
 | `-a, --annotations <file>` | Annotations file (default `data/annotations.json`) |
+| `-t, --tags <file>` | Tag vocabulary file (default `data/tags.json`) |
 | `-o, --out <file>` | Output file (default `data/games.json`) |
 | `-u, --unannotated <file>` | Where to write fill-in entries for unannotated games (default `data/unannotated.json`) |
 | `-v, --verbose` | Show debug output, including the list of unrated annotations |
@@ -66,6 +67,23 @@ entry per game.
 Names must be unique across entries, and an alias may not be another entry's
 name or alias. Unknown fields are rejected, so a mistyped field name fails
 validation rather than being ignored.
+
+### Tags
+
+`data/tags.json` is the tag vocabulary: a JSON object mapping each tag to a
+one-line description of what it means.
+
+```json
+{
+  "Puzzle": "Solving puzzles is the core activity",
+  "Crime": "Detective work, investigation or criminal underworld themes"
+}
+```
+
+Every tag used in the annotations must appear here; an unknown tag fails
+processing, naming the game and the tag. Adding a tag to the vocabulary is
+therefore a deliberate step, which keeps near-duplicates and typos out. The
+descriptions are for whoever, or whatever, assigns tags.
 
 ## Output
 

@@ -54,6 +54,9 @@ export const annotationSchema = z
 
 export const annotationsSchema = z.array(annotationSchema);
 
+/** data/tags.json: the tag vocabulary, each tag with a one-line description. */
+export const tagsSchema = z.record(name, z.string().min(1));
+
 /** One entry in data/games.json: a game across its platforms plus its annotation. */
 export const gameSchema = z.strictObject({
   game: name,
