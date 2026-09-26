@@ -37,7 +37,7 @@ Every platform accepts these:
 
 | Option | Effect |
 |---|---|
-| `-p, --platform <name>` | Platform display name written to each row, overriding the platform's default (e.g. `PS5`) |
+| `-l, --label <label>` | Platform display name written to each row, overriding the platform's default (e.g. `PS5`) |
 | `-o, --out <file>` | Write somewhere other than the default file |
 | `-v, --verbose` | Show debug output |
 | `-q, --quiet` | Only warnings and errors |
@@ -63,7 +63,7 @@ library. Every title with recorded playtime becomes a row; titles you own but
 have never launched are skipped. Where PSN lists several editions of a game
 (regional versions, remasters sharing a concept), they are combined into one
 row with their hours summed and the most recent date kept. Rows are recorded
-as platform `PS5` unless `--platform` says otherwise.
+as platform `PS5` unless `--label` says otherwise.
 
 ### Authentication
 
@@ -86,19 +86,19 @@ getting a fresh one:
 
 ### Several accounts
 
-If you have more than one PSN account, give each a label with `--account`.
-The label selects the token variable and the output filename:
+If you have more than one PSN account, give each a name with `--account`.
+The name selects the token variable and the output filename:
 
 | Command | Token variable | Output file |
 |---|---|---|
 | `gameplot scrape psn` | `PSN_NPSSO` | `psn-games.json` |
 | `gameplot scrape psn --account uk` | `PSN_NPSSO_UK` | `psn-games-uk.json` |
 
-Labels may contain letters, digits and dashes. Scrape each account in its own
+Account names may contain letters, digits and dashes. Scrape each account in its own
 run; the pipeline merges the files later.
 
 ### Options
 
 | Option | Effect |
 |---|---|
-| `-a, --account <label>` | Select an account, as above |
+| `-a, --account <account>` | Select an account, as above |

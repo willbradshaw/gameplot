@@ -13,7 +13,7 @@ import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js'
 /** Options every scraper shares. */
 function withCommonOptions(command, { defaultOut, defaultPlatform }) {
   return command
-    .option('-p, --platform <name>', 'platform display name written to each row', defaultPlatform)
+    .option('-l, --label <label>', 'platform display name written to each row', defaultPlatform)
     .option('-o, --out <file>', `output file (default: ${defaultOut})`)
     .option('-v, --verbose', 'show debug output')
     .option('-q, --quiet', 'only show warnings and errors');
@@ -36,14 +36,14 @@ const psn = withCommonOptions(
         'otherwise walks through fetching a new one in the browser',
     )
     .option(
-      '-a, --account <label>',
+      '-a, --account <account>',
       'optional; distinguishes PSN accounts in the NPSSO token variable and output file path',
       parseAccountLabel,
     ),
   { defaultOut: `data/games-raw/${psnOutputFile()}`, defaultPlatform: PSN_PLATFORM },
 ).action(async (opts) => {
   const log = createLogger(opts);
-  const games = await scrapePsnAccount({ account: opts.account, platform: opts.platform, log });
+  const games = await scrapePsnAccount({ account: opts.account, platform: opts.label, log });
   await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, psnOutputFile(opts.account)), games, log);
 });
 
