@@ -14,10 +14,11 @@ import { promisify } from 'node:util';
 const BIN = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'bin', 'gameplot.js');
 const run = (...args) => promisify(execFile)(process.execPath, [BIN, ...args]);
 
-test('gameplot --help lists the scrape and process commands', async () => {
+test('gameplot --help lists the scrape, process and annotate commands', async () => {
   const { stdout } = await run('--help');
   assert.match(stdout, /scrape\s+download online playtime data/);
   assert.match(stdout, /process \[options\] \[input\]\s+combine scraped playtime data/);
+  assert.match(stdout, /annotate \[options\] \[input\]\s+fill in missing statuses and ratings/);
 });
 
 test('gameplot process --help shows the default files', async () => {
@@ -26,7 +27,14 @@ test('gameplot process --help shows the default files', async () => {
   assert.match(stdout, /data\/annotations\.json/);
   assert.match(stdout, /data\/tags\.json/);
   assert.match(stdout, /data\/games\.json/);
-  assert.match(stdout, /data\/unannotated\.json/);
+  assert.doesNotMatch(stdout, /--unannotated/);
+});
+
+test('gameplot annotate --help shows the input and annotation defaults', async () => {
+  const { stdout } = await run('annotate', '--help');
+  assert.match(stdout, /data\/raw\/batch\.json/);
+  assert.match(stdout, /data\/annotations\.json/);
+  assert.match(stdout, /data\/tags\.json/);
 });
 
 test('gameplot scrape --help lists the platforms', async () => {
