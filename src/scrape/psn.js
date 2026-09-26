@@ -51,7 +51,7 @@ export function parsePlayDuration(duration) {
  * @param {import('psn-api').UserPlayedGamesResponse['titles']} titles
  * @param {import('consola').ConsolaInstance} log
  * @param {string} [platform]  display name written to each row
- * @returns {import('../shared/model.js').RawGame[]}
+ * @returns {import('../lib/model.js').RawGame[]}
  */
 export function convertPsnTitles(titles, log, platform = PSN_PLATFORM) {
   const rows = [];
@@ -121,7 +121,7 @@ export const authorizeWithRefreshToken = (api, refreshToken) =>
  * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
  * @param {typeof psnApi} [options.api]
- * @returns {Promise<import('../shared/model.js').RawGame[]>}
+ * @returns {Promise<import('../lib/model.js').RawGame[]>}
  */
 export async function scrapeAuthorized({
   authorization,
@@ -197,7 +197,7 @@ export const psnOutputFile = (suffix) => suffixedFile('psn', suffix);
  * @param {typeof promptForNpsso} [options.prompt]  injectable for tests
  * @param {typeof saveToken} [options.save]  injectable for tests
  * @param {typeof psnApi} [options.api]  injectable for tests
- * @returns {Promise<import('../shared/model.js').RawGame[]>}
+ * @returns {Promise<import('../lib/model.js').RawGame[]>}
  */
 export async function scrapePsnAccount({
   suffix,

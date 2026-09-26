@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { annotationSchema } from '../src/lib/model.js';
 import { buildAliasMap } from '../src/process/annotations.js';
 import {
   blankAnnotations,
@@ -8,7 +9,6 @@ import {
   PlaytimeRuleError,
   processGames,
 } from '../src/process/index.js';
-import { annotationSchema } from '../src/shared/model.js';
 
 const row = (game, platform, hours, date, extra = {}) => ({
   game,

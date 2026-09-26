@@ -3,12 +3,12 @@
  */
 
 import fs from 'fs-extra';
-import { annotationsSchema, parseOrThrow } from '../shared/model.js';
+import { annotationsSchema, parseOrThrow } from '../lib/model.js';
 
 /**
  * Check the constraints zod cannot express: unique names, and aliases that
  * are neither another entry's name nor claimed twice.
- * @param {import('../shared/model.js').Annotation[]} annotations
+ * @param {import('../lib/model.js').Annotation[]} annotations
  * @param {string} label
  * @returns {Map<string, string>} alias -> canonical name
  */
@@ -38,7 +38,7 @@ export function buildAliasMap(annotations, label = 'annotations') {
 /**
  * Read and validate an annotations file.
  * @param {string} file
- * @returns {Promise<import('../shared/model.js').Annotation[]>}
+ * @returns {Promise<import('../lib/model.js').Annotation[]>}
  */
 export async function loadAnnotations(file) {
   const annotations = parseOrThrow(annotationsSchema, await fs.readJson(file), file);

@@ -5,7 +5,7 @@
  */
 
 import fs from 'fs-extra';
-import { gamesSchema, parseOrThrow, rawGamesSchema } from '../shared/model.js';
+import { gamesSchema, parseOrThrow, rawGamesSchema } from '../lib/model.js';
 import { buildAliasMap, loadAnnotations } from './annotations.js';
 
 /** Which platform's url to show when a game is on several. First match wins. */
@@ -22,7 +22,7 @@ export class PlaytimeRuleError extends Error {}
  * element (docs/process.md, Merging step 1). Hours are summed, treating null
  * as unknown: the result is null only if every row's hours are null.
  * @param {string} platform
- * @param {import('../shared/model.js').RawGame[]} rows
+ * @param {import('../lib/model.js').RawGame[]} rows
  */
 export function combinePlatformRows(platform, rows) {
   const withHours = rows.filter((r) => r.hoursPlayed !== null);
@@ -35,9 +35,9 @@ export function combinePlatformRows(platform, rows) {
 /**
  * Build one output entry for a game from its rows and annotation, applying
  * playtime corrections and enforcing the playtime rules.
- * @param {import('../shared/model.js').Annotation} annotation
- * @param {import('../shared/model.js').RawGame[]} rows
- * @returns {{ game: import('../shared/model.js').Game, ignoredCorrections: string[], violations: string[] }}
+ * @param {import('../lib/model.js').Annotation} annotation
+ * @param {import('../lib/model.js').RawGame[]} rows
+ * @returns {{ game: import('../lib/model.js').Game, ignoredCorrections: string[], violations: string[] }}
  */
 export function buildGame(annotation, rows) {
   const byPlatform = new Map();
@@ -101,10 +101,10 @@ export function buildGame(annotation, rows) {
 
 /**
  * The pure core: rows and annotations in, games and reports out.
- * @param {import('../shared/model.js').RawGame[]} rows
- * @param {import('../shared/model.js').Annotation[]} annotations
+ * @param {import('../lib/model.js').RawGame[]} rows
+ * @param {import('../lib/model.js').Annotation[]} annotations
  * @returns {{
- *   games: import('../shared/model.js').Game[],
+ *   games: import('../lib/model.js').Game[],
  *   unannotated: string[], unmatched: string[], unrated: string[], ignoredCorrections: string[],
  * }}
  */

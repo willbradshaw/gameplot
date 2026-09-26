@@ -22,9 +22,9 @@ import path from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
+import { annotationsSchema, parseOrThrow, rawGamesSchema } from '../src/lib/model.js';
 import { buildAliasMap } from '../src/process/annotations.js';
 import { processGames } from '../src/process/index.js';
-import { annotationsSchema, parseOrThrow, rawGamesSchema } from '../src/shared/model.js';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = path.join(REPO, 'data');
