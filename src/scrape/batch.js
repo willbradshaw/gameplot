@@ -9,12 +9,38 @@
  */
 
 import { InvalidArgumentError } from 'commander';
-import { suffixedFile } from './common.js';
+import { suffixedEnvVar, suffixedFile } from './common.js';
 
 const SOURCE_RE = /^([a-z]+)(?::([a-z0-9-]+))?$/;
 
 /** Default output filename, with the batch --suffix applied. */
 export const batchOutputFile = (suffix) => suffixedFile('batch', suffix);
+
+/** Environment variable remembering the last source list, with the batch --suffix applied. */
+export const batchEnvVar = (suffix) => suffixedEnvVar('GAMEPLOT_BATCH', suffix);
+
+/**
+ * Decide which sources to run: the list given on the command line, or else
+ * the one remembered in the environment from the last run with this suffix.
+ * @param {object} options
+ * @param {{ platform: string, suffix?: string }[]} [options.given]  parsed command-line list
+ * @param {string} [options.suffix]
+ * @param {NodeJS.ProcessEnv} options.env
+ * @param {string[]} options.platforms
+ * @returns {{ sources: {platform: string, suffix?: string}[], remembered: boolean }}
+ */
+export function resolveSources({ given, suffix, env, platforms }) {
+  if (given) return { sources: given, remembered: false };
+  const envVar = batchEnvVar(suffix);
+  const stored = env[envVar];
+  if (!stored) {
+    throw new Error(
+      `No source list given and ${envVar} is not set. Run once with a list, e.g. ` +
+        `"gameplot scrape batch steam,psn,xbox,gog"; it is then remembered for next time.`,
+    );
+  }
+  return { sources: parseSources(stored, platforms), remembered: true };
+}
 
 /**
  * Parse a comma-separated source list.

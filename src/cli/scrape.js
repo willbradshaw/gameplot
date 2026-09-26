@@ -5,9 +5,16 @@
 
 import path from 'node:path';
 import { Command, InvalidArgumentError } from 'commander';
-import { RAW_DATA_DIR } from '../lib/env.js';
+import { RAW_DATA_DIR, saveEnvVar } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
-import { batchOutputFile, parseSources, runBatch, sourceName } from '../scrape/batch.js';
+import {
+  batchEnvVar,
+  batchOutputFile,
+  parseSources,
+  resolveSources,
+  runBatch,
+  sourceName,
+} from '../scrape/batch.js';
 import { writeRawGames } from '../scrape/common.js';
 import { GOG_PLATFORM, gogOutputFile, scrapeGogAccount } from '../scrape/gog.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
@@ -89,17 +96,28 @@ const batch = withLogOptions(
     .description(
       'download playtime data from a comma-separated list of sources, each platform or ' +
         `platform:suffix (platforms: ${PLATFORM_NAMES.join(', ')}), and write every row to one file; ` +
+        'the list is remembered in .env, so later runs can omit it; ' +
         'the file is written only if every source succeeds',
     )
-    .argument('<sources>', 'e.g. steam,psn:uk,psn,xbox,gog', (value) => parseSources(value, PLATFORM_NAMES))
+    .argument('[sources]', 'e.g. steam,psn:uk,psn,xbox,gog (default: the last list used)', (value) =>
+      parseSources(value, PLATFORM_NAMES),
+    )
     .option(
       '-s, --suffix <suffix>',
       'optional; appended to the output filename and used by sources that have no suffix of their own',
       parseSuffix,
     )
     .option('-o, --out <file>', `output file (default: data/raw/${batchOutputFile()})`),
-).action(async (sources, opts) => {
+).action(async (given, opts) => {
   const log = createLogger(opts);
+  const { sources, remembered } = resolveSources({
+    given,
+    suffix: opts.suffix,
+    env: process.env,
+    platforms: PLATFORM_NAMES,
+  });
+  if (remembered) log.info(`Using remembered sources: ${sources.map(sourceName).join(',')}`);
+  else await saveEnvVar(batchEnvVar(opts.suffix), sources.map(sourceName).join(','));
   const { rows, failures } = await runBatch({ sources, registry: REGISTRY, defaultSuffix: opts.suffix, log });
   if (failures.length) {
     log.error(

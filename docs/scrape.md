@@ -53,7 +53,11 @@ it). Sources are a comma-separated list of `platform` or `platform:suffix`:
 
 ```
 gameplot scrape batch steam,psn:uk,psn,xbox,gog
+gameplot scrape batch                              # same list again
 ```
+
+The list is remembered in `.env` as `GAMEPLOT_BATCH`, so later runs can omit
+it; giving a list replaces the remembered one.
 
 Each source runs exactly as its single-platform command would, including
 credential handling, but only the combined file is written: the per-source
@@ -62,9 +66,9 @@ combined file is written only when every source succeeds, so a partial run
 never replaces a previous good file; the summary at the end names what failed
 and the exit code is non-zero. `--verbose` and `--quiet` apply to the whole
 batch. `--suffix` names the batch: it goes on the output filename
-(`batch-<suffix>.json`) and is the suffix used by any source in the list that
-does not carry its own, so two complete sets of accounts can be kept apart as
-two batches.
+(`batch-<suffix>.json`) and the remembered list (`GAMEPLOT_BATCH_<SUFFIX>`),
+and is the suffix used by any source in the list that does not carry its own,
+so two complete sets of accounts can be kept apart as two batches.
 
 The combined file may contain the same game more than once when it is owned
 on several platforms or in several accounts; later stages merge those.

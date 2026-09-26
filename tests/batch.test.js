@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { silentLogger } from '../src/lib/log.js';
-import { batchOutputFile, parseSources, runBatch, sourceName } from '../src/scrape/batch.js';
+import {
+  batchEnvVar,
+  batchOutputFile,
+  parseSources,
+  resolveSources,
+  runBatch,
+  sourceName,
+} from '../src/scrape/batch.js';
 
 const PLATFORMS = ['psn', 'steam', 'xbox', 'gog'];
 
@@ -92,9 +99,33 @@ test('runBatch applies the batch suffix to sources without their own', async () 
   ]);
 });
 
-test('batchOutputFile applies the suffix', () => {
+test('batchOutputFile and batchEnvVar apply the suffix', () => {
   assert.equal(batchOutputFile(), 'batch.json');
   assert.equal(batchOutputFile('alt'), 'batch-alt.json');
+  assert.equal(batchEnvVar(), 'GAMEPLOT_BATCH');
+  assert.equal(batchEnvVar('alt'), 'GAMEPLOT_BATCH_ALT');
+});
+
+test('resolveSources prefers the given list, else the remembered one for that suffix', () => {
+  const given = parseSources('steam', PLATFORMS);
+  assert.deepEqual(resolveSources({ given, env: { GAMEPLOT_BATCH: 'gog' }, platforms: PLATFORMS }), {
+    sources: given,
+    remembered: false,
+  });
+  const fromEnv = resolveSources({ env: { GAMEPLOT_BATCH: 'steam,psn:uk' }, platforms: PLATFORMS });
+  assert.equal(fromEnv.remembered, true);
+  assert.deepEqual(fromEnv.sources.map(sourceName), ['steam', 'psn:uk']);
+  const alt = resolveSources({
+    suffix: 'alt',
+    env: { GAMEPLOT_BATCH: 'steam', GAMEPLOT_BATCH_ALT: 'gog' },
+    platforms: PLATFORMS,
+  });
+  assert.deepEqual(alt.sources.map(sourceName), ['gog']);
+  assert.throws(() => resolveSources({ env: {}, platforms: PLATFORMS }), /GAMEPLOT_BATCH is not set/);
+  assert.throws(
+    () => resolveSources({ suffix: 'alt', env: {}, platforms: PLATFORMS }),
+    /GAMEPLOT_BATCH_ALT is not set/,
+  );
 });
 
 test('runBatch keeps going after a failure and reports it', async () => {

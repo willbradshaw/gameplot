@@ -25,7 +25,7 @@ test('gameplot scrape --help lists the platforms', async () => {
   assert.match(stdout, /steam \[options\]\s+download from Steam/);
   assert.match(stdout, /xbox \[options\]\s+download from Xbox/);
   assert.match(stdout, /gog \[options\]\s+download from GOG/);
-  assert.match(stdout, /batch \[options\] <sources>\s+download from several sources into one file/);
+  assert.match(stdout, /batch \[options\] \[sources\]\s+download from several sources into one file/);
 });
 
 test('gameplot scrape batch rejects a bad source list before running anything', async () => {
