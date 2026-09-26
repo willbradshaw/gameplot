@@ -12,7 +12,6 @@
       "!data",
       "!gameplot-env",
       "!src/render",
-      "!src/scrape/*-scraper.js",
       "!index.html",
       "!styles.css"
     ]
