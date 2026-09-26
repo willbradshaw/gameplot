@@ -147,9 +147,10 @@ untrusted.
 - Playtime comes from the stats call, not the title history. A played title
   missing from the stats response is treated as having zero minutes, with a
   warning.
-- OpenXBL rate-limits aggressively, with a shared 60-requests-per-5-minutes
-  window. A rate-limited call is retried after a minute, up to eight times, so
-  a run can take several minutes when the window is busy.
+- OpenXBL has a 60-requests-per-5-minutes window shared by all its users, so
+  it can be full through no fault of the account being scraped. A rate-limited
+  call fails the scrape immediately rather than waiting; a few minutes later it
+  usually goes through.
 - The default label is `Xbox`.
 
 ### GOG (`gog`)
