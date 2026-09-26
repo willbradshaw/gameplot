@@ -189,18 +189,20 @@ test('scrapeGogAccount falls back to the browser login when the token is missing
   }
 });
 
-test('scrapeGogAccount propagates non-credential failures', async () => {
+test('scrapeGogAccount propagates non-credential failures, having already saved the new token', async () => {
+  const saved = [];
   await assert.rejects(
     scrapeGogAccount({
       log: silentLogger,
-      env: { GOG_REFRESH_TOKEN: 'r' },
-      prompt: neverPrompt,
-      save: neverPrompt,
+      env: {},
+      prompt: async () => CODE,
+      save: async (v, t) => saved.push([v, t]),
       fetchImpl: fakeFetch([
-        ['auth.gog.com/token', tokens()],
+        ['auth.gog.com/token', tokens(4)],
         ['userData.json', { status: 500, body: {} }],
       ]),
     }),
     /HTTP 500/,
   );
+  assert.deepEqual(saved, [['GOG_REFRESH_TOKEN', 'refresh-4']]);
 });

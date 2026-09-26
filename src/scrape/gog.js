@@ -221,8 +221,10 @@ export async function scrapeGogAccount({
     tokens = await exchangeToken(ctx, { code });
   }
 
-  const games = await scrapeGog({ accessToken: tokens.accessToken, platform, log, fetchImpl });
-  if (tokens.refreshToken && tokens.refreshToken !== env[envVar])
+  // Save before scraping: a failure later in the run must not cost the user
+  // another browser login next time.
+  if (tokens.refreshToken && tokens.refreshToken !== env[envVar]) {
     await save(envVar, tokens.refreshToken, log);
-  return games;
+  }
+  return scrapeGog({ accessToken: tokens.accessToken, platform, log, fetchImpl });
 }
