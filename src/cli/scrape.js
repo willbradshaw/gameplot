@@ -40,7 +40,7 @@ const psn = withCommonOptions(
     )
     .option(
       '-a, --account <label>',
-      'optional; distinguishes PSN accounts in the NPSSO token variable and output file path suffix',
+      'optional; distinguishes PSN accounts in the NPSSO token variable and output file path',
       parseAccountLabel,
     ),
   `data/games-raw/${psnOutputFile()}`,
