@@ -49,7 +49,7 @@ function platformCommand({ name, summary, description, defaultPlatform, outputFi
 const psn = platformCommand({
   name: 'psn',
   summary: 'download from PlayStation Network',
-  description: 'download playtime data from one PlayStation Network account; see docs/scrape.md',
+  description: 'download playtime data from one PlayStation Network account',
   defaultPlatform: PSN_PLATFORM,
   outputFile: psnOutputFile,
   scrape: scrapePsnAccount,
@@ -58,7 +58,7 @@ const psn = platformCommand({
 const steam = platformCommand({
   name: 'steam',
   summary: 'download from Steam',
-  description: 'download playtime data for one Steam account via the Steam Web API; see docs/scrape.md',
+  description: 'download playtime data for one Steam account via the Steam Web API',
   defaultPlatform: STEAM_PLATFORM,
   outputFile: steamOutputFile,
   scrape: scrapeSteamAccount,
@@ -67,7 +67,7 @@ const steam = platformCommand({
 const xbox = platformCommand({
   name: 'xbox',
   summary: 'download from Xbox',
-  description: 'download playtime data for one Xbox account via the OpenXBL API; see docs/scrape.md',
+  description: 'download playtime data for one Xbox account via the OpenXBL API',
   defaultPlatform: XBOX_PLATFORM,
   outputFile: xboxOutputFile,
   scrape: scrapeXboxAccount,
@@ -76,8 +76,7 @@ const xbox = platformCommand({
 const gog = platformCommand({
   name: 'gog',
   summary: 'download from GOG',
-  description:
-    'download the owned-games list of one GOG account (GOG reports no playtime); see docs/scrape.md',
+  description: 'download the owned-games list of one GOG account',
   defaultPlatform: GOG_PLATFORM,
   outputFile: gogOutputFile,
   scrape: scrapeGogAccount,
