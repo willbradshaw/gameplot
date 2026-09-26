@@ -32,7 +32,7 @@ function parseAccountLabel(value) {
 
 const psn = withCommonOptions(
   new Command('psn')
-    .summary('scrape playtime data from one PlayStation Network account')
+    .summary('download from PlayStation Network')
     .description(
       'scrape playtime data from one PlayStation Network account; ' +
         'authenticates with an existing NPSSO token if available, ' +
