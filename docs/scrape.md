@@ -12,9 +12,9 @@ See [setup.md](setup.md) for installation.
 
 ## Output
 
-Each run writes one file to `data/games-raw/`, named after the platform (and
-account, where a platform supports several). Later stages read every file in
-that directory, so the filenames are for your convenience only.
+Each run writes one file to `data/games-raw/`, named after the platform, plus
+any `--suffix`. Later stages read every file in that directory, so the
+filenames are for your convenience only.
 
 Every scraper writes a JSON array of rows with exactly these fields:
 
@@ -37,10 +37,20 @@ Every platform accepts these:
 
 | Option | Effect |
 |---|---|
+| `-s, --suffix <suffix>` | Appended to the credential variable name and the output filename, so several accounts on one platform can be kept apart. Letters, digits and dashes |
 | `-l, --label <label>` | Platform display name written to each row, overriding the platform's default (e.g. `PS5`) |
 | `-o, --out <file>` | Write somewhere other than the default file |
 | `-v, --verbose` | Show debug output |
 | `-q, --quiet` | Only warnings and errors |
+
+For example, with two PSN accounts:
+
+| Command | Token variable | Output file |
+|---|---|---|
+| `gameplot scrape psn` | `PSN_NPSSO` | `psn-games.json` |
+| `gameplot scrape psn --suffix uk` | `PSN_NPSSO_UK` | `psn-games-uk.json` |
+
+Scrape each account in its own run; the pipeline merges the files later.
 
 ## Credentials
 
@@ -53,7 +63,7 @@ precedence over the file.
 
 ```
 gameplot scrape psn                 # writes data/games-raw/psn-games.json
-gameplot scrape psn --account uk    # writes data/games-raw/psn-games-uk.json
+gameplot scrape psn --suffix uk     # writes data/games-raw/psn-games-uk.json
 ```
 
 ### What it fetches
@@ -84,21 +94,4 @@ getting a fresh one:
 4. Once the token has worked, the scraper offers to save it to `.env` so the
    next run skips the prompt.
 
-### Several accounts
-
-If you have more than one PSN account, give each a name with `--account`.
-The name selects the token variable and the output filename:
-
-| Command | Token variable | Output file |
-|---|---|---|
-| `gameplot scrape psn` | `PSN_NPSSO` | `psn-games.json` |
-| `gameplot scrape psn --account uk` | `PSN_NPSSO_UK` | `psn-games-uk.json` |
-
-Account names may contain letters, digits and dashes. Scrape each account in its own
-run; the pipeline merges the files later.
-
-### Options
-
-| Option | Effect |
-|---|---|
-| `-a, --account <account>` | Select an account, as above |
+With `--suffix`, the token variable is `PSN_NPSSO_<SUFFIX>` instead.

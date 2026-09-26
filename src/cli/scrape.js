@@ -10,21 +10,26 @@ import { createLogger } from '../lib/log.js';
 import { writeRawGames } from '../scrape/common.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
 
+function parseSuffix(value) {
+  const suffix = value.toLowerCase();
+  if (!/^[a-z0-9-]+$/.test(suffix)) {
+    throw new InvalidArgumentError('must be letters, digits or dashes (it becomes part of a filename)');
+  }
+  return suffix;
+}
+
 /** Options every scraper shares. */
 function withCommonOptions(command, { defaultOut, defaultPlatform }) {
   return command
+    .option(
+      '-s, --suffix <suffix>',
+      'optional; appended to the credential variable name and output filename, to keep several accounts on one platform apart',
+      parseSuffix,
+    )
     .option('-l, --label <label>', 'platform display name written to each row', defaultPlatform)
     .option('-o, --out <file>', `output file (default: ${defaultOut})`)
     .option('-v, --verbose', 'show debug output')
     .option('-q, --quiet', 'only show warnings and errors');
-}
-
-function parseAccountLabel(value) {
-  const label = value.toLowerCase();
-  if (!/^[a-z0-9-]+$/.test(label)) {
-    throw new InvalidArgumentError('must be letters, digits or dashes (it becomes part of a filename)');
-  }
-  return label;
 }
 
 const psn = withCommonOptions(
@@ -34,17 +39,12 @@ const psn = withCommonOptions(
       'download playtime data from one PlayStation Network account; ' +
         'authenticates with an existing NPSSO token if available, ' +
         'otherwise walks through fetching a new one in the browser',
-    )
-    .option(
-      '-a, --account <account>',
-      'optional; distinguishes PSN accounts in the NPSSO token variable and output file path',
-      parseAccountLabel,
     ),
   { defaultOut: `data/games-raw/${psnOutputFile()}`, defaultPlatform: PSN_PLATFORM },
 ).action(async (opts) => {
   const log = createLogger(opts);
-  const games = await scrapePsnAccount({ account: opts.account, platform: opts.label, log });
-  await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, psnOutputFile(opts.account)), games, log);
+  const games = await scrapePsnAccount({ suffix: opts.suffix, platform: opts.label, log });
+  await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, psnOutputFile(opts.suffix)), games, log);
 });
 
 export const scrapeCommand = new Command('scrape')

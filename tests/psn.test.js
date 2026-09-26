@@ -159,7 +159,7 @@ test('scrapePsnAccount uses a valid token from the environment without prompting
 test('scrapePsnAccount reads the labelled variable when an account is given', async () => {
   const api = fakeApi(GOOD);
   await scrapePsnAccount({
-    account: 'uk',
+    suffix: 'uk',
     log: silentLogger,
     env: { PSN_NPSSO: STALE, PSN_NPSSO_UK: GOOD },
     prompt: neverPrompt,
@@ -179,7 +179,7 @@ test('scrapePsnAccount prompts when the token is missing, malformed, or rejected
     };
     const saved = [];
     const save = async (envVar, token) => saved.push([envVar, token]);
-    const games = await scrapePsnAccount({ account: 'uk', log: silentLogger, env, prompt, save, api });
+    const games = await scrapePsnAccount({ suffix: 'uk', log: silentLogger, env, prompt, save, api });
     assert.equal(prompted, 1, JSON.stringify(env));
     assert.equal(games.length, 1);
     assert.equal(api.seen.at(-1), GOOD);
@@ -210,7 +210,7 @@ test('scrapePsn wires authentication, fetching and conversion together', async (
   assert.equal(games[0].game, 'Some Game');
 });
 
-test('account label selects the token variable and output file; none means the plain defaults', () => {
+test('the suffix is applied to the token variable and output file; none means the plain defaults', () => {
   assert.equal(npssoEnvVar(), 'PSN_NPSSO');
   assert.equal(psnOutputFile(), 'psn-games.json');
   assert.equal(npssoEnvVar('uk'), 'PSN_NPSSO_UK');

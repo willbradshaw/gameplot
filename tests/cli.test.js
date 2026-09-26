@@ -26,13 +26,13 @@ test('gameplot scrape --help lists psn', async () => {
 
 test('gameplot scrape psn --help documents the account option', async () => {
   const { stdout } = await run('scrape', 'psn', '--help');
-  assert.match(stdout, /--account <account>/);
+  assert.match(stdout, /--suffix <suffix>/);
   assert.match(stdout, /--label <label>[\s\S]*default:\s+"PS5"/);
   assert.match(stdout, /default: data\/games-raw\/psn-games\.json/);
 });
 
-test('an invalid account label is rejected before any network access', async () => {
-  await assert.rejects(run('scrape', 'psn', '--account', 'a/b'), (err) => {
+test('an invalid suffix is rejected before any network access', async () => {
+  await assert.rejects(run('scrape', 'psn', '--suffix', 'a/b'), (err) => {
     assert.equal(err.code, 1);
     assert.match(err.stderr, /letters, digits or dashes/);
     return true;

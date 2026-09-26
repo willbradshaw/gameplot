@@ -8,7 +8,14 @@ import path from 'node:path';
 import * as psnApi from 'psn-api';
 import { ENV_FILE, saveEnvVar } from '../lib/env.js';
 import { askSecret, confirm, openInBrowser, pause } from '../lib/prompt.js';
-import { combineDuplicateIds, finalizeRawGames, isoToDate, roundHours } from './common.js';
+import {
+  combineDuplicateIds,
+  finalizeRawGames,
+  isoToDate,
+  roundHours,
+  suffixedEnvVar,
+  suffixedFile,
+} from './common.js';
 
 export const PSN_PLATFORM = 'PS5';
 const PAGE_SIZE = 200;
@@ -143,18 +150,11 @@ export function cleanNpsso(input) {
   return value.length === NPSSO_LENGTH ? value : null;
 }
 
-/**
- * Environment variable holding the NPSSO token: PSN_NPSSO, or
- * PSN_NPSSO_<LABEL> when an account label is given.
- * @param {string} [account]
- */
-export const npssoEnvVar = (account) => (account ? `PSN_NPSSO_${account.toUpperCase()}` : 'PSN_NPSSO');
+/** Environment variable holding the NPSSO token, with the --suffix applied. */
+export const npssoEnvVar = (suffix) => suffixedEnvVar('PSN_NPSSO', suffix);
 
-/**
- * Output filename: psn-games.json, or psn-games-<label>.json with a label.
- * @param {string} [account]
- */
-export const psnOutputFile = (account) => (account ? `psn-games-${account}.json` : 'psn-games.json');
+/** Default output filename, with the --suffix applied. */
+export const psnOutputFile = (suffix) => suffixedFile('psn-games', suffix);
 
 /**
  * Scrape one account, resolving the NPSSO token first.
@@ -164,7 +164,7 @@ export const psnOutputFile = (account) => (account ? `psn-games-${account}.json`
  * months), the user is walked through fetching a fresh one in the browser.
  *
  * @param {object} options
- * @param {string} [options.account]  label selecting the token variable
+ * @param {string} [options.suffix]  the --suffix option; selects the token variable
  * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
  * @param {NodeJS.ProcessEnv} [options.env]  injectable for tests
@@ -173,7 +173,7 @@ export const psnOutputFile = (account) => (account ? `psn-games-${account}.json`
  * @returns {Promise<import('../shared/model.js').RawGame[]>}
  */
 export async function scrapePsnAccount({
-  account,
+  suffix,
   platform = PSN_PLATFORM,
   log,
   env = process.env,
@@ -181,7 +181,7 @@ export async function scrapePsnAccount({
   save = offerToSaveToken,
   api,
 }) {
-  const envVar = npssoEnvVar(account);
+  const envVar = npssoEnvVar(suffix);
   const fromEnv = cleanNpsso(env[envVar]);
   if (env[envVar] && !fromEnv) log.warn(`${envVar} is set but is not a valid NPSSO token; ignoring it`);
 
@@ -192,7 +192,7 @@ export async function scrapePsnAccount({
       log.warn(`Token from ${envVar} was rejected (${err.message}); falling back to browser login`);
     }
   }
-  const npsso = await prompt(account, log);
+  const npsso = await prompt(suffix, log);
   const games = await scrapePsn({ npsso, platform, log, api });
   await save(envVar, npsso, log);
   return games;
@@ -217,8 +217,8 @@ export async function offerToSaveToken(envVar, token, log) {
  * @param {import('consola').ConsolaInstance} log
  * @returns {Promise<string>}
  */
-export async function promptForNpsso(account, log) {
-  log.info(`Step 1: log in to your PlayStation account${account ? ` ("${account}")` : ''}`);
+export async function promptForNpsso(suffix, log) {
+  log.info(`Step 1: log in to your PlayStation account${suffix ? ` ("${suffix}")` : ''}`);
   await openInBrowser(LOGIN_URL, log);
   await pause('Logged in?');
   log.info('Step 2: copy the npsso value from the page that opens next');

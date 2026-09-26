@@ -6,6 +6,23 @@
 import fs from 'fs-extra';
 import { parseOrThrow, rawGamesSchema } from '../shared/model.js';
 
+/**
+ * Apply the --suffix option to a credential variable name: `PSN_NPSSO`
+ * becomes `PSN_NPSSO_UK` for --suffix uk. Lets a user keep several accounts
+ * on one platform apart.
+ * @param {string} base
+ * @param {string} [suffix]
+ */
+export const suffixedEnvVar = (base, suffix) => (suffix ? `${base}_${suffix.toUpperCase()}` : base);
+
+/**
+ * Apply the --suffix option to an output filename: `psn-games.json` becomes
+ * `psn-games-uk.json` for --suffix uk.
+ * @param {string} prefix
+ * @param {string} [suffix]
+ */
+export const suffixedFile = (prefix, suffix) => (suffix ? `${prefix}-${suffix}.json` : `${prefix}.json`);
+
 /** Round to one decimal place, avoiding float noise like 12.299999. */
 export const roundHours = (h) => Math.round(h * 10) / 10;
 
