@@ -22,18 +22,6 @@ function withCommonOptions(command, defaultOutDescription) {
     .option('-q, --quiet', 'only show warnings and errors');
 }
 
-/**
- * Append a paragraph to a command's help, wrapped to the terminal width when
- * displayed. commander wraps option descriptions itself but prints
- * addHelpText blocks verbatim, so this reuses its formatter.
- */
-function addHelpParagraph(command, text) {
-  return command.addHelpText('after', ({ command: cmd }) => {
-    const width = process.stdout.isTTY ? process.stdout.columns : 80;
-    return `\n${cmd.createHelp().boxWrap(text, width)}`;
-  });
-}
-
 function parseAccountLabel(value) {
   const label = value.toLowerCase();
   if (!/^[a-z0-9-]+$/.test(label)) {
@@ -42,19 +30,20 @@ function parseAccountLabel(value) {
   return label;
 }
 
-const psn = addHelpParagraph(
-  withCommonOptions(
-    new Command('psn')
-      .description('PlayStation Network: the played-games list of one account')
-      .option(
-        '-a, --account <label>',
-        'only needed with several PSN accounts: selects the token variable (PSN_NPSSO_<LABEL>) and output file',
-        parseAccountLabel,
-      ),
-    `data/games-raw/${psnOutputFile()}`,
-  ),
-  'Authentication: the NPSSO token is read from PSN_NPSSO in the environment (or .env). ' +
-    'If it is missing or PSN rejects it, you are walked through fetching a new one in the browser.',
+const psn = withCommonOptions(
+  new Command('psn')
+    .summary('PlayStation Network: the played-games list of one account')
+    .description(
+      'PlayStation Network: the played-games list of one account. ' +
+        'Authenticates with the NPSSO token in PSN_NPSSO (environment or .env); ' +
+        'if it is missing or rejected, walks you through fetching a new one in the browser.',
+    )
+    .option(
+      '-a, --account <label>',
+      'only needed with several PSN accounts: selects the token variable (PSN_NPSSO_<LABEL>) and output file',
+      parseAccountLabel,
+    ),
+  `data/games-raw/${psnOutputFile()}`,
 ).action(async (opts) => {
   const log = createLogger(opts);
   const games = await scrapePsnAccount({ account: opts.account, log });
