@@ -10,7 +10,7 @@ import { parseArgs } from 'node:util';
 import { RAW_DATA_DIR } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
 import { writeRawGames } from '../scrape/common.js';
-import { cleanNpsso, npssoEnvVar, promptForNpsso, scrapePsn } from '../scrape/psn.js';
+import { cleanNpsso, npssoEnvVar, promptForNpsso, psnOutputFile, scrapePsn } from '../scrape/psn.js';
 
 const USAGE = `Usage: gameplot scrape <platform> [options]
 
@@ -28,25 +28,29 @@ const COMMON_OPTIONS = {
 
 const PLATFORMS = {
   psn: {
-    help: `Usage: gameplot scrape psn --account <label> [options]
+    help: `Usage: gameplot scrape psn [options]
 
-Download the played-games list of one PlayStation Network account.
+Download the played-games list of a PlayStation Network account.
 
 Options:
-  --account <label>  Which account: used for the output filename and to look
-                     up the NPSSO token in ${npssoEnvVar('<LABEL>')} (required)
-  --out <file>       Output file (default: data/games-raw/psn-games-<label>.json)
+  --account <label>  Only needed if you have several PSN accounts. Selects the
+                     token variable (${npssoEnvVar('<LABEL>')}) and output file
+                     (psn-games-<label>.json) so each account gets its own
+  --out <file>       Output file (default: data/games-raw/${psnOutputFile()})
   --verbose          Show debug output
   --quiet            Only show warnings and errors
   -h, --help         Show this help
 
-Authentication: the NPSSO token is read from the environment (or .env). If it
-is missing or PSN rejects it, you are walked through fetching a new one.`,
+Authentication: the NPSSO token is read from ${npssoEnvVar()} in the environment
+(or .env). If it is missing or PSN rejects it, you are walked through fetching
+a new one in the browser.`,
     options: { account: { type: 'string' } },
     async run(args, log) {
-      const account = args.account?.toLowerCase();
-      if (!account) throw new UsageError('--account is required (e.g. --account uk)');
-      const out = args.out ?? path.join(RAW_DATA_DIR, `psn-games-${account}.json`);
+      const account = args.account?.toLowerCase() || undefined;
+      if (account !== undefined && !/^[a-z0-9-]+$/.test(account)) {
+        throw new UsageError('--account must be letters, digits or dashes (it becomes part of a filename)');
+      }
+      const out = args.out ?? path.join(RAW_DATA_DIR, psnOutputFile(account));
 
       const envVar = npssoEnvVar(account);
       let npsso = cleanNpsso(process.env[envVar]);

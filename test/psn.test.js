@@ -1,7 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { silentLogger } from '../src/lib/log.js';
-import { cleanNpsso, convertPsnTitles, fetchAllPlayedGames, parsePlayDuration, scrapePsn } from '../src/scrape/psn.js';
+import {
+  cleanNpsso,
+  convertPsnTitles,
+  fetchAllPlayedGames,
+  npssoEnvVar,
+  parsePlayDuration,
+  psnOutputFile,
+  scrapePsn,
+} from '../src/scrape/psn.js';
 
 const title = (over = {}) => ({
   titleId: 'PPSA00001_00',
@@ -105,6 +113,13 @@ test('scrapePsn wires authentication, fetching and conversion together', async (
   const games = await scrapePsn({ npsso: 'secret', log: silentLogger, api });
   assert.equal(games.length, 1);
   assert.equal(games[0].game, 'Some Game');
+});
+
+test('account label selects the token variable and output file; none means the plain defaults', () => {
+  assert.equal(npssoEnvVar(), 'PSN_NPSSO');
+  assert.equal(psnOutputFile(), 'psn-games.json');
+  assert.equal(npssoEnvVar('uk'), 'PSN_NPSSO_UK');
+  assert.equal(psnOutputFile('uk'), 'psn-games-uk.json');
 });
 
 test('cleanNpsso accepts a bare token, a quoted token, or the ssocookie JSON', () => {

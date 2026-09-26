@@ -7,9 +7,10 @@
  * missing or rejected, obtained interactively by logging in through the
  * browser and copying the value from Sony's ssocookie endpoint.
  *
- * The user has two PSN accounts (UK and US), each scraped separately into
- * its own file. Every game is recorded as platform "PS5" regardless of the
- * title's category, matching the existing data.
+ * One run scrapes one account. Users with several PSN accounts give each a
+ * label (--account uk), which selects the token variable and output file;
+ * with a single account no label is needed. Every game is recorded as
+ * platform "PS5" regardless of the title's category.
  *
  * All network access goes through an injectable `api` object so the
  * conversion and pagination logic can be tested without credentials.
@@ -150,17 +151,27 @@ export function cleanNpsso(input) {
   return value.length === NPSSO_LENGTH ? value : null;
 }
 
-/** Environment variable holding the NPSSO token for an account label. */
-export const npssoEnvVar = (account) => `PSN_NPSSO_${account.toUpperCase()}`;
+/**
+ * Environment variable holding the NPSSO token: PSN_NPSSO, or
+ * PSN_NPSSO_<LABEL> when an account label is given.
+ * @param {string} [account]
+ */
+export const npssoEnvVar = (account) => (account ? `PSN_NPSSO_${account.toUpperCase()}` : 'PSN_NPSSO');
+
+/**
+ * Output filename: psn-games.json, or psn-games-<label>.json with a label.
+ * @param {string} [account]
+ */
+export const psnOutputFile = (account) => (account ? `psn-games-${account}.json` : 'psn-games.json');
 
 /**
  * Walk the user through logging in and copying their NPSSO token.
- * @param {string} account
+ * @param {string|undefined} account  label, for the messages only
  * @param {{ info: Function }} log
  * @returns {Promise<string>}
  */
 export async function promptForNpsso(account, log) {
-  log.info(`Step 1: log in to the PlayStation account for "${account}"`);
+  log.info(`Step 1: log in to your PlayStation account${account ? ` ("${account}")` : ''}`);
   await openInBrowser(LOGIN_URL, log);
   await ask('Press Enter once you are logged in... ');
   log.info('Step 2: copy the npsso value from the page that opens next');
