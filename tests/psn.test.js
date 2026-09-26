@@ -132,12 +132,17 @@ const neverPrompt = async () => {
   throw new Error('prompt should not be called');
 };
 
-test('scrapePsnAccount uses a valid token from the environment without prompting', async () => {
+const neverSave = async () => {
+  throw new Error('save should not be called');
+};
+
+test('scrapePsnAccount uses a valid token from the environment without prompting or saving', async () => {
   const api = fakeApi(GOOD);
   const games = await scrapePsnAccount({
     log: silentLogger,
     env: { PSN_NPSSO: GOOD },
     prompt: neverPrompt,
+    save: neverSave,
     api,
   });
   assert.equal(games.length, 1);
@@ -151,12 +156,13 @@ test('scrapePsnAccount reads the labelled variable when an account is given', as
     log: silentLogger,
     env: { PSN_NPSSO: STALE, PSN_NPSSO_UK: GOOD },
     prompt: neverPrompt,
+    save: neverSave,
     api,
   });
   assert.deepEqual(api.seen, [GOOD]);
 });
 
-test('scrapePsnAccount prompts when the token is missing, malformed, or rejected', async () => {
+test('scrapePsnAccount prompts when the token is missing, malformed, or rejected, then offers to save it', async () => {
   for (const env of [{}, { PSN_NPSSO: 'not a token' }, { PSN_NPSSO: STALE }]) {
     const api = fakeApi(GOOD);
     let prompted = 0;
@@ -164,11 +170,23 @@ test('scrapePsnAccount prompts when the token is missing, malformed, or rejected
       prompted += 1;
       return GOOD;
     };
-    const games = await scrapePsnAccount({ log: silentLogger, env, prompt, api });
+    const saved = [];
+    const save = async (envVar, token) => saved.push([envVar, token]);
+    const games = await scrapePsnAccount({ account: 'uk', log: silentLogger, env, prompt, save, api });
     assert.equal(prompted, 1, JSON.stringify(env));
     assert.equal(games.length, 1);
     assert.equal(api.seen.at(-1), GOOD);
+    assert.deepEqual(saved, [['PSN_NPSSO_UK', GOOD]]);
   }
+});
+
+test('scrapePsnAccount does not offer to save a token that failed', async () => {
+  const api = fakeApi(GOOD);
+  const prompt = async () => STALE;
+  await assert.rejects(
+    scrapePsnAccount({ log: silentLogger, env: {}, prompt, save: neverSave, api }),
+    /403 Forbidden/,
+  );
 });
 
 test('scrapePsn wires authentication, fetching and conversion together', async () => {

@@ -2,7 +2,7 @@
  * Terminal interaction for scrapers that need a human in the loop.
  */
 
-import { confirm, input, password } from '@inquirer/prompts';
+import { input, confirm as inquirerConfirm, password } from '@inquirer/prompts';
 
 /** Ask for a line of text. */
 export const ask = (message) => input({ message });
@@ -10,9 +10,12 @@ export const ask = (message) => input({ message });
 /** Ask for a secret; keystrokes are masked. */
 export const askSecret = (message) => password({ message, mask: true });
 
+/** Yes/no question, defaulting to yes. */
+export const confirm = (message) => inquirerConfirm({ message, default: true });
+
 /** Wait until the user confirms they have done something. */
 export async function pause(message) {
-  while (!(await confirm({ message, default: true }))) {
+  while (!(await confirm(message))) {
     // Keep asking until they say yes.
   }
 }

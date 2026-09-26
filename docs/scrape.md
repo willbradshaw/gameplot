@@ -17,11 +17,11 @@ Requires Node 22.12 or later.
 ```
 npm install
 npm link          # puts the `gameplot` command on your PATH
-cp .env.example .env
 ```
 
-Credentials live in `.env`, which is gitignored. `.env.example` lists every
-variable the scrapers look for. Variables already set in your shell take
+Credentials live in a gitignored `.env` file at the repo root. You don't need
+to create it: when a scraper obtains a credential interactively it offers to
+save it there for next time. Variables already set in your shell take
 precedence over the file.
 
 ## Output format
@@ -73,8 +73,8 @@ getting a fresh one:
 2. It opens <https://ca.account.sony.com/api/v1/ssocookie>, which shows a
    small JSON document containing `"npsso": "..."`.
 3. Paste the value (or the whole JSON) at the prompt. Input is masked.
-
-Put the token in `.env` afterwards so the next run skips the prompt.
+4. Once the token has worked, the scraper offers to save it to `.env` so the
+   next run skips the prompt.
 
 ### Several accounts
 
@@ -103,7 +103,8 @@ run; the pipeline merges the files later.
 - **"PSN returned no titles; the account may be private."** The played-games
   list respects the account's privacy settings. Set gameplay data to visible,
   or check that the token belongs to the account you expect.
-- **The token is rejected on every run.** Tokens expire; fetch a new one via
-  the browser flow and update `.env`.
+- **The token is rejected on every run.** Tokens expire. The scraper falls
+  back to the browser flow automatically; accept the offer to save the new
+  token and `.env` is updated in place.
 - **The browser doesn't open.** The URL is printed instead. Open it by hand
   and continue in the terminal.

@@ -4,8 +4,10 @@
  * `api` object so conversion and pagination are testable without credentials.
  */
 
+import path from 'node:path';
 import * as psnApi from 'psn-api';
-import { askSecret, openInBrowser, pause } from '../lib/prompt.js';
+import { ENV_FILE, saveEnvVar } from '../lib/env.js';
+import { askSecret, confirm, openInBrowser, pause } from '../lib/prompt.js';
 import { combineDuplicateIds, finalizeRawGames, isoToDate, roundHours } from './common.js';
 
 export const PSN_PLATFORM = 'PS5';
@@ -167,7 +169,14 @@ export const psnOutputFile = (account) => (account ? `psn-games-${account}.json`
  * @param {typeof psnApi} [options.api]  injectable for tests
  * @returns {Promise<import('../shared/model.js').RawGame[]>}
  */
-export async function scrapePsnAccount({ account, log, env = process.env, prompt = promptForNpsso, api }) {
+export async function scrapePsnAccount({
+  account,
+  log,
+  env = process.env,
+  prompt = promptForNpsso,
+  save = offerToSaveToken,
+  api,
+}) {
   const envVar = npssoEnvVar(account);
   const fromEnv = cleanNpsso(env[envVar]);
   if (env[envVar] && !fromEnv) log.warn(`${envVar} is set but is not a valid NPSSO token; ignoring it`);
@@ -180,7 +189,22 @@ export async function scrapePsnAccount({ account, log, env = process.env, prompt
     }
   }
   const npsso = await prompt(account, log);
-  return scrapePsn({ npsso, log, api });
+  const games = await scrapePsn({ npsso, log, api });
+  await save(envVar, npsso, log);
+  return games;
+}
+
+/**
+ * After a token obtained interactively has worked, offer to store it in .env
+ * so the next run needs no browser login.
+ * @param {string} envVar
+ * @param {string} token
+ * @param {import('consola').ConsolaInstance} log
+ */
+export async function offerToSaveToken(envVar, token, log) {
+  if (!(await confirm(`Save this token to ${path.basename(ENV_FILE)} as ${envVar} for next time?`))) return;
+  await saveEnvVar(envVar, token);
+  log.success(`Saved ${envVar} to ${ENV_FILE}`);
 }
 
 /**
@@ -197,10 +221,7 @@ export async function promptForNpsso(account, log) {
   await openInBrowser(NPSSO_URL, log);
   for (let attempt = 0; attempt < 3; attempt++) {
     const token = cleanNpsso(await askSecret('Paste the npsso value (or the whole JSON)'));
-    if (token) {
-      log.info(`Tip: put it in .env as ${npssoEnvVar(account)}=... to skip this next time`);
-      return token;
-    }
+    if (token) return token;
     log.warn(`That doesn't look like an NPSSO token (expected ${NPSSO_LENGTH} characters). Try again.`);
   }
   throw new Error('No valid NPSSO token provided');
