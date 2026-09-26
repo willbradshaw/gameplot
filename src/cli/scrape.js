@@ -34,7 +34,7 @@ const psn = withCommonOptions(
   new Command('psn')
     .summary('download from PlayStation Network')
     .description(
-      'scrape playtime data from one PlayStation Network account; ' +
+      'download playtime data from one PlayStation Network account; ' +
         'authenticates with an existing NPSSO token if available, ' +
         'otherwise walks through fetching a new one in the browser',
     )
