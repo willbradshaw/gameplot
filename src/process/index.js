@@ -6,7 +6,7 @@
 
 import fs from 'fs-extra';
 import { gamesSchema, parseOrThrow, rawGamesSchema } from '../lib/model.js';
-import { buildAliasMap, loadAnnotations } from './annotations.js';
+import { buildAliasMap, checkTags, loadAnnotations, loadTags } from './annotations.js';
 
 /** Which platform's url to show when a game is on several. First match wins. */
 const DISPLAY_URL_PREFERENCE = ['Steam', 'PS5'];
@@ -170,9 +170,10 @@ export const blankAnnotations = (names) =>
  * @param {string} options.unannotatedFile
  * @param {import('consola').ConsolaInstance} options.log
  */
-export async function runProcess({ input, annotationsFile, out, unannotatedFile, log }) {
+export async function runProcess({ input, annotationsFile, tagsFile, out, unannotatedFile, log }) {
   const rows = parseOrThrow(rawGamesSchema, await fs.readJson(input), input);
   const annotations = await loadAnnotations(annotationsFile);
+  checkTags(annotations, await loadTags(tagsFile), annotationsFile);
   log.info(`${rows.length} scraped rows, ${annotations.length} annotations`);
 
   const result = processGames(rows, annotations);

@@ -3,7 +3,35 @@
  */
 
 import fs from 'fs-extra';
-import { annotationsSchema, parseOrThrow } from '../lib/model.js';
+import { annotationsSchema, parseOrThrow, tagsSchema } from '../lib/model.js';
+
+/**
+ * Read and validate the tag vocabulary.
+ * @param {string} file
+ * @returns {Promise<Record<string, string>>} tag -> description
+ */
+export async function loadTags(file) {
+  return parseOrThrow(tagsSchema, await fs.readJson(file), file);
+}
+
+/**
+ * Every tag used by an annotation must be in the vocabulary. Throws listing
+ * each offending game and tag.
+ * @param {import('../lib/model.js').Annotation[]} annotations
+ * @param {Record<string, string>} tags
+ * @param {string} [label]
+ */
+export function checkTags(annotations, tags, label = 'annotations') {
+  const unknown = [];
+  for (const a of annotations) {
+    for (const t of a.tags) if (!(t in tags)) unknown.push(`"${a.game}": ${t}`);
+  }
+  if (unknown.length) {
+    throw new Error(
+      `${unknown.length} tag(s) in ${label} are not in the tag vocabulary:\n  ${unknown.join('\n  ')}`,
+    );
+  }
+}
 
 /**
  * Check the constraints zod cannot express: unique names, and aliases that

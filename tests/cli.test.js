@@ -24,6 +24,7 @@ test('gameplot process --help shows the default files', async () => {
   const { stdout } = await run('process', '--help');
   assert.match(stdout, /data\/raw\/batch\.json/);
   assert.match(stdout, /data\/annotations\.json/);
+  assert.match(stdout, /data\/tags\.json/);
   assert.match(stdout, /data\/games\.json/);
   assert.match(stdout, /data\/unannotated\.json/);
 });

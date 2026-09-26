@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { annotationSchema } from '../src/lib/model.js';
-import { buildAliasMap } from '../src/process/annotations.js';
+import { buildAliasMap, checkTags } from '../src/process/annotations.js';
 import {
   blankAnnotations,
   buildGame,
@@ -41,6 +41,16 @@ test('a rated game must have a status', () => {
     [['status', 'a rated game must have a status']],
   );
   assert.equal(annotationSchema.safeParse(ann('G', { rating: null, status: 'In Progress' })).success, true);
+});
+
+test('checkTags accepts vocabulary tags and lists every unknown one by game', () => {
+  const tags = { RPG: 'role-playing', Puzzle: 'puzzles' };
+  assert.doesNotThrow(() => checkTags([ann('A'), ann('B', { tags: ['Puzzle', 'RPG'] })], tags));
+  assert.throws(
+    () =>
+      checkTags([ann('A', { tags: ['Rpg'] }), ann('B', { tags: ['Puzzle', 'Mistery'] })], tags, 'file.json'),
+    /2 tag\(s\) in file.json[\s\S]*"A": Rpg[\s\S]*"B": Mistery/,
+  );
 });
 
 test('buildAliasMap rejects duplicate names and ambiguous aliases', () => {

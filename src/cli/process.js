@@ -4,7 +4,7 @@
  */
 
 import { Command } from 'commander';
-import { ANNOTATIONS_FILE, GAMES_FILE, RAW_BATCH_FILE, UNANNOTATED_FILE } from '../lib/env.js';
+import { ANNOTATIONS_FILE, GAMES_FILE, RAW_BATCH_FILE, TAGS_FILE, UNANNOTATED_FILE } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
 import { runProcess } from '../process/index.js';
 
@@ -12,6 +12,7 @@ export const processCommand = new Command('process')
   .description('combine scraped playtime data with annotations into the file the dashboard reads')
   .argument('[input]', 'scraped data file (default: data/raw/batch.json)')
   .option('-a, --annotations <file>', 'annotations file (default: data/annotations.json)')
+  .option('-t, --tags <file>', 'tag vocabulary file (default: data/tags.json)')
   .option('-o, --out <file>', 'output file (default: data/games.json)')
   .option(
     '-u, --unannotated <file>',
@@ -24,6 +25,7 @@ export const processCommand = new Command('process')
     await runProcess({
       input: input ?? RAW_BATCH_FILE,
       annotationsFile: opts.annotations ?? ANNOTATIONS_FILE,
+      tagsFile: opts.tags ?? TAGS_FILE,
       out: opts.out ?? GAMES_FILE,
       unannotatedFile: opts.unannotated ?? UNANNOTATED_FILE,
       log,
