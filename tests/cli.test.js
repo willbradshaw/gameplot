@@ -23,6 +23,7 @@ test('gameplot scrape --help lists the platforms', async () => {
   const { stdout } = await run('scrape', '--help');
   assert.match(stdout, /psn \[options\]\s+download from PlayStation Network/);
   assert.match(stdout, /steam \[options\]\s+download from Steam/);
+  assert.match(stdout, /xbox \[options\]\s+download from Xbox/);
 });
 
 test('gameplot scrape steam --help shows its default output file', async () => {

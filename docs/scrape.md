@@ -103,3 +103,21 @@ untrusted.
   placeholder last-played time of 1970-01-02 for some old titles; these are
   recorded as null.
 - The default label is `Steam`.
+
+### Xbox (`xbox`)
+
+- Scrapes the title history of one Xbox account via the third-party
+  [OpenXBL](https://xbl.io/) API, then fetches minutes played for every played
+  title in one batched stats call.
+- Authenticates with an OpenXBL API key, read from `OPENXBL_API_KEY` (suffixed
+  with `--suffix`). If it is missing or rejected, it is asked for on the
+  terminal and then saved. The key is created at xbl.io after signing in with
+  the Xbox account; the scraper then works on that account.
+- The row `id` is the Xbox title id (a numeric string). OpenXBL exposes no
+  store product id, so `url` is always null.
+- Titles with a last-played time but no recorded minutes are skipped, as are
+  titles missing from the stats response (with a warning).
+- OpenXBL rate-limits aggressively, with a shared 60-requests-per-5-minutes
+  window. A rate-limited call is retried after a minute, up to eight times, so
+  a run can take several minutes when the window is busy.
+- The default label is `Xbox`.
