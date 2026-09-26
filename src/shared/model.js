@@ -1,26 +1,73 @@
 /**
  * The gameplot data model, as zod schemas. Every file the pipeline reads or
  * writes is validated against a schema from here. See docs/scrape.md for the
- * raw record's fields.
+ * raw record and docs/process.md for annotations and the output.
  */
 
 import { z } from 'zod';
 
 const emptyToNull = (v) => (v === '' ? null : v);
+const name = z.string().min(1);
+const isoDate = z.iso.date();
+const hours = z.number().min(0);
+const id = z.union([z.int(), z.string().min(1)]);
+
+/** Allowed values of an annotation's `status`. */
+export const STATUSES = ['Complete', 'In Progress', 'Ongoing', 'Abandoned'];
 
 /** One row per game per platform, as written by a scraper. */
 export const rawGameSchema = z.strictObject({
-  game: z.string().min(1),
-  platform: z.string().min(1),
-  lastPlayed: z.iso.date().nullable(),
-  hoursPlayed: z.number().min(0).nullable(),
-  id: z.union([z.int(), z.string().min(1)]),
+  game: name,
+  platform: name,
+  lastPlayed: isoDate.nullable(),
+  hoursPlayed: hours.nullable(),
+  id,
   url: z.preprocess(emptyToNull, z.string().min(1).nullable()),
 });
 
 /** @typedef {z.infer<typeof rawGameSchema>} RawGame */
 
 export const rawGamesSchema = z.array(rawGameSchema);
+
+/** A per-platform playtime correction inside an annotation. */
+export const playtimeCorrectionSchema = z.strictObject({
+  hoursPlayed: hours.optional(),
+  lastPlayed: isoDate.optional(),
+});
+
+/** One hand-written annotation in data/annotations.json. */
+export const annotationSchema = z.strictObject({
+  game: name,
+  rating: z.number().min(0).max(10).nullable(),
+  status: z.enum(STATUSES).nullable(),
+  tags: z.array(name),
+  aliases: z.array(name).optional(),
+  playtime: z.record(name, playtimeCorrectionSchema).optional(),
+});
+
+/** @typedef {z.infer<typeof annotationSchema>} Annotation */
+
+export const annotationsSchema = z.array(annotationSchema);
+
+/** One entry in data/games.json: a game across its platforms plus its annotation. */
+export const gameSchema = z.strictObject({
+  game: name,
+  platforms: z.array(name),
+  ids: z.array(id),
+  urls: z.array(z.string().min(1).nullable()),
+  hoursPlayedSingle: z.array(hours),
+  lastPlayedSingle: z.array(isoDate.nullable()),
+  hoursPlayedTotal: hours,
+  lastPlayedTotal: isoDate,
+  displayUrl: z.string().min(1).nullable(),
+  rating: z.number().min(0).max(10),
+  status: z.enum(STATUSES).nullable(),
+  tags: z.array(name),
+});
+
+/** @typedef {z.infer<typeof gameSchema>} Game */
+
+export const gamesSchema = z.array(gameSchema);
 
 /**
  * Parse with a schema, throwing an error that names the source and lists

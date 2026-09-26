@@ -140,9 +140,9 @@ corrections have been applied:
   have a `lastPlayed` date. A missing one is an error, fixed by supplying it in
   the annotation.
 
-Processing stops on the first such error and nothing is written. Games that
-will not be output (unannotated or unrated) are not checked: a row with null
-hours belonging to one of them is simply dropped as never played.
+Every broken rule is listed, then processing stops and nothing is written.
+Games that will not be output (unannotated or unrated) are not checked: a row
+with null hours belonging to one of them is simply dropped as never played.
 
 ### Merging
 
