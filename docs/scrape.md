@@ -10,7 +10,9 @@ gameplot scrape psn --help
 
 See [setup.md](setup.md) for installation.
 
-## Output
+## Common behaviour
+
+### Output
 
 Every scraper writes a JSON array of rows with exactly these fields:
 
@@ -44,7 +46,7 @@ choice, rows sharing an id are always combined the same way:
 
 Each combination is logged at info level.
 
-## Common options
+### Options
 
 | Option | Effect |
 |---|---|
@@ -56,7 +58,7 @@ Each combination is logged at info level.
 
 `--label` and `--suffix` accept letters, digits, and dashes.
 
-## Credentials
+### Credentials
 
 Credentials obtained during scraping are automatically stored in a gitignored
 `.env` file at the repo root. Expired or otherwise rejected credentials are
@@ -64,14 +66,16 @@ automatically re-obtained and overwritten; the details vary by platform.
 Credentials in matching environment variables in the shell environment
 take precedence over the file.
 
-## PlayStation Network
+## Platforms
+
+### PlayStation Network
 
 ```
 gameplot scrape psn                 # writes data/raw/psn.json
 gameplot scrape psn --suffix uk     # writes data/raw/psn-uk.json
 ```
 
-### What it fetches
+#### What it fetches
 
 The account's "played games" list, via the [psn-api](https://psn-api.achievements.app/)
 library. Every title with recorded playtime becomes a row; owned titles that
@@ -84,7 +88,7 @@ and regional release of a game, so editions are combined as described under
 edition-specific title id (e.g. `PPSA01234_00`). The `url` is the store page
 for the concept, or null when there is none.
 
-### Authentication
+#### Authentication
 
 PSN has no public API keys. Access is by **NPSSO token**, a 64-character
 cookie value tied to a logged-in browser session. It should be treated like a
