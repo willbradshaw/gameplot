@@ -32,15 +32,15 @@ function parseAccountLabel(value) {
 
 const psn = withCommonOptions(
   new Command('psn')
-    .summary('PlayStation Network: the played-games list of one account')
+    .summary('Scrapes playtime data from one PlayStation Network account')
     .description(
-      'PlayStation Network: the played-games list of one account. ' +
-        'Authenticates with the NPSSO token in PSN_NPSSO (environment or .env); ' +
-        'if it is missing or rejected, walks you through fetching a new one in the browser.',
+      'Scrapes playtime data from one PlayStation Network account. ' +
+        'Authenticates with an existing NPSSO token if available, ' +
+        'otherwise walks through fetching a new one in the browser.',
     )
     .option(
       '-a, --account <label>',
-      'only needed with several PSN accounts: selects the token variable (PSN_NPSSO_<LABEL>) and output file',
+      'Optional; distinguishes PSN accounts in the NPSSO token variable and output file path suffix.',
       parseAccountLabel,
     ),
   `data/games-raw/${psnOutputFile()}`,
