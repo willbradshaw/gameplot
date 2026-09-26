@@ -22,6 +22,18 @@ function withCommonOptions(command, defaultOutDescription) {
     .option('-q, --quiet', 'only show warnings and errors');
 }
 
+/**
+ * Append a paragraph to a command's help, wrapped to the terminal width when
+ * displayed. commander wraps option descriptions itself but prints
+ * addHelpText blocks verbatim, so this reuses its formatter.
+ */
+function addHelpParagraph(command, text) {
+  return command.addHelpText('after', ({ command: cmd }) => {
+    const width = process.stdout.isTTY ? process.stdout.columns : 80;
+    return `\n${cmd.createHelp().boxWrap(text, width)}`;
+  });
+}
+
 function parseAccountLabel(value) {
   const label = value.toLowerCase();
   if (!/^[a-z0-9-]+$/.test(label)) {
@@ -30,28 +42,24 @@ function parseAccountLabel(value) {
   return label;
 }
 
-const psn = withCommonOptions(
-  new Command('psn')
-    .description('PlayStation Network: the played-games list of one account')
-    .option(
-      '-a, --account <label>',
-      'only needed with several PSN accounts: selects the token variable (PSN_NPSSO_<LABEL>) and output file',
-      parseAccountLabel,
-    ),
-  `data/games-raw/${psnOutputFile()}`,
-)
-  .addHelpText(
-    'after',
-    `
-Authentication: the NPSSO token is read from PSN_NPSSO in the environment (or
-.env). If it is missing or PSN rejects it, you are walked through fetching a
-new one in the browser.`,
-  )
-  .action(async (opts) => {
-    const log = createLogger(opts);
-    const games = await scrapePsnAccount({ account: opts.account, log });
-    await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, psnOutputFile(opts.account)), games, log);
-  });
+const psn = addHelpParagraph(
+  withCommonOptions(
+    new Command('psn')
+      .description('PlayStation Network: the played-games list of one account')
+      .option(
+        '-a, --account <label>',
+        'only needed with several PSN accounts: selects the token variable (PSN_NPSSO_<LABEL>) and output file',
+        parseAccountLabel,
+      ),
+    `data/games-raw/${psnOutputFile()}`,
+  ),
+  'Authentication: the NPSSO token is read from PSN_NPSSO in the environment (or .env). ' +
+    'If it is missing or PSN rejects it, you are walked through fetching a new one in the browser.',
+).action(async (opts) => {
+  const log = createLogger(opts);
+  const games = await scrapePsnAccount({ account: opts.account, log });
+  await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, psnOutputFile(opts.account)), games, log);
+});
 
 export const scrapeCommand = new Command('scrape')
   .description('download playtime data from a platform into data/games-raw/')
