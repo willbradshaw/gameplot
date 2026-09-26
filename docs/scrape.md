@@ -122,3 +122,24 @@ untrusted.
   window. A rate-limited call is retried after a minute, up to eight times, so
   a run can take several minutes when the window is busy.
 - The default label is `Xbox`.
+
+### GOG (`gog`)
+
+- Scrapes the list of owned product ids from one GOG account through the
+  endpoints the GOG Galaxy client uses, then looks each id up in GOG's public
+  catalogue API (a few requests at a time) for its title and type. Only
+  products of type `game` become rows. DLC, bundles (whose constituent games
+  appear in the library separately) and owned products no longer in the
+  catalogue are skipped and counted in one log line; `--verbose` lists them. GOG reports ownership only, so every row
+  has `hoursPlayed` and `lastPlayed` null; playtime has to be supplied later
+  by hand.
+- Authenticates with GOG's OAuth flow. A long-lived **refresh token** is read
+  from `GOG_REFRESH_TOKEN` (suffixed with `--suffix`) and exchanged for an
+  access token. If it is missing or rejected, the GOG login page is opened in
+  the browser; after login it redirects to a page whose address contains
+  `code=...`, which is pasted at the prompt. GOG rotates the refresh token on
+  every exchange, and the newest one is saved.
+- The row `id` is the GOG product id and the `url` is the product's page on
+  [GOG Database](https://www.gogdb.org/), a third-party catalogue with stable
+  links.
+- The default label is `GOG`.

@@ -7,15 +7,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": [
-      "**",
-      "!data",
-      "!gameplot-env",
-      "!src/render",
-      "!src/scrape/*-scraper.js",
-      "!index.html",
-      "!styles.css"
-    ]
+    "includes": ["**", "!data", "!gameplot-env", "!src/render", "!index.html", "!styles.css"]
   },
   "formatter": {
     "enabled": true,

@@ -23,6 +23,28 @@ export const suffixedEnvVar = (base, suffix) => (suffix ? `${base}_${suffix.toUp
  */
 export const suffixedFile = (prefix, suffix) => (suffix ? `${prefix}-${suffix}.json` : `${prefix}.json`);
 
+/**
+ * Map over items with at most `limit` calls in flight, preserving order. For
+ * platforms that need one request per game.
+ * @template T, R
+ * @param {T[]} items
+ * @param {number} limit
+ * @param {(item: T, index: number) => Promise<R>} fn
+ * @returns {Promise<R[]>}
+ */
+export async function mapWithConcurrency(items, limit, fn) {
+  const results = new Array(items.length);
+  let next = 0;
+  const worker = async () => {
+    while (next < items.length) {
+      const i = next++;
+      results[i] = await fn(items[i], i);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
+
 /** Round to one decimal place, avoiding float noise like 12.299999. */
 export const roundHours = (h) => Math.round(h * 10) / 10;
 

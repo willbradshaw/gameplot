@@ -8,6 +8,7 @@ import { Command, InvalidArgumentError } from 'commander';
 import { RAW_DATA_DIR } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
 import { writeRawGames } from '../scrape/common.js';
+import { GOG_PLATFORM, gogOutputFile, scrapeGogAccount } from '../scrape/gog.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
 import { STEAM_PLATFORM, scrapeSteamAccount, steamOutputFile } from '../scrape/steam.js';
 import { scrapeXboxAccount, XBOX_PLATFORM, xboxOutputFile } from '../scrape/xbox.js';
@@ -81,8 +82,21 @@ const xbox = platformCommand({
   scrape: scrapeXboxAccount,
 });
 
+const gog = platformCommand({
+  name: 'gog',
+  summary: 'download from GOG',
+  description:
+    'download the owned-games list of one GOG account (GOG reports no playtime); ' +
+    'authenticates with a stored refresh token if available, otherwise walks ' +
+    'through logging in via the browser',
+  defaultPlatform: GOG_PLATFORM,
+  outputFile: gogOutputFile,
+  scrape: scrapeGogAccount,
+});
+
 export const scrapeCommand = new Command('scrape')
   .description('download online playtime data')
   .addCommand(psn)
   .addCommand(steam)
-  .addCommand(xbox);
+  .addCommand(xbox)
+  .addCommand(gog);
