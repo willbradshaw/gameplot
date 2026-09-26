@@ -84,5 +84,21 @@ take precedence over the file.
 - The default label is `PS5`; the tool does not currently distinguish between
   PSN platforms.
 
+### Steam (`steam`)
+
+- Scrapes the owned-games list of one account via the Steam Web API
+  (`GetOwnedGames`), including free games that have been played.
+- Authenticates with a Steam Web API key[^steamkey] and the account's 17-digit
+  Steam ID, read from `STEAM_API_KEY` and `STEAM_ID` (suffixed with
+  `--suffix`). If either is missing or the key is rejected, both are asked for
+  on the terminal and then saved. The profile's game details must be public.
+- The row `id` is the Steam app id and the `url` is the store page.
+- `hoursPlayed` is online plus offline (disconnected) playtime. Steam reports a
+  placeholder last-played time of 1970-01-02 for some old titles; these are
+  recorded as null.
+- The default label is `Steam`.
+
 [^npsso]: The token grants full access to the account and is stored in
     plaintext in `.env`, so it should be treated as a password.
+[^steamkey]: The key is tied to the Steam account, must be kept private under
+    Steam's terms, and is stored in plaintext in `.env`.
