@@ -13,7 +13,7 @@ const hours = z.number().min(0);
 const id = z.union([z.int(), z.string().min(1)]);
 
 /** Allowed values of an annotation's `status`. */
-export const STATUSES = ['Complete', 'In Progress', 'Ongoing', 'Abandoned'];
+export const STATUSES = ['Complete', 'In Progress', 'Abandoned'];
 
 /** One row per game per platform, as written by a scraper. */
 export const rawGameSchema = z.strictObject({

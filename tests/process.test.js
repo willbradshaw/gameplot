@@ -29,6 +29,7 @@ test('annotation schema accepts the documented shape and rejects unknown fields'
   );
   assert.equal(annotationSchema.safeParse(ann('G', { hoursPlayedTotal: 5 })).success, false);
   assert.equal(annotationSchema.safeParse(ann('G', { status: 'Playing' })).success, false);
+  assert.equal(annotationSchema.safeParse(ann('G', { status: 'Ongoing' })).success, false);
   assert.equal(annotationSchema.safeParse(ann('G', { playtime: { GOG: { hours: 3 } } })).success, false);
   assert.equal(annotationSchema.safeParse(ann('G', { rating: null, status: null })).success, true);
 });
