@@ -10,6 +10,7 @@ import { createLogger } from '../lib/log.js';
 import { writeRawGames } from '../scrape/common.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
 import { STEAM_PLATFORM, scrapeSteamAccount, steamOutputFile } from '../scrape/steam.js';
+import { scrapeXboxAccount, XBOX_PLATFORM, xboxOutputFile } from '../scrape/xbox.js';
 
 function parseSuffix(value) {
   const suffix = value.toLowerCase();
@@ -68,7 +69,20 @@ const steam = platformCommand({
   scrape: scrapeSteamAccount,
 });
 
+const xbox = platformCommand({
+  name: 'xbox',
+  summary: 'download from Xbox',
+  description:
+    'download playtime data for one Xbox account via the OpenXBL API (xbl.io); ' +
+    'needs an OpenXBL API key, which is asked for and saved if not already ' +
+    'present in the environment',
+  defaultPlatform: XBOX_PLATFORM,
+  outputFile: xboxOutputFile,
+  scrape: scrapeXboxAccount,
+});
+
 export const scrapeCommand = new Command('scrape')
   .description('download online playtime data')
   .addCommand(psn)
-  .addCommand(steam);
+  .addCommand(steam)
+  .addCommand(xbox);
