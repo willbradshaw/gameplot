@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { parseOrThrow, rawGameSchema, rawGamesSchema } from '../src/shared/model.js';
+import { parseOrThrow, rawGameSchema, rawGamesSchema } from '../src/lib/model.js';
 
 const row = (over = {}) => ({
   game: 'A',

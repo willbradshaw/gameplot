@@ -51,7 +51,7 @@ function lastPlayedDate(game, log) {
  * @param {object[]} games  the `response.games` array from GetOwnedGames
  * @param {import('consola').ConsolaInstance} log
  * @param {string} [platform]  display name written to each row
- * @returns {import('../shared/model.js').RawGame[]}
+ * @returns {import('../lib/model.js').RawGame[]}
  */
 export function convertSteamGames(games, log, platform = STEAM_PLATFORM) {
   const rows = [];
@@ -111,7 +111,7 @@ export async function fetchOwnedGames({ apiKey, steamId, fetchImpl = fetch }) {
  * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
  * @param {typeof fetch} [options.fetchImpl]  injectable for tests
- * @returns {Promise<import('../shared/model.js').RawGame[]>}
+ * @returns {Promise<import('../lib/model.js').RawGame[]>}
  */
 export async function scrapeSteam({ apiKey, steamId, platform = STEAM_PLATFORM, log, fetchImpl }) {
   log.start('Fetching owned games from the Steam Web API');
@@ -214,7 +214,7 @@ export async function saveSteamCredentials(vars, creds, log) {
  * @param {typeof promptForSteamCredentials} [options.prompt]  injectable for tests
  * @param {typeof saveSteamCredentials} [options.save]  injectable for tests
  * @param {typeof fetch} [options.fetchImpl]  injectable for tests
- * @returns {Promise<import('../shared/model.js').RawGame[]>}
+ * @returns {Promise<import('../lib/model.js').RawGame[]>}
  */
 export async function scrapeSteamAccount({
   suffix,

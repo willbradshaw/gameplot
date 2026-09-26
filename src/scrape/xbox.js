@@ -140,7 +140,7 @@ export async function fetchMinutesPlayed(ctx, xuid, titleIds) {
  * @param {Map<string, number>} minutesByTitle
  * @param {import('consola').ConsolaInstance} log
  * @param {string} [platform]
- * @returns {import('../shared/model.js').RawGame[]}
+ * @returns {import('../lib/model.js').RawGame[]}
  */
 export function convertXboxTitles(titles, minutesByTitle, log, platform = XBOX_PLATFORM) {
   const rows = [];

@@ -8,6 +8,7 @@
 
 import { Command } from 'commander';
 import pkg from '../package.json' with { type: 'json' };
+import { processCommand } from '../src/cli/process.js';
 import { scrapeCommand } from '../src/cli/scrape.js';
 import { loadDotEnv } from '../src/lib/env.js';
 
@@ -20,6 +21,7 @@ const program = new Command('gameplot')
   });
 
 program.addCommand(scrapeCommand);
+program.addCommand(processCommand);
 
 try {
   await program.parseAsync(process.argv);

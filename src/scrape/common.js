@@ -4,7 +4,7 @@
  */
 
 import fs from 'fs-extra';
-import { parseOrThrow, rawGamesSchema } from '../shared/model.js';
+import { parseOrThrow, rawGamesSchema } from '../lib/model.js';
 
 /**
  * Apply the --suffix option to a credential variable name: `PSN_NPSSO`
@@ -66,9 +66,9 @@ export function isoToDate(iso) {
  * editions, re-releases sharing a concept id). Names must agree: a name
  * mismatch on one id means the scraper's id choice is wrong, so it throws.
  *
- * @param {import('../shared/model.js').RawGame[]} rows
+ * @param {import('../lib/model.js').RawGame[]} rows
  * @param {import('consola').ConsolaInstance} log
- * @returns {import('../shared/model.js').RawGame[]}
+ * @returns {import('../lib/model.js').RawGame[]}
  */
 export function combineDuplicateIds(rows, log) {
   const byId = new Map();
@@ -96,7 +96,7 @@ export function combineDuplicateIds(rows, log) {
  * reaches disk.
  * @param {unknown[]} rows
  * @param {string} label used in error messages
- * @returns {import('../shared/model.js').RawGame[]}
+ * @returns {import('../lib/model.js').RawGame[]}
  */
 export function finalizeRawGames(rows, label) {
   const games = parseOrThrow(rawGamesSchema, rows, label);
@@ -105,7 +105,7 @@ export function finalizeRawGames(rows, label) {
 
 /**
  * @param {string} file
- * @param {import('../shared/model.js').RawGame[]} games
+ * @param {import('../lib/model.js').RawGame[]} games
  * @param {import('consola').ConsolaInstance} log
  */
 export async function writeRawGames(file, games, log) {
