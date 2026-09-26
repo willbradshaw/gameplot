@@ -79,13 +79,10 @@ untrusted.
 - Scrapes the list of played games from one account via the
   [psn-api](https://psn-api.achievements.app/) library.
 - Authenticates, on the first run, via an **NPSSO token**: a 64-character
-  cookie value tied to a logged-in browser session, obtained interactively (or
-  read from `PSN_NPSSO`, suffixed with `--suffix`, if set). The exchange
-  yields a **refresh token**, which is saved as `PSN_REFRESH_TOKEN` (suffixed)
-  and used on later runs instead. The NPSSO itself is never saved: it is
-  invalidated whenever a different account logs in through the browser, so
-  with several accounts the tokens would keep cancelling each other, whereas
-  refresh tokens are per client and unaffected.
+  cookie value tied to a logged-in browser session, obtained interactively.
+  The exchange yields a **refresh token**, which is saved as
+  `PSN_REFRESH_TOKEN` (suffixed with `--suffix`) and used on later runs
+  instead.
 - The row `id` is PSN's **concept id**, which Sony shares across every edition
   and regional release of a game. Titles without a concept fall back to their
   edition-specific `titleId`. The `url` is the store page for the concept, or

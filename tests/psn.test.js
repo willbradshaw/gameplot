@@ -5,9 +5,9 @@ import {
   cleanNpsso,
   convertPsnTitles,
   fetchAllPlayedGames,
-  npssoEnvVar,
   parsePlayDuration,
   psnOutputFile,
+  refreshTokenEnvVar,
   scrapePsn,
   scrapePsnAccount,
 } from '../src/scrape/psn.js';
@@ -158,7 +158,7 @@ test('scrapePsnAccount prefers the saved refresh token and saves the rotated one
   const games = await scrapePsnAccount({
     platform: 'PlayStation',
     log: silentLogger,
-    env: { PSN_REFRESH_TOKEN: 'rt-old', PSN_NPSSO: GOOD },
+    env: { PSN_REFRESH_TOKEN: 'rt-old' },
     prompt: neverPrompt,
     save,
     api,
@@ -181,28 +181,23 @@ test('scrapePsnAccount does not re-save an unchanged refresh token', async () =>
   });
 });
 
-test('scrapePsnAccount falls back to the NPSSO in the environment when the refresh token is rejected', async () => {
-  const api = fakeApi({ npsso: GOOD });
+test('scrapePsnAccount reads the suffixed variable', async () => {
+  const api = fakeApi({ refresh: 'rt-uk' });
   const { saved, save } = recorder();
   await scrapePsnAccount({
     suffix: 'uk',
     log: silentLogger,
-    env: { PSN_REFRESH_TOKEN_UK: 'rt-stale', PSN_NPSSO: STALE, PSN_NPSSO_UK: GOOD },
+    env: { PSN_REFRESH_TOKEN: 'rt-other', PSN_REFRESH_TOKEN_UK: 'rt-uk' },
     prompt: neverPrompt,
     save,
     api,
   });
-  assert.deepEqual(api.seen, { npsso: [GOOD], refresh: ['rt-stale'] });
-  assert.deepEqual(saved, [['PSN_REFRESH_TOKEN_UK', 'rt-from-npsso']]);
+  assert.deepEqual(api.seen, { npsso: [], refresh: ['rt-uk'] });
+  assert.deepEqual(saved, [['PSN_REFRESH_TOKEN_UK', 'rt-rotated']]);
 });
 
-test('scrapePsnAccount prompts when nothing stored works, then saves the refresh token (never the NPSSO)', async () => {
-  for (const env of [
-    {},
-    { PSN_NPSSO_UK: 'not a token' },
-    { PSN_NPSSO_UK: STALE },
-    { PSN_REFRESH_TOKEN_UK: 'bad' },
-  ]) {
+test('scrapePsnAccount logs in through the browser when the refresh token is missing or rejected, then saves it', async () => {
+  for (const env of [{}, { PSN_REFRESH_TOKEN_UK: 'bad' }]) {
     const api = fakeApi({ npsso: GOOD });
     let prompted = 0;
     const prompt = async () => {
@@ -254,9 +249,9 @@ test('scrapePsn wires authentication, fetching and conversion together', async (
 });
 
 test('the suffix is applied to the token variable and output file; none means the plain defaults', () => {
-  assert.equal(npssoEnvVar(), 'PSN_NPSSO');
+  assert.equal(refreshTokenEnvVar(), 'PSN_REFRESH_TOKEN');
   assert.equal(psnOutputFile(), 'psn.json');
-  assert.equal(npssoEnvVar('uk'), 'PSN_NPSSO_UK');
+  assert.equal(refreshTokenEnvVar('uk'), 'PSN_REFRESH_TOKEN_UK');
   assert.equal(psnOutputFile('uk'), 'psn-uk.json');
 });
 

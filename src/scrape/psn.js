@@ -107,8 +107,6 @@ export async function authenticate(api, npsso) {
 
 /**
  * Exchange a refresh token from an earlier login for fresh API authorization.
- * Unlike the NPSSO, the refresh token belongs to this client rather than the
- * browser session, so it survives logging into another account in the browser.
  * @param {typeof psnApi} api
  * @param {string} refreshToken
  */
@@ -178,9 +176,6 @@ export function cleanNpsso(input) {
   return value.length === NPSSO_LENGTH ? value : null;
 }
 
-/** Environment variable holding the NPSSO token, with the --suffix applied. */
-export const npssoEnvVar = (suffix) => suffixedEnvVar('PSN_NPSSO', suffix);
-
 /** Environment variable holding the refresh token saved after a login, with the --suffix applied. */
 export const refreshTokenEnvVar = (suffix) => suffixedEnvVar('PSN_REFRESH_TOKEN', suffix);
 
@@ -188,17 +183,11 @@ export const refreshTokenEnvVar = (suffix) => suffixedEnvVar('PSN_REFRESH_TOKEN'
 export const psnOutputFile = (suffix) => suffixedFile('psn', suffix);
 
 /**
- * Scrape one account, obtaining authorization by the first of these that works:
- *
- *  1. the refresh token saved from an earlier login (PSN_REFRESH_TOKEN);
- *  2. an NPSSO token in the environment (PSN_NPSSO);
- *  3. an NPSSO token obtained by logging in through the browser.
- *
- * The refresh token PSN returns is saved (before scraping, so a later failure
- * never costs another login). Only the refresh token is saved, never the
- * NPSSO: an NPSSO is the browser's sign-in session, so logging into a second
- * account in the browser invalidates the first account's NPSSO, whereas
- * refresh tokens are per client and unaffected.
+ * Scrape one account. Authorization comes from the refresh token saved by an
+ * earlier login (PSN_REFRESH_TOKEN); when there is none or it is rejected,
+ * from logging in through the browser for an NPSSO token. The refresh token
+ * PSN returns is saved before scraping, so a later failure never costs
+ * another login.
  *
  * @param {object} options
  * @param {string} [options.suffix]  the --suffix option; selects the variables
@@ -220,7 +209,6 @@ export async function scrapePsnAccount({
   api = psnApi,
 }) {
   const refreshVar = refreshTokenEnvVar(suffix);
-  const npssoVar = npssoEnvVar(suffix);
   let authorization = null;
 
   if (env[refreshVar]) {
@@ -228,20 +216,7 @@ export async function scrapePsnAccount({
     try {
       authorization = await authorizeWithRefreshToken(api, env[refreshVar].trim());
     } catch (err) {
-      log.warn(`${refreshVar} was rejected (${err.message})`);
-    }
-  }
-
-  if (!authorization) {
-    const npsso = cleanNpsso(env[npssoVar]);
-    if (env[npssoVar] && !npsso) log.warn(`${npssoVar} is set but is not a valid NPSSO token; ignoring it`);
-    if (npsso) {
-      log.start('Authenticating with PlayStation Network using the NPSSO token');
-      try {
-        authorization = await authenticate(api, npsso);
-      } catch (err) {
-        log.warn(`${npssoVar} was rejected (${err.message}); falling back to browser login`);
-      }
+      log.warn(`${refreshVar} was rejected (${err.message}); falling back to browser login`);
     }
   }
 
