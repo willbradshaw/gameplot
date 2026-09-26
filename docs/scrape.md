@@ -67,13 +67,18 @@ automatically re-obtained and overwritten; the details vary by platform.
 Credentials in matching environment variables in the shell environment
 take precedence over the file.
 
+The stored credentials are secrets: each grants access to the corresponding
+account, and they are written in plaintext. `.env` should be treated with the
+same care as a password file and never committed, shared or synced anywhere
+untrusted.
+
 ## Platforms
 
 ### PlayStation Network (`psn`)
 
 - Scrapes the list of played games from one account via the
   [psn-api](https://psn-api.achievements.app/) library.
-- Authenticates via an **NPSSO token**[^npsso], a 64-character cookie value
+- Authenticates via an **NPSSO token**, a 64-character cookie value
   tied to a logged-in browser session. The token is read from `PSN_NPSSO` (or
   `PSN_NPSSO_<SUFFIX>` with `--suffix`); if this fails, a fresh token is
   obtained interactively.
@@ -84,5 +89,17 @@ take precedence over the file.
 - The default label is `PS5`; the tool does not currently distinguish between
   PSN platforms.
 
-[^npsso]: The token grants full access to the account and is stored in
-    plaintext in `.env`, so it should be treated as a password.
+### Steam (`steam`)
+
+- Scrapes the owned-games list of one account via the Steam Web API
+  (`GetOwnedGames`), including free games that have been played.
+- Authenticates with a [Steam Web API key](https://steamcommunity.com/dev/apikey)
+  and the account's 17-digit Steam ID (shown at the top of the
+  [account page](https://store.steampowered.com/account/)), read from
+  `STEAM_API_KEY` and `STEAM_ID` (suffixed with `--suffix`). If either is missing or the key is rejected, both are asked for
+  on the terminal and then saved. The profile's game details must be public.
+- The row `id` is the Steam app id and the `url` is the store page.
+- `hoursPlayed` is online plus offline (disconnected) playtime. Steam reports a
+  placeholder last-played time of 1970-01-02 for some old titles; these are
+  recorded as null.
+- The default label is `Steam`.

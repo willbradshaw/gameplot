@@ -19,9 +19,16 @@ test('gameplot --help lists the scrape command', async () => {
   assert.match(stdout, /scrape\s+download online playtime data/);
 });
 
-test('gameplot scrape --help lists psn', async () => {
+test('gameplot scrape --help lists the platforms', async () => {
   const { stdout } = await run('scrape', '--help');
   assert.match(stdout, /psn \[options\]\s+download from PlayStation Network/);
+  assert.match(stdout, /steam \[options\]\s+download from Steam/);
+});
+
+test('gameplot scrape steam --help shows its default output file', async () => {
+  const { stdout } = await run('scrape', 'steam', '--help');
+  assert.match(stdout, /default: data\/raw\/steam\.json/);
+  assert.match(stdout, /--label <label>[\s\S]*default:\s+"Steam"/);
 });
 
 test('gameplot scrape psn --help documents the account option', async () => {
