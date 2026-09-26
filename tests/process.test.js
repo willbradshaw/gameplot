@@ -33,6 +33,16 @@ test('annotation schema accepts the documented shape and rejects unknown fields'
   assert.equal(annotationSchema.safeParse(ann('G', { rating: null, status: null })).success, true);
 });
 
+test('a rated game must have a status', () => {
+  const r = annotationSchema.safeParse(ann('G', { rating: 7, status: null }));
+  assert.equal(r.success, false);
+  assert.deepEqual(
+    r.error.issues.map((i) => [i.path.join('.'), i.message]),
+    [['status', 'a rated game must have a status']],
+  );
+  assert.equal(annotationSchema.safeParse(ann('G', { rating: null, status: 'In Progress' })).success, true);
+});
+
 test('buildAliasMap rejects duplicate names and ambiguous aliases', () => {
   assert.deepEqual(
     [...buildAliasMap([ann('A', { aliases: ['a1', 'a2'] }), ann('B')])],

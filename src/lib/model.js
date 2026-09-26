@@ -36,14 +36,19 @@ export const playtimeCorrectionSchema = z.strictObject({
 });
 
 /** One hand-written annotation in data/annotations.json. */
-export const annotationSchema = z.strictObject({
-  game: name,
-  rating: z.number().min(0).max(10).nullable(),
-  status: z.enum(STATUSES).nullable(),
-  tags: z.array(name),
-  aliases: z.array(name).optional(),
-  playtime: z.record(name, playtimeCorrectionSchema).optional(),
-});
+export const annotationSchema = z
+  .strictObject({
+    game: name,
+    rating: z.number().min(0).max(10).nullable(),
+    status: z.enum(STATUSES).nullable(),
+    tags: z.array(name),
+    aliases: z.array(name).optional(),
+    playtime: z.record(name, playtimeCorrectionSchema).optional(),
+  })
+  .refine((a) => a.rating === null || a.status !== null, {
+    message: 'a rated game must have a status',
+    path: ['status'],
+  });
 
 /** @typedef {z.infer<typeof annotationSchema>} Annotation */
 
@@ -61,7 +66,7 @@ export const gameSchema = z.strictObject({
   lastPlayedTotal: isoDate,
   displayUrl: z.string().min(1).nullable(),
   rating: z.number().min(0).max(10),
-  status: z.enum(STATUSES).nullable(),
+  status: z.enum(STATUSES),
   tags: z.array(name),
 });
 
