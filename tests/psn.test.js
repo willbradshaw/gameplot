@@ -117,17 +117,25 @@ test('pagination fetches every page and stops at the total', async () => {
   assert.deepEqual(calls, [0, 200, 400]);
 });
 
-/** A fake psn-api that accepts exactly one token and records what it saw. */
-function fakeApi(validToken) {
-  const seen = [];
+/**
+ * A fake psn-api that accepts exactly one NPSSO and one refresh token, issues
+ * a new refresh token on every authorization, and records what it saw.
+ */
+function fakeApi({ npsso: validNpsso, refresh: validRefresh } = {}) {
+  const seen = { npsso: [], refresh: [] };
   return {
     seen,
     exchangeNpssoForAccessCode: async (npsso) => {
-      seen.push(npsso);
-      if (npsso !== validToken) throw new Error('403 Forbidden');
+      seen.npsso.push(npsso);
+      if (npsso !== validNpsso) throw new Error('403 Forbidden');
       return 'code';
     },
-    exchangeAccessCodeForAuthTokens: async () => ({ accessToken: 'token' }),
+    exchangeAccessCodeForAuthTokens: async () => ({ accessToken: 'token', refreshToken: 'rt-from-npsso' }),
+    exchangeRefreshTokenForAuthTokens: async (refreshToken) => {
+      seen.refresh.push(refreshToken);
+      if (refreshToken !== validRefresh) throw new Error('invalid_grant');
+      return { accessToken: 'token', refreshToken: 'rt-rotated' };
+    },
     getUserPlayedGames: async () => ({ titles: [title()], totalItemCount: 1, nextOffset: 1 }),
   };
 }
@@ -136,64 +144,99 @@ const STALE = 's'.repeat(64);
 const neverPrompt = async () => {
   throw new Error('prompt should not be called');
 };
-
 const neverSave = async () => {
   throw new Error('save should not be called');
 };
+const recorder = () => {
+  const saved = [];
+  return { saved, save: async (envVar, token) => saved.push([envVar, token]) };
+};
 
-test('scrapePsnAccount uses a valid token from the environment without prompting or saving', async () => {
-  const api = fakeApi(GOOD);
+test('scrapePsnAccount prefers the saved refresh token and saves the rotated one', async () => {
+  const api = fakeApi({ refresh: 'rt-old' });
+  const { saved, save } = recorder();
   const games = await scrapePsnAccount({
     platform: 'PlayStation',
     log: silentLogger,
-    env: { PSN_NPSSO: GOOD },
+    env: { PSN_REFRESH_TOKEN: 'rt-old', PSN_NPSSO: GOOD },
     prompt: neverPrompt,
-    save: neverSave,
+    save,
     api,
   });
   assert.equal(games.length, 1);
   assert.equal(games[0].platform, 'PlayStation');
-  assert.deepEqual(api.seen, [GOOD]);
+  assert.deepEqual(api.seen, { npsso: [], refresh: ['rt-old'] });
+  assert.deepEqual(saved, [['PSN_REFRESH_TOKEN', 'rt-rotated']]);
 });
 
-test('scrapePsnAccount reads the labelled variable when an account is given', async () => {
-  const api = fakeApi(GOOD);
+test('scrapePsnAccount does not re-save an unchanged refresh token', async () => {
+  const api = fakeApi({ refresh: 'rt-old' });
+  api.exchangeRefreshTokenForAuthTokens = async () => ({ accessToken: 'token', refreshToken: 'rt-old' });
   await scrapePsnAccount({
-    suffix: 'uk',
     log: silentLogger,
-    env: { PSN_NPSSO: STALE, PSN_NPSSO_UK: GOOD },
+    env: { PSN_REFRESH_TOKEN: 'rt-old' },
     prompt: neverPrompt,
     save: neverSave,
     api,
   });
-  assert.deepEqual(api.seen, [GOOD]);
 });
 
-test('scrapePsnAccount prompts when the token is missing, malformed, or rejected, then offers to save it', async () => {
-  for (const env of [{}, { PSN_NPSSO: 'not a token' }, { PSN_NPSSO: STALE }]) {
-    const api = fakeApi(GOOD);
+test('scrapePsnAccount falls back to the NPSSO in the environment when the refresh token is rejected', async () => {
+  const api = fakeApi({ npsso: GOOD });
+  const { saved, save } = recorder();
+  await scrapePsnAccount({
+    suffix: 'uk',
+    log: silentLogger,
+    env: { PSN_REFRESH_TOKEN_UK: 'rt-stale', PSN_NPSSO: STALE, PSN_NPSSO_UK: GOOD },
+    prompt: neverPrompt,
+    save,
+    api,
+  });
+  assert.deepEqual(api.seen, { npsso: [GOOD], refresh: ['rt-stale'] });
+  assert.deepEqual(saved, [['PSN_REFRESH_TOKEN_UK', 'rt-from-npsso']]);
+});
+
+test('scrapePsnAccount prompts when nothing stored works, then saves the refresh token (never the NPSSO)', async () => {
+  for (const env of [
+    {},
+    { PSN_NPSSO_UK: 'not a token' },
+    { PSN_NPSSO_UK: STALE },
+    { PSN_REFRESH_TOKEN_UK: 'bad' },
+  ]) {
+    const api = fakeApi({ npsso: GOOD });
     let prompted = 0;
     const prompt = async () => {
       prompted += 1;
       return GOOD;
     };
-    const saved = [];
-    const save = async (envVar, token) => saved.push([envVar, token]);
+    const { saved, save } = recorder();
     const games = await scrapePsnAccount({ suffix: 'uk', log: silentLogger, env, prompt, save, api });
     assert.equal(prompted, 1, JSON.stringify(env));
     assert.equal(games.length, 1);
-    assert.equal(api.seen.at(-1), GOOD);
-    assert.deepEqual(saved, [['PSN_NPSSO_UK', GOOD]]);
+    assert.equal(api.seen.npsso.at(-1), GOOD);
+    assert.deepEqual(saved, [['PSN_REFRESH_TOKEN_UK', 'rt-from-npsso']]);
   }
 });
 
-test('scrapePsnAccount does not offer to save a token that failed', async () => {
-  const api = fakeApi(GOOD);
-  const prompt = async () => STALE;
+test('scrapePsnAccount saves nothing when the prompted token fails', async () => {
+  const api = fakeApi({ npsso: GOOD });
   await assert.rejects(
-    scrapePsnAccount({ log: silentLogger, env: {}, prompt, save: neverSave, api }),
+    scrapePsnAccount({ log: silentLogger, env: {}, prompt: async () => STALE, save: neverSave, api }),
     /403 Forbidden/,
   );
+});
+
+test('scrapePsnAccount saves the refresh token before fetching, so a later failure keeps it', async () => {
+  const api = fakeApi({ npsso: GOOD });
+  api.getUserPlayedGames = async () => {
+    throw new Error('network down');
+  };
+  const { saved, save } = recorder();
+  await assert.rejects(
+    scrapePsnAccount({ log: silentLogger, env: {}, prompt: async () => GOOD, save, api }),
+    /network down/,
+  );
+  assert.deepEqual(saved, [['PSN_REFRESH_TOKEN', 'rt-from-npsso']]);
 });
 
 test('scrapePsn wires authentication, fetching and conversion together', async () => {

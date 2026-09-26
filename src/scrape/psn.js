@@ -106,24 +106,53 @@ export async function authenticate(api, npsso) {
 }
 
 /**
- * Scrape one PSN account.
+ * Exchange a refresh token from an earlier login for fresh API authorization.
+ * Unlike the NPSSO, the refresh token belongs to this client rather than the
+ * browser session, so it survives logging into another account in the browser.
+ * @param {typeof psnApi} api
+ * @param {string} refreshToken
+ */
+export const authorizeWithRefreshToken = (api, refreshToken) =>
+  api.exchangeRefreshTokenForAuthTokens(refreshToken);
+
+/**
+ * Fetch and convert the played-games list given API authorization.
  * @param {object} options
- * @param {string} options.npsso
+ * @param {import('psn-api').AuthorizationPayload} options.authorization
  * @param {string} [options.accountId]  "me" for the authenticating account
  * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
- * @param {typeof psnApi} [options.api]  injectable for tests
+ * @param {typeof psnApi} [options.api]
  * @returns {Promise<import('../shared/model.js').RawGame[]>}
  */
-export async function scrapePsn({ npsso, accountId = 'me', platform = PSN_PLATFORM, log, api = psnApi }) {
-  log.start('Authenticating with PlayStation Network');
-  const authorization = await authenticate(api, npsso);
+export async function scrapeAuthorized({
+  authorization,
+  accountId = 'me',
+  platform = PSN_PLATFORM,
+  log,
+  api = psnApi,
+}) {
   log.info('Fetching played games');
   const titles = await fetchAllPlayedGames(api, authorization, accountId, log);
   log.info(`PSN reports ${titles.length} titles`);
   const games = convertPsnTitles(titles, log, platform);
   log.info(`${games.length} titles have playtime`);
   return games;
+}
+
+/**
+ * Scrape one PSN account from an NPSSO token.
+ * @param {object} options
+ * @param {string} options.npsso
+ * @param {string} [options.accountId]
+ * @param {string} [options.platform]
+ * @param {import('consola').ConsolaInstance} options.log
+ * @param {typeof psnApi} [options.api]
+ */
+export async function scrapePsn({ npsso, accountId, platform, log, api = psnApi }) {
+  log.start('Authenticating with PlayStation Network');
+  const authorization = await authenticate(api, npsso);
+  return scrapeAuthorized({ authorization, accountId, platform, log, api });
 }
 
 // ---------------------------------------------------------------------------
@@ -152,22 +181,32 @@ export function cleanNpsso(input) {
 /** Environment variable holding the NPSSO token, with the --suffix applied. */
 export const npssoEnvVar = (suffix) => suffixedEnvVar('PSN_NPSSO', suffix);
 
+/** Environment variable holding the refresh token saved after a login, with the --suffix applied. */
+export const refreshTokenEnvVar = (suffix) => suffixedEnvVar('PSN_REFRESH_TOKEN', suffix);
+
 /** Default output filename, with the --suffix applied. */
 export const psnOutputFile = (suffix) => suffixedFile('psn', suffix);
 
 /**
- * Scrape one account, resolving the NPSSO token first.
+ * Scrape one account, obtaining authorization by the first of these that works:
  *
- * The token comes from the environment when present and valid. If it is
- * absent, malformed, or rejected by PSN (tokens expire after roughly two
- * months), the user is walked through fetching a fresh one in the browser.
+ *  1. the refresh token saved from an earlier login (PSN_REFRESH_TOKEN);
+ *  2. an NPSSO token in the environment (PSN_NPSSO);
+ *  3. an NPSSO token obtained by logging in through the browser.
+ *
+ * The refresh token PSN returns is saved (before scraping, so a later failure
+ * never costs another login). Only the refresh token is saved, never the
+ * NPSSO: an NPSSO is the browser's sign-in session, so logging into a second
+ * account in the browser invalidates the first account's NPSSO, whereas
+ * refresh tokens are per client and unaffected.
  *
  * @param {object} options
- * @param {string} [options.suffix]  the --suffix option; selects the token variable
+ * @param {string} [options.suffix]  the --suffix option; selects the variables
  * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
  * @param {NodeJS.ProcessEnv} [options.env]  injectable for tests
  * @param {typeof promptForNpsso} [options.prompt]  injectable for tests
+ * @param {typeof saveToken} [options.save]  injectable for tests
  * @param {typeof psnApi} [options.api]  injectable for tests
  * @returns {Promise<import('../shared/model.js').RawGame[]>}
  */
@@ -178,23 +217,44 @@ export async function scrapePsnAccount({
   env = process.env,
   prompt = promptForNpsso,
   save = saveToken,
-  api,
+  api = psnApi,
 }) {
-  const envVar = npssoEnvVar(suffix);
-  const fromEnv = cleanNpsso(env[envVar]);
-  if (env[envVar] && !fromEnv) log.warn(`${envVar} is set but is not a valid NPSSO token; ignoring it`);
+  const refreshVar = refreshTokenEnvVar(suffix);
+  const npssoVar = npssoEnvVar(suffix);
+  let authorization = null;
 
-  if (fromEnv) {
+  if (env[refreshVar]) {
+    log.start('Authenticating with PlayStation Network using the saved refresh token');
     try {
-      return await scrapePsn({ npsso: fromEnv, platform, log, api });
+      authorization = await authorizeWithRefreshToken(api, env[refreshVar].trim());
     } catch (err) {
-      log.warn(`Token from ${envVar} was rejected (${err.message}); falling back to browser login`);
+      log.warn(`${refreshVar} was rejected (${err.message})`);
     }
   }
-  const npsso = await prompt(suffix, log);
-  const games = await scrapePsn({ npsso, platform, log, api });
-  await save(envVar, npsso, log);
-  return games;
+
+  if (!authorization) {
+    const npsso = cleanNpsso(env[npssoVar]);
+    if (env[npssoVar] && !npsso) log.warn(`${npssoVar} is set but is not a valid NPSSO token; ignoring it`);
+    if (npsso) {
+      log.start('Authenticating with PlayStation Network using the NPSSO token');
+      try {
+        authorization = await authenticate(api, npsso);
+      } catch (err) {
+        log.warn(`${npssoVar} was rejected (${err.message}); falling back to browser login`);
+      }
+    }
+  }
+
+  if (!authorization) {
+    const npsso = await prompt(suffix, log);
+    log.start('Authenticating with PlayStation Network');
+    authorization = await authenticate(api, npsso);
+  }
+
+  if (authorization.refreshToken && authorization.refreshToken !== env[refreshVar]) {
+    await save(refreshVar, authorization.refreshToken, log);
+  }
+  return scrapeAuthorized({ authorization, platform, log, api });
 }
 
 /**
