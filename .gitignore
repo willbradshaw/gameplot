@@ -1,7 +1,11 @@
 .DS_Store
+node_modules
+
+# Secrets: API keys and login tokens live here, never in the repo
+.env
+
+# Legacy Python pipeline (removed at v2 cutover)
 __pycache__
 */__pycache__
-node_modules
-package-lock.json
 */scraper-config.json
 data/manual/blank-annotations.json

@@ -1,41 +1,22 @@
 {
-  "name": "video-game-dashboard",
-  "version": "1.0.0",
-  "description": "Interactive dashboard for analyzing video game playing patterns and preferences. Load your gaming data from JSON and explore three complementary visualizations: timeline scatter plot, rating distribution by tags, and playtime vs rating analysis.",
-  "main": "index.html",
+  "name": "gameplot",
+  "version": "2.0.0-dev",
+  "description": "Personal video-game dashboard: scrapes playtime from Steam, PSN, Xbox and GOG, merges it with hand-written ratings and tags, and renders an interactive D3 page.",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "gameplot": "bin/gameplot.js"
+  },
   "scripts": {
-    "dev": "python -m http.server 8000",
-    "serve": "npx serve .",
-    "start": "python -m http.server 8000"
+    "scrape": "node bin/gameplot.js scrape",
+    "test": "node --test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yourusername/video-game-dashboard.git"
-  },
-  "keywords": [
-    "data-visualization",
-    "d3js",
-    "gaming",
-    "analytics",
-    "dashboard",
-    "interactive"
-  ],
-  "author": "Your Name",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yourusername/video-game-dashboard/issues"
-  },
-  "homepage": "https://github.com/yourusername/video-game-dashboard#readme",
   "dependencies": {
-    "open": "^10.1.2",
-    "psn-api": "^2.12.0"
+    "open": "^11.0.4",
+    "psn-api": "^2.18.1"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.12.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "license": "MIT"
 }
