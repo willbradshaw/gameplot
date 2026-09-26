@@ -45,6 +45,26 @@ that report ownership but no playtime at all keep every owned title, with
 
 `--suffix` accepts letters, digits, and dashes.
 
+### Batch runs
+
+`gameplot scrape batch <sources>` runs several sources in one go and writes
+every row to a single file, `data/raw.json` by default (`--out` changes it).
+Sources are a comma-separated list of `platform` or `platform:suffix`:
+
+```
+gameplot scrape batch steam,psn:uk,psn,xbox,gog
+```
+
+Each source runs exactly as its single-platform command would, including
+credential handling. A failing source does not stop the others, but the
+combined file is written only when every source succeeds, so a partial run
+never replaces a previous good file; the summary at the end names what failed
+and the exit code is non-zero. `--verbose` and `--quiet` apply to the whole
+batch.
+
+The combined file may contain the same game more than once when it is owned
+on several platforms or in several accounts; later stages merge those.
+
 ### Duplicate ids
 
 Platforms sometimes list the same game more than once under the same `id`. When
