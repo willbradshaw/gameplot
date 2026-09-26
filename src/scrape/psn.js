@@ -44,16 +44,17 @@ export function parsePlayDuration(duration) {
  *
  * @param {import('psn-api').UserPlayedGamesResponse['titles']} titles
  * @param {import('consola').ConsolaInstance} log
+ * @param {string} [platform]  display name written to each row
  * @returns {import('../shared/model.js').RawGame[]}
  */
-export function convertPsnTitles(titles, log) {
+export function convertPsnTitles(titles, log, platform = PSN_PLATFORM) {
   const rows = [];
   for (const t of titles) {
     if (!t.playDuration || t.playDuration === 'PT0S') continue;
     const id = t.concept?.id ?? t.titleId;
     rows.push({
       game: t.localizedName || t.name || `Unknown Game (${id})`,
-      platform: PSN_PLATFORM,
+      platform,
       lastPlayed: isoToDate(t.lastPlayedDateTime),
       hoursPlayed: parsePlayDuration(t.playDuration),
       id,
@@ -103,17 +104,18 @@ export async function authenticate(api, npsso) {
  * @param {object} options
  * @param {string} options.npsso
  * @param {string} [options.accountId]  "me" for the authenticating account
+ * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
  * @param {typeof psnApi} [options.api]  injectable for tests
  * @returns {Promise<import('../shared/model.js').RawGame[]>}
  */
-export async function scrapePsn({ npsso, accountId = 'me', log, api = psnApi }) {
+export async function scrapePsn({ npsso, accountId = 'me', platform = PSN_PLATFORM, log, api = psnApi }) {
   log.start('Authenticating with PlayStation Network');
   const authorization = await authenticate(api, npsso);
   log.info('Fetching played games');
   const titles = await fetchAllPlayedGames(api, authorization, accountId, log);
   log.info(`PSN reports ${titles.length} titles`);
-  const games = convertPsnTitles(titles, log);
+  const games = convertPsnTitles(titles, log, platform);
   log.info(`${games.length} titles have playtime`);
   return games;
 }
@@ -163,6 +165,7 @@ export const psnOutputFile = (account) => (account ? `psn-games-${account}.json`
  *
  * @param {object} options
  * @param {string} [options.account]  label selecting the token variable
+ * @param {string} [options.platform]  display name written to each row
  * @param {import('consola').ConsolaInstance} options.log
  * @param {NodeJS.ProcessEnv} [options.env]  injectable for tests
  * @param {typeof promptForNpsso} [options.prompt]  injectable for tests
@@ -171,6 +174,7 @@ export const psnOutputFile = (account) => (account ? `psn-games-${account}.json`
  */
 export async function scrapePsnAccount({
   account,
+  platform = PSN_PLATFORM,
   log,
   env = process.env,
   prompt = promptForNpsso,
@@ -183,13 +187,13 @@ export async function scrapePsnAccount({
 
   if (fromEnv) {
     try {
-      return await scrapePsn({ npsso: fromEnv, log, api });
+      return await scrapePsn({ npsso: fromEnv, platform, log, api });
     } catch (err) {
       log.warn(`Token from ${envVar} was rejected (${err.message}); falling back to browser login`);
     }
   }
   const npsso = await prompt(account, log);
-  const games = await scrapePsn({ npsso, log, api });
+  const games = await scrapePsn({ npsso, platform, log, api });
   await save(envVar, npsso, log);
   return games;
 }

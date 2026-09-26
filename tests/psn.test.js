@@ -45,6 +45,11 @@ test('converts titles to the raw shape with concept id and store url', () => {
   });
 });
 
+test('the platform display name can be overridden', () => {
+  const [g] = convertPsnTitles([title()], silentLogger, 'PS4');
+  assert.equal(g.platform, 'PS4');
+});
+
 test('drops titles with no playtime', () => {
   const games = convertPsnTitles(
     [title({ playDuration: 'PT0S' }), title({ playDuration: undefined })],
@@ -139,6 +144,7 @@ const neverSave = async () => {
 test('scrapePsnAccount uses a valid token from the environment without prompting or saving', async () => {
   const api = fakeApi(GOOD);
   const games = await scrapePsnAccount({
+    platform: 'PlayStation',
     log: silentLogger,
     env: { PSN_NPSSO: GOOD },
     prompt: neverPrompt,
@@ -146,6 +152,7 @@ test('scrapePsnAccount uses a valid token from the environment without prompting
     api,
   });
   assert.equal(games.length, 1);
+  assert.equal(games[0].platform, 'PlayStation');
   assert.deepEqual(api.seen, [GOOD]);
 });
 

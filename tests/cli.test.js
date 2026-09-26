@@ -27,6 +27,7 @@ test('gameplot scrape --help lists psn', async () => {
 test('gameplot scrape psn --help documents the account option', async () => {
   const { stdout } = await run('scrape', 'psn', '--help');
   assert.match(stdout, /--account <label>/);
+  assert.match(stdout, /--platform <name>[\s\S]*default:\s+"PS5"/);
   assert.match(stdout, /default: data\/games-raw\/psn-games\.json/);
 });
 

@@ -1,45 +1,53 @@
 # Scraping playtime data
 
-`gameplot scrape <platform>` downloads your playtime from one platform and
-writes it to `data/games-raw/`. Each platform (and, where a platform supports
-it, each account) gets its own file. Later stages read every file in that
-directory, so the filenames are for your convenience only.
+`gameplot scrape <platform>` downloads online playtime data from a single
+platform, converts it to a common format and saves it to a JSON file.
 
 ```
 gameplot scrape --help
 gameplot scrape psn --help
 ```
 
-## Setup
+See [setup.md](setup.md) for installation.
 
-Requires Node 22.12 or later.
+## Output
 
-```
-npm install
-npm link          # puts the `gameplot` command on your PATH
-```
-
-Credentials live in a gitignored `.env` file at the repo root. You don't need
-to create it: when a scraper obtains a credential interactively it offers to
-save it there for next time. Variables already set in your shell take
-precedence over the file.
-
-## Output format
+Each run writes one file to `data/games-raw/`, named after the platform (and
+account, where a platform supports several). Later stages read every file in
+that directory, so the filenames are for your convenience only.
 
 Every scraper writes a JSON array of rows with exactly these fields:
 
 | Field | Type | Meaning |
 |---|---|---|
-| `game` | string | Name as the platform reports it |
-| `platform` | string | e.g. `PS5`, `Steam` |
-| `lastPlayed` | `YYYY-MM-DD` or null | Null if the platform doesn't say |
-| `hoursPlayed` | number or null | Decimal hours, one decimal place. Null if the platform doesn't say |
-| `id` | integer or string | The platform's own identifier, unique within the file |
-| `url` | string or null | Store page, if the platform has one |
+| `game` | string | Game name as the platform reports it |
+| `platform` | string | Gaming platform display name, e.g. `PS5`, `Steam` |
+| `lastPlayed` | `YYYY-MM-DD` or null | Last recorded play date on platform |
+| `hoursPlayed` | number or null | Hours of recorded playtime on platform, to one decimal place |
+| `id` | integer or string | Unique identifier of the game for that platform |
+| `url` | string or null | Store or other landing page for the game |
 
 Rows are validated against this shape before being written, so a scraper that
 misbehaves fails rather than producing a bad file. Rows are ordered by hours
-played, most first.
+played in descending order.
+
+## Common options
+
+Every platform accepts these:
+
+| Option | Effect |
+|---|---|
+| `-p, --platform <name>` | Platform display name written to each row, overriding the platform's default (e.g. `PS5`) |
+| `-o, --out <file>` | Write somewhere other than the default file |
+| `-v, --verbose` | Show debug output |
+| `-q, --quiet` | Only warnings and errors |
+
+## Credentials
+
+Credentials live in a gitignored `.env` file at the repo root. You don't need
+to create it: when a scraper obtains a credential interactively it offers to
+save it there for next time. Variables already set in your shell take
+precedence over the file.
 
 ## PlayStation Network
 
@@ -54,8 +62,8 @@ The account's "played games" list, via the [psn-api](https://psn-api.achievement
 library. Every title with recorded playtime becomes a row; titles you own but
 have never launched are skipped. Where PSN lists several editions of a game
 (regional versions, remasters sharing a concept), they are combined into one
-row with their hours summed and the most recent date kept. All rows are
-recorded as platform `PS5`.
+row with their hours summed and the most recent date kept. Rows are recorded
+as platform `PS5` unless `--platform` says otherwise.
 
 ### Authentication
 
@@ -94,17 +102,3 @@ run; the pipeline merges the files later.
 | Option | Effect |
 |---|---|
 | `-a, --account <label>` | Select an account, as above |
-| `-o, --out <file>` | Write somewhere other than the default |
-| `-v, --verbose` | Show each page fetched |
-| `-q, --quiet` | Only warnings and errors |
-
-### Troubleshooting
-
-- **"PSN returned no titles; the account may be private."** The played-games
-  list respects the account's privacy settings. Set gameplay data to visible,
-  or check that the token belongs to the account you expect.
-- **The token is rejected on every run.** Tokens expire. The scraper falls
-  back to the browser flow automatically; accept the offer to save the new
-  token and `.env` is updated in place.
-- **The browser doesn't open.** The URL is printed instead. Open it by hand
-  and continue in the terminal.

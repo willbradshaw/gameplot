@@ -8,12 +8,13 @@ import { Command, InvalidArgumentError } from 'commander';
 import { RAW_DATA_DIR } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
 import { writeRawGames } from '../scrape/common.js';
-import { psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
+import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
 
 /** Options every scraper shares. */
-function withCommonOptions(command, defaultOutDescription) {
+function withCommonOptions(command, { defaultOut, defaultPlatform }) {
   return command
-    .option('-o, --out <file>', `output file (default: ${defaultOutDescription})`)
+    .option('-p, --platform <name>', 'platform display name written to each row', defaultPlatform)
+    .option('-o, --out <file>', `output file (default: ${defaultOut})`)
     .option('-v, --verbose', 'show debug output')
     .option('-q, --quiet', 'only show warnings and errors');
 }
@@ -39,10 +40,10 @@ const psn = withCommonOptions(
       'optional; distinguishes PSN accounts in the NPSSO token variable and output file path',
       parseAccountLabel,
     ),
-  `data/games-raw/${psnOutputFile()}`,
+  { defaultOut: `data/games-raw/${psnOutputFile()}`, defaultPlatform: PSN_PLATFORM },
 ).action(async (opts) => {
   const log = createLogger(opts);
-  const games = await scrapePsnAccount({ account: opts.account, log });
+  const games = await scrapePsnAccount({ account: opts.account, platform: opts.platform, log });
   await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, psnOutputFile(opts.account)), games, log);
 });
 
