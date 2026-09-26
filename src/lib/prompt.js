@@ -30,8 +30,8 @@ export async function openInBrowser(url, log) {
   try {
     const { default: open } = await import('open');
     await open(url);
-    log.info(`Opened ${url} in your browser`);
+    log.info(`Opened ${url} in the browser`);
   } catch {
-    log.info(`Please open this URL in your browser:\n  ${url}`);
+    log.info(`The browser could not be opened; open this URL by hand:\n  ${url}`);
   }
 }

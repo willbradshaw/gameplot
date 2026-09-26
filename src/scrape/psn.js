@@ -4,10 +4,9 @@
  * `api` object so conversion and pagination are testable without credentials.
  */
 
-import path from 'node:path';
 import * as psnApi from 'psn-api';
 import { ENV_FILE, saveEnvVar } from '../lib/env.js';
-import { askSecret, confirm, openInBrowser, pause } from '../lib/prompt.js';
+import { askSecret, openInBrowser, pause } from '../lib/prompt.js';
 import {
   combineDuplicateIds,
   finalizeRawGames,
@@ -178,7 +177,7 @@ export async function scrapePsnAccount({
   log,
   env = process.env,
   prompt = promptForNpsso,
-  save = offerToSaveToken,
+  save = saveToken,
   api,
 }) {
   const envVar = npssoEnvVar(suffix);
@@ -199,14 +198,13 @@ export async function scrapePsnAccount({
 }
 
 /**
- * After a token obtained interactively has worked, offer to store it in .env
- * so the next run needs no browser login.
+ * Store a token that has just worked in .env, so the next run needs no
+ * browser login.
  * @param {string} envVar
  * @param {string} token
  * @param {import('consola').ConsolaInstance} log
  */
-export async function offerToSaveToken(envVar, token, log) {
-  if (!(await confirm(`Save this token to ${path.basename(ENV_FILE)} as ${envVar} for next time?`))) return;
+export async function saveToken(envVar, token, log) {
   await saveEnvVar(envVar, token);
   log.success(`Saved ${envVar} to ${ENV_FILE}`);
 }
@@ -218,7 +216,7 @@ export async function offerToSaveToken(envVar, token, log) {
  * @returns {Promise<string>}
  */
 export async function promptForNpsso(suffix, log) {
-  log.info(`Step 1: log in to your PlayStation account${suffix ? ` ("${suffix}")` : ''}`);
+  log.info(`Step 1: log in to the PlayStation account${suffix ? ` for "${suffix}"` : ''}`);
   await openInBrowser(LOGIN_URL, log);
   await pause('Logged in?');
   log.info('Step 2: copy the npsso value from the page that opens next');
