@@ -1,7 +1,7 @@
 /**
  * Xbox scraper, via the OpenXBL API (https://xbl.io). See docs/scrape.md.
- * Network access and waiting go through injectable `fetchImpl` and `sleep`
- * so rate-limit handling and conversion are testable without a key.
+ * Network access goes through an injectable `fetchImpl` so request handling
+ * and conversion are testable without a key.
  */
 
 import { saveEnvVar } from '../lib/env.js';
@@ -19,18 +19,15 @@ export const XBOX_PLATFORM = 'Xbox';
 const BASE_URL = 'https://xbl.io/api/v2';
 const API_KEY_URL = 'https://xbl.io/';
 
-/**
- * OpenXBL enforces a shared 60-requests-per-300s window on top of the per-key
- * quota, which other users' traffic can exhaust. Waiting and retrying is the
- * only way through.
- */
-export const RATE_LIMIT_MAX_RETRIES = 8;
-export const RATE_LIMIT_WAIT_MS = 60_000;
-
 /** Thrown when OpenXBL rejects the API key, so callers can re-prompt rather than abort. */
 export class XboxAuthError extends Error {}
 
-const defaultSleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+/**
+ * Thrown when OpenXBL's shared rate-limit window (60 requests per 5 minutes
+ * across all its users) is exhausted. Recovery takes minutes, so the scrape
+ * fails immediately rather than waiting.
+ */
+export class XboxRateLimitError extends Error {}
 
 // ---------------------------------------------------------------------------
 // Network
@@ -39,25 +36,30 @@ const defaultSleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const isEnvelope = (body) => body !== null && typeof body === 'object' && 'content' in body && 'code' in body;
 const isRateLimited = (body) => body !== null && typeof body === 'object' && body.limitType === 'Rate';
 
+function rateLimitError(notice) {
+  const detail =
+    notice && typeof notice === 'object' && notice.maxRequests
+      ? ` (${notice.currentRequests}/${notice.maxRequests} requests in the last ${notice.periodInSeconds}s)`
+      : '';
+  return new XboxRateLimitError(
+    `OpenXBL's shared rate limit is exhausted${detail}; try again in a few minutes`,
+  );
+}
+
 /**
- * One authenticated OpenXBL call, with envelope unwrapping and rate-limit
- * retries. Note the explicit Accept-Language: Node's fetch sends `*` by
- * default, which OpenXBL rejects as an invalid locale.
+ * One authenticated OpenXBL call, with envelope unwrapping. The rate-limit
+ * notice can arrive as HTTP 429, as an envelope with code 429, or as the bare
+ * body; all fail immediately. Note the explicit Accept-Language: Node's
+ * fetch sends `*` by default, which OpenXBL rejects as an invalid locale.
  *
  * @param {object} ctx
  * @param {string} ctx.apiKey
  * @param {typeof fetch} [ctx.fetchImpl]
- * @param {(ms: number) => Promise<void>} [ctx.sleep]
- * @param {import('consola').ConsolaInstance} ctx.log
  * @param {string} path  e.g. '/account'
  * @param {{ method?: 'GET'|'POST', body?: object }} [init]
  * @returns {Promise<any>} the unwrapped response body
  */
-export async function openXblRequest(
-  { apiKey, fetchImpl = fetch, sleep = defaultSleep, log },
-  path,
-  init = {},
-) {
+export async function openXblRequest({ apiKey, fetchImpl = fetch }, path, init = {}) {
   const headers = {
     'X-Authorization': apiKey,
     Accept: 'application/json',
@@ -69,38 +71,23 @@ export async function openXblRequest(
     request.body = JSON.stringify(init.body);
   }
 
-  let lastRateLimit;
-  for (let attempt = 0; attempt <= RATE_LIMIT_MAX_RETRIES; attempt++) {
-    const res = await fetchImpl(`${BASE_URL}${path}`, request);
-    if (res.status === 401 || res.status === 403)
-      throw new XboxAuthError(`OpenXBL rejected the API key (HTTP ${res.status})`);
-    if (res.status !== 200 && res.status !== 429)
-      throw new Error(`OpenXBL request failed (HTTP ${res.status}) for ${path}`);
+  const res = await fetchImpl(`${BASE_URL}${path}`, request);
+  if (res.status === 401 || res.status === 403)
+    throw new XboxAuthError(`OpenXBL rejected the API key (HTTP ${res.status})`);
+  if (res.status !== 200 && res.status !== 429)
+    throw new Error(`OpenXBL request failed (HTTP ${res.status}) for ${path}`);
 
-    let body = await res.json();
-    if (isEnvelope(body)) {
-      if (body.code === 401 || body.code === 403)
-        throw new XboxAuthError(`OpenXBL rejected the API key (code ${body.code})`);
-      if (body.code !== 200)
-        throw new Error(`OpenXBL error ${body.code} for ${path}: ${JSON.stringify(body.content)}`);
-      body = body.content;
-    }
-
-    if (res.status === 429 || isRateLimited(body)) {
-      lastRateLimit = body;
-      if (attempt < RATE_LIMIT_MAX_RETRIES) {
-        log.warn(
-          `Rate limited by OpenXBL; waiting ${RATE_LIMIT_WAIT_MS / 1000}s (retry ${attempt + 1}/${RATE_LIMIT_MAX_RETRIES})`,
-        );
-        await sleep(RATE_LIMIT_WAIT_MS);
-      }
-      continue;
-    }
-    return body;
+  let body = await res.json();
+  if (isEnvelope(body)) {
+    if (body.code === 401 || body.code === 403)
+      throw new XboxAuthError(`OpenXBL rejected the API key (code ${body.code})`);
+    if (body.code === 429 || isRateLimited(body.content)) throw rateLimitError(body.content);
+    if (body.code !== 200)
+      throw new Error(`OpenXBL error ${body.code} for ${path}: ${JSON.stringify(body.content)}`);
+    body = body.content;
   }
-  throw new Error(
-    `OpenXBL rate limit still exceeded after ${RATE_LIMIT_MAX_RETRIES} retries: ${JSON.stringify(lastRateLimit)}`,
-  );
+  if (res.status === 429 || isRateLimited(body)) throw rateLimitError(body);
+  return body;
 }
 
 /** @returns {Promise<{ xuid: string, gamertag: string }>} */
@@ -186,10 +173,9 @@ export function convertXboxTitles(titles, minutesByTitle, log, platform = XBOX_P
  * @param {string} [options.platform]
  * @param {import('consola').ConsolaInstance} options.log
  * @param {typeof fetch} [options.fetchImpl]
- * @param {(ms: number) => Promise<void>} [options.sleep]
  */
-export async function scrapeXbox({ apiKey, platform = XBOX_PLATFORM, log, fetchImpl, sleep }) {
-  const ctx = { apiKey, fetchImpl, sleep, log };
+export async function scrapeXbox({ apiKey, platform = XBOX_PLATFORM, log, fetchImpl }) {
+  const ctx = { apiKey, fetchImpl, log };
   log.start('Looking up the account behind the OpenXBL key');
   const { xuid, gamertag } = await fetchAccount(ctx);
   log.info(`Account: ${gamertag}`);
@@ -243,7 +229,6 @@ export async function scrapeXboxAccount({
   prompt = promptForXboxKey,
   save = saveXboxKey,
   fetchImpl,
-  sleep,
 }) {
   const envVar = xboxEnvVar(suffix);
   const fromEnv = env[envVar];
@@ -252,14 +237,14 @@ export async function scrapeXboxAccount({
 
   if (looksLikeKey(fromEnv)) {
     try {
-      return await scrapeXbox({ apiKey: fromEnv.trim(), platform, log, fetchImpl, sleep });
+      return await scrapeXbox({ apiKey: fromEnv.trim(), platform, log, fetchImpl });
     } catch (err) {
       if (!(err instanceof XboxAuthError)) throw err;
       log.warn(`${err.message}; asking for the key again`);
     }
   }
   const apiKey = await prompt(log);
-  const games = await scrapeXbox({ apiKey, platform, log, fetchImpl, sleep });
+  const games = await scrapeXbox({ apiKey, platform, log, fetchImpl });
   await save(envVar, apiKey, log);
   return games;
 }

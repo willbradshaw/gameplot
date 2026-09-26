@@ -5,9 +5,9 @@ import {
   convertXboxTitles,
   fetchMinutesPlayed,
   openXblRequest,
-  RATE_LIMIT_MAX_RETRIES,
   scrapeXboxAccount,
   XboxAuthError,
+  XboxRateLimitError,
   xboxEnvVar,
   xboxOutputFile,
 } from '../src/scrape/xbox.js';
@@ -38,14 +38,10 @@ function fakeFetch(responses) {
   impl.calls = calls;
   return impl;
 }
-const noSleep = async () => {};
 
 test('openXblRequest sets the headers OpenXBL needs and unwraps the envelope', async () => {
   const fetchImpl = fakeFetch([{ body: envelope({ hello: 1 }) }]);
-  const body = await openXblRequest(
-    { apiKey: KEY, fetchImpl, sleep: noSleep, log: silentLogger },
-    '/account',
-  );
+  const body = await openXblRequest({ apiKey: KEY, fetchImpl, log: silentLogger }, '/account');
   assert.deepEqual(body, { hello: 1 });
   const { url, init } = fetchImpl.calls[0];
   assert.equal(url, 'https://xbl.io/api/v2/account');
@@ -57,7 +53,6 @@ test('openXblRequest treats HTTP 401/403 and envelope codes 401/403 as rejected 
   const ctx = (responses) => ({
     apiKey: KEY,
     fetchImpl: fakeFetch(responses),
-    sleep: noSleep,
     log: silentLogger,
   });
   await assert.rejects(openXblRequest(ctx([{ status: 403, body: {} }]), '/account'), XboxAuthError);
@@ -69,25 +64,26 @@ test('openXblRequest treats HTTP 401/403 and envelope codes 401/403 as rejected 
   await assert.rejects(openXblRequest(ctx([{ status: 500, body: {} }]), '/account'), /HTTP 500/);
 });
 
-test('openXblRequest waits and retries on rate limiting, by status or by body', async () => {
-  const waits = [];
-  const sleep = async (ms) => waits.push(ms);
-  const fetchImpl = fakeFetch([
+test('openXblRequest fails immediately on rate limiting in any of its three shapes', async () => {
+  const notice = {
+    version: 1,
+    currentRequests: 67,
+    maxRequests: 60,
+    periodInSeconds: 300,
+    limitType: 'Rate',
+  };
+  for (const response of [
     { status: 429, body: {} },
-    { body: envelope({ limitType: 'Rate', periodInSeconds: 300 }) },
-    { body: envelope({ ok: true }) },
-  ]);
-  const body = await openXblRequest({ apiKey: KEY, fetchImpl, sleep, log: silentLogger }, '/x');
-  assert.deepEqual(body, { ok: true });
-  assert.equal(waits.length, 2);
-  assert.equal(fetchImpl.calls.length, 3);
-});
-
-test('openXblRequest gives up after the retry budget', async () => {
-  const responses = Array.from({ length: RATE_LIMIT_MAX_RETRIES + 1 }, () => ({ status: 429, body: {} }));
+    { body: envelope(notice, 429) }, // what OpenXBL actually sends
+    { body: notice },
+  ]) {
+    const fetchImpl = fakeFetch([response, { body: envelope({ ok: true }) }]);
+    await assert.rejects(openXblRequest({ apiKey: KEY, fetchImpl }, '/x'), XboxRateLimitError);
+    assert.equal(fetchImpl.calls.length, 1, 'no retry');
+  }
   await assert.rejects(
-    openXblRequest({ apiKey: KEY, fetchImpl: fakeFetch(responses), sleep: noSleep, log: silentLogger }, '/x'),
-    /still exceeded/,
+    openXblRequest({ apiKey: KEY, fetchImpl: fakeFetch([{ body: envelope(notice, 429) }]) }, '/x'),
+    /67\/60 requests in the last 300s\); try again in a few minutes/,
   );
 });
 
@@ -106,11 +102,11 @@ test('fetchMinutesPlayed batches every title into one POST and parses string min
       }),
     },
   ]);
-  const minutes = await fetchMinutesPlayed(
-    { apiKey: KEY, fetchImpl, sleep: noSleep, log: silentLogger },
-    XUID,
-    ['1', '2', '3'],
-  );
+  const minutes = await fetchMinutesPlayed({ apiKey: KEY, fetchImpl, log: silentLogger }, XUID, [
+    '1',
+    '2',
+    '3',
+  ]);
   assert.deepEqual(
     [...minutes],
     [
@@ -194,7 +190,6 @@ test('scrapeXboxAccount uses a stored key without prompting or saving', async ()
     prompt: neverPrompt,
     save: neverSave,
     fetchImpl: fakeFetch(happyPath()),
-    sleep: noSleep,
   });
   assert.equal(rows.length, 1);
   assert.equal(rows[0].game, 'Vampire Survivors');
@@ -213,7 +208,6 @@ test('scrapeXboxAccount prompts and saves when the key is missing or rejected', 
       prompt: async () => KEY,
       save: async (envVar, key) => saved.push([envVar, key]),
       fetchImpl: fakeFetch(responses),
-      sleep: noSleep,
     });
     assert.equal(rows.length, 1);
     assert.deepEqual(saved, [['OPENXBL_API_KEY_ALT', KEY]]);
@@ -228,7 +222,6 @@ test('scrapeXboxAccount does not re-prompt on a non-credential failure', async (
       prompt: neverPrompt,
       save: neverSave,
       fetchImpl: fakeFetch([{ status: 500, body: {} }]),
-      sleep: noSleep,
     }),
     /HTTP 500/,
   );

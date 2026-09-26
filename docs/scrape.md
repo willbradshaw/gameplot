@@ -45,6 +45,41 @@ that report ownership but no playtime at all keep every owned title, with
 
 `--suffix` accepts letters, digits, and dashes.
 
+### Batch runs
+
+`gameplot scrape batch <sources>` runs several sources in one go and writes
+every row to a single file, `data/raw/batch.json` by default (`--out` changes
+it). Sources are a comma-separated list of `platform[:suffix][=label]`, where
+the suffix and label mean what `--suffix` and `--label` mean on the
+single-platform command:
+
+```
+gameplot scrape batch steam,psn:uk,psn,xbox,gog
+gameplot scrape batch steam,psn:uk=PS4,psn,xbox="Xbox Series X"
+gameplot scrape batch                              # same list again
+```
+
+The list is remembered in `.env` as `GAMEPLOT_BATCH`, so later runs can omit
+it; giving a list replaces the remembered one.
+
+Each source runs exactly as its single-platform command would, including
+credential handling, but only the combined file is written: the per-source
+files under `data/raw/` are left untouched. A failing source does not stop
+the others, but the combined file is written only when every source succeeds,
+so a partial run never replaces a previous good file.
+
+`--suffix` names the batch, so that several batches (for example two complete
+sets of accounts) can coexist. With `--suffix alt`:
+
+- the output file is `data/raw/batch-alt.json`;
+- the list is remembered as `GAMEPLOT_BATCH_ALT`, and `gameplot scrape batch
+  --suffix alt` alone re-runs that list;
+- sources in the list that carry no suffix of their own use `alt`, so
+  `steam,psn:uk` reads `STEAM_API_KEY_ALT` but `PSN_REFRESH_TOKEN_UK`.
+
+The combined file may contain the same game more than once when it is owned
+on several platforms or in several accounts; later stages merge those.
+
 ### Duplicate ids
 
 Platforms sometimes list the same game more than once under the same `id`. When
@@ -119,9 +154,10 @@ untrusted.
 - Playtime comes from the stats call, not the title history. A played title
   missing from the stats response is treated as having zero minutes, with a
   warning.
-- OpenXBL rate-limits aggressively, with a shared 60-requests-per-5-minutes
-  window. A rate-limited call is retried after a minute, up to eight times, so
-  a run can take several minutes when the window is busy.
+- OpenXBL has a 60-requests-per-5-minutes window shared by all its users, so
+  it can be full through no fault of the account being scraped. A rate-limited
+  call fails the scrape immediately rather than waiting; a few minutes later it
+  usually goes through.
 - The default label is `Xbox`.
 
 ### GOG (`gog`)
