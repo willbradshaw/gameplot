@@ -29,6 +29,10 @@ Each run writes one file, `data/raw/<platform>.json`, or
 `data/raw/<platform>-<suffix>.json` with `--suffix`. Rows are ordered by hours
 played in descending order.
 
+Titles the platform reports as unplayed (zero playtime) are skipped. Platforms
+that report ownership but no playtime at all keep every owned title, with
+`hoursPlayed` and `lastPlayed` null.
+
 ### Options
 
 | Option | Effect |
@@ -39,7 +43,7 @@ played in descending order.
 | `-v, --verbose` | Show debug output |
 | `-q, --quiet` | Only warnings and errors |
 
-`--label` and `--suffix` accept letters, digits, and dashes.
+`--suffix` accepts letters, digits, and dashes.
 
 ### Duplicate ids
 
@@ -69,11 +73,16 @@ take precedence over the file.
 
 - Scrapes the list of played games from one account via the
   [psn-api](https://psn-api.achievements.app/) library.
-- Authenticates via an **NPSSO token**, a 64-character cookie value tied
-  to a logged-in browser session. The token is read from `PSN_NPSSO` (or
+- Authenticates via an **NPSSO token**[^npsso], a 64-character cookie value
+  tied to a logged-in browser session. The token is read from `PSN_NPSSO` (or
   `PSN_NPSSO_<SUFFIX>` with `--suffix`); if this fails, a fresh token is
   obtained interactively.
 - The row `id` is PSN's **concept id**, which Sony shares across every edition
   and regional release of a game. Titles without a concept fall back to their
   edition-specific `titleId`. The `url` is the store page for the concept, or
   null when there is none.
+- The default label is `PS5`; the tool does not currently distinguish between
+  PSN platforms.
+
+[^npsso]: The token grants full access to the account and is stored in
+    plaintext in `.env`, so it should be treated as a password.
