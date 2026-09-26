@@ -93,9 +93,10 @@ untrusted.
 
 - Scrapes the owned-games list of one account via the Steam Web API
   (`GetOwnedGames`), including free games that have been played.
-- Authenticates with a Steam Web API key and the account's 17-digit
-  Steam ID, read from `STEAM_API_KEY` and `STEAM_ID` (suffixed with
-  `--suffix`). If either is missing or the key is rejected, both are asked for
+- Authenticates with a [Steam Web API key](https://steamcommunity.com/dev/apikey)
+  and the account's 17-digit Steam ID (shown at the top of the
+  [account page](https://store.steampowered.com/account/)), read from
+  `STEAM_API_KEY` and `STEAM_ID` (suffixed with `--suffix`). If either is missing or the key is rejected, both are asked for
   on the terminal and then saved. The profile's game details must be public.
 - The row `id` is the Steam app id and the `url` is the store page.
 - `hoursPlayed` is online plus offline (disconnected) playtime. Steam reports a

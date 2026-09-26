@@ -18,6 +18,7 @@ import {
 export const STEAM_PLATFORM = 'Steam';
 const OWNED_GAMES_URL = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/';
 const API_KEY_URL = 'https://steamcommunity.com/dev/apikey';
+const STEAM_ID_URL = 'https://store.steampowered.com/account/';
 const API_KEY_RE = /^[0-9A-Fa-f]{32}$/;
 const STEAM_ID_RE = /^\d{17}$/;
 
@@ -173,9 +174,7 @@ export async function promptForSteamCredentials(log) {
     'expected 32 hex characters',
     log,
   );
-  log.info(
-    'The 17-digit Steam ID is shown under Account details on steamcommunity.com, or by a lookup site such as steamid.io',
-  );
+  log.info(`The 17-digit Steam ID is shown at the top of ${STEAM_ID_URL}`);
   const steamId = await askUntil(() => ask('64-bit Steam ID'), isSteamId, 'expected 17 digits', log);
   return { apiKey: apiKey.trim(), steamId: steamId.trim() };
 }
