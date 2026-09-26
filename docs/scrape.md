@@ -115,8 +115,9 @@ untrusted.
   the Xbox account; the scraper then works on that account.
 - The row `id` is the Xbox title id (a numeric string). OpenXBL exposes no
   store product id, so `url` is always null.
-- Titles with a last-played time but no recorded minutes are skipped, as are
-  titles missing from the stats response (with a warning).
+- Playtime comes from the stats call, not the title history. A played title
+  missing from the stats response is treated as having zero minutes, with a
+  warning.
 - OpenXBL rate-limits aggressively, with a shared 60-requests-per-5-minutes
   window. A rate-limited call is retried after a minute, up to eight times, so
   a run can take several minutes when the window is busy.
