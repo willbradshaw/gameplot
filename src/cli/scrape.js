@@ -1,10 +1,6 @@
 /**
- * `gameplot scrape <platform>`: download playtime data from one platform
- * into data/games-raw/.
- *
- * Each platform is a subcommand. This module only declares options and
- * wires them to the scraper; the platform logic, including authentication,
- * lives in src/scrape/<platform>.js.
+ * `gameplot scrape <platform>`. Each platform is a subcommand; this module
+ * only declares options and calls src/scrape/<platform>.js. See docs/scrape.md.
  */
 
 import path from 'node:path';

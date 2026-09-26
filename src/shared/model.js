@@ -1,32 +1,17 @@
 /**
- * The gameplot data model, as zod schemas.
- *
- * Every file the pipeline reads or writes is validated against a schema
- * from this module. Dates are 'YYYY-MM-DD' strings throughout, so "most
- * recent" is a plain string comparison. Hours are decimal hours rounded to
- * one place.
- *
- * Only the raw (scraper output) record is defined so far; the merged and
- * annotated records are added with the `process` command.
+ * The gameplot data model, as zod schemas. Every file the pipeline reads or
+ * writes is validated against a schema from here. See docs/scrape.md for the
+ * raw record's fields.
  */
 
 import { z } from 'zod';
-import { PLATFORMS } from './constants.js';
 
 const emptyToNull = (v) => (v === '' ? null : v);
 
-/**
- * One row per game per platform, as written by a scraper to
- * data/games-raw/<platform>.json. Every scraper produces exactly this shape.
- *
- * - `lastPlayed` and `hoursPlayed` are null when the platform doesn't say
- *   (GOG reports ownership but no playtime).
- * - `id` is the platform's own identifier and must be unique within a file.
- * - `url` is the store page, or null if the platform has none.
- */
+/** One row per game per platform, as written by a scraper. */
 export const rawGameSchema = z.strictObject({
   game: z.string().min(1),
-  platform: z.enum(PLATFORMS),
+  platform: z.string().min(1),
   lastPlayed: z.iso.date().nullable(),
   hoursPlayed: z.number().min(0).nullable(),
   id: z.union([z.int(), z.string().min(1)]),

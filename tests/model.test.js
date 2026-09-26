@@ -18,9 +18,9 @@ test('accepts a well-formed raw game and normalises empty url to null', () => {
   assert.equal(g.hoursPlayed, 1.5);
 });
 
-test('rejects bad dates, string hours, unknown platforms and extra keys', () => {
+test('rejects bad dates, string hours, empty platforms and extra keys', () => {
   const r = rawGameSchema.safeParse(
-    row({ lastPlayed: 'yesterday', hoursPlayed: '3', platform: 'Wii', extra: 1 }),
+    row({ lastPlayed: 'yesterday', hoursPlayed: '3', platform: '', extra: 1 }),
   );
   assert.equal(r.success, false);
   const paths = r.error.issues.map((i) => i.path.join('.')).sort();

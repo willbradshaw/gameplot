@@ -1,19 +1,7 @@
 /**
- * PlayStation Network scraper.
- *
- * Uses the psn-api library to read the "played games" list of an account.
- * Authentication is by NPSSO token, a 64-character cookie value that acts as
- * a password: it is read from the environment (see .env.example) and, when
- * missing or rejected, obtained interactively by logging in through the
- * browser and copying the value from Sony's ssocookie endpoint.
- *
- * One run scrapes one account. Users with several PSN accounts give each a
- * label (--account uk), which selects the token variable and output file;
- * with a single account no label is needed. Every game is recorded as
- * platform "PS5" regardless of the title's category.
- *
- * All network access goes through an injectable `api` object so the
- * conversion and pagination logic can be tested without credentials.
+ * PlayStation Network scraper. See docs/scrape.md for how authentication,
+ * accounts and the output work. Network access goes through an injectable
+ * `api` object so conversion and pagination are testable without credentials.
  */
 
 import * as psnApi from 'psn-api';

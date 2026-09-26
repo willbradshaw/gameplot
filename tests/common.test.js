@@ -30,7 +30,7 @@ test('finalizeRawGames rejects rows that do not match the schema', () => {
   assert.throws(
     () =>
       finalizeRawGames(
-        [{ game: 'G', platform: 'Wii', lastPlayed: null, hoursPlayed: 1, id: 1, url: null }],
+        [{ game: 'G', platform: '', lastPlayed: null, hoursPlayed: 1, id: 1, url: null }],
         'test',
       ),
     /Validation failed for test[\s\S]*platform/,
