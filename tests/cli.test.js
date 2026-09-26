@@ -35,7 +35,8 @@ test('gameplot scrape batch rejects a bad source list before running anything', 
     return true;
   });
   const { stdout } = await run('scrape', 'batch', '--help');
-  assert.match(stdout, /default: data\/raw\.json/);
+  assert.match(stdout, /default: data\/raw\/batch\.json/);
+  assert.match(stdout, /--suffix <suffix>/);
 });
 
 test('gameplot scrape steam --help shows its default output file', async () => {

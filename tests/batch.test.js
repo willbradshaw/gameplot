@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { silentLogger } from '../src/lib/log.js';
-import { parseSources, runBatch, sourceName } from '../src/scrape/batch.js';
+import { batchOutputFile, parseSources, runBatch, sourceName } from '../src/scrape/batch.js';
 
 const PLATFORMS = ['psn', 'steam', 'xbox', 'gog'];
 
@@ -62,6 +62,39 @@ test('runBatch runs every source in order, passing the suffix, and concatenates 
     ['S1', 'P-uk', 'P-main'],
   );
   assert.deepEqual(failures, []);
+});
+
+test('runBatch applies the batch suffix to sources without their own', async () => {
+  const calls = [];
+  const registry = {
+    steam: {
+      scrape: async ({ suffix }) => {
+        calls.push(['steam', suffix]);
+        return [];
+      },
+    },
+    psn: {
+      scrape: async ({ suffix }) => {
+        calls.push(['psn', suffix]);
+        return [];
+      },
+    },
+  };
+  await runBatch({
+    sources: parseSources('steam,psn:uk', ['steam', 'psn']),
+    registry,
+    defaultSuffix: 'alt',
+    log: silentLogger,
+  });
+  assert.deepEqual(calls, [
+    ['steam', 'alt'],
+    ['psn', 'uk'],
+  ]);
+});
+
+test('batchOutputFile applies the suffix', () => {
+  assert.equal(batchOutputFile(), 'batch.json');
+  assert.equal(batchOutputFile('alt'), 'batch-alt.json');
 });
 
 test('runBatch keeps going after a failure and reports it', async () => {

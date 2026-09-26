@@ -5,9 +5,9 @@
 
 import path from 'node:path';
 import { Command, InvalidArgumentError } from 'commander';
-import { RAW_BATCH_FILE, RAW_DATA_DIR } from '../lib/env.js';
+import { RAW_DATA_DIR } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
-import { parseSources, runBatch, sourceName } from '../scrape/batch.js';
+import { batchOutputFile, parseSources, runBatch, sourceName } from '../scrape/batch.js';
 import { writeRawGames } from '../scrape/common.js';
 import { GOG_PLATFORM, gogOutputFile, scrapeGogAccount } from '../scrape/gog.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
@@ -92,10 +92,15 @@ const batch = withLogOptions(
         'the file is written only if every source succeeds',
     )
     .argument('<sources>', 'e.g. steam,psn:uk,psn,xbox,gog', (value) => parseSources(value, PLATFORM_NAMES))
-    .option('-o, --out <file>', 'output file (default: data/raw.json)'),
+    .option(
+      '-s, --suffix <suffix>',
+      'optional; appended to the output filename and used by sources that have no suffix of their own',
+      parseSuffix,
+    )
+    .option('-o, --out <file>', `output file (default: data/raw/${batchOutputFile()})`),
 ).action(async (sources, opts) => {
   const log = createLogger(opts);
-  const { rows, failures } = await runBatch({ sources, registry: REGISTRY, log });
+  const { rows, failures } = await runBatch({ sources, registry: REGISTRY, defaultSuffix: opts.suffix, log });
   if (failures.length) {
     log.error(
       `${failures.length} of ${sources.length} sources failed (${failures.map((f) => f.source).join(', ')}); ` +
@@ -105,7 +110,7 @@ const batch = withLogOptions(
     return;
   }
   log.info(`${rows.length} rows from ${sources.map(sourceName).join(', ')}`);
-  await writeRawGames(opts.out ?? RAW_BATCH_FILE, rows, log);
+  await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, batchOutputFile(opts.suffix)), rows, log);
 });
 
 export const scrapeCommand = new Command('scrape').description('download online playtime data');

@@ -9,8 +9,12 @@
  */
 
 import { InvalidArgumentError } from 'commander';
+import { suffixedFile } from './common.js';
 
 const SOURCE_RE = /^([a-z]+)(?::([a-z0-9-]+))?$/;
+
+/** Default output filename, with the batch --suffix applied. */
+export const batchOutputFile = (suffix) => suffixedFile('batch', suffix);
 
 /**
  * Parse a comma-separated source list.
@@ -46,17 +50,19 @@ export const sourceName = ({ platform, suffix }) => (suffix ? `${platform}:${suf
  * @param {object} options
  * @param {{ platform: string, suffix?: string }[]} options.sources
  * @param {Record<string, { scrape: Function }>} options.registry  platform name -> scraper
+ * @param {string} [options.defaultSuffix]  the batch --suffix, used by sources without their own
  * @param {import('consola').ConsolaInstance} options.log
  * @returns {Promise<{ rows: object[], failures: { source: string, error: Error }[] }>}
  */
-export async function runBatch({ sources, registry, log }) {
+export async function runBatch({ sources, registry, defaultSuffix, log }) {
   const rows = [];
   const failures = [];
   for (const source of sources) {
-    const name = sourceName(source);
+    const resolved = { platform: source.platform, suffix: source.suffix ?? defaultSuffix };
+    const name = sourceName(resolved);
     log.box(name);
     try {
-      const games = await registry[source.platform].scrape({ suffix: source.suffix, log });
+      const games = await registry[source.platform].scrape({ suffix: resolved.suffix, log });
       rows.push(...games);
     } catch (error) {
       log.error(`${name} failed: ${error.message}`);
