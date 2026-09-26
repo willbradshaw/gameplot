@@ -9,6 +9,7 @@ import {
   parsePlayDuration,
   psnOutputFile,
   scrapePsn,
+  scrapePsnAccount,
 } from '../src/scrape/psn.js';
 
 const title = (over = {}) => ({
@@ -109,6 +110,65 @@ test('pagination fetches every page and stops at the total', async () => {
   const titles = await fetchAllPlayedGames(api, {}, 'me', silentLogger);
   assert.equal(titles.length, 450);
   assert.deepEqual(calls, [0, 200, 400]);
+});
+
+/** A fake psn-api that accepts exactly one token and records what it saw. */
+function fakeApi(validToken) {
+  const seen = [];
+  return {
+    seen,
+    exchangeNpssoForAccessCode: async (npsso) => {
+      seen.push(npsso);
+      if (npsso !== validToken) throw new Error('403 Forbidden');
+      return 'code';
+    },
+    exchangeAccessCodeForAuthTokens: async () => ({ accessToken: 'token' }),
+    getUserPlayedGames: async () => ({ titles: [title()], totalItemCount: 1, nextOffset: 1 }),
+  };
+}
+const GOOD = 'g'.repeat(64);
+const STALE = 's'.repeat(64);
+const neverPrompt = async () => {
+  throw new Error('prompt should not be called');
+};
+
+test('scrapePsnAccount uses a valid token from the environment without prompting', async () => {
+  const api = fakeApi(GOOD);
+  const games = await scrapePsnAccount({
+    log: silentLogger,
+    env: { PSN_NPSSO: GOOD },
+    prompt: neverPrompt,
+    api,
+  });
+  assert.equal(games.length, 1);
+  assert.deepEqual(api.seen, [GOOD]);
+});
+
+test('scrapePsnAccount reads the labelled variable when an account is given', async () => {
+  const api = fakeApi(GOOD);
+  await scrapePsnAccount({
+    account: 'uk',
+    log: silentLogger,
+    env: { PSN_NPSSO: STALE, PSN_NPSSO_UK: GOOD },
+    prompt: neverPrompt,
+    api,
+  });
+  assert.deepEqual(api.seen, [GOOD]);
+});
+
+test('scrapePsnAccount prompts when the token is missing, malformed, or rejected', async () => {
+  for (const env of [{}, { PSN_NPSSO: 'not a token' }, { PSN_NPSSO: STALE }]) {
+    const api = fakeApi(GOOD);
+    let prompted = 0;
+    const prompt = async () => {
+      prompted += 1;
+      return GOOD;
+    };
+    const games = await scrapePsnAccount({ log: silentLogger, env, prompt, api });
+    assert.equal(prompted, 1, JSON.stringify(env));
+    assert.equal(games.length, 1);
+    assert.equal(api.seen.at(-1), GOOD);
+  }
 });
 
 test('scrapePsn wires authentication, fetching and conversion together', async () => {

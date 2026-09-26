@@ -165,6 +165,37 @@ export const npssoEnvVar = (account) => (account ? `PSN_NPSSO_${account.toUpperC
 export const psnOutputFile = (account) => (account ? `psn-games-${account}.json` : 'psn-games.json');
 
 /**
+ * Scrape one account, resolving the NPSSO token first.
+ *
+ * The token comes from the environment when present and valid. If it is
+ * absent, malformed, or rejected by PSN (tokens expire after roughly two
+ * months), the user is walked through fetching a fresh one in the browser.
+ *
+ * @param {object} options
+ * @param {string} [options.account]  label selecting the token variable
+ * @param {import('consola').ConsolaInstance} options.log
+ * @param {NodeJS.ProcessEnv} [options.env]  injectable for tests
+ * @param {typeof promptForNpsso} [options.prompt]  injectable for tests
+ * @param {typeof psnApi} [options.api]  injectable for tests
+ * @returns {Promise<import('../shared/model.js').RawGame[]>}
+ */
+export async function scrapePsnAccount({ account, log, env = process.env, prompt = promptForNpsso, api }) {
+  const envVar = npssoEnvVar(account);
+  const fromEnv = cleanNpsso(env[envVar]);
+  if (env[envVar] && !fromEnv) log.warn(`${envVar} is set but is not a valid NPSSO token; ignoring it`);
+
+  if (fromEnv) {
+    try {
+      return await scrapePsn({ npsso: fromEnv, log, api });
+    } catch (err) {
+      log.warn(`Token from ${envVar} was rejected (${err.message}); falling back to browser login`);
+    }
+  }
+  const npsso = await prompt(account, log);
+  return scrapePsn({ npsso, log, api });
+}
+
+/**
  * Walk the user through logging in and copying their NPSSO token.
  * @param {string|undefined} account  label, for the messages only
  * @param {import('consola').ConsolaInstance} log
