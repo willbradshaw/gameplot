@@ -67,9 +67,9 @@ test('ratings accept only blank or decimal numbers in range, including zero', ()
 
 test('three passes require statuses, allow unchanged stale statuses, then offer ratings and save changes', async () => {
   const annotations = [
-    ann('Stale', { status: 'In Progress' }),
+    ann('Stale', { status: 'Active' }),
     ann('Missing', { aliases: ['Other'], tags: ['Puzzle'] }),
-    ann('Recent', { status: 'In Progress', rating: 0 }),
+    ann('Recent', { status: 'Active', rating: 0 }),
     ann('Unmatched', { status: 'Complete' }),
   ];
   const rows = [
@@ -102,9 +102,9 @@ test('three passes require statuses, allow unchanged stale statuses, then offer 
     ['Missing', 'Stale', 'Stale', 'Missing', 'Unmatched'],
   );
   assert.equal(updates, 3);
-  assert.equal(saves[0][1].status, 'In Progress');
+  assert.equal(saves[0][1].status, 'Active');
   assert.equal(saves[0][1].rating, null);
-  assert.equal(annotations[0].status, 'In Progress');
+  assert.equal(annotations[0].status, 'Active');
   assert.equal(annotations[0].rating, null);
   assert.equal(annotations[1].rating, 0);
   assert.deepEqual(annotations[1].aliases, ['Other']);
@@ -113,7 +113,7 @@ test('three passes require statuses, allow unchanged stale statuses, then offer 
 });
 
 test('a changed stale status is saved before the rating prompt; interruption keeps earlier answers', async () => {
-  const annotations = [ann('A', { status: 'In Progress' })];
+  const annotations = [ann('A', { status: 'Active' })];
   let saved;
   let prompts = 0;
   await assert.rejects(

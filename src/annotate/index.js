@@ -48,7 +48,7 @@ export function validateRating(value) {
 
 async function askStatus(annotation, prompt, date = null) {
   const choices = STATUSES.map((status, i) => `${i + 1} = ${status}`).join(', ');
-  const context = date ? `; last played ${date}; enter = still In Progress` : '';
+  const context = date ? `; last played ${date}; enter = still Active` : '';
   const answer = await prompt({
     message: `${annotation.game} — status (${choices}${context})`,
     validate: (value) => {
@@ -60,13 +60,13 @@ async function askStatus(annotation, prompt, date = null) {
       );
     },
   });
-  return answer.trim() === '' ? 'In Progress' : STATUSES[Number(answer.trim()) - 1];
+  return answer.trim() === '' ? 'Active' : STATUSES[Number(answer.trim()) - 1];
 }
 
 /** Run three passes in file order, saving each changed answer before continuing. */
 export async function annotateGames({ rows, annotations, prompt = ask, save, now = new Date() }) {
   const dates = lastPlayedDates(rows, annotations);
-  const stale = annotations.filter((a) => a.status === 'In Progress' && isStale(dates.get(a.game), now));
+  const stale = annotations.filter((a) => a.status === 'Active' && isStale(dates.get(a.game), now));
   let updates = 0;
   const update = async (annotation, field, value) => {
     if (annotation[field] === value) return;
