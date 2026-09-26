@@ -125,13 +125,14 @@ untrusted.
 
 ### GOG (`gog`)
 
-- Scrapes the owned-games list of one GOG account through the endpoints the
-  GOG Galaxy client uses, then fetches each product's title (a few requests at
-  a time). GOG reports ownership only, so every owned title becomes a row with
-  `hoursPlayed` and `lastPlayed` null; playtime has to be supplied later by
-  hand. Owned entries with no game details of their own (DLC and upgrade
-  packs, and products GOG has since delisted) are skipped; `--verbose` lists
-  them.
+- Scrapes the list of owned product ids from one GOG account through the
+  endpoints the GOG Galaxy client uses, then looks each id up in GOG's public
+  catalogue API (a few requests at a time) for its title and type. Only
+  products of type `game` become rows: DLC is skipped, and so are packs, which
+  are bundles whose constituent games appear in the library separately.
+  `--verbose` lists what was skipped. GOG reports ownership only, so every row
+  has `hoursPlayed` and `lastPlayed` null; playtime has to be supplied later
+  by hand.
 - Authenticates with GOG's OAuth flow. A long-lived **refresh token** is read
   from `GOG_REFRESH_TOKEN` (suffixed with `--suffix`) and exchanged for an
   access token. If it is missing or rejected, the GOG login page is opened in

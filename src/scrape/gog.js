@@ -30,6 +30,7 @@ const AUTH_URL = `https://auth.gog.com/auth?${new URLSearchParams({
 })}`;
 const TOKEN_URL = 'https://auth.gog.com/token';
 const EMBED_URL = 'https://embed.gog.com';
+const PRODUCTS_URL = 'https://api.gog.com/products';
 const DETAIL_CONCURRENCY = 8;
 
 /** Thrown when GOG rejects the stored refresh token, so callers can fall back to a login. */
@@ -122,28 +123,34 @@ export async function fetchOwnedIds(ctx) {
 }
 
 /**
- * Fetch each owned product's details, a few at a time. GOG's library API
- * has no playtime, so only the title is used.
+ * Look up each owned product in GOG's public catalogue API, which needs no
+ * authentication and reports the product type. Only `game` products become
+ * rows: DLC is not a game in its own right, and a `pack` is a bundle whose
+ * constituent games appear in the library separately.
  * @returns {Promise<{ id: number, title: string }[]>}
  */
-export async function fetchTitles(ctx, ids) {
+export async function fetchProducts({ fetchImpl = fetch, log }, ids) {
   const skipped = [];
   const products = await mapWithConcurrency(ids, DETAIL_CONCURRENCY, async (id) => {
-    const detail = await embedGet(ctx, `/account/gameDetails/${id}.json`);
-    if (!detail?.title) {
-      // Owned entries that aren't games in their own right (DLC and upgrade
-      // packs) and delisted products come back without details. Routine, so
-      // summarised at info level with the list behind --verbose.
-      skipped.push(id);
+    const res = await fetchImpl(`${PRODUCTS_URL}/${id}`);
+    if (res.status === 404) {
+      log?.warn(`Product ${id} is not in GOG's catalogue any more; skipping`);
       return null;
     }
-    return { id, title: detail.title };
+    if (!res.ok) throw new Error(`GOG catalogue request failed (HTTP ${res.status}) for product ${id}`);
+    const product = await res.json();
+    if (!product?.title) throw new Error(`GOG catalogue returned no title for product ${id}`);
+    if (product.game_type !== 'game') {
+      skipped.push(`${product.title} (${product.game_type})`);
+      return null;
+    }
+    return { id, title: product.title };
   });
   if (skipped.length) {
-    ctx.log?.info(
-      `Skipped ${skipped.length} owned products with no game details (DLC, packs, delisted); --verbose lists them`,
+    log?.info(
+      `Skipped ${skipped.length} owned products that are DLC or packs rather than games; --verbose lists them`,
     );
-    for (const id of skipped) ctx.log?.debug(`  no details: https://www.gogdb.org/product/${id}`);
+    for (const s of skipped) log?.debug(`  ${s}`);
   }
   return products.filter(Boolean);
 }
@@ -179,8 +186,8 @@ export async function scrapeGog({ accessToken, platform = GOG_PLATFORM, log, fet
   const ctx = { accessToken, fetchImpl, log };
   log.start('Fetching the GOG library');
   const ids = await fetchOwnedIds(ctx);
-  log.info(`GOG reports ${ids.length} owned products; fetching titles`);
-  const products = await fetchTitles(ctx, ids);
+  log.info(`GOG reports ${ids.length} owned products; looking them up in the catalogue`);
+  const products = await fetchProducts(ctx, ids);
   return convertGogProducts(products, log, platform);
 }
 

@@ -6,7 +6,7 @@ import {
   convertGogProducts,
   exchangeToken,
   extractAuthCode,
-  fetchTitles,
+  fetchProducts,
   GogAuthError,
   gogEnvVar,
   gogOutputFile,
@@ -33,8 +33,8 @@ const tokens = (n = 1) => ({ body: { access_token: `access-${n}`, refresh_token:
 const library = [
   ['userData.json', { body: { isLoggedIn: true, username: 'someone' } }],
   ['user/data/games', { body: { owned: [1441269533, 1207658924] } }],
-  ['gameDetails/1441269533', { body: { title: '80 Days' } }],
-  ['gameDetails/1207658924', { body: { title: 'Beyond Good & Evil™' } }],
+  ['products/1441269533', { body: { title: '80 Days', game_type: 'game' } }],
+  ['products/1207658924', { body: { title: 'The Witcher: Enhanced Edition', game_type: 'game' } }],
 ];
 
 test('mapWithConcurrency preserves order and caps in-flight calls', async () => {
@@ -74,22 +74,35 @@ test('extractAuthCode accepts the redirect URL or the bare code', () => {
   assert.equal(extractAuthCode(''), null);
 });
 
-test('fetchTitles skips products without details, summarised once with the list at debug level', async () => {
+test('fetchProducts keeps games, skips DLC and packs with one summary line, and warns on 404', async () => {
   const info = [];
   const debug = [];
-  const log = { info: (m) => info.push(m), debug: (m) => debug.push(m) };
+  const warn = [];
+  const log = { info: (m) => info.push(m), debug: (m) => debug.push(m), warn: (m) => warn.push(m) };
   const fetchImpl = fakeFetch([
-    ['gameDetails/1', { body: {} }],
-    ['gameDetails/2', { body: { title: 'A Game' } }],
-    ['gameDetails/3', { body: {} }],
+    ['products/1', { body: { title: 'Some DLC', game_type: 'dlc' } }],
+    ['products/2', { body: { title: 'A Game', game_type: 'game' } }],
+    ['products/3', { body: { title: 'A Bundle', game_type: 'pack' } }],
+    ['products/4', { status: 404, body: {} }],
   ]);
-  const products = await fetchTitles({ accessToken: 'a', fetchImpl, log }, [1, 2, 3]);
+  const products = await fetchProducts({ fetchImpl, log }, [1, 2, 3, 4]);
   assert.deepEqual(products, [{ id: 2, title: 'A Game' }]);
+  assert.equal(fetchImpl.calls[0].init, undefined, 'catalogue calls carry no auth header');
   assert.equal(info.length, 1);
   assert.match(info[0], /Skipped 2 owned products/);
-  assert.deepEqual(
-    debug.map((m) => /product\/(\d+)/.exec(m)[1]),
-    ['1', '3'],
+  assert.deepEqual(debug, ['  Some DLC (dlc)', '  A Bundle (pack)']);
+  assert.equal(warn.length, 1);
+  assert.match(warn[0], /Product 4 is not in GOG's catalogue/);
+});
+
+test('fetchProducts fails on server errors and missing titles', async () => {
+  await assert.rejects(
+    fetchProducts({ fetchImpl: fakeFetch([['products/1', { status: 500, body: {} }]]) }, [1]),
+    /HTTP 500/,
+  );
+  await assert.rejects(
+    fetchProducts({ fetchImpl: fakeFetch([['products/1', { body: {} }]]) }, [1]),
+    /no title/,
   );
 });
 
