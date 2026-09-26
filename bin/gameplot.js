@@ -12,7 +12,7 @@ import { scrapeCommand } from '../src/cli/scrape.js';
 import { loadDotEnv } from '../src/lib/env.js';
 
 const program = new Command('gameplot')
-  .description(pkg.description)
+  .description('personal video-game dashboard: scrape playtime, merge it with your ratings, render a page')
   .version(pkg.version)
   .showHelpAfterError()
   .hook('preAction', () => {

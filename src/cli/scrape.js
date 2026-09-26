@@ -32,15 +32,15 @@ function parseAccountLabel(value) {
 
 const psn = withCommonOptions(
   new Command('psn')
-    .summary('Scrapes playtime data from one PlayStation Network account')
+    .summary('scrape playtime data from one PlayStation Network account')
     .description(
-      'Scrapes playtime data from one PlayStation Network account. ' +
-        'Authenticates with an existing NPSSO token if available, ' +
-        'otherwise walks through fetching a new one in the browser.',
+      'scrape playtime data from one PlayStation Network account; ' +
+        'authenticates with an existing NPSSO token if available, ' +
+        'otherwise walks through fetching a new one in the browser',
     )
     .option(
       '-a, --account <label>',
-      'Optional; distinguishes PSN accounts in the NPSSO token variable and output file path suffix.',
+      'optional; distinguishes PSN accounts in the NPSSO token variable and output file path suffix',
       parseAccountLabel,
     ),
   `data/games-raw/${psnOutputFile()}`,
@@ -51,5 +51,5 @@ const psn = withCommonOptions(
 });
 
 export const scrapeCommand = new Command('scrape')
-  .description('Download online playtime data')
+  .description('download online playtime data')
   .addCommand(psn);
