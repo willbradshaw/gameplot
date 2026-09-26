@@ -130,7 +130,8 @@ untrusted.
   a time). GOG reports ownership only, so every owned title becomes a row with
   `hoursPlayed` and `lastPlayed` null; playtime has to be supplied later by
   hand. Owned entries with no game details of their own (DLC and upgrade
-  packs, delisted products) are skipped with a warning.
+  packs, and products GOG has since delisted) are skipped; `--verbose` lists
+  them.
 - Authenticates with GOG's OAuth flow. A long-lived **refresh token** is read
   from `GOG_REFRESH_TOKEN` (suffixed with `--suffix`) and exchanged for an
   access token. If it is missing or rejected, the GOG login page is opened in

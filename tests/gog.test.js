@@ -74,17 +74,23 @@ test('extractAuthCode accepts the redirect URL or the bare code', () => {
   assert.equal(extractAuthCode(''), null);
 });
 
-test('fetchTitles skips products without details (DLC, upgrade packs) with a warning', async () => {
-  const warnings = [];
-  const log = { warn: (m) => warnings.push(m) };
+test('fetchTitles skips products without details, summarised once with the list at debug level', async () => {
+  const info = [];
+  const debug = [];
+  const log = { info: (m) => info.push(m), debug: (m) => debug.push(m) };
   const fetchImpl = fakeFetch([
     ['gameDetails/1', { body: {} }],
     ['gameDetails/2', { body: { title: 'A Game' } }],
+    ['gameDetails/3', { body: {} }],
   ]);
-  const products = await fetchTitles({ accessToken: 'a', fetchImpl, log }, [1, 2]);
+  const products = await fetchTitles({ accessToken: 'a', fetchImpl, log }, [1, 2, 3]);
   assert.deepEqual(products, [{ id: 2, title: 'A Game' }]);
-  assert.equal(warnings.length, 1);
-  assert.match(warnings[0], /Product 1 has no game details/);
+  assert.equal(info.length, 1);
+  assert.match(info[0], /Skipped 2 owned products/);
+  assert.deepEqual(
+    debug.map((m) => /product\/(\d+)/.exec(m)[1]),
+    ['1', '3'],
+  );
 });
 
 test('converts products to ownership-only rows sorted by name', () => {

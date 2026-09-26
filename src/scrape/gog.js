@@ -127,16 +127,24 @@ export async function fetchOwnedIds(ctx) {
  * @returns {Promise<{ id: number, title: string }[]>}
  */
 export async function fetchTitles(ctx, ids) {
+  const skipped = [];
   const products = await mapWithConcurrency(ids, DETAIL_CONCURRENCY, async (id) => {
     const detail = await embedGet(ctx, `/account/gameDetails/${id}.json`);
     if (!detail?.title) {
       // Owned entries that aren't games in their own right (DLC and upgrade
-      // packs, delisted products) come back without details.
-      ctx.log?.warn(`Product ${id} has no game details (https://www.gogdb.org/product/${id}); skipping`);
+      // packs) and delisted products come back without details. Routine, so
+      // summarised at info level with the list behind --verbose.
+      skipped.push(id);
       return null;
     }
     return { id, title: detail.title };
   });
+  if (skipped.length) {
+    ctx.log?.info(
+      `Skipped ${skipped.length} owned products with no game details (DLC, packs, delisted); --verbose lists them`,
+    );
+    for (const id of skipped) ctx.log?.debug(`  no details: https://www.gogdb.org/product/${id}`);
+  }
   return products.filter(Boolean);
 }
 
