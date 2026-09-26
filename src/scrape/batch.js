@@ -86,7 +86,7 @@ export async function runBatch({ sources, registry, defaultSuffix, log }) {
   for (const source of sources) {
     const resolved = { platform: source.platform, suffix: source.suffix ?? defaultSuffix };
     const name = sourceName(resolved);
-    log.box(name);
+    log.info(`Fetching from ${name}`);
     try {
       const games = await registry[source.platform].scrape({ suffix: resolved.suffix, log });
       rows.push(...games);
