@@ -55,7 +55,7 @@ single-platform command:
 
 ```
 gameplot scrape batch steam,psn:uk,psn,xbox,gog
-gameplot scrape batch steam,psn:uk=PS4,psn,xbox="Xbox Series X",gog
+gameplot scrape batch steam,psn:uk=PS4,psn,xbox="Xbox Series X"
 gameplot scrape batch                              # same list again
 ```
 
