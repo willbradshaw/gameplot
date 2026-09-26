@@ -12,10 +12,6 @@ See [setup.md](setup.md) for installation.
 
 ## Output
 
-Each run writes one file, `data/raw/<platform>.json`, or
-`data/raw/<platform>-<suffix>.json` with `--suffix`. Later stages read every
-file in that directory, so the filenames are for convenience only.
-
 Every scraper writes a JSON array of rows with exactly these fields:
 
 | Field | Type | Meaning |
@@ -27,13 +23,28 @@ Every scraper writes a JSON array of rows with exactly these fields:
 | `id` | integer or string | Unique identifier of the game for that platform |
 | `url` | string or null | Store or other landing page for the game |
 
-Rows are validated against this shape before being written, so a scraper that
-misbehaves fails rather than producing a bad file. Rows are ordered by hours
+Each run writes one file, `data/raw/<platform>.json`, or
+`data/raw/<platform>-<suffix>.json` with `--suffix`. Rows are ordered by hours
 played in descending order.
 
-## Common options
+### Duplicate ids
 
-Every platform accepts these:
+Platforms sometimes list the same game more than once (regional releases,
+remasters, bundled editions). Which identifier counts as "the same game" is a
+per-platform choice, documented in each platform's section below; given that
+choice, rows sharing an id are always combined the same way:
+
+- the first row seen is kept, and later rows are folded into it;
+- `hoursPlayed` is summed (null counting as zero) and rounded to one decimal;
+- `lastPlayed` is the most recent of the dates, with null treated as unknown
+  rather than earliest;
+- `game`, `platform` and `url` are those of the first row;
+- the game names must agree. Two rows with one id but different names abort
+  the scrape, since that means the id choice is wrong for that platform.
+
+Each combination is logged at info level.
+
+## Common options
 
 | Option | Effect |
 |---|---|
@@ -64,10 +75,14 @@ gameplot scrape psn --suffix uk     # writes data/raw/psn-uk.json
 
 The account's "played games" list, via the [psn-api](https://psn-api.achievements.app/)
 library. Every title with recorded playtime becomes a row; owned titles that
-have never been launched are skipped. Where PSN lists several editions of a game
-(regional versions, remasters sharing a concept), they are combined into one
-row with their hours summed and the most recent date kept. Rows are recorded
-as platform `PS5` unless `--label` says otherwise.
+have never been launched are skipped. Rows are recorded as platform `PS5`
+unless `--label` says otherwise.
+
+The row `id` is PSN's **concept id**, which Sony shares across every edition
+and regional release of a game, so editions are combined as described under
+[Duplicate ids](#duplicate-ids). Titles without a concept fall back to their
+edition-specific title id (e.g. `PPSA01234_00`). The `url` is the store page
+for the concept, or null when there is none.
 
 ### Authentication
 
