@@ -16,8 +16,8 @@ import { parseOrThrow, rawGamesSchema } from '../shared/model.js';
 export const suffixedEnvVar = (base, suffix) => (suffix ? `${base}_${suffix.toUpperCase()}` : base);
 
 /**
- * Apply the --suffix option to an output filename: `psn-games.json` becomes
- * `psn-games-uk.json` for --suffix uk.
+ * Apply the --suffix option to an output filename: `psn.json` becomes
+ * `psn-uk.json` for --suffix uk.
  * @param {string} prefix
  * @param {string} [suffix]
  */

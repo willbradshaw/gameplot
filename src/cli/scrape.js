@@ -40,7 +40,7 @@ const psn = withCommonOptions(
         'authenticates with an existing NPSSO token if available, ' +
         'otherwise walks through fetching a new one in the browser',
     ),
-  { defaultOut: `data/games-raw/${psnOutputFile()}`, defaultPlatform: PSN_PLATFORM },
+  { defaultOut: `data/raw/${psnOutputFile()}`, defaultPlatform: PSN_PLATFORM },
 ).action(async (opts) => {
   const log = createLogger(opts);
   const games = await scrapePsnAccount({ suffix: opts.suffix, platform: opts.label, log });

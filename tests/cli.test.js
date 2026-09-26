@@ -28,7 +28,7 @@ test('gameplot scrape psn --help documents the account option', async () => {
   const { stdout } = await run('scrape', 'psn', '--help');
   assert.match(stdout, /--suffix <suffix>/);
   assert.match(stdout, /--label <label>[\s\S]*default:\s+"PS5"/);
-  assert.match(stdout, /default: data\/games-raw\/psn-games\.json/);
+  assert.match(stdout, /default: data\/raw\/psn\.json/);
 });
 
 test('an invalid suffix is rejected before any network access', async () => {

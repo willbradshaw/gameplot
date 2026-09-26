@@ -12,9 +12,9 @@ See [setup.md](setup.md) for installation.
 
 ## Output
 
-Each run writes one file to `data/games-raw/`, named after the platform, plus
-any `--suffix`. Later stages read every file in that directory, so the
-filenames are for convenience only.
+Each run writes one file, `data/raw/<platform>.json`, or
+`data/raw/<platform>-<suffix>.json` with `--suffix`. Later stages read every
+file in that directory, so the filenames are for convenience only.
 
 Every scraper writes a JSON array of rows with exactly these fields:
 
@@ -56,8 +56,8 @@ take precedence over the file.
 ## PlayStation Network
 
 ```
-gameplot scrape psn                 # writes data/games-raw/psn-games.json
-gameplot scrape psn --suffix uk     # writes data/games-raw/psn-games-uk.json
+gameplot scrape psn                 # writes data/raw/psn.json
+gameplot scrape psn --suffix uk     # writes data/raw/psn-uk.json
 ```
 
 ### What it fetches

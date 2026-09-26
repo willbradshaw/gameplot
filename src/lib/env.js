@@ -14,7 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-export const RAW_DATA_DIR = path.join(REPO_ROOT, 'data', 'games-raw');
+export const RAW_DATA_DIR = path.join(REPO_ROOT, 'data', 'raw');
 export const ENV_FILE = path.join(REPO_ROOT, '.env');
 
 /** Load a .env file into process.env if it exists. Safe to call more than once. */

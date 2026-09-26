@@ -212,9 +212,9 @@ test('scrapePsn wires authentication, fetching and conversion together', async (
 
 test('the suffix is applied to the token variable and output file; none means the plain defaults', () => {
   assert.equal(npssoEnvVar(), 'PSN_NPSSO');
-  assert.equal(psnOutputFile(), 'psn-games.json');
+  assert.equal(psnOutputFile(), 'psn.json');
   assert.equal(npssoEnvVar('uk'), 'PSN_NPSSO_UK');
-  assert.equal(psnOutputFile('uk'), 'psn-games-uk.json');
+  assert.equal(psnOutputFile('uk'), 'psn-uk.json');
 });
 
 test('cleanNpsso accepts a bare token, a quoted token, or the ssocookie JSON', () => {

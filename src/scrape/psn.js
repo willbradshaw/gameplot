@@ -153,7 +153,7 @@ export function cleanNpsso(input) {
 export const npssoEnvVar = (suffix) => suffixedEnvVar('PSN_NPSSO', suffix);
 
 /** Default output filename, with the --suffix applied. */
-export const psnOutputFile = (suffix) => suffixedFile('psn-games', suffix);
+export const psnOutputFile = (suffix) => suffixedFile('psn', suffix);
 
 /**
  * Scrape one account, resolving the NPSSO token first.
