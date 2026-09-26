@@ -2,9 +2,9 @@
 
 `gameplot process` combines scraped playtime data with hand-written
 annotations (ratings, statuses, tags) into the single file the dashboard
-reads. Games appear in the output only when both sides have them: a scraped
-game with no annotation, or an annotation with no scraped game, is reported
-rather than output.
+reads. A game appears in the output only when both sides have it: scraped
+games with no annotation, and annotations with no scraped game, are reported
+instead.
 
 ```
 gameplot process                      # data/raw/batch.json + data/annotations.json -> data/games.json
@@ -13,6 +13,17 @@ gameplot process --help
 ```
 
 See [scrape.md](scrape.md) for how the input is produced.
+
+## Options
+
+| Argument / option | Effect |
+|---|---|
+| `[input]` | Scraped data file (default `data/raw/batch.json`) |
+| `-a, --annotations <file>` | Annotations file (default `data/annotations.json`) |
+| `-o, --out <file>` | Output file (default `data/games.json`) |
+| `-u, --unannotated <file>` | Where to write fill-in entries for unannotated games (default `data/unannotated.json`) |
+| `-v, --verbose` | Show debug output, including the list of unrated annotations |
+| `-q, --quiet` | Only warnings and errors |
 
 ## Inputs
 
@@ -26,8 +37,8 @@ one platform; processing merges those.
 
 ### Annotations
 
-`data/annotations.json` (`--annotations` changes it) is the only hand-edited
-file. It is a JSON array with one entry per game:
+`data/annotations.json` is the only hand-edited file: a JSON array with one
+entry per game.
 
 ```json
 {
@@ -38,7 +49,7 @@ file. It is a JSON array with one entry per game:
   "aliases": ["Slay The Spire"],
   "playtime": {
     "GOG": { "hoursPlayed": 3, "lastPlayed": "2019-01-01" },
-    "Xbox": { "hoursPlayed": 0.5 }
+    "Xbox": { "hoursPlayed": 0 }
   }
 }
 ```
@@ -49,63 +60,19 @@ file. It is a JSON array with one entry per game:
 | `rating` | number 0–10, or null | Null means "not yet rated": the game is excluded from the output but is not reported as missing |
 | `status` | string or null | One of `Complete`, `In Progress`, `Ongoing`, `Abandoned` |
 | `tags` | array of strings | Free-form; the dashboard filters and aggregates by them |
-| `aliases` | array of strings, optional | Other names the platforms use for this game (see [Matching](#matching)) |
-| `playtime` | object, optional | Per-platform playtime corrections, keyed by platform label (see [Playtime](#playtime)) |
+| `aliases` | array of strings, optional | Other names the platforms use for this game |
+| `playtime` | object, optional | Per-platform corrections, keyed by platform label; each has optional `hoursPlayed` and `lastPlayed` |
 
 Names must be unique across entries, and an alias may not be another entry's
-name or another entry's alias. Unknown fields are rejected, so a typo in a
-field name fails validation rather than being silently ignored.
-
-## Processing
-
-### Matching
-
-Scraped rows are matched to annotations by exact game name. Platforms spell
-the same game differently (`Slay the Spire` on Steam, `Slay The Spire` on
-Xbox; `Divinity: Original Sin 2` and `Divinity: Original Sin 2 - Definitive
-Edition`), so an annotation may list `aliases`: every scraped row whose name
-is the entry's `game` or one of its `aliases` belongs to that entry, and the
-output row is named by `game`.
-
-### Playtime
-
-Scraped playtime is taken as given except where an annotation's `playtime`
-says otherwise. For each platform label listed there, the given fields replace
-the scraped ones for that game on that platform; a field not given is left as
-scraped. This is how playtime is supplied for platforms that report none (GOG)
-and corrected for platforms that report it wrongly.
-
-A scraped row whose `hoursPlayed` is still null after this (owned on a
-platform that reports no playtime, with no correction supplied) is treated as
-never played and dropped. A `playtime` entry for a platform the game was not
-scraped on is reported and ignored.
-
-### Merging
-
-Rows belonging to one game are merged into one output row:
-
-- one entry per platform, with per-platform hours, last-played date, id and
-  url, ordered by hours played descending;
-- rows on the same platform (for example the same game in two PSN accounts,
-  or two Steam editions listed under one name) are combined first: hours are
-  summed, the most recent date is kept, and the id and url are those of the
-  most recently played row;
-- the totals are the sum of the per-platform hours and the most recent
-  per-platform date, so they are always consistent with the per-platform
-  values;
-- the display url is the Steam url if there is one, else PS5, else the first
-  platform with a url.
-
-### Selection
-
-A game is written to the output when it has at least one scraped row with
-playtime and an annotation with a non-null rating. Everything else is
-reported (see [Reports](#reports)).
+name or alias. Unknown fields are rejected, so a mistyped field name fails
+validation rather than being ignored.
 
 ## Output
 
-`data/games.json` (`--out` changes it) is a JSON array sorted by game name,
-one entry per game:
+`data/games.json` is a JSON array sorted by game name, one entry per game.
+Each entry has one element per platform in the four `*Single` arrays, which
+are parallel (index i of each describes the same platform), plus totals
+across platforms:
 
 | Field | Type | Meaning |
 |---|---|---|
@@ -114,42 +81,85 @@ one entry per game:
 | `ids` | array | Platform ids, parallel to `platforms` |
 | `urls` | array of string or null | Platform urls, parallel to `platforms` |
 | `hoursPlayedSingle` | array of numbers | Hours per platform, parallel to `platforms` |
-| `lastPlayedSingle` | array of `YYYY-MM-DD` or null | Last played per platform, parallel to `platforms` |
+| `lastPlayedSingle` | array of `YYYY-MM-DD` or null | Last played per platform, parallel to `platforms`; null only where hours are 0 |
 | `hoursPlayedTotal` | number | Sum of `hoursPlayedSingle` |
-| `lastPlayedTotal` | `YYYY-MM-DD` or null | Most recent of `lastPlayedSingle` |
-| `displayUrl` | string or null | The url to link the game to |
+| `lastPlayedTotal` | `YYYY-MM-DD` | Most recent of `lastPlayedSingle` |
+| `displayUrl` | string or null | The url to link the game to: Steam's if present, else PS5's, else the first available |
 | `rating` | number | From the annotation |
 | `status` | string or null | From the annotation |
 | `tags` | array of strings | From the annotation |
 
-The output is validated against this shape before being written.
+The output is validated against this shape before being written. Nothing is
+written if the inputs fail validation or the playtime rules below are broken.
 
 ## Reports
 
-Every run ends with an account of what did not make it into the output:
+Every run ends with an account of what did not reach the output:
 
 - **Scraped games with no annotation.** Listed in full at warning level, and
-  written as ready-to-fill entries (rating and status null, empty tags) to
-  `data/unannotated.json` (`--unannotated` changes it) so they can be pasted
-  into the annotations file. This is the to-do list.
+  written as fill-in entries (rating and status null, empty tags) to
+  `data/unannotated.json` so they can be pasted into the annotations file.
+  This is the to-do list.
 - **Annotations with no scraped game.** Listed in full at warning level.
-  Either the game has not been scraped, or the annotation's name and aliases
-  no longer match how a platform spells it.
+  Either the game has not been scraped, or its name and aliases no longer
+  match how a platform spells it.
 - **Unrated annotations.** Annotated games with `rating` null are counted at
-  info level; `--verbose` lists them. They are excluded from the output
-  deliberately, so they are not warnings.
+  info level and listed under `--verbose`. Their exclusion is deliberate, so
+  they are not warnings.
 - **Ignored playtime corrections**, for platforms the game was not scraped
-  on, are listed at warning level.
+  on, at warning level.
 
-A run whose input or annotations fail validation writes nothing.
+## How it works
 
-## Options
+### Matching
 
-| Option | Effect |
-|---|---|
-| `[input]` | Scraped data file (default `data/raw/batch.json`) |
-| `-a, --annotations <file>` | Annotations file (default `data/annotations.json`) |
-| `-o, --out <file>` | Output file (default `data/games.json`) |
-| `-u, --unannotated <file>` | Where to write the entries for unannotated games (default `data/unannotated.json`) |
-| `-v, --verbose` | Show debug output, including the unrated list |
-| `-q, --quiet` | Only warnings and errors |
+Scraped rows are matched to annotations by exact name. Every row whose name
+is an entry's `game` or one of its `aliases` belongs to that entry, and the
+output entry is named by `game`. This is how differently spelled listings of
+one game (`Slay the Spire` on Steam and `Slay The Spire` on Xbox;
+`Divinity: Original Sin 2` and its `Definitive Edition`) become one entry.
+
+### Playtime corrections
+
+Scraped playtime is taken as given except where an annotation's `playtime`
+says otherwise. For each platform label listed there, the given fields replace
+the scraped ones for that game on that platform, and a field not given is left
+as scraped. This supplies playtime for platforms that report none (GOG) and
+corrects platforms that report it wrongly.
+
+### Playtime rules
+
+For every game that will be output (see [Selection](#selection)), after
+corrections have been applied:
+
+- **No null hours.** Every platform the game was scraped on must have a
+  number for `hoursPlayed`. A null (GOG reports none) is an error naming the
+  game and platform; if the game is genuinely unplayed there, the annotation
+  must say so with `"hoursPlayed": 0`.
+- **Played means dated.** Every platform with `hoursPlayed` above zero must
+  have a `lastPlayed` date. A missing one is an error, fixed by supplying it in
+  the annotation.
+
+Processing stops on the first such error and nothing is written. Games that
+will not be output (unannotated or unrated) are not checked: a row with null
+hours belonging to one of them is simply dropped as never played.
+
+### Merging
+
+Each game's rows are combined into one output entry in three steps:
+
+1. **Per platform.** Rows that share a platform label (the same game in two
+   PSN accounts; two Steam editions listed under one name via aliases) are
+   combined into one platform element: hours are summed, the most recent
+   `lastPlayed` is kept, and `id` and `url` are taken from the most recently
+   played row.
+2. **Ordering.** Platform elements are ordered by hours played, descending, so
+   index 0 of the parallel arrays is the most played platform.
+3. **Totals.** `hoursPlayedTotal` is the sum over platforms and
+   `lastPlayedTotal` the most recent date over platforms, so the totals are
+   always consistent with the per-platform values.
+
+### Selection
+
+A game is written to the output when it has at least one scraped row and an
+annotation with a non-null rating. Everything else is reported.
