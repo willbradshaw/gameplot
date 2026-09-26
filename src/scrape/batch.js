@@ -51,25 +51,33 @@ export function resolveSources({ given, suffix, env, platforms }) {
 export function parseSources(text, platforms) {
   const entries = text
     .split(',')
-    .map((s) => s.trim().toLowerCase())
+    .map((s) => s.trim())
     .filter(Boolean);
   if (entries.length === 0) throw new InvalidArgumentError('no sources given');
   const seen = new Set();
   return entries.map((entry) => {
-    const m = SOURCE_RE.exec(entry);
-    if (!m) throw new InvalidArgumentError(`"${entry}" is not platform or platform:suffix`);
+    // The label keeps its case and may contain spaces; everything before it is lower-cased.
+    const eq = entry.indexOf('=');
+    const head = (eq === -1 ? entry : entry.slice(0, eq)).toLowerCase();
+    const label = eq === -1 ? undefined : entry.slice(eq + 1).trim() || undefined;
+    const m = SOURCE_RE.exec(head);
+    if (!m)
+      throw new InvalidArgumentError(
+        `"${entry}" is not platform, platform:suffix or platform[:suffix]=label`,
+      );
     const [, platform, suffix] = m;
     if (!platforms.includes(platform)) {
       throw new InvalidArgumentError(`unknown platform "${platform}" (known: ${platforms.join(', ')})`);
     }
-    if (seen.has(entry)) throw new InvalidArgumentError(`"${entry}" is listed twice`);
-    seen.add(entry);
-    return { platform, suffix };
+    if (seen.has(head)) throw new InvalidArgumentError(`"${head}" is listed twice`);
+    seen.add(head);
+    return { platform, suffix, label };
   });
 }
 
 /** Human-readable name of a source, e.g. "psn:uk". */
-export const sourceName = ({ platform, suffix }) => (suffix ? `${platform}:${suffix}` : platform);
+export const sourceName = ({ platform, suffix, label }) =>
+  `${platform}${suffix ? `:${suffix}` : ''}${label ? `=${label}` : ''}`;
 
 /**
  * Run each source in order, collecting rows and failures.
@@ -84,11 +92,15 @@ export async function runBatch({ sources, registry, defaultSuffix, log }) {
   const rows = [];
   const failures = [];
   for (const source of sources) {
-    const resolved = { platform: source.platform, suffix: source.suffix ?? defaultSuffix };
+    const resolved = { ...source, suffix: source.suffix ?? defaultSuffix };
     const name = sourceName(resolved);
     log.info(`Fetching from ${name}`);
     try {
-      const games = await registry[source.platform].scrape({ suffix: resolved.suffix, log });
+      const games = await registry[source.platform].scrape({
+        suffix: resolved.suffix,
+        platform: resolved.label,
+        log,
+      });
       rows.push(...games);
     } catch (error) {
       log.error(`${name} failed: ${error.message}`);

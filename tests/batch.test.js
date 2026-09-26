@@ -14,20 +14,32 @@ const PLATFORMS = ['psn', 'steam', 'xbox', 'gog'];
 
 test('parseSources accepts platform and platform:suffix entries, trimming and lowercasing', () => {
   assert.deepEqual(parseSources('steam, PSN:UK ,psn,gog', PLATFORMS), [
-    { platform: 'steam', suffix: undefined },
-    { platform: 'psn', suffix: 'uk' },
-    { platform: 'psn', suffix: undefined },
-    { platform: 'gog', suffix: undefined },
+    { platform: 'steam', suffix: undefined, label: undefined },
+    { platform: 'psn', suffix: 'uk', label: undefined },
+    { platform: 'psn', suffix: undefined, label: undefined },
+    { platform: 'gog', suffix: undefined, label: undefined },
   ]);
+});
+
+test('parseSources accepts an optional =label, preserving its case and spaces', () => {
+  assert.deepEqual(parseSources('psn:uk=PS4,xbox=Xbox Series X,steam=', PLATFORMS), [
+    { platform: 'psn', suffix: 'uk', label: 'PS4' },
+    { platform: 'xbox', suffix: undefined, label: 'Xbox Series X' },
+    { platform: 'steam', suffix: undefined, label: undefined },
+  ]);
+  assert.equal(sourceName({ platform: 'psn', suffix: 'uk', label: 'PS4' }), 'psn:uk=PS4');
 });
 
 test('parseSources rejects malformed, unknown, empty and duplicate entries', () => {
   assert.throws(() => parseSources('', PLATFORMS), /no sources/);
   assert.throws(() => parseSources(' , ', PLATFORMS), /no sources/);
-  assert.deepEqual(parseSources('steam,,', PLATFORMS), [{ platform: 'steam', suffix: undefined }]);
+  assert.deepEqual(parseSources('steam,,', PLATFORMS), [
+    { platform: 'steam', suffix: undefined, label: undefined },
+  ]);
   assert.throws(() => parseSources('wii', PLATFORMS), /unknown platform "wii"/);
-  assert.throws(() => parseSources('psn:u k', PLATFORMS), /not platform or platform:suffix/);
-  assert.throws(() => parseSources('psn::uk', PLATFORMS), /not platform or platform:suffix/);
+  assert.throws(() => parseSources('psn:u k', PLATFORMS), /is not platform, platform:suffix/);
+  assert.throws(() => parseSources('psn::uk', PLATFORMS), /is not platform, platform:suffix/);
+  assert.throws(() => parseSources('psn=PS4,psn=PS5', PLATFORMS), /"psn" is listed twice/);
   assert.throws(() => parseSources('steam,steam', PLATFORMS), /listed twice/);
 });
 
@@ -69,6 +81,23 @@ test('runBatch runs every source in order, passing the suffix, and concatenates 
     ['S1', 'P-uk', 'P-main'],
   );
   assert.deepEqual(failures, []);
+});
+
+test('runBatch passes a source label through as the platform display name', async () => {
+  const calls = [];
+  const registry = {
+    psn: {
+      scrape: async ({ suffix, platform }) => {
+        calls.push([suffix, platform]);
+        return [];
+      },
+    },
+  };
+  await runBatch({ sources: parseSources('psn:uk=PS4,psn', ['psn']), registry, log: silentLogger });
+  assert.deepEqual(calls, [
+    ['uk', 'PS4'],
+    [undefined, undefined],
+  ]);
 });
 
 test('runBatch applies the batch suffix to sources without their own', async () => {

@@ -49,10 +49,13 @@ that report ownership but no playtime at all keep every owned title, with
 
 `gameplot scrape batch <sources>` runs several sources in one go and writes
 every row to a single file, `data/raw/batch.json` by default (`--out` changes
-it). Sources are a comma-separated list of `platform` or `platform:suffix`:
+it). Sources are a comma-separated list of `platform[:suffix][=label]`, where
+the suffix and label mean what `--suffix` and `--label` mean on the
+single-platform command:
 
 ```
 gameplot scrape batch steam,psn:uk,psn,xbox,gog
+gameplot scrape batch steam,psn:uk=PS4,psn,xbox="Xbox Series X",gog
 gameplot scrape batch                              # same list again
 ```
 
@@ -63,9 +66,7 @@ Each source runs exactly as its single-platform command would, including
 credential handling, but only the combined file is written: the per-source
 files under `data/raw/` are left untouched. A failing source does not stop
 the others, but the combined file is written only when every source succeeds,
-so a partial run never replaces a previous good file; the summary at the end
-names what failed and the exit code is non-zero. `--verbose` and `--quiet`
-apply to the whole batch.
+so a partial run never replaces a previous good file.
 
 `--suffix` names the batch, so that several batches (for example two complete
 sets of accounts) can coexist. With `--suffix alt`:

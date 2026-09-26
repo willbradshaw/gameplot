@@ -94,12 +94,12 @@ const batch = withLogOptions(
   new Command('batch')
     .summary('download from several sources into one file')
     .description(
-      'download playtime data from a comma-separated list of sources, each platform or ' +
-        `platform:suffix (platforms: ${PLATFORM_NAMES.join(', ')}), and write every row to one file; ` +
+      'download playtime data from a comma-separated list of sources, each ' +
+        `platform[:suffix][=label] (platforms: ${PLATFORM_NAMES.join(', ')}), and write every row to one file; ` +
         'the list is remembered in .env, so later runs can omit it; ' +
         'the file is written only if every source succeeds',
     )
-    .argument('[sources]', 'e.g. steam,psn:uk,psn,xbox,gog (default: the last list used)', (value) =>
+    .argument('[sources]', 'e.g. steam,psn:uk=PS4,psn,xbox,gog (default: the last list used)', (value) =>
       parseSources(value, PLATFORM_NAMES),
     )
     .option(
