@@ -1,29 +1,27 @@
 /**
- * Terminal interaction helpers for scrapers that need a human in the loop.
+ * Terminal interaction for scrapers that need a human in the loop.
  */
 
-import readline from 'node:readline/promises';
-import { stdin, stdout } from 'node:process';
+import { confirm, input, password } from '@inquirer/prompts';
 
-/**
- * Ask a question on the terminal and return the trimmed answer.
- * @param {string} question
- * @returns {Promise<string>}
- */
-export async function ask(question) {
-  const rl = readline.createInterface({ input: stdin, output: stdout });
-  try {
-    return (await rl.question(question)).trim();
-  } finally {
-    rl.close();
+/** Ask for a line of text. */
+export const ask = (message) => input({ message });
+
+/** Ask for a secret; keystrokes are masked. */
+export const askSecret = (message) => password({ message, mask: true });
+
+/** Wait until the user confirms they have done something. */
+export async function pause(message) {
+  while (!(await confirm({ message, default: true }))) {
+    // Keep asking until they say yes.
   }
 }
 
 /**
  * Open a URL in the default browser. Falls back to printing the URL if the
- * browser can't be launched (headless machine, missing `open` package, ...).
+ * browser can't be launched (headless machine, no display, ...).
  * @param {string} url
- * @param {{ info: Function }} log
+ * @param {import('consola').ConsolaInstance} log
  */
 export async function openInBrowser(url, log) {
   try {

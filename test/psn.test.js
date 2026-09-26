@@ -1,5 +1,5 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { test } from 'node:test';
 import { silentLogger } from '../src/lib/log.js';
 import {
   cleanNpsso,
@@ -45,7 +45,10 @@ test('converts titles to the raw shape with concept id and store url', () => {
 });
 
 test('drops titles with no playtime', () => {
-  const games = convertPsnTitles([title({ playDuration: 'PT0S' }), title({ playDuration: undefined })], silentLogger);
+  const games = convertPsnTitles(
+    [title({ playDuration: 'PT0S' }), title({ playDuration: undefined })],
+    silentLogger,
+  );
   assert.equal(games.length, 0);
 });
 
@@ -70,7 +73,11 @@ test('combines editions sharing a concept id, summing hours and keeping the late
 
 test('refuses to combine an id whose two rows have different names', () => {
   assert.throws(
-    () => convertPsnTitles([title({ titleId: 'A' }), title({ titleId: 'B', localizedName: 'Other' })], silentLogger),
+    () =>
+      convertPsnTitles(
+        [title({ titleId: 'A' }), title({ titleId: 'B', localizedName: 'Other' })],
+        silentLogger,
+      ),
     /two names/,
   );
 });
@@ -83,7 +90,10 @@ test('orders output by hours played, most first', () => {
     ],
     silentLogger,
   );
-  assert.deepEqual(games.map((g) => g.game), ['Long', 'Short']);
+  assert.deepEqual(
+    games.map((g) => g.game),
+    ['Long', 'Short'],
+  );
 });
 
 test('pagination fetches every page and stops at the total', async () => {

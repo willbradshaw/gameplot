@@ -2,50 +2,28 @@
 /**
  * gameplot command-line entry point.
  *
- * Usage:
- *   gameplot <command> [options]
- *
- * Commands:
- *   scrape <platform>   Download playtime data from a platform into data/games-raw/
- *
- * Each command lives in src/cli/<command>.js and exports `run(argv)`, which
- * returns the process exit code. Adding a command means adding a file there
- * and a line to COMMANDS below.
+ * Commands are built with commander and live in src/cli/. Each module there
+ * exports a Command; register it below and it appears in `gameplot --help`.
  */
 
+import { Command } from 'commander';
+import pkg from '../package.json' with { type: 'json' };
+import { scrapeCommand } from '../src/cli/scrape.js';
 import { loadDotEnv } from '../src/lib/env.js';
 
-const COMMANDS = {
-  scrape: () => import('../src/cli/scrape.js'),
-};
+const program = new Command('gameplot')
+  .description(pkg.description)
+  .version(pkg.version)
+  .showHelpAfterError()
+  .hook('preAction', () => {
+    loadDotEnv();
+  });
 
-const USAGE = `Usage: gameplot <command> [options]
+program.addCommand(scrapeCommand);
 
-Commands:
-  scrape <platform>   Download playtime data from a platform (psn)
-
-Run "gameplot <command> --help" for command-specific options.`;
-
-async function main(argv) {
-  const [command, ...rest] = argv;
-  if (!command || command === '--help' || command === '-h') {
-    console.log(USAGE);
-    return command ? 0 : 1;
-  }
-  const load = COMMANDS[command];
-  if (!load) {
-    console.error(`Unknown command: ${command}\n\n${USAGE}`);
-    return 1;
-  }
-  loadDotEnv();
-  const mod = await load();
-  return mod.run(rest);
+try {
+  await program.parseAsync(process.argv);
+} catch (err) {
+  console.error(err instanceof Error ? err.message : String(err));
+  process.exit(1);
 }
-
-main(process.argv.slice(2)).then(
-  (code) => process.exit(code ?? 0),
-  (err) => {
-    console.error(err instanceof Error ? err.stack ?? err.message : String(err));
-    process.exit(1);
-  },
-);

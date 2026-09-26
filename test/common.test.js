@@ -1,5 +1,5 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { test } from 'node:test';
 import { silentLogger } from '../src/lib/log.js';
 import { combineDuplicateIds, finalizeRawGames, isoToDate, roundHours } from '../src/scrape/common.js';
 
@@ -28,13 +28,29 @@ test('combineDuplicateIds treats null hours as zero and null dates as unknown', 
 
 test('finalizeRawGames rejects rows that do not match the schema', () => {
   assert.throws(
-    () => finalizeRawGames([{ game: 'G', platform: 'Wii', lastPlayed: null, hoursPlayed: 1, id: 1, url: null }], 'test'),
-    /platform: must be one of/,
+    () =>
+      finalizeRawGames(
+        [{ game: 'G', platform: 'Wii', lastPlayed: null, hoursPlayed: 1, id: 1, url: null }],
+        'test',
+      ),
+    /Validation failed for test[\s\S]*platform/,
   );
-  assert.throws(() => finalizeRawGames([{ game: 'G' }], 'test'), /is required/);
+  assert.throws(() => finalizeRawGames([{ game: 'G' }], 'test'), /platform[\s\S]*hoursPlayed/);
 });
 
-test('finalizeRawGames normalises empty urls to null', () => {
-  const [g] = finalizeRawGames([{ game: 'G', platform: 'Xbox', lastPlayed: '2020-01-01', hoursPlayed: 1, id: '1', url: '' }], 'test');
-  assert.equal(g.url, null);
+test('finalizeRawGames normalises empty urls to null and sorts by hours', () => {
+  const games = finalizeRawGames(
+    [
+      { game: 'Short', platform: 'Xbox', lastPlayed: '2020-01-01', hoursPlayed: 1, id: '1', url: '' },
+      { game: 'Long', platform: 'Xbox', lastPlayed: '2020-01-01', hoursPlayed: 9, id: '2', url: null },
+    ],
+    'test',
+  );
+  assert.deepEqual(
+    games.map((g) => [g.game, g.url]),
+    [
+      ['Long', null],
+      ['Short', null],
+    ],
+  );
 });

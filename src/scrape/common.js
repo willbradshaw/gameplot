@@ -3,9 +3,8 @@
  * shape, combining duplicate rows, and validating before writing.
  */
 
-import { writeJson } from '../lib/json.js';
-import { listOf, rawGameSchema } from '../shared/model.js';
-import { assertValid } from '../shared/validate.js';
+import fs from 'fs-extra';
+import { parseOrThrow, rawGamesSchema } from '../shared/model.js';
 
 /** Round to one decimal place, avoiding float noise like 12.299999. */
 export const roundHours = (h) => Math.round(h * 10) / 10;
@@ -29,7 +28,7 @@ export function isoToDate(iso) {
  * mismatch on one id means the scraper's id choice is wrong, so it throws.
  *
  * @param {import('../shared/model.js').RawGame[]} rows
- * @param {{ info: Function }} log
+ * @param {import('consola').ConsolaInstance} log
  * @returns {import('../shared/model.js').RawGame[]}
  */
 export function combineDuplicateIds(rows, log) {
@@ -61,16 +60,16 @@ export function combineDuplicateIds(rows, log) {
  * @returns {import('../shared/model.js').RawGame[]}
  */
 export function finalizeRawGames(rows, label) {
-  const games = assertValid(rows, listOf(rawGameSchema), label);
+  const games = parseOrThrow(rawGamesSchema, rows, label);
   return games.sort((a, b) => (b.hoursPlayed ?? 0) - (a.hoursPlayed ?? 0) || a.game.localeCompare(b.game));
 }
 
 /**
  * @param {string} file
  * @param {import('../shared/model.js').RawGame[]} games
- * @param {{ info: Function }} log
+ * @param {import('consola').ConsolaInstance} log
  */
 export async function writeRawGames(file, games, log) {
-  await writeJson(file, games);
-  log.info(`Wrote ${games.length} games to ${file}`);
+  await fs.outputJson(file, games, { spaces: 2 });
+  log.success(`Wrote ${games.length} games to ${file}`);
 }

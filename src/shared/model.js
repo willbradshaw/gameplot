@@ -1,49 +1,55 @@
 /**
- * The gameplot data model.
+ * The gameplot data model, as zod schemas.
  *
- * This module is the single description of the records that flow through the
- * pipeline and into the browser. It is plain ES module JavaScript with no
- * Node-specific imports, so the dashboard can import it directly and the
- * pipeline uses it to validate every file it reads or writes.
- *
- * Dates are 'YYYY-MM-DD' strings throughout, so "most recent" is a plain
- * string comparison. Hours are decimal hours rounded to one place.
+ * Every file the pipeline reads or writes is validated against a schema
+ * from this module. Dates are 'YYYY-MM-DD' strings throughout, so "most
+ * recent" is a plain string comparison. Hours are decimal hours rounded to
+ * one place.
  *
  * Only the raw (scraper output) record is defined so far; the merged and
  * annotated records are added with the `process` command.
  */
 
-/** Platforms the scrapers produce. */
-export const PLATFORMS = ['Steam', 'PS5', 'Xbox', 'GOG'];
+import { z } from 'zod';
+import { PLATFORMS } from './constants.js';
 
-const str = { type: 'string', minLength: 1 };
+const emptyToNull = (v) => (v === '' ? null : v);
 
 /**
  * One row per game per platform, as written by a scraper to
  * data/games-raw/<platform>.json. Every scraper produces exactly this shape.
  *
- * @typedef {object} RawGame
- * @property {string} game             Name as reported by the platform
- * @property {string} platform         One of PLATFORMS
- * @property {string|null} lastPlayed  YYYY-MM-DD, or null if the platform doesn't say
- * @property {number|null} hoursPlayed Decimal hours, or null if the platform doesn't say
- *                                     (GOG reports ownership but no playtime)
- * @property {number|string} id        Platform-specific identifier, unique within the file
- * @property {string|null} url         Store page, or null if the platform has none
+ * - `lastPlayed` and `hoursPlayed` are null when the platform doesn't say
+ *   (GOG reports ownership but no playtime).
+ * - `id` is the platform's own identifier and must be unique within a file.
+ * - `url` is the store page, or null if the platform has none.
  */
-export const rawGameSchema = {
-  type: 'object',
-  required: ['game', 'platform', 'lastPlayed', 'hoursPlayed', 'id', 'url'],
-  additionalProperties: false,
-  properties: {
-    game: str,
-    platform: { type: 'string', enum: PLATFORMS },
-    lastPlayed: { type: 'date', nullable: true },
-    hoursPlayed: { type: 'number', min: 0, nullable: true },
-    id: { anyOf: [{ type: 'number', integer: true }, str] },
-    url: { type: 'string', nullable: true, emptyToNull: true },
-  },
-};
+export const rawGameSchema = z.strictObject({
+  game: z.string().min(1),
+  platform: z.enum(PLATFORMS),
+  lastPlayed: z.iso.date().nullable(),
+  hoursPlayed: z.number().min(0).nullable(),
+  id: z.union([z.int(), z.string().min(1)]),
+  url: z.preprocess(emptyToNull, z.string().min(1).nullable()),
+});
 
-/** Wrap a record schema as "array of records", which is how every data file is shaped. */
-export const listOf = (itemSchema) => ({ type: 'array', items: itemSchema });
+/** @typedef {z.infer<typeof rawGameSchema>} RawGame */
+
+export const rawGamesSchema = z.array(rawGameSchema);
+
+/**
+ * Parse with a schema, throwing an error that names the source and lists
+ * every problem with its path.
+ * @template T
+ * @param {z.ZodType<T>} schema
+ * @param {unknown} value
+ * @param {string} label  e.g. a file path
+ * @returns {T}
+ */
+export function parseOrThrow(schema, value, label) {
+  const result = schema.safeParse(value);
+  if (!result.success) {
+    throw new Error(`Validation failed for ${label}:\n${z.prettifyError(result.error)}`);
+  }
+  return result.data;
+}
