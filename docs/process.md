@@ -59,7 +59,7 @@ entry per game.
 |---|---|---|
 | `game` | string | Canonical name; this is the name the dashboard shows |
 | `rating` | number 0–10, or null | Null means "not yet rated": the game is excluded from the output but is not reported as missing |
-| `status` | string or null | One of `Complete`, `In Progress`, `Abandoned`. Null is allowed only while `rating` is null: a rated game must have a status |
+| `status` | string or null | One of `Complete`, `Active`, `Abandoned`. Null is allowed only while `rating` is null: a rated game must have a status |
 | `tags` | array of strings | Free-form; the dashboard filters and aggregates by them |
 | `aliases` | array of strings, optional | Other names the platforms use for this game |
 | `playtime` | object, optional | Per-platform corrections, keyed by platform label; each has optional `hoursPlayed` and `lastPlayed` |
