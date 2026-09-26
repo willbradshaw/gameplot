@@ -43,7 +43,7 @@
   {
     "game": "A Case of Fraud",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Puzzle",
       "Crime"
@@ -79,7 +79,7 @@
   {
     "game": "A=B",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Puzzle"
     ]
@@ -182,7 +182,7 @@
   {
     "game": "Avowed",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG",
@@ -324,7 +324,7 @@
   {
     "game": "Blue Prince",
     "rating": 8.1,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Puzzle"
     ],
@@ -337,7 +337,7 @@
   {
     "game": "Book of Hours",
     "rating": 7.6,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "Management",
@@ -469,7 +469,7 @@
   {
     "game": "Clair Obscur: Expedition 33",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG",
@@ -479,7 +479,7 @@
   {
     "game": "Cobalt Core",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -497,7 +497,7 @@
   {
     "game": "Control",
     "rating": 7.1,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Action",
       "Sci-Fi"
@@ -569,7 +569,7 @@
   {
     "game": "Cyberpunk 2077",
     "rating": 7.8,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Sci-Fi",
       "RPG"
@@ -766,7 +766,7 @@
   {
     "game": "Divinity: Original Sin 2",
     "rating": 8.4,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG",
@@ -879,7 +879,7 @@
   {
     "game": "Elden Ring",
     "rating": 7.9,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Soulslike",
       "Fantasy",
@@ -926,7 +926,7 @@
   {
     "game": "Expeditions: Rome",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "RPG",
       "Tactics",
@@ -1046,7 +1046,7 @@
   {
     "game": "Fran Bow",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Adventure",
       "Puzzle",
@@ -1361,7 +1361,7 @@
   {
     "game": "If On A Winter's Night, Four Travelers",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -1467,7 +1467,7 @@
   {
     "game": "Kathy Rain 2: Soothsayer",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Adventure",
       "Puzzle",
@@ -1486,7 +1486,7 @@
   {
     "game": "Kentucky Route Zero",
     "rating": 7.4,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Adventure",
       "Walking Simulator"
@@ -1574,7 +1574,7 @@
   {
     "game": "Lorelei and the Laser Eyes",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -1692,7 +1692,7 @@
   {
     "game": "Monster Train 2",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Roguelike",
       "Deckbuilder",
@@ -1763,7 +1763,7 @@
   {
     "game": "Nidhogg",
     "rating": 7.2,
-    "status": "Ongoing",
+    "status": "Abandoned",
     "tags": [
       "Platformer",
       "Fighting"
@@ -1805,7 +1805,7 @@
   {
     "game": "NORCO",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -1952,7 +1952,7 @@
   {
     "game": "Pillars of Eternity",
     "rating": 8.9,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG"
@@ -1970,7 +1970,7 @@
   {
     "game": "Pillars of Eternity 2: Deadfire",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG"
@@ -2360,7 +2360,7 @@
   {
     "game": "Scarlet Hollow",
     "rating": 7.4,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Visual Novel",
       "Adventure",
@@ -2404,7 +2404,7 @@
   {
     "game": "Shadow Gambit: The Cursed Crew",
     "rating": 7.3,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Stealth",
       "Tactics"
@@ -2563,7 +2563,7 @@
   {
     "game": "Solasta: Crown of the Magister",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG"
@@ -2581,7 +2581,7 @@
   {
     "game": "Spiritfarer",
     "rating": 7.1,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "Casual",
@@ -2627,7 +2627,7 @@
   {
     "game": "Strange Antiquities",
     "rating": 7.1,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Puzzle",
       "Fantasy"
@@ -2690,7 +2690,7 @@
   {
     "game": "Sultan's Game",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -2831,7 +2831,7 @@
   {
     "game": "The Blood of Dawnwalker",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG",
@@ -2866,7 +2866,7 @@
   {
     "game": "The Dark Rites of Arkham",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Horror",
       "Adventure",
@@ -2946,7 +2946,7 @@
   {
     "game": "The Elder Scrolls IV: Oblivion Remastered",
     "rating": 7.5,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Fantasy",
       "RPG"
@@ -3006,7 +3006,7 @@
   {
     "game": "The Henry Stickmin Collection",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -3083,7 +3083,7 @@
   {
     "game": "The Necromancer's Tale",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -3105,7 +3105,7 @@
   {
     "game": "The Rise of the Golden Idol",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Puzzle"
     ]
@@ -3113,7 +3113,7 @@
   {
     "game": "The Roottrees are Dead",
     "rating": 8.2,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Puzzle"
     ]
@@ -3356,7 +3356,7 @@
   {
     "game": "Thimbleweed Park",
     "rating": 7.3,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Adventure",
       "Puzzle",
@@ -3421,7 +3421,7 @@
   {
     "game": "Tower of Time",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": []
   },
   {
@@ -3552,7 +3552,7 @@
   {
     "game": "Warhammer 40,000: Mechanicus",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Sci-Fi",
       "Tactics"
@@ -3570,7 +3570,7 @@
   {
     "game": "Warhammer 40,000: Space Marine",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "First-Person Shooter",
       "Sci-Fi"
@@ -3594,7 +3594,7 @@
   {
     "game": "Wasteland 3",
     "rating": null,
-    "status": "In Progress",
+    "status": "Active",
     "tags": [
       "Sci-Fi",
       "RPG"
