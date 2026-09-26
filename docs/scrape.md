@@ -56,7 +56,8 @@ gameplot scrape batch steam,psn:uk,psn,xbox,gog
 ```
 
 Each source runs exactly as its single-platform command would, including
-credential handling. A failing source does not stop the others, but the
+credential handling, but only the combined file is written: the per-source
+files under `data/raw/` are left untouched. A failing source does not stop the others, but the
 combined file is written only when every source succeeds, so a partial run
 never replaces a previous good file; the summary at the end names what failed
 and the exit code is non-zero. `--verbose` and `--quiet` apply to the whole
