@@ -81,9 +81,7 @@ one-line description of what it means.
 ```
 
 Every tag used in the annotations must appear here; an unknown tag fails
-processing, naming the game and the tag. Adding a tag to the vocabulary is
-therefore a deliberate step, which keeps near-duplicates and typos out. The
-descriptions are for whoever, or whatever, assigns tags.
+processing, naming the game and the tag.
 
 ## Output
 
