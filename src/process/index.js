@@ -183,10 +183,9 @@ export const blankAnnotations = (names) =>
  * @param {string} options.input  scraped rows file
  * @param {string} options.annotationsFile
  * @param {string} options.out
- * @param {string} options.unannotatedFile
  * @param {import('consola').ConsolaInstance} options.log
  */
-export async function runProcess({ input, annotationsFile, tagsFile, out, unannotatedFile, log }) {
+export async function runProcess({ input, annotationsFile, tagsFile, out, log }) {
   const rows = parseOrThrow(rawGamesSchema, await fs.readJson(input), input);
   const annotations = await loadAnnotations(annotationsFile);
   checkTags(annotations, await loadTags(tagsFile), annotationsFile);
@@ -211,13 +210,15 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, unanno
     for (const name of result.unrated) log.debug(`  unrated: ${name}`);
   }
 
+  const updatedAnnotations = [...annotations, ...blankAnnotations(result.unannotated)].sort((a, b) =>
+    a.game.localeCompare(b.game, 'en'),
+  );
+
   await fs.outputJson(out, result.games, { spaces: 2 });
   log.success(`Wrote ${result.games.length} games to ${out}`);
-  if (result.unannotated.length) {
-    await fs.outputJson(unannotatedFile, blankAnnotations(result.unannotated), { spaces: 2 });
-    log.info(`Wrote ${result.unannotated.length} fill-in entries to ${unannotatedFile}`);
-  } else {
-    await fs.remove(unannotatedFile);
+  if (JSON.stringify(updatedAnnotations) !== JSON.stringify(annotations)) {
+    await fs.outputJson(annotationsFile, updatedAnnotations, { spaces: 2 });
+    log.info(`Added ${result.unannotated.length} games and sorted ${annotationsFile}`);
   }
   return result;
 }

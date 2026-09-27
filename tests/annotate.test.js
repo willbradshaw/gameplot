@@ -306,15 +306,12 @@ test('process and annotate persist Unplayed corrections and restore scraped hour
     annotationsFile: path.join(dir, 'annotations.json'),
     tagsFile: path.join(dir, 'tags.json'),
     out: path.join(dir, 'games.json'),
-    unannotatedFile: path.join(dir, 'unannotated.json'),
     log: silentLogger,
   };
   await fs.writeJson(options.input, [{ ...row('A', 'Steam', '2026-09-01'), hoursPlayed: 8 }]);
   await fs.writeJson(options.annotationsFile, []);
   await fs.writeJson(options.tagsFile, {});
   await runProcess(options);
-  // Fill-in entries are transferred explicitly; process never modifies annotations.
-  await fs.writeJson(options.annotationsFile, await fs.readJson(options.unannotatedFile));
   await runAnnotate({ ...options, now, prompt: async () => '0' });
   let annotations = await fs.readJson(options.annotationsFile);
   assert.equal(annotations[0].status, 'Unplayed');

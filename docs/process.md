@@ -22,7 +22,6 @@ See [scrape.md](scrape.md) for how the input is produced.
 | `-a, --annotations <file>` | Annotations file (default `data/annotations.json`) |
 | `-t, --tags <file>` | Tag vocabulary file (default `data/tags.json`) |
 | `-o, --out <file>` | Output file (default `data/games.json`) |
-| `-u, --unannotated <file>` | Where to write fill-in entries for unannotated games (default `data/unannotated.json`) |
 | `-v, --verbose` | Show debug output, including the list of unrated annotations |
 | `-q, --quiet` | Only warnings and errors |
 
@@ -38,8 +37,9 @@ one platform; processing merges those.
 
 ### Annotations
 
-`data/annotations.json` is the only hand-edited file: a JSON array with one
-entry per game.
+`data/annotations.json` is a JSON array with one entry per game. Missing
+games are added by `process`, and the file is alphabetised by game name.
+Existing annotation fields are preserved.
 
 ```json
 {
@@ -113,10 +113,9 @@ written if the inputs fail validation or the playtime rules below are broken.
 Every run ends with an account of what did not reach the output:
 
 - **Scraped games with no annotation.** Listed in full at warning level, and
-  written as fill-in entries (rating and status null, empty tags) to
-  `data/unannotated.json` so they can be pasted into the annotations file.
-  The file is absent when there are no fill-in entries; any previous file
-  is removed after a successful run.
+  added to the annotations file with null rating and status and empty tags.
+  The combined entries are alphabetised by game name. Statuses and ratings
+  can then be filled in with [`gameplot annotate`](annotate.md).
 - **Annotations with no scraped game.** Listed in full at warning level.
   Either the game has not been scraped, or its name and aliases no longer
   match how a platform spells it.

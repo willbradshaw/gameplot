@@ -27,7 +27,7 @@ test('gameplot process --help shows the default files', async () => {
   assert.match(stdout, /data\/annotations\.json/);
   assert.match(stdout, /data\/tags\.json/);
   assert.match(stdout, /data\/games\.json/);
-  assert.match(stdout, /data\/unannotated\.json/);
+  assert.doesNotMatch(stdout, /--unannotated/);
 });
 
 test('gameplot annotate --help shows the input and annotation defaults', async () => {
