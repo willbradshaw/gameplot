@@ -25,9 +25,13 @@ gameplot process
 
 ## Prompts
 
-Statuses are requested for entries without one, followed by reviews of
-stale Active games and recently played Unplayed games. Missing ratings are
-requested for Complete and Abandoned games, then for Active games separately.
+The following steps run in order:
+
+1. **Missing statuses.** Assign statuses to entries without one.
+2. **Stale Active games.** Review Active games last played outside the configured window.
+3. **Recently played Unplayed games.** Review Unplayed games with activity inside that window.
+4. **Missing ratings.** Rate Complete and Abandoned games without a rating.
+5. **Active games without ratings.** Offer ratings for Active games separately.
 
 Enter skips missing values or keeps the current status. Skipped entries are
 offered again on the next run.
