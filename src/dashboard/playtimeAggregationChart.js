@@ -85,7 +85,7 @@ function renderPlaytimeAggregation(filteredData) {
     d3.select('#playtimeAggregationChart')
       .append('div')
       .style('text-align', 'center')
-      .style('color', '#a0a0a0')
+      .style('color', 'var(--text-secondary)')
       .style('margin-top', '50px')
       .text('No data to display');
     return;
@@ -114,6 +114,7 @@ function renderPlaytimeAggregation(filteredData) {
   const svg = d3
     .select('#playtimeAggregationChart')
     .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('width', width)
     .attr('height', height);
 
@@ -190,7 +191,7 @@ function renderPlaytimeAggregation(filteredData) {
     .attr('y', chartHeight)
     .attr('height', 0)
     .attr('fill', (d) => getBarColor(d.category, currentAggregationType))
-    .attr('stroke', 'rgba(255,255,255,0.2)')
+    .attr('stroke', 'var(--border-color)')
     .attr('stroke-width', 1)
     .style('cursor', 'pointer');
 
@@ -210,7 +211,7 @@ function renderPlaytimeAggregation(filteredData) {
     .attr('x', (d) => xScale(d.category) + xScale.bandwidth() / 2)
     .attr('y', (d) => yScale(d.totalHours) - 5)
     .attr('text-anchor', 'middle')
-    .style('fill', '#ffffff')
+    .style('fill', 'var(--text-primary)')
     .style('font-size', '12px')
     .style('font-weight', '500')
     .text((d) => `${Math.round(d.totalHours)}h`)

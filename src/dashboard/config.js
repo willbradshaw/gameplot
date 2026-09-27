@@ -2,11 +2,11 @@
 
 // Platform colors mapping
 export const PLATFORM_COLORS = {
-  PS5: '#eeeeee',
-  Switch: '#96ceb4',
-  Xbox: '#85E34A',
-  GOG: '#FC7EFF',
-  Steam: '#7EBBFF',
+  PS5: 'var(--platform-ps5)',
+  Switch: 'var(--platform-switch)',
+  Xbox: 'var(--platform-xbox)',
+  GOG: 'var(--platform-gog)',
+  Steam: 'var(--platform-steam)',
 };
 
 // Get platform color with fallback

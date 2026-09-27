@@ -26,7 +26,12 @@ export function createTimelineChart(data) {
   const { margin, width, height, chartWidth, chartHeight } = TIMELINE_CONFIG;
 
   // Create SVG
-  svg = d3.select('#chart').append('svg').attr('width', width).attr('height', height);
+  svg = d3
+    .select('#chart')
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('width', width)
+    .attr('height', height);
 
   g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -164,7 +169,7 @@ export function renderTimelinePoints(filteredData) {
       .attr('x', TIMELINE_CONFIG.chartWidth / 2)
       .attr('y', TIMELINE_CONFIG.chartHeight / 2)
       .attr('text-anchor', 'middle')
-      .attr('fill', '#a0a0a0')
+      .attr('fill', 'var(--text-secondary)')
       .text('No data to display');
     return;
   }

@@ -1,9 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap");
+
+:root {
+  color-scheme: light;
+  --page-bg: #fff;
+  --chart-bg: rgba(255, 255, 255, 0.95);
+  --dark-bg: rgba(0, 0, 0, 0.05);
+  --accent-blue: #3b82f6;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border-color: rgba(0, 0, 0, 0.2);
+  --grid-color: rgba(0, 0, 0, 0.2);
+  --axis-text: #374151;
+  --control-bg: rgba(0, 0, 0, 0.05);
+  --control-hover: rgba(0, 0, 0, 0.1);
+  --section-bg: #f3f4f6;
+  --table-heading: #e5e7eb;
+  --tooltip-bg: rgba(255, 255, 255, 0.95);
+  --point-stroke: rgba(0, 0, 0, 0.3);
+  --point-hover: rgba(0, 0, 0, 0.8);
+  --platform-ps5: #737373;
+  --platform-switch: #96ceb4;
+  --platform-xbox: #85e34a;
+  --platform-gog: #fc7eff;
+  --platform-steam: #7ebbff;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --page-bg: #262626;
+  --chart-bg: rgba(255, 255, 255, 0.05);
+  --dark-bg: rgba(0, 0, 0, 0.2);
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --border-color: rgba(255, 255, 255, 0.2);
+  --grid-color: rgba(255, 255, 255, 0.4);
+  --axis-text: #e0e0e0;
+  --control-bg: rgba(255, 255, 255, 0.1);
+  --control-hover: rgba(255, 255, 255, 0.2);
+  --section-bg: rgba(64, 64, 64, 0.5);
+  --table-heading: #374151;
+  --tooltip-bg: rgba(0, 0, 0, 0.9);
+  --point-stroke: rgba(255, 255, 255, 0.3);
+  --point-hover: rgba(255, 255, 255, 0.8);
+  --platform-ps5: #eee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
 body {
   margin: 0;
   padding: 20px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%);
-  color: #e0e0e0;
+  font-family: "Fira Sans", "Segoe UI", sans-serif;
+  background: var(--page-bg);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-primary);
   min-height: 100vh;
 }
 
@@ -14,37 +72,40 @@ body {
 
 h1 {
   text-align: center;
-  color: #ffffff;
-  font-size: 2.5em;
+  color: var(--text-primary);
+  font-size: 2.25rem;
   margin-bottom: 10px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 300;
 }
 
 .subtitle {
   text-align: center;
-  color: #a0a0a0;
-  margin-bottom: 30px;
-  font-size: 1.1em;
+  color: var(--text-secondary);
+
+  font-size: 1.125rem;
+  margin-bottom: 32px;
 }
 
 .controls {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.8fr;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) 0.8fr;
   gap: 15px;
   margin-bottom: 20px;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--control-bg);
   border-radius: 10px;
   backdrop-filter: blur(10px);
 }
 
 .control-section {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--section-bg);
   padding: 12px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   min-height: 180px;
+
+  min-width: 0;
 }
 
 .control-header {
@@ -56,7 +117,7 @@ h1 {
 
 .control-title {
   font-weight: bold;
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -68,9 +129,9 @@ h1 {
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #e0e0e0;
+  background: var(--control-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 10px;
@@ -81,8 +142,8 @@ h1 {
 }
 
 .filter-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: var(--control-hover);
+  color: var(--text-primary);
 }
 
 .tag-search-container {
@@ -92,22 +153,22 @@ h1 {
 .tag-search-input {
   width: 100%;
   padding: 6px 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--control-bg);
+  color: var(--text-primary);
   font-size: 11px;
   outline: none;
   box-sizing: border-box;
 }
 
 .tag-search-input::placeholder {
-  color: #a0a0a0;
+  color: var(--text-secondary);
 }
 
 .tag-search-input:focus {
   border-color: #4fc3f7;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--control-hover);
 }
 
 .platform-checkboxes,
@@ -117,7 +178,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-height: 140px;
+  max-height: 120px;
   overflow-y: auto;
   flex: 1;
 }
@@ -138,7 +199,7 @@ h1 {
 }
 
 .checkbox-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--control-bg);
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -150,7 +211,7 @@ h1 {
 .checkbox-item label {
   font-size: 11px;
   cursor: pointer;
-  color: #e0e0e0;
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
@@ -162,9 +223,9 @@ h1 {
 }
 
 .reset-all-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #e0e0e0;
+  background: var(--control-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   padding: 8px 12px;
   border-radius: 4px;
   font-size: 10px;
@@ -176,8 +237,8 @@ h1 {
 }
 
 .reset-all-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: var(--control-hover);
+  color: var(--text-primary);
 }
 
 .date-range {
@@ -188,56 +249,67 @@ h1 {
 
 .date-input-group {
   display: flex;
-  flex-direction: column;
   gap: 5px;
+
+  flex-direction: row;
+  align-items: center;
 }
 
 .date-input-group label {
   font-size: 12px;
-  color: #a0a0a0;
-  text-transform: uppercase;
+  color: var(--text-secondary);
   letter-spacing: 0.5px;
+
+  text-transform: none;
+  min-width: 35px;
 }
 
 input[type="date"] {
-  padding: 8px 12px;
   border: none;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.9);
   color: #333;
   font-size: 14px;
+
+  min-width: 0;
+  width: 100%;
+  padding: 8px;
+  color-scheme: light;
 }
 
 .chart-container {
-  background: rgba(255, 255, 255, 0.05);
+  margin-top: 32px;
+  background: var(--chart-bg);
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 .chart {
   width: 100%;
-  height: 600px;
   overflow: hidden;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--dark-bg);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  height: auto;
+  min-height: 300px;
 }
 
 .tooltip {
   position: absolute;
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
+  background: var(--tooltip-bg);
+  color: var(--text-primary);
   padding: 12px 16px;
   border-radius: 8px;
   font-size: 14px;
   pointer-events: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
   max-width: 300px;
   z-index: 1000;
 }
@@ -257,7 +329,7 @@ input[type="date"] {
 }
 
 .tooltip-label {
-  color: #a0a0a0;
+  color: var(--text-secondary);
   margin-right: 8px;
 }
 
@@ -279,36 +351,37 @@ input[type="date"] {
 .rating-circle {
   cursor: pointer;
   transition: all 0.2s ease;
-  stroke: rgba(255, 255, 255, 0.3);
+  stroke: var(--point-stroke);
   stroke-width: 1;
 }
 
 .rating-circle:hover {
   stroke-width: 3;
-  stroke: rgba(255, 255, 255, 0.8);
+  stroke: var(--point-hover);
   filter: brightness(1.2);
 }
 
 .axis {
   font-size: 12px;
-  color: #e0e0e0;
+  color: var(--text-primary);
 }
 
 .axis-label {
-  font-size: 14px;
-  font-weight: 500;
-  fill: #ffffff;
+  fill: var(--axis-text);
+
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .grid-line {
-  stroke: rgba(255, 255, 255, 0.1);
+  stroke: var(--grid-color);
   stroke-dasharray: 2, 2;
 }
 
 .zoom-instructions {
   text-align: center;
   margin-top: 15px;
-  color: #a0a0a0;
+  color: var(--text-secondary);
   font-size: 0.9em;
 }
 
@@ -320,7 +393,8 @@ input[type="date"] {
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
+  background: var(--control-bg);
   padding: 15px;
   border-radius: 10px;
   text-align: center;
@@ -328,23 +402,29 @@ input[type="date"] {
 }
 
 .stat-value {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 2.5em;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-weight: 500;
   color: #4fc3f7;
 }
 
 .stat-label {
-  color: #a0a0a0;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
   margin-top: 5px;
 }
 
 /* Games Table Styles */
 .table-container {
+  border: 1px solid var(--border-color);
   background: var(--chart-bg);
   border-radius: 12px;
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .table-header {
@@ -354,11 +434,6 @@ input[type="date"] {
   margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 15px;
-}
-
-.table-header h2 {
-  margin: 0;
-  flex-grow: 1;
 }
 
 .table-controls {
@@ -372,7 +447,7 @@ input[type="date"] {
   display: flex;
   align-items: center;
   background: var(--dark-bg);
-  border: 1px solid #374151;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -380,7 +455,7 @@ input[type="date"] {
 .search-input {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--text-primary);
   padding: 8px 12px;
   font-size: 14px;
   outline: none;
@@ -388,13 +463,13 @@ input[type="date"] {
 }
 
 .search-input::placeholder {
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .clear-search-btn {
   background: transparent;
   border: none;
-  color: #9ca3af;
+  color: var(--text-secondary);
   padding: 8px 10px;
   cursor: pointer;
   font-size: 12px;
@@ -407,7 +482,6 @@ input[type="date"] {
 
 .download-csv-btn {
   background: var(--accent-blue);
-  color: white;
   border: none;
   padding: 8px 16px;
   border-radius: 6px;
@@ -415,6 +489,8 @@ input[type="date"] {
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
+
+  color: white;
 }
 
 .download-csv-btn:hover {
@@ -425,7 +501,7 @@ input[type="date"] {
 .table-wrapper {
   overflow-x: auto;
   border-radius: 8px;
-  border: 1px solid #374151;
+  border: 1px solid var(--border-color);
   max-height: 500px;
   overflow-y: auto;
 }
@@ -434,16 +510,16 @@ input[type="date"] {
   width: 100%;
   border-collapse: collapse;
   background: var(--dark-bg);
-  color: white;
+  color: var(--text-primary);
   font-size: 14px;
 }
 
 .games-table th {
-  background: #374151;
+  background: var(--table-heading);
   padding: 12px 16px;
   text-align: left;
   font-weight: 600;
-  border-bottom: 2px solid #4b5563;
+  border-bottom: 2px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -456,7 +532,7 @@ input[type="date"] {
 }
 
 .games-table th.sortable:hover {
-  background: #4b5563;
+  background: var(--control-hover);
 }
 
 .games-table th .sort-indicator {
@@ -476,7 +552,7 @@ input[type="date"] {
 
 .games-table td {
   padding: 12px 16px;
-  border-bottom: 1px solid #374151;
+  border-bottom: 1px solid var(--border-color);
   vertical-align: top;
 }
 
@@ -494,7 +570,7 @@ input[type="date"] {
 
 .game-name {
   font-weight: 500;
-  color: #e5e7eb;
+  color: var(--text-primary);
 }
 
 .game-link {
@@ -515,7 +591,6 @@ input[type="date"] {
 }
 
 .platform-badge {
-  background: rgba(59, 130, 246, 0.2);
   color: #3b82f6;
   padding: 4px 8px;
   border-radius: 12px;
@@ -524,6 +599,9 @@ input[type="date"] {
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid rgba(59, 130, 246, 0.3);
+
+  background: color-mix(in srgb, currentColor 15%, transparent);
+  border-color: color-mix(in srgb, currentColor 30%, transparent);
 }
 
 .platform-badge:hover {
@@ -606,7 +684,7 @@ input[type="date"] {
 
 .status-unplayed {
   background: rgba(156, 163, 175, 0.2);
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .tags-list {
@@ -617,19 +695,23 @@ input[type="date"] {
 }
 
 .tag-badge {
-  background: rgba(139, 69, 19, 0.3);
-  color: #d4a574;
   padding: 2px 6px;
   border-radius: 8px;
   font-size: 11px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+
+  background: rgba(255, 107, 0, 0.15);
+  color: #d97706;
+  border: 1px solid rgba(255, 107, 0, 0.3);
 }
 
 .tag-badge:hover {
-  background: rgba(139, 69, 19, 0.4);
   transform: translateY(-1px);
+
+  background: rgba(255, 107, 0, 0.25);
+  color: #c2410c;
 }
 
 .hours-cell {
@@ -641,53 +723,14 @@ input[type="date"] {
 .date-cell {
   font-family: "Courier New", monospace;
   font-size: 13px;
-  color: #d1d5db;
+  color: var(--text-secondary);
 }
 
 .table-info {
   margin-top: 15px;
   text-align: center;
-  color: #9ca3af;
+  color: var(--text-secondary);
   font-size: 14px;
-}
-
-/* Responsive table */
-@media (max-width: 768px) {
-  .controls {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .control-section {
-    min-height: 160px;
-  }
-
-  .reset-section {
-    grid-column: 1 / -1;
-    min-height: auto;
-  }
-
-  .table-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .table-header h2 {
-    text-align: center;
-  }
-
-  .games-table {
-    font-size: 12px;
-  }
-
-  .games-table th,
-  .games-table td {
-    padding: 8px 12px;
-  }
-
-  .tags-list {
-    max-width: 150px;
-  }
 }
 
 /* Aggregation controls */
@@ -696,6 +739,7 @@ input[type="date"] {
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .aggregation-btn {
@@ -723,11 +767,187 @@ input[type="date"] {
 .aggregation-btn.active {
   background: rgba(59, 130, 246, 0.3);
   border-color: #3b82f6;
-  color: #ffffff;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+  color: var(--text-primary);
 }
 
 .aggregation-btn.active:hover {
   background: rgba(59, 130, 246, 0.4);
   transform: translateY(-2px);
+}
+
+/* Website typography, chart colours and responsive layout. */
+h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.theme-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.theme-toggle {
+  background: var(--control-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.axis text {
+  fill: var(--axis-text);
+  font-size: 13px;
+}
+
+.axis line,
+.axis path,
+.grid line {
+  stroke: var(--grid-color);
+}
+
+.grid path {
+  stroke: none;
+}
+
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.platform-badge[data-platform="PS5"] {
+  color: var(--platform-ps5);
+}
+
+.platform-badge[data-platform="Switch"] {
+  color: var(--platform-switch);
+}
+
+.platform-badge[data-platform="Xbox"] {
+  color: var(--platform-xbox);
+}
+
+.platform-badge[data-platform="GOG"] {
+  color: var(--platform-gog);
+}
+
+.platform-badge[data-platform="Steam"] {
+  color: var(--platform-steam);
+}
+
+.dark .tag-badge {
+  background: rgba(139, 69, 19, 0.3);
+  color: #d4a574;
+  border-color: rgba(139, 69, 19, 0.4);
+}
+
+.dark .tag-badge:hover {
+  background: rgba(139, 69, 19, 0.4);
+  color: #e0b584;
+}
+
+@media (min-width: 769px) {
+  .games-table {
+    table-layout: fixed;
+    min-width: 950px;
+  }
+  .games-table th:nth-child(1) {
+    width: 25%;
+  }
+  .games-table th:nth-child(2) {
+    width: 12%;
+  }
+  .games-table th:nth-child(3) {
+    width: 8%;
+  }
+  .games-table th:nth-child(4) {
+    width: 120px;
+  }
+  .games-table th:nth-child(5),
+  .games-table th:nth-child(6) {
+    width: 10%;
+  }
+  .date-cell {
+    white-space: nowrap;
+  }
+  .game-link,
+  .game-name {
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 1200px) {
+  .controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  .controls {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  .control-section {
+    min-height: auto;
+  }
+  .platform-checkboxes,
+  .tag-checkboxes {
+    max-height: 80px;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .stat-card {
+    padding: 10px;
+  }
+  .stat-value {
+    font-size: 1.8em;
+  }
+  .stat-label {
+    font-size: 0.8em;
+  }
+  .table-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-input {
+    min-width: 0;
+    width: 100%;
+  }
+  .table-wrapper {
+    max-height: 400px;
+  }
+  .games-table {
+    min-width: 700px;
+    font-size: 12px;
+  }
+  .games-table th,
+  .games-table td {
+    padding: 8px 12px;
+  }
+  .chart-container,
+  .table-container {
+    padding: 15px 10px;
+  }
+  .chart {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .chart svg {
+    min-width: 700px;
+    flex-shrink: 0;
+  }
+  .aggregation-controls {
+    flex-direction: column;
+  }
+  .aggregation-btn {
+    justify-content: center;
+  }
 }
