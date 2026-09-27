@@ -22,7 +22,7 @@ See [scrape.md](scrape.md) for how the input is produced.
 | `-a, --annotations <file>` | Annotations file (default `data/annotations.json`) |
 | `-t, --tags <file>` | Tag vocabulary file (default `data/tags.json`) |
 | `-o, --out <file>` | Output file (default `data/games.json`) |
-| `-v, --verbose` | Show debug output, including the list of unrated annotations |
+| `-v, --verbose` | Show debug output, including unrated and untagged games |
 | `-q, --quiet` | Only warnings and errors |
 
 ## Inputs
@@ -60,7 +60,7 @@ Existing annotation fields are preserved.
 | `game` | string | Canonical name; this is the name the dashboard shows |
 | `rating` | number 0–10, or null | Null means "not yet rated": the game is excluded from the output but is not reported as missing |
 | `status` | string or null | One of `Active`, `Complete`, `Abandoned`, `Unplayed`. Null is allowed only while `rating` is null: a rated game must have a status |
-| `tags` | array of strings | Free-form; the dashboard filters and aggregates by them |
+| `tags` | array of strings | Tags from the vocabulary; at least one is required for dashboard output |
 | `aliases` | array of strings, optional | Other names the platforms use for this game |
 | `possible_aliases` | array of strings, optional | Ranked canonical names to review as potential aliases in `annotate` |
 | `playtime` | object, optional | Per-platform corrections, keyed by platform label; each has optional `hoursPlayed` and `lastPlayed` |
@@ -126,6 +126,9 @@ Every run ends with an account of what did not reach the output:
 - **Unrated annotations.** Annotated games with `rating` null are counted at
   info level and listed under `--verbose`. Their exclusion is deliberate, so
   they are not warnings.
+- **Untagged games.** Rated, non-Unplayed games with empty tags are excluded,
+  counted at info level and listed under `--verbose`. Tags can be filled in
+  with [`gameplot annotate`](annotate.md).
 - **Ignored playtime corrections**, for platforms the game was not scraped
   on, at warning level.
 
@@ -177,7 +180,7 @@ corrections have been applied:
   the annotation.
 
 Every broken rule is listed, then processing stops and nothing is written.
-Games that will not be output (unannotated or unrated) are not checked: a row
+Games that will not be output (unannotated, unrated or untagged) are not checked: a row
 with null hours belonging to one of them is simply dropped as never played.
 
 ### Merging
@@ -198,4 +201,4 @@ Each game's rows are combined into one output entry in three steps:
 ### Selection
 
 A game is written to the output when it has at least one scraped row and an
-annotation with a non-null rating and a status other than `Unplayed`.
+annotation with a non-null rating, at least one tag and a status other than `Unplayed`.
