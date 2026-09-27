@@ -229,7 +229,6 @@ test('invalid Unplayed data leaves annotations and output files untouched', asyn
     annotationsFile: path.join(dir, 'annotations.json'),
     tagsFile: path.join(dir, 'tags.json'),
     out: path.join(dir, 'games.json'),
-    unannotatedFile: path.join(dir, 'unannotated.json'),
     log: silentLogger,
   };
   await fs.writeJson(options.input, [
@@ -239,43 +238,51 @@ test('invalid Unplayed data leaves annotations and output files untouched', asyn
   await fs.writeJson(options.annotationsFile, [unplayed()]);
   await fs.writeJson(options.tagsFile, {});
   await fs.writeJson(options.out, ['existing output']);
-  await fs.writeJson(options.unannotatedFile, ['existing stubs']);
   await assert.rejects(runProcess(options), /Unplayed.*Steam/);
   assert.deepEqual(await fs.readJson(options.annotationsFile), [unplayed()]);
   assert.deepEqual(await fs.readJson(options.out), ['existing output']);
-  assert.deepEqual(await fs.readJson(options.unannotatedFile), ['existing stubs']);
 });
 
-test('process writes fill-in output only when needed and removes stale output without editing annotations', async (t) => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-fill-in-'));
+test('process adds and alphabetises annotations, preserving existing fields and avoiding duplicates', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-annotations-'));
   t.after(() => fs.remove(dir));
   const options = {
     input: path.join(dir, 'raw.json'),
     annotationsFile: path.join(dir, 'annotations.json'),
     tagsFile: path.join(dir, 'tags.json'),
     out: path.join(dir, 'games.json'),
-    unannotatedFile: path.join(dir, 'fill-in.json'),
     log: silentLogger,
   };
-  await fs.writeJson(options.annotationsFile, [ann('Known')]);
-  const original = await fs.readFile(options.annotationsFile, 'utf8');
+  const z = ann('Z', { aliases: ['Alias'], playtime: { Steam: { hoursPlayed: 3 } } });
+  const b = ann('b', { rating: null, status: null });
+  await fs.writeJson(options.annotationsFile, [z, b]);
   await fs.writeJson(options.tagsFile, { RPG: 'Role-playing' });
-  const known = row('Known', 'Steam', 2, '2026-01-01');
+  const known = row('Alias', 'Steam', 2, '2026-01-01');
   await fs.writeJson(options.input, [known]);
   await runProcess(options);
-  assert.equal(await fs.pathExists(options.unannotatedFile), false);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), [b, z]);
 
-  await fs.writeJson(options.input, [known, row('New', 'Steam', 1, '2026-01-01')]);
+  await fs.writeJson(options.input, [
+    known,
+    row('A', 'Steam', 1, '2026-01-01'),
+    row('A', 'PS5', 2, '2026-01-02'),
+    row('Unplayed', 'GOG', null, null),
+  ]);
   await runProcess(options);
-  assert.deepEqual(await fs.readJson(options.unannotatedFile), blankAnnotations(['New']));
-  assert.equal(await fs.readFile(options.annotationsFile, 'utf8'), original);
+  const expected = [...blankAnnotations(['A']), b, z];
+  assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
+  const games = await fs.readJson(options.out);
+  assert.deepEqual(
+    games.map((g) => g.game),
+    ['Z'],
+  );
+  assert.equal(games[0].hoursPlayedTotal, 3);
+  assert.equal(await fs.pathExists(path.join(dir, 'unannotated.json')), false);
 
-  await fs.writeJson(options.input, [row('Known', 'Steam', 2, null)]);
-  await assert.rejects(runProcess(options), /no date/);
-  assert.deepEqual(await fs.readJson(options.unannotatedFile), blankAnnotations(['New']));
-
-  await fs.writeJson(options.input, [known]);
   await runProcess(options);
-  assert.equal(await fs.pathExists(options.unannotatedFile), false);
-  assert.equal(await fs.readFile(options.annotationsFile, 'utf8'), original);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
+  await fs.writeJson(options.input, [row('Z', 'GOG', null, null), row('New', 'Steam', 1, '2026-01-01')]);
+  await assert.rejects(runProcess(options), /no playtime on GOG/);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
+  assert.deepEqual(await fs.readJson(options.out), games);
 });
