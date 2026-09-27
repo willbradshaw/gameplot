@@ -370,6 +370,7 @@ test('process suggests aliases only across both missing lists and preserves deci
 
 test('edition suffixes on short real titles remain alias candidates', () => {
   const candidates = [ann('Deus Ex'), ann('Weird West'), ann('Lone Survivor')];
+  assert.deepEqual(suggestAliases('Myst: Masterpiece Edition', [ann('Myst')]), ['Myst']);
   assert.deepEqual(suggestAliases('Deus Ex: Game of the Year Edition', candidates), ['Deus Ex']);
   assert.deepEqual(suggestAliases('Weird West: Definitive Edition', candidates), ['Weird West']);
   assert.deepEqual(suggestAliases("Lone Survivor: The Director's Cut", candidates), ['Lone Survivor']);

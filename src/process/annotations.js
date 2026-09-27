@@ -110,7 +110,7 @@ export function suggestAliases(game, candidates) {
       game: a.game,
       score: Math.max(...[a.game, ...(a.aliases ?? [])].map((name) => nameSimilarity(game, name))),
     }))
-    .filter((a) => a.score >= 0.6)
+    .filter((a) => a.score >= 0.5)
     .sort((a, b) => b.score - a.score || a.game.localeCompare(b.game, 'en'))
     .map((a) => a.game);
 }

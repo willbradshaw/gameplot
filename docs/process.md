@@ -148,7 +148,7 @@ and copyright markers removed, and punctuation and whitespace normalised.
 Similarity is the mean of two scores: shared prefix length divided by the
 shorter name's length, and one minus Levenshtein distance divided by the longer
 name's length. The best score across a candidate's canonical name and aliases
-is used. All candidates scoring at least `0.60` are saved in `possible_aliases`,
+is used. All candidates scoring at least `0.50` are saved in `possible_aliases`,
 highest score first. Ties are alphabetised. Pending entries remain candidates;
 sequel numbers and edition wording receive no special treatment.
 
