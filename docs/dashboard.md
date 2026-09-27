@@ -16,7 +16,10 @@ To refresh the data, the CLI can be [installed](setup.md) and the
 [pipeline](pipeline.md) run. If scraped data and annotations already exist,
 [processing](process.md) can rebuild the output without scraping or prompting.
 The page must be served over HTTP; opening `index.html` directly is insufficient.
-D3 is loaded from a CDN, requiring an internet connection.
+D3 and the Fira Sans font are loaded externally, requiring an internet connection.
+
+The dashboard initially uses the saved theme or system light/dark preference.
+The sun/moon button switches themes and saves the choice in the browser.
 
 ## Contents
 

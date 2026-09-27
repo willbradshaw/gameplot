@@ -31,7 +31,7 @@ export function renderPlaytimeChart(filteredData) {
     d3.select('#playtimeChart')
       .append('div')
       .style('text-align', 'center')
-      .style('color', '#a0a0a0')
+      .style('color', 'var(--text-secondary)')
       .style('margin-top', '50px')
       .text('No data to display');
     return;
@@ -40,7 +40,12 @@ export function renderPlaytimeChart(filteredData) {
   const { margin, width, height, chartWidth, chartHeight } = PLAYTIME_CONFIG;
 
   // Create SVG
-  playtimeSvg = d3.select('#playtimeChart').append('svg').attr('width', width).attr('height', height);
+  playtimeSvg = d3
+    .select('#playtimeChart')
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('width', width)
+    .attr('height', height);
 
   const playtimeG = playtimeSvg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -212,7 +217,7 @@ function renderPlaytimePoints(filteredData, g) {
     .attr('cy', (d) => originalYScale(d.rating))
     .attr('r', 8)
     .attr('fill', (d) => getPlatformColor(d.platforms[0])) // Use first platform for color
-    .attr('stroke', 'rgba(255,255,255,0.3)')
+    .attr('stroke', 'var(--point-stroke)')
     .attr('stroke-width', 1)
     .attr('opacity', 0.8)
     .style('cursor', 'pointer') // Add pointer cursor to indicate clickability
@@ -221,7 +226,7 @@ function renderPlaytimePoints(filteredData, g) {
       d3.select(this)
         .attr('opacity', 1)
         .attr('stroke-width', 3)
-        .attr('stroke', 'rgba(255,255,255,0.8)')
+        .attr('stroke', 'var(--point-hover)')
         .style('filter', 'brightness(1.2)');
 
       showPlaytimeTooltip(event, d);
@@ -233,7 +238,7 @@ function renderPlaytimePoints(filteredData, g) {
       d3.select(this)
         .attr('opacity', 0.8)
         .attr('stroke-width', 1)
-        .attr('stroke', 'rgba(255,255,255,0.3)')
+        .attr('stroke', 'var(--point-stroke)')
         .style('filter', 'brightness(1)');
       hidePlaytimeTooltip();
     })

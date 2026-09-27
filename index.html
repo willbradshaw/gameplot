@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Video Game Journey</title>
+    <title>Gaming</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script src="src/dashboard/theme.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 My Video Game Journey</h1>
-        <p class="subtitle">Comprehensive analysis of games played: timeline, ratings by genre, and playtime relationships</p>
+        <div class="theme-controls"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false"><svg class="theme-sun" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+  </svg>
+<svg class="theme-moon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+  </svg></button></div>
+        <h1>Gaming</h1>
+        <p class="subtitle">My comprehensive gaming history, scraped from platform APIs and visualized with D3.</p>
         
         <p id="dashboard-message" role="status">Loading game data…</p>
         <div id="dashboard-content" hidden>
@@ -90,7 +97,6 @@
 
         <div class="table-container">
             <div class="table-header">
-                <h2 style="color: #ffffff; text-align: center;">📋 Games Table</h2>
                 <div class="table-controls">
                     <div class="search-container">
                         <input type="text" id="gameSearch" placeholder="Search games..." class="search-input">
@@ -122,30 +128,30 @@
             </div>
         </div>
 
-        <div class="chart-container" style="margin-top: 30px;">
-            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📅 Last Played vs Rating</h2>
+        <div class="chart-container">
+            <h2>Last Played vs Rating</h2>
             <div class="chart" id="chart"></div>
             <div class="zoom-instructions">
-                🔍 Scroll to zoom • Click and drag to pan • Hover over points for details
+                Scroll to zoom • Click and drag to pan • Hover over points for details
             </div>
         </div>
 
-        <div class="chart-container" style="margin-top: 30px;">
-            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📊 Playtime by Category</h2>
-            <div class="aggregation-controls" id="playtimeAggregationControls" style="text-align: center; margin-bottom: 20px;">
+        <div class="chart-container">
+            <h2>Playtime by Category</h2>
+            <div class="aggregation-controls" id="playtimeAggregationControls">
                 <!-- Aggregation type buttons will be populated by JavaScript -->
             </div>
-            <div class="chart" id="playtimeAggregationChart" style="height: 500px; overflow: hidden;"></div>
+            <div class="chart" id="playtimeAggregationChart"></div>
             <div class="zoom-instructions">
-                📊 Total playtime aggregated by category • Switch between Platform, Tag, Status, and Rating views • Hover over bars for details
+                Total playtime aggregated by category • Switch between Platform, Tag, Status, and Rating views • Hover over bars for details
             </div>
         </div>
 
-        <div class="chart-container" style="margin-top: 30px;">
-            <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">⏱️ Playtime vs Rating</h2>
-            <div class="chart" id="playtimeChart" style="height: 600px; overflow: hidden;"></div>
+        <div class="chart-container">
+            <h2>Playtime vs Rating</h2>
+            <div class="chart" id="playtimeChart"></div>
             <div class="zoom-instructions">
-                🎮 Playtime vs rating relationship • Scroll to zoom • Click and drag to pan • Hover over points for details
+                Playtime vs rating relationship • Scroll to zoom • Click and drag to pan • Hover over points for details
             </div>
         </div>
         </div>
