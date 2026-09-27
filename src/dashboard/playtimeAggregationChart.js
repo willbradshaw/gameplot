@@ -91,13 +91,6 @@ function renderPlaytimeAggregation(filteredData) {
 
     // Aggregate data based on current type
     const aggregatedData = aggregatePlaytimeData(filteredData, currentAggregationType);
-    if (aggregatedData.length === 0) {
-        d3.select('#playtimeAggregationChart').append('p')
-            .style('text-align', 'center')
-            .text('No playtime to display');
-        return;
-    }
-
 
     // Sort data based on aggregation type
     if (currentAggregationType === 'rating') {

@@ -77,7 +77,8 @@ export function buildGame(annotation, rows) {
     }
   }
   const lastPlayedTotal = elements.reduce((d, e) => later(d, e.lastPlayed), null);
-  if (!violations.length && lastPlayedTotal === null) {
+  const hoursPlayedTotal = roundHours(elements.reduce((s, e) => s + e.hoursPlayed, 0));
+  if (!violations.length && hoursPlayedTotal <= 0) {
     violations.push(`"${annotation.game}" has no playtime on any platform; supply some or remove its rating`);
   }
   if (violations.length) return { game: null, ignoredCorrections, violations };
@@ -93,7 +94,7 @@ export function buildGame(annotation, rows) {
     urls: elements.map((e) => e.url),
     hoursPlayedSingle: elements.map((e) => e.hoursPlayed),
     lastPlayedSingle: elements.map((e) => e.lastPlayed),
-    hoursPlayedTotal: roundHours(elements.reduce((s, e) => s + e.hoursPlayed, 0)),
+    hoursPlayedTotal,
     lastPlayedTotal,
     displayUrl: preferred ?? elements.map((e) => e.url).find(Boolean) ?? null,
     rating: annotation.rating,

@@ -108,21 +108,20 @@ test('category totals use parallel platform hours and whole-game totals for othe
   const { aggregatePlaytimeData } = await import('../src/dashboard/playtimeAggregationChart.js');
   const games = [
     exampleGame(),
-    exampleGame({ game: 'Zero', hoursPlayedTotal: 0, hoursPlayedSingle: [0, 0] }),
+    exampleGame({ game: 'Steam only', hoursPlayedTotal: 1, hoursPlayedSingle: [1, 0] }),
   ];
   assert.deepEqual(aggregatePlaytimeData(games, 'platform'), [
-    { category: 'Steam', totalHours: 2, gameCount: 2 },
+    { category: 'Steam', totalHours: 3, gameCount: 2 },
     { category: 'GOG', totalHours: 3, gameCount: 2 },
   ]);
   assert.deepEqual(aggregatePlaytimeData(games, 'status'), [
-    { category: 'Active', totalHours: 5, gameCount: 2 },
+    { category: 'Active', totalHours: 6, gameCount: 2 },
   ]);
-  assert.deepEqual(aggregatePlaytimeData(games, 'rating'), [{ category: '<5', totalHours: 5, gameCount: 2 }]);
+  assert.deepEqual(aggregatePlaytimeData(games, 'rating'), [{ category: '<5', totalHours: 6, gameCount: 2 }]);
   assert.deepEqual(aggregatePlaytimeData(games, 'tag'), [
-    { category: 'Puzzle', totalHours: 5, gameCount: 2 },
-    { category: 'Adventure', totalHours: 5, gameCount: 2 },
+    { category: 'Puzzle', totalHours: 6, gameCount: 2 },
+    { category: 'Adventure', totalHours: 6, gameCount: 2 },
   ]);
-  assert.deepEqual(aggregatePlaytimeData([games[1]], 'platform'), []);
 });
 
 test('table and CSV preserve zero ratings, hours, dates, status styling and display links', async (t) => {
@@ -157,18 +156,16 @@ test('table and CSV preserve zero ratings, hours, dates, status styling and disp
     return 'blob:test';
   });
   const { renderTable, downloadTableAsCSV } = await import('../src/dashboard/gamesTable.js');
-  const games = ['Active', 'Complete', 'Abandoned'].map((status) =>
-    exampleGame({ status, hoursPlayedTotal: 0 }),
-  );
+  const games = ['Active', 'Complete', 'Abandoned'].map((status) => exampleGame({ status }));
   renderTable(games);
   const cells = body.children[0].children;
   assert.match(cells[0].innerHTML, /href="https:\/\/example.com\/game"/);
   assert.match(cells[2].innerHTML, />0\.0<\/span>/);
   assert.equal(cells[3].textContent, '2026-03-08');
-  assert.equal(cells[4].textContent, '0h');
+  assert.equal(cells[4].textContent, '5h');
   for (const [index, status] of ['active', 'complete', 'abandoned'].entries()) {
     assert.match(body.children[index].children[5].innerHTML, new RegExp(`status-${status}`));
   }
   downloadTableAsCSV();
-  assert.match(await csv.text(), /Example,Steam; GOG,0,2026-03-08,0,Active,Puzzle; Adventure/);
+  assert.match(await csv.text(), /Example,Steam; GOG,0,2026-03-08,5,Active,Puzzle; Adventure/);
 });

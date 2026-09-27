@@ -177,6 +177,8 @@ corrections have been applied:
   number for `hoursPlayed`. A null (GOG reports none) is an error naming the
   game and platform; if the game is genuinely unplayed there, the annotation
   must say so with `"hoursPlayed": 0`.
+- **Positive total hours.** Total playtime across platforms must be greater than
+  zero after corrections and rounding, even if a last-played date exists.
 - **Played means dated.** Every platform with `hoursPlayed` above zero must
   have a `lastPlayed` date. A missing one is an error, fixed by supplying it in
   the annotation.

@@ -66,7 +66,7 @@ export const gameSchema = z.strictObject({
   urls: z.array(z.string().min(1).nullable()),
   hoursPlayedSingle: z.array(hours),
   lastPlayedSingle: z.array(isoDate.nullable()),
-  hoursPlayedTotal: hours,
+  hoursPlayedTotal: z.number().positive(),
   lastPlayedTotal: isoDate,
   displayUrl: z.string().min(1).nullable(),
   rating: z.number().min(0).max(10),

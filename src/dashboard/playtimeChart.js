@@ -65,11 +65,10 @@ export function renderPlaytimeChart(filteredData) {
     const hoursExtent = d3.extent(hours);
     const hoursDomain = [
         hoursExtent[0] * 0.8,
-        Math.max(1, hoursExtent[1] * 1.2)
+        hoursExtent[1] * 1.2
     ];
 
-    const playtimeXScale = d3.scaleSymlog()
-        .constant(1)
+    const playtimeXScale = d3.scaleLog()
         .domain(hoursDomain)
         .range([0, chartWidth]);
 
@@ -129,7 +128,7 @@ export function renderPlaytimeChart(filteredData) {
         .attr("class", "axis-label")
         .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + margin.bottom - 10})`)
         .style("text-anchor", "middle")
-        .text("Hours Played (linear near zero, logarithmic above)");
+        .text("Hours Played");
 
     // Calculate proper translate extent based on data bounds
     const padding = 50; // Padding buffer beyond data extents
