@@ -14,7 +14,6 @@ export async function runPipeline(
     tagsFile = TAGS_FILE,
     out = GAMES_FILE,
     months = 12,
-    startStep = 1,
     log,
   },
   { scrape = runScrapeBatch, processGames = runProcess, annotate = runAnnotate } = {},
@@ -22,13 +21,13 @@ export async function runPipeline(
   const paths = [rawOut, annotationsFile, tagsFile, out].map((file) => path.resolve(file));
   if (new Set(paths).size !== paths.length)
     throw new Error('raw output, annotations, tags and processed output must use different files');
-  log.info('Pipeline 1/4: Scraping');
+  log.box('Stage A: Scrape');
   await scrape({ given, suffix, out: rawOut, log });
   const processing = { input: rawOut, annotationsFile, tagsFile, out, log };
-  log.info('Pipeline 2/4: Processing');
+  log.box('Stage B: Process');
   await processGames(processing);
-  log.info('Pipeline 3/4: Annotating');
-  await annotate({ input: rawOut, annotationsFile, tagsFile, months, startStep, log });
-  log.info('Pipeline 4/4: Reprocessing');
+  log.box('Stage C: Annotate');
+  await annotate({ input: rawOut, annotationsFile, tagsFile, months, log });
+  log.box('Stage D: Reprocess');
   return processGames(processing);
 }

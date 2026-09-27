@@ -111,17 +111,17 @@ test('pipeline is registered and exposes shared stage options', async () => {
     '--annotations',
     '--tags',
     '--out',
-    '--months',
-    '--step',
+    '--annotation-months',
     '--verbose',
     '--quiet',
   ])
     assert.ok(stdout.includes(flag), flag);
   for (const [flag, value, error] of [
     ['--suffix', '../bad', /letters, digits or dashes/],
-    ['--months', '0', /positive whole number/],
-    ['--step', '8', /whole number from 1 to 7/],
+    ['--annotation-months', '0', /positive whole number/],
   ])
     await assert.rejects(run('pipeline', flag, value), error);
+  await assert.rejects(run('pipeline', '--step', '2'), /unknown option/);
+  await assert.rejects(run('pipeline', '--annotation-step', '2'), /unknown option/);
   await assert.rejects(run('pipeline', 'unknown'), /unknown platform/);
 });

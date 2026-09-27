@@ -23,7 +23,6 @@ test('pipeline passes options to the appropriate stages in order, including suff
       tagsFile: '/tmp/tags.json',
       out: '/tmp/games.json',
       months: 6,
-      startStep: 7,
       log,
     };
     await runPipeline(options, {
@@ -50,7 +49,6 @@ test('pipeline passes options to the appropriate stages in order, including suff
       annotationsFile: options.annotationsFile,
       tagsFile: options.tagsFile,
       months: 6,
-      startStep: 7,
       log,
     });
   }

@@ -3,7 +3,7 @@ import { Command } from 'commander';
 import { createLogger } from '../lib/log.js';
 import { runPipeline } from '../pipeline.js';
 import { PLATFORM_NAMES, parseSources } from '../scrape/batch.js';
-import { parseMonths, parseStep, parseSuffix } from './options.js';
+import { parseMonths, parseSuffix } from './options.js';
 
 export const pipelineCommand = new Command('pipeline')
   .description('scrape, process, annotate and reprocess games')
@@ -18,16 +18,10 @@ export const pipelineCommand = new Command('pipeline')
   .option('-t, --tags <file>', 'tag vocabulary file (default: data/tags.json)')
   .option('-o, --out <file>', 'processed output file (default: data/games.json)')
   .option(
-    '--months <n>',
+    '--annotation-months <n>',
     'months since last play; review older Active and more recent Unplayed games',
     parseMonths,
     12,
-  )
-  .option(
-    '--step <n>',
-    'start annotation at this step and continue through the remaining steps',
-    parseStep,
-    1,
   )
   .option('-v, --verbose', 'show debug output')
   .option('-q, --quiet', 'only show warnings, errors and annotation prompts')
@@ -39,8 +33,7 @@ export const pipelineCommand = new Command('pipeline')
       annotationsFile: opts.annotations,
       tagsFile: opts.tags,
       out: opts.out,
-      months: opts.months,
-      startStep: opts.step,
+      months: opts.annotationMonths,
       log: createLogger(opts),
     });
   });
