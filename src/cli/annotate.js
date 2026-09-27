@@ -12,7 +12,7 @@ export const annotateCommand = new Command('annotate')
   .option('-t, --tags <file>', 'tag vocabulary file (default: data/tags.json)')
   .option(
     '--months <n>',
-    'status review window in months',
+    'months since last play; review older Active and more recent Unplayed games',
     (value) => {
       if (!/^\d+$/.test(value) || !Number.isSafeInteger(Number(value)) || Number(value) < 1) {
         throw new InvalidArgumentError('must be a positive whole number');
@@ -22,7 +22,7 @@ export const annotateCommand = new Command('annotate')
     12,
   )
   .option('-v, --verbose', 'show debug output')
-  .option('-q, --quiet', 'only show warnings and errors')
+  .option('-q, --quiet', 'hide the final save summary')
   .action(async (input, opts) => {
     await runAnnotate({
       input: input ?? RAW_BATCH_FILE,
