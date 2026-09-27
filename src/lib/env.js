@@ -19,6 +19,7 @@ export const RAW_BATCH_FILE = path.join(RAW_DATA_DIR, 'batch.json');
 export const ANNOTATIONS_FILE = path.join(REPO_ROOT, 'data', 'annotations.json');
 export const TAGS_FILE = path.join(REPO_ROOT, 'data', 'tags.json');
 export const GAMES_FILE = path.join(REPO_ROOT, 'data', 'games.json');
+export const UNANNOTATED_FILE = path.join(REPO_ROOT, 'data', 'unannotated.json');
 export const ENV_FILE = path.join(REPO_ROOT, '.env');
 
 /** Load a .env file into process.env if it exists. Safe to call more than once. */

@@ -1,11 +1,12 @@
 # Annotating games
 
 `gameplot annotate` interactively fills in missing statuses and ratings and
-reviews stale Active games and recently played Unplayed games. New games are first appended
-to the annotations file by [`gameplot process`](process.md).
+reviews stale Active games and recently played Unplayed games. Entries must
+already exist in the annotations file. Missing games are reported in
+`data/unannotated.json` by [`gameplot process`](process.md); those fill-in
+entries can be copied into the annotations file before annotation.
 
 ```
-gameplot process
 gameplot annotate
 gameplot annotate data/raw/steam.json
 gameplot process
