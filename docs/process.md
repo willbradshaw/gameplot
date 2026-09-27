@@ -62,11 +62,15 @@ Existing annotation fields are preserved.
 | `status` | string or null | One of `Active`, `Complete`, `Abandoned`, `Unplayed`. Null is allowed only while `rating` is null: a rated game must have a status |
 | `tags` | array of strings | Free-form; the dashboard filters and aggregates by them |
 | `aliases` | array of strings, optional | Other names the platforms use for this game |
+| `possible_aliases` | array of strings, optional | Ranked canonical names to review as potential aliases in `annotate` |
 | `playtime` | object, optional | Per-platform corrections, keyed by platform label; each has optional `hoursPlayed` and `lastPlayed` |
 
 Names must be unique across entries, and an alias may not be another entry's
 name or alias. Unknown fields are rejected, so a mistyped field name fails
 validation rather than being ignored.
+
+Possible alias targets must name other existing annotation entries. Pending
+suggestions may refer to other pending entries.
 
 ### Tags
 
@@ -134,6 +138,17 @@ is an entry's `game` or one of its `aliases` belongs to that entry, and the
 output entry is named by `game`. This is how differently spelled listings of
 one game (`Slay the Spire` on Steam and `Slay The Spire` on Xbox;
 `Divinity: Original Sin 2` and its `Definitive Edition`) become one entry.
+
+### Possible aliases
+
+New scraped names are compared with annotations missing from the scraped data,
+including their aliases. Names are normalised for case, punctuation, whitespace
+and trademark/copyright markers, then ranked by shared prefix and character
+similarity. Candidates scoring at least `0.50` are saved in the new blank entry's
+`possible_aliases` for manual review in [`gameplot annotate`](annotate.md).
+
+Suggestions do not establish a match until accepted. They are added only when
+creating an entry, so rejected suggestions do not reappear on subsequent runs.
 
 ### Playtime corrections
 

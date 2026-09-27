@@ -6,7 +6,7 @@
 
 import fs from 'fs-extra';
 import { gamesSchema, parseOrThrow, rawGamesSchema } from '../lib/model.js';
-import { buildAliasMap, checkTags, loadAnnotations, loadTags } from './annotations.js';
+import { buildAliasMap, checkTags, loadAnnotations, loadTags, suggestAliases } from './annotations.js';
 
 /** Which platform's url to show when a game is on several. First match wins. */
 const DISPLAY_URL_PREFERENCE = ['Steam', 'PS5'];
@@ -210,15 +210,25 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, log })
     for (const name of result.unrated) log.debug(`  unrated: ${name}`);
   }
 
-  const updatedAnnotations = [...annotations, ...blankAnnotations(result.unannotated)].sort((a, b) =>
-    a.game.localeCompare(b.game, 'en'),
-  );
+  const candidates = annotations.filter((a) => result.unmatched.includes(a.game));
+  const blanks = blankAnnotations(result.unannotated);
+  for (const entry of blanks) {
+    const targets = suggestAliases(entry.game, candidates);
+    if (targets.length) entry.possible_aliases = targets;
+  }
+  const updatedAnnotations = [...annotations, ...blanks].sort((a, b) => a.game.localeCompare(b.game, 'en'));
 
   await fs.outputJson(out, result.games, { spaces: 2 });
   log.success(`Wrote ${result.games.length} games to ${out}`);
   if (JSON.stringify(updatedAnnotations) !== JSON.stringify(annotations)) {
     await fs.outputJson(annotationsFile, updatedAnnotations, { spaces: 2 });
     log.info(`Added ${result.unannotated.length} games and sorted ${annotationsFile}`);
+  }
+  const pendingAliases = updatedAnnotations.filter((a) => a.possible_aliases).length;
+  if (pendingAliases) {
+    log.info(
+      `${pendingAliases} game${pendingAliases === 1 ? ' has' : 's have'} suggested aliases to review; run gameplot annotate`,
+    );
   }
   return result;
 }

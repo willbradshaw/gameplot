@@ -5,7 +5,13 @@ import { LogLevels } from 'consola';
 import fs from 'fs-extra';
 import { parseOrThrow, rawGamesSchema, STATUSES } from '../lib/model.js';
 import { confirm as askConfirm } from '../lib/prompt.js';
-import { buildAliasMap, checkTags, loadAnnotations, loadTags } from '../process/annotations.js';
+import {
+  buildAliasMap,
+  checkTags,
+  isBlankAnnotation,
+  loadAnnotations,
+  loadTags,
+} from '../process/annotations.js';
 import { buildPlatforms } from '../process/index.js';
 
 const STATUS_CHOICES = ['Unplayed', ...STATUSES.filter((status) => status !== 'Unplayed')];
@@ -91,12 +97,67 @@ export async function annotateGames({
   months = 12,
 }) {
   monthCutoff(now, months);
+  buildAliasMap(annotations);
+  let updates = 0;
+  const step = (number, title, count, instructions) =>
+    notice(
+      `\nStep ${number}: ${title} — ${count} game${count === 1 ? '' : 's'}${count ? `\n${instructions}` : ''}`,
+    );
+  const pending = annotations.filter((a) => a.possible_aliases);
+  step(
+    1,
+    'Alias review',
+    pending.length,
+    "Each prompt shows a new scraped name. Choose an existing game to add that name as its alias, keeping the existing game's name and annotations and removing the new blank entry.\n0 = Keep as a separate game, Enter = Decide later.",
+  );
+  for (const entry of pending) {
+    if (!annotations.includes(entry) || !entry.possible_aliases) continue;
+    const blank = isBlankAnnotation(entry);
+    const choices = entry.possible_aliases;
+    notice(choices.map((name, i) => `${i + 1} = ${name}`).join('\n'));
+    const answer = (
+      await prompt({
+        message: `${entry.game}${blank ? '' : ' (has annotations; only separate or skip)'}`,
+        validate: (value) =>
+          value.trim() === '' ||
+          value.trim() === '0' ||
+          (blank && choices.some((_, i) => value.trim() === String(i + 1))) ||
+          (blank
+            ? `enter 0–${choices.length}, or leave empty`
+            : 'entry has annotations; enter 0 or leave empty'),
+      })
+    ).trim();
+    if (answer === '') continue;
+    if (answer === '0') {
+      delete entry.possible_aliases;
+    } else {
+      if (!isBlankAnnotation(entry)) throw new Error(`Cannot merge "${entry.game}": entry has annotations`);
+      const target = annotations.find((a) => a.game === choices[Number(answer) - 1]);
+      if (!target) throw new Error('invalid alias review answer');
+      target.aliases = [...new Set([...(target.aliases ?? []), entry.game, ...(entry.aliases ?? [])])];
+      annotations.splice(annotations.indexOf(entry), 1);
+      for (const other of annotations) {
+        if (!other.possible_aliases) continue;
+        other.possible_aliases = [
+          ...new Set(
+            other.possible_aliases
+              .map((name) => (name === entry.game ? target.game : name))
+              .filter((name) => name !== other.game),
+          ),
+        ];
+        if (!other.possible_aliases.length) delete other.possible_aliases;
+      }
+    }
+    buildAliasMap(annotations);
+    await save(annotations);
+    updates += 1;
+  }
+  const eligible = annotations.filter((a) => !a.possible_aliases);
   const dates = lastPlayedDates(rows, annotations);
-  const stale = annotations.filter((a) => a.status === 'Active' && isStale(dates.get(a.game), now, months));
-  const recentUnplayed = annotations.filter(
+  const stale = eligible.filter((a) => a.status === 'Active' && isStale(dates.get(a.game), now, months));
+  const recentUnplayed = eligible.filter(
     (a) => a.status === 'Unplayed' && isRecent(dates.get(a.game), now, months),
   );
-  let updates = 0;
   const update = async (annotation, field, value) => {
     if (annotation[field] === value) return;
     annotation[field] = value;
@@ -137,21 +198,17 @@ export async function annotateGames({
   };
 
   const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
-  const step = (number, title, count, instructions) =>
-    notice(
-      `\nStep ${number}: ${title} — ${count} game${count === 1 ? '' : 's'}${count ? `\n${instructions}` : ''}`,
-    );
-  const missing = annotations.filter((a) => a.status === null);
-  step(1, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
+  const missing = eligible.filter((a) => a.status === null);
+  step(2, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
   for (const annotation of missing) {
     await updateStatus(annotation);
   }
-  step(2, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
+  step(3, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
   for (const annotation of stale) {
     await updateStatus(annotation, dates.get(annotation.game));
   }
   step(
-    3,
+    4,
     `Unplayed, last played within ${months} months`,
     recentUnplayed.length,
     `${choices}\nEnter keeps Unplayed.`,
@@ -159,11 +216,11 @@ export async function annotateGames({
   for (const annotation of recentUnplayed) {
     await updateStatus(annotation, dates.get(annotation.game));
   }
-  const unrated = annotations.filter(
+  const unrated = eligible.filter(
     (a) => (a.status === 'Complete' || a.status === 'Abandoned') && a.rating === null,
   );
   step(
-    4,
+    5,
     'Missing ratings',
     unrated.length,
     'Rate Complete or Abandoned games from 0 to 10, or press Enter to skip for now.',
@@ -178,9 +235,9 @@ export async function annotateGames({
     }
   };
   await rate(unrated);
-  const activeUnrated = annotations.filter((a) => a.status === 'Active' && a.rating === null);
+  const activeUnrated = eligible.filter((a) => a.status === 'Active' && a.rating === null);
   step(
-    5,
+    6,
     'Active games without ratings',
     activeUnrated.length,
     'Enter a number from 0 to 10, or press Enter to leave unrated.',

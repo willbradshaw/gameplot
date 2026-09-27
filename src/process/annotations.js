@@ -47,6 +47,14 @@ export function buildAliasMap(annotations, label = 'annotations') {
   if (dupes.size)
     throw new Error(`Duplicate names in ${label}: ${[...dupes].map((d) => `"${d}"`).join(', ')}`);
 
+  for (const a of annotations) {
+    for (const target of a.possible_aliases ?? []) {
+      if (!names.has(target) || target === a.game) {
+        throw new Error(`In ${label}, invalid possible_aliases target "${target}" for "${a.game}"`);
+      }
+    }
+  }
+
   const aliasTo = new Map();
   for (const a of annotations) {
     for (const alias of a.aliases ?? []) {
@@ -61,6 +69,57 @@ export function buildAliasMap(annotations, label = 'annotations') {
     }
   }
   return aliasTo;
+}
+
+/** Ignore cosmetic differences while retaining words and sequel numbers. */
+export function aliasNameKey(value) {
+  return value
+    .replace(/[™®©]/gu, '')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim();
+}
+
+/** Mean of shared-prefix ratio and normalized Levenshtein similarity. */
+export function nameSimilarity(left, right) {
+  const a = Array.from(aliasNameKey(left));
+  const b = Array.from(aliasNameKey(right));
+  if (!a.length || !b.length) return 0;
+  let prefix = 0;
+  while (prefix < Math.min(a.length, b.length) && a[prefix] === b[prefix]) prefix++;
+  let previous = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const current = [i];
+    for (let j = 1; j <= b.length; j++) {
+      current[j] = Math.min(
+        current[j - 1] + 1,
+        previous[j] + 1,
+        previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1),
+      );
+    }
+    previous = current;
+  }
+  return (prefix / Math.min(a.length, b.length) + 1 - previous[b.length] / Math.max(a.length, b.length)) / 2;
+}
+
+/** Rank every plausible unmatched entry, including pending rename suggestions. */
+export function suggestAliases(game, candidates) {
+  return candidates
+    .map((a) => ({
+      game: a.game,
+      score: Math.max(...[a.game, ...(a.aliases ?? [])].map((name) => nameSimilarity(game, name))),
+    }))
+    .filter((a) => a.score >= 0.5)
+    .sort((a, b) => b.score - a.score || a.game.localeCompare(b.game, 'en'))
+    .map((a) => a.game);
+}
+
+/** Known names can be transferred; personal annotations must never be discarded. */
+export function isBlankAnnotation(a) {
+  return (
+    a.rating === null && a.status === null && a.tags.length === 0 && !Object.keys(a.playtime ?? {}).length
+  );
 }
 
 /**

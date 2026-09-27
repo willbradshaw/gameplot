@@ -5,7 +5,13 @@ import { test } from 'node:test';
 import fs from 'fs-extra';
 import { silentLogger } from '../src/lib/log.js';
 import { annotationSchema } from '../src/lib/model.js';
-import { buildAliasMap, checkTags } from '../src/process/annotations.js';
+import {
+  aliasNameKey,
+  buildAliasMap,
+  checkTags,
+  nameSimilarity,
+  suggestAliases,
+} from '../src/process/annotations.js';
 import {
   blankAnnotations,
   buildGame,
@@ -285,4 +291,87 @@ test('process adds and alphabetises annotations, preserving existing fields and 
   await assert.rejects(runProcess(options), /no playtime on GOG/);
   assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
   assert.deepEqual(await fs.readJson(options.out), games);
+});
+
+test('alias similarity uses normalized prefix and edit distance, retaining all plausible candidates', () => {
+  assert.equal(aliasNameKey('  GAME™:  Name® © '), 'game name');
+  assert.equal(nameSimilarity('Game: Name™', 'GAME NAME'), 1);
+  assert.equal(nameSimilarity('', 'Game'), 0);
+  assert.equal(nameSimilarity('abc', 'abd'), 2 / 3);
+  assert.equal(nameSimilarity('abc', 'abcdef'), 0.75);
+  assert.deepEqual(
+    suggestAliases('Example Game III', [
+      ann('Example Game'),
+      ann('Unrelated'),
+      ann('Example Game II'),
+      ann('Older title', { aliases: ['Example Game III'], possible_aliases: ['Example Game'] }),
+    ]),
+    ['Older title', 'Example Game II', 'Example Game'],
+  );
+});
+
+test('possible alias lists allow pending targets and cycles but reject missing and self targets', () => {
+  assert.doesNotThrow(() =>
+    buildAliasMap([ann('A', { possible_aliases: ['B'] }), ann('B', { possible_aliases: ['A'] })]),
+  );
+  for (const target of ['A', 'Missing']) {
+    assert.throws(
+      () => buildAliasMap([ann('A', { possible_aliases: [target] })]),
+      /invalid possible_aliases/,
+    );
+  }
+  assert.equal(annotationSchema.safeParse(ann('A', { possible_aliases: [] })).success, false);
+});
+
+test('process suggests aliases only across both missing lists and preserves decisions on rerun', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-aliases-'));
+  t.after(() => fs.remove(dir));
+  const options = {
+    input: path.join(dir, 'raw.json'),
+    annotationsFile: path.join(dir, 'annotations.json'),
+    tagsFile: path.join(dir, 'tags.json'),
+    out: path.join(dir, 'games.json'),
+    log: silentLogger,
+  };
+  await fs.writeJson(options.tagsFile, { RPG: 'Role-playing' });
+  await fs.writeJson(options.annotationsFile, [
+    ann('Example Game'),
+    ann('Example Game II'),
+    ann('Example Game Deluxe', { aliases: ['Current Name'] }),
+    ann('Example Game IV', {
+      rating: null,
+      status: null,
+      tags: [],
+      possible_aliases: ['Example Game'],
+    }),
+  ]);
+  await fs.writeJson(options.input, [
+    row('Example Game III', 'Steam', 2, '2026-01-01'),
+    row('Current Name', 'GOG', 2, '2026-01-01'),
+    row('Unknown', 'Steam', 2, '2026-01-01'),
+    row('Example Game Owned', 'GOG', null, null),
+  ]);
+  await runProcess(options);
+  const entries = await fs.readJson(options.annotationsFile);
+  const added = entries.find((a) => a.game === 'Example Game III');
+  assert.deepEqual(added.possible_aliases, ['Example Game II', 'Example Game IV', 'Example Game']);
+  assert.equal(entries.find((a) => a.game === 'Unknown').possible_aliases, undefined);
+  assert.equal(
+    entries.some((a) => a.game === 'Example Game Owned'),
+    false,
+  );
+  await runProcess(options);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), entries);
+  delete added.possible_aliases;
+  await fs.writeJson(options.annotationsFile, entries);
+  await runProcess(options);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), entries);
+});
+
+test('edition suffixes on short real titles remain alias candidates', () => {
+  const candidates = [ann('Deus Ex'), ann('Weird West'), ann('Lone Survivor')];
+  assert.deepEqual(suggestAliases('Myst: Masterpiece Edition', [ann('Myst')]), ['Myst']);
+  assert.deepEqual(suggestAliases('Deus Ex: Game of the Year Edition', candidates), ['Deus Ex']);
+  assert.deepEqual(suggestAliases('Weird West: Definitive Edition', candidates), ['Weird West']);
+  assert.deepEqual(suggestAliases("Lone Survivor: The Director's Cut", candidates), ['Lone Survivor']);
 });
