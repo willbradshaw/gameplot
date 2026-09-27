@@ -25,7 +25,7 @@ D3 is loaded from a CDN, requiring an internet connection.
 | Games table | Names, platforms, ratings, last-played dates, hours, statuses and tags; sortable columns, name search and CSV export |
 | Last Played vs Rating | One point per game, positioned by its most recent play date and rating, with larger points for longer playtimes |
 | Playtime by Category | Total hours grouped by platform, tag, status or rating band |
-| Playtime vs Rating | One point per game, comparing total hours on a logarithmic scale with rating |
+| Playtime vs Rating | One point per game, comparing total hours with rating, using a scale that is linear near zero and logarithmic for larger values |
 
 Platform, tag, status, rating and date filters update the summary, table and
 charts. Name search applies to the table and its CSV export. Table category
@@ -34,7 +34,9 @@ support zooming, panning and hover details; game names link to store pages where
 available.
 
 Platform totals use each platform's own hours. Tag totals count a game's full
-playtime under each of its tags, so they overlap.
+playtime under each of its tags, so they overlap. Last-played dates use the
+recorded calendar date, independent of browser timezone; date filters include
+both endpoints. Zero-hour games remain visible in the table and scatter plots.
 
 ## How it is generated
 

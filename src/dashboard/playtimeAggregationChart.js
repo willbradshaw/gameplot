@@ -91,6 +91,13 @@ function renderPlaytimeAggregation(filteredData) {
 
     // Aggregate data based on current type
     const aggregatedData = aggregatePlaytimeData(filteredData, currentAggregationType);
+    if (aggregatedData.length === 0) {
+        d3.select('#playtimeAggregationChart').append('p')
+            .style('text-align', 'center')
+            .text('No playtime to display');
+        return;
+    }
+
 
     // Sort data based on aggregation type
     if (currentAggregationType === 'rating') {
@@ -237,7 +244,7 @@ function renderPlaytimeAggregation(filteredData) {
  * @param {string} type - Aggregation type (platform, tag, status, rating)
  * @returns {Array} Aggregated data
  */
-function aggregatePlaytimeData(data, type) {
+export function aggregatePlaytimeData(data, type) {
     const aggregation = {};
 
     data.forEach(game => {
@@ -356,7 +363,7 @@ function getBarColor(category, type) {
 function getStatusColor(status) {
     switch (status?.toLowerCase()) {
         case 'complete': return '#10b981';
-        case 'playing': return '#3b82f6';
+        case 'active': return '#3b82f6';
         case 'abandoned': return '#ef4444';
         case 'unplayed': return '#9ca3af';
         default: return '#9ca3af';
