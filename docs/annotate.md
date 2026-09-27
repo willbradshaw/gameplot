@@ -24,7 +24,7 @@ gameplot process
 
 ## Prompts
 
-Pending `possible_aliases` are reviewed before the numbered steps. A numbered
+Pending `possible_aliases` are reviewed in Step 1. A numbered
 candidate can be selected, `0` keeps the entry as a separate game, and Enter
 defers the decision and skips that entry's remaining prompts for the run.
 
@@ -36,11 +36,12 @@ immediately.
 
 The following steps run in order:
 
-1. **Missing statuses.** Statuses are requested for entries without one.
-2. **Stale Active games.** Active games last played outside the configured window are reviewed.
-3. **Recently played Unplayed games.** Unplayed games with activity inside that window are reviewed.
-4. **Missing ratings.** Ratings are requested for Complete and Abandoned games without one.
-5. **Active games without ratings.** Ratings for Active games are requested separately.
+1. **Alias review.** Possible name changes are confirmed, rejected or deferred.
+2. **Missing statuses.** Statuses are requested for entries without one.
+3. **Stale Active games.** Active games last played outside the configured window are reviewed.
+4. **Recently played Unplayed games.** Unplayed games with activity inside that window are reviewed.
+5. **Missing ratings.** Ratings are requested for Complete and Abandoned games without one.
+6. **Active games without ratings.** Ratings for Active games are requested separately.
 
 Enter skips missing values or keeps the current status. Skipped entries are
 offered again on the next run.

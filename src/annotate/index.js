@@ -99,11 +99,17 @@ export async function annotateGames({
   monthCutoff(now, months);
   buildAliasMap(annotations);
   let updates = 0;
-  const pending = annotations.filter((a) => a.possible_aliases);
-  if (pending.length)
+  const step = (number, title, count, instructions) =>
     notice(
-      `\nAlias review — ${pending.length} game${pending.length === 1 ? '' : 's'}\nChoose an existing game, 0 for a separate game, or Enter to decide later.`,
+      `\nStep ${number}: ${title} — ${count} game${count === 1 ? '' : 's'}${count ? `\n${instructions}` : ''}`,
     );
+  const pending = annotations.filter((a) => a.possible_aliases);
+  step(
+    1,
+    'Alias review',
+    pending.length,
+    "Each prompt shows a new scraped name. Choose an existing game to add that name as its alias, keeping the existing game's name and annotations and removing the new blank entry.\n0 = Keep as a separate game, Enter = Decide later.",
+  );
   for (const entry of pending) {
     if (!annotations.includes(entry) || !entry.possible_aliases) continue;
     const blank = isBlankAnnotation(entry);
@@ -192,21 +198,17 @@ export async function annotateGames({
   };
 
   const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
-  const step = (number, title, count, instructions) =>
-    notice(
-      `\nStep ${number}: ${title} — ${count} game${count === 1 ? '' : 's'}${count ? `\n${instructions}` : ''}`,
-    );
   const missing = eligible.filter((a) => a.status === null);
-  step(1, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
+  step(2, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
   for (const annotation of missing) {
     await updateStatus(annotation);
   }
-  step(2, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
+  step(3, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
   for (const annotation of stale) {
     await updateStatus(annotation, dates.get(annotation.game));
   }
   step(
-    3,
+    4,
     `Unplayed, last played within ${months} months`,
     recentUnplayed.length,
     `${choices}\nEnter keeps Unplayed.`,
@@ -218,7 +220,7 @@ export async function annotateGames({
     (a) => (a.status === 'Complete' || a.status === 'Abandoned') && a.rating === null,
   );
   step(
-    4,
+    5,
     'Missing ratings',
     unrated.length,
     'Rate Complete or Abandoned games from 0 to 10, or press Enter to skip for now.',
@@ -235,7 +237,7 @@ export async function annotateGames({
   await rate(unrated);
   const activeUnrated = eligible.filter((a) => a.status === 'Active' && a.rating === null);
   step(
-    5,
+    6,
     'Active games without ratings',
     activeUnrated.length,
     'Enter a number from 0 to 10, or press Enter to leave unrated.',

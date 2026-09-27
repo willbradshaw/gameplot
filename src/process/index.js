@@ -224,5 +224,11 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, log })
     await fs.outputJson(annotationsFile, updatedAnnotations, { spaces: 2 });
     log.info(`Added ${result.unannotated.length} games and sorted ${annotationsFile}`);
   }
+  const pendingAliases = updatedAnnotations.filter((a) => a.possible_aliases).length;
+  if (pendingAliases) {
+    log.info(
+      `${pendingAliases} game${pendingAliases === 1 ? ' has' : 's have'} suggested aliases to review; run gameplot annotate`,
+    );
+  }
   return result;
 }

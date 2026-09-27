@@ -390,24 +390,24 @@ test('step notices keep fixed numbers, report zero counts and count ratings afte
     save: async () => {},
   });
   assert.match(
-    events[0],
-    /^\nStep 1: Missing statuses — 1 game\n0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned\nEnter skips/,
+    events[1],
+    /^\nStep 2: Missing statuses — 1 game\n0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned\nEnter skips/,
   );
-  assert.equal(events[1], 'Missing');
-  assert.match(events[2], /^\nStep 2: Active, last played over 6 months ago — 1 game\n/);
-  assert.match(events[2], /Enter keeps Active/);
-  assert.equal(events[3], 'Old (Active, last played 2020-01-01)');
-  assert.equal(events[4], '\nStep 3: Unplayed, last played within 6 months — 0 games');
+  assert.equal(events[2], 'Missing');
+  assert.match(events[3], /^\nStep 3: Active, last played over 6 months ago — 1 game\n/);
+  assert.match(events[3], /Enter keeps Active/);
+  assert.equal(events[4], 'Old (Active, last played 2020-01-01)');
+  assert.equal(events[5], '\nStep 4: Unplayed, last played within 6 months — 0 games');
   assert.match(
-    events[5],
-    /^\nStep 4: Missing ratings — 1 game\nRate Complete or Abandoned games from 0 to 10/,
+    events[6],
+    /^\nStep 5: Missing ratings — 1 game\nRate Complete or Abandoned games from 0 to 10/,
   );
-  assert.equal(events[6], 'Missing');
-  assert.equal(events[7], '\nStep 5: Active games without ratings — 0 games');
-  assert.equal(events.length, 8);
+  assert.equal(events[7], 'Missing');
+  assert.equal(events[8], '\nStep 6: Active games without ratings — 0 games');
+  assert.equal(events.length, 9);
 });
 
-test('all five step notices appear when there is nothing to annotate', async () => {
+test('all six step notices appear when there is nothing to annotate', async () => {
   const notices = [];
   await annotateGames({
     annotations: [],
@@ -417,7 +417,7 @@ test('all five step notices appear when there is nothing to annotate', async () 
     prompt: async () => assert.fail('empty step must not prompt'),
     save: async () => assert.fail('empty step must not save'),
   });
-  assert.equal(notices.length, 5);
+  assert.equal(notices.length, 6);
   notices.forEach((message, i) => {
     assert.match(message, new RegExp(`^\\nStep ${i + 1}: .* — 0 games$`));
   });
@@ -438,9 +438,9 @@ test('quiet mode shows step instructions while leaving the logger level unchange
     reporters: [{ log: (event) => messages.push(event.args.join(' ')) }],
   });
   await runAnnotate({ input, annotationsFile, tagsFile, log, prompt: async () => '' });
-  assert.equal(messages.length, 5);
-  assert.match(messages[0], /Step 1: Missing statuses — 1 game[\s\S]*0 = Unplayed[\s\S]*Enter skips/);
-  assert.match(messages[3], /Step 4: Missing ratings — 0 games/);
+  assert.equal(messages.length, 6);
+  assert.match(messages[1], /Step 2: Missing statuses — 1 game[\s\S]*0 = Unplayed[\s\S]*Enter skips/);
+  assert.match(messages[4], /Step 5: Missing ratings — 0 games/);
   assert.equal(log.level, 1);
 });
 
@@ -461,10 +461,10 @@ test('Active ratings have their own final step and existing ratings are preserve
     },
     save: async () => {},
   });
-  assert.equal(events[3], '\nStep 4: Missing ratings — 0 games');
-  assert.match(events[4], /^\nStep 5: Active games without ratings — 1 game\n.*Enter to leave unrated/);
-  assert.equal(events[5], 'Active');
-  assert.equal(events.length, 6);
+  assert.equal(events[4], '\nStep 5: Missing ratings — 0 games');
+  assert.match(events[5], /^\nStep 6: Active games without ratings — 1 game\n.*Enter to leave unrated/);
+  assert.equal(events[6], 'Active');
+  assert.equal(events.length, 7);
   assert.equal(annotations[0].rating, 8.5);
   assert.equal(annotations[1].rating, 6.5);
 });
