@@ -791,12 +791,31 @@ h2 {
 }
 
 .theme-toggle {
-  background: var(--control-bg);
+  background: transparent;
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
   cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--control-hover);
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+.theme-sun {
+  display: none;
+}
+.theme-moon {
+  display: block;
+}
+.dark .theme-moon {
+  display: none;
+}
+.dark .theme-sun {
+  display: block;
 }
 
 .axis text {
@@ -950,4 +969,55 @@ h2 {
   .aggregation-btn {
     justify-content: center;
   }
+}
+
+/* Match the website's global theme fade and its component-specific timings. */
+html,
+body,
+* {
+  transition:
+    color 500ms ease-in-out,
+    background-color 500ms ease-in-out,
+    border-color 500ms ease-in-out,
+    fill 500ms ease-in-out,
+    stroke 500ms ease-in-out;
+}
+.controls,
+.control-section,
+.table-container,
+.chart-container,
+.stat-card,
+.tooltip {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.control-title,
+.filter-btn,
+.reset-all-btn,
+h1,
+h2,
+p,
+.stat-value,
+.stat-label {
+  transition: color 0.3s ease;
+}
+.axis text,
+.axis-label,
+.bar-label {
+  transition: fill 0.3s ease;
+}
+.axis line,
+.axis path,
+.grid line,
+.grid-line {
+  transition: stroke 0.3s ease;
+}
+.rating-circle,
+.playtime-circle,
+.aggregation-bar {
+  transition:
+    fill 0.3s ease,
+    stroke 0.3s ease;
 }

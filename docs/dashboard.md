@@ -18,8 +18,8 @@ To refresh the data, the CLI can be [installed](setup.md) and the
 The page must be served over HTTP; opening `index.html` directly is insufficient.
 D3 and the Fira Sans font are loaded externally, requiring an internet connection.
 
-The dashboard follows the system light/dark preference until the Dark mode
-button is used; the chosen theme is saved in the browser.
+The dashboard initially uses the saved theme or system light/dark preference.
+The sun/moon button switches themes and saves the choice in the browser.
 
 ## Contents
 

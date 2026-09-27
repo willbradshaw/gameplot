@@ -12,9 +12,6 @@
     document.getElementById('theme-toggle')?.setAttribute('aria-pressed', String(dark));
   };
   applyTheme(savedTheme ? savedTheme === 'dark' : preference.matches);
-  preference.addEventListener('change', (event) => {
-    if (!savedTheme) applyTheme(event.matches);
-  });
   document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('theme-toggle');
     applyTheme(document.documentElement.classList.contains('dark'));
