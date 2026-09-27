@@ -33,13 +33,11 @@ export function combinePlatformRows(platform, rows) {
 }
 
 /**
- * Build one output entry for a game from its rows and annotation, applying
- * playtime corrections and enforcing the playtime rules.
+ * Combine platform rows and apply annotation playtime corrections.
  * @param {import('../lib/model.js').Annotation} annotation
  * @param {import('../lib/model.js').RawGame[]} rows
- * @returns {{ game: import('../lib/model.js').Game, ignoredCorrections: string[], violations: string[] }}
  */
-export function buildGame(annotation, rows) {
+export function buildPlatforms(annotation, rows) {
   const byPlatform = new Map();
   for (const row of rows) {
     if (!byPlatform.has(row.platform)) byPlatform.set(row.platform, []);
@@ -60,6 +58,12 @@ export function buildGame(annotation, rows) {
     if (correction.lastPlayed !== undefined) element.lastPlayed = correction.lastPlayed;
   }
 
+  return { elements, ignoredCorrections };
+}
+
+/** Build and validate a rated game’s dashboard entry. */
+export function buildGame(annotation, rows) {
+  const { elements, ignoredCorrections } = buildPlatforms(annotation, rows);
   const violations = [];
   for (const e of elements) {
     if (e.hoursPlayed === null) {
@@ -129,6 +133,18 @@ export function processGames(rows, annotations) {
     if (!annotation) {
       // Owned-but-never-played rows (null hours, e.g. GOG) are nothing to annotate.
       if (group.some((r) => r.hoursPlayed !== null)) unannotated.push(name);
+      continue;
+    }
+    if (annotation.status === 'Unplayed') {
+      const built = buildPlatforms(annotation, group);
+      ignoredCorrections.push(...built.ignoredCorrections);
+      for (const element of built.elements) {
+        if (element.hoursPlayed > 0) {
+          violations.push(
+            `"${name}" is Unplayed but has playtime on ${element.platform}; set playtime.${element.platform}.hoursPlayed to 0 or change its status`,
+          );
+        }
+      }
       continue;
     }
     if (annotation.rating === null) {

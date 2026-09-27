@@ -59,7 +59,7 @@ entry per game.
 |---|---|---|
 | `game` | string | Canonical name; this is the name the dashboard shows |
 | `rating` | number 0–10, or null | Null means "not yet rated": the game is excluded from the output but is not reported as missing |
-| `status` | string or null | One of `Complete`, `Active`, `Abandoned`. Null is allowed only while `rating` is null: a rated game must have a status |
+| `status` | string or null | One of `Active`, `Complete`, `Abandoned`, `Unplayed`. Null is allowed only while `rating` is null: a rated game must have a status |
 | `tags` | array of strings | Free-form; the dashboard filters and aggregates by them |
 | `aliases` | array of strings, optional | Other names the platforms use for this game |
 | `playtime` | object, optional | Per-platform corrections, keyed by platform label; each has optional `hoursPlayed` and `lastPlayed` |
@@ -145,6 +145,11 @@ corrects platforms that report it wrongly.
 
 ### Playtime rules
 
+An `Unplayed` game must have no nonzero playtime on any scraped platform
+after annotation corrections. This is checked even without a rating; all
+violations are reported and nothing is written. Unknown playtime is allowed.
+Unplayed games are excluded from the dashboard output, regardless of rating.
+
 For every game that will be output (see [Selection](#selection)), after
 corrections have been applied:
 
@@ -178,4 +183,4 @@ Each game's rows are combined into one output entry in three steps:
 ### Selection
 
 A game is written to the output when it has at least one scraped row and an
-annotation with a non-null rating. Everything else is reported.
+annotation with a non-null rating and a status other than `Unplayed`.
