@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
+import { createConsola } from 'consola';
 import fs from 'fs-extra';
 import {
   annotateGames,
@@ -418,4 +419,25 @@ test('all four step notices appear when there is nothing to annotate', async () 
   notices.forEach((message, i) => {
     assert.match(message, new RegExp(`^\\nStep ${i + 1}: .* — 0 games$`));
   });
+});
+
+test('quiet mode shows step instructions while leaving the logger level unchanged', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-steps-'));
+  t.after(() => fs.remove(dir));
+  const input = path.join(dir, 'raw.json');
+  const annotationsFile = path.join(dir, 'annotations.json');
+  const tagsFile = path.join(dir, 'tags.json');
+  await fs.writeJson(input, []);
+  await fs.writeJson(annotationsFile, [ann('A')]);
+  await fs.writeJson(tagsFile, {});
+  const messages = [];
+  const log = createConsola({
+    level: 1,
+    reporters: [{ log: (event) => messages.push(event.args.join(' ')) }],
+  });
+  await runAnnotate({ input, annotationsFile, tagsFile, log, prompt: async () => '' });
+  assert.equal(messages.length, 4);
+  assert.match(messages[0], /Step 1: Missing statuses — 1 game[\s\S]*0 = Unplayed[\s\S]*Enter skips/);
+  assert.match(messages[3], /Step 4: Missing ratings — 0 games/);
+  assert.equal(log.level, 1);
 });

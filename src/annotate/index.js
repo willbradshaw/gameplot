@@ -1,6 +1,7 @@
 /** Interactive status and rating updates. See docs/annotate.md. */
 
 import { input as ask } from '@inquirer/prompts';
+import { LogLevels } from 'consola';
 import fs from 'fs-extra';
 import { parseOrThrow, rawGamesSchema, STATUSES } from '../lib/model.js';
 import { confirm as askConfirm } from '../lib/prompt.js';
@@ -185,6 +186,7 @@ export async function runAnnotate({
   const rows = parseOrThrow(rawGamesSchema, await fs.readJson(input), input);
   const annotations = await loadAnnotations(annotationsFile);
   checkTags(annotations, await loadTags(tagsFile), annotationsFile);
+  const stepLog = log.create({ level: log.level === LogLevels.warn ? LogLevels.log : log.level });
   const updates = await annotateGames({
     rows,
     annotations,
@@ -193,7 +195,7 @@ export async function runAnnotate({
     now,
     months,
     // Step instructions are part of the prompts, including in quiet mode.
-    notice: (message) => log.log({ message, level: 0 }),
+    notice: (message) => stepLog.log(message),
     save: (value) => fs.outputJson(annotationsFile, value, { spaces: 2 }),
   });
   log.success(`Saved ${updates} annotation updates to ${annotationsFile}`);
