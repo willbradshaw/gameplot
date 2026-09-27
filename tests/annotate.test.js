@@ -318,7 +318,7 @@ test('process and annotate persist Unplayed corrections and restore scraped hour
   assert.equal(annotations[0].status, 'Unplayed');
   assert.deepEqual(annotations[0].playtime, { Steam: { hoursPlayed: 0 } });
   await runProcess(options);
-  assert.deepEqual(await fs.readJson(options.out), []);
+  assert.deepEqual((await fs.readJson(options.out)).games, []);
 
   const answers = ['2', '8.5', 'puzzle'];
   await runAnnotate({ ...options, now, prompt: async () => answers.shift(), confirm: async () => true });
@@ -327,7 +327,7 @@ test('process and annotate persist Unplayed corrections and restore scraped hour
   assert.equal(annotations[0].rating, 8.5);
   assert.equal(annotations[0].playtime, undefined);
   await runProcess(options);
-  const games = await fs.readJson(options.out);
+  const { games } = await fs.readJson(options.out);
   assert.deepEqual(annotations[0].tags, ['Puzzle']);
   assert.deepEqual(games[0].tags, ['Puzzle']);
   assert.equal(games[0].hoursPlayedTotal, 8);
@@ -619,7 +619,7 @@ test('process → alias review → process restores the existing annotated game 
   assert.equal(entries.length, 1);
   assert.deepEqual(entries[0].aliases, ['Example Game™ Deluxe']);
   await runProcess(options);
-  const games = await fs.readJson(options.out);
+  const { games } = await fs.readJson(options.out);
   assert.equal(games.length, 1);
   assert.equal(games[0].game, 'Example Game');
   assert.equal(games[0].rating, 8);

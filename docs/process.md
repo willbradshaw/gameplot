@@ -89,7 +89,9 @@ processing, naming the game and the tag.
 
 ## Output
 
-`data/games.json` is a JSON array sorted by game name, one entry per game.
+`data/games.json` contains `generatedAt` (the processing time as a UTC ISO timestamp)
+and `games` (an array sorted by game name). The dashboard uses `generatedAt`
+for its Last Updated card.
 Each entry has one element per platform in the four `*Single` arrays, which
 are parallel (index i of each describes the same platform), plus totals
 across platforms:

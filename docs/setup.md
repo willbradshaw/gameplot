@@ -10,6 +10,8 @@ npm link          # puts the `gameplot` command on the PATH
 gameplot --help
 ```
 
+The [dashboard guide](dashboard.md) covers its views, data generation and local serving.
+
 ## Developing
 
 ```

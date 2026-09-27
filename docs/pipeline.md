@@ -2,6 +2,7 @@
 
 `gameplot pipeline` runs batch scraping, processing, interactive annotation,
 then processing again to refresh the dashboard data with the saved annotations.
+The [dashboard guide](dashboard.md) describes the resulting views and how to serve them.
 
 ```
 gameplot pipeline steam,psn:uk,psn,xbox,gog

@@ -118,12 +118,13 @@ test('pipeline writes scraped data, annotates new games and rebuilds final outpu
         },
       }),
     annotate: async (args) => {
-      assert.deepEqual(await fs.readJson(options.out), []);
+      assert.deepEqual((await fs.readJson(options.out)).games, []);
       await runAnnotate({ ...args, prompt: async () => answers.shift() });
     },
   });
   assert.deepEqual(remembered, [['GAMEPLOT_BATCH_UK', 'steam']]);
-  const games = await fs.readJson(options.out);
+  const output = await fs.readJson(options.out);
+  const { games } = output;
   assert.equal(games[0].game, 'New Game');
   assert.equal(games[0].rating, 8.5);
   assert.deepEqual(games[0].tags, ['Puzzle']);
@@ -153,5 +154,5 @@ test('pipeline writes scraped data, annotates new games and rebuilds final outpu
     /sources failed/,
   );
   assert.equal(await fs.readFile(options.rawOut, 'utf8'), raw);
-  assert.deepEqual(await fs.readJson(options.out), games);
+  assert.deepEqual(await fs.readJson(options.out), output);
 });

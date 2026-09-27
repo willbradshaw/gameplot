@@ -78,6 +78,12 @@ export const gameSchema = z.strictObject({
 
 export const gamesSchema = z.array(gameSchema);
 
+/** Processed dashboard file, including its generation time. */
+export const dashboardSchema = z.strictObject({
+  generatedAt: z.iso.datetime(),
+  games: gamesSchema,
+});
+
 /**
  * Parse with a schema, throwing an error that names the source and lists
  * every problem with its path.

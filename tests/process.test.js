@@ -277,7 +277,8 @@ test('process adds and alphabetises annotations, preserving existing fields and 
   await runProcess(options);
   const expected = [...blankAnnotations(['A']), b, z];
   assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
-  const games = await fs.readJson(options.out);
+  const { games, generatedAt } = await fs.readJson(options.out);
+  assert.equal(new Date(generatedAt).toISOString(), generatedAt);
   assert.deepEqual(
     games.map((g) => g.game),
     ['Z'],
@@ -287,10 +288,11 @@ test('process adds and alphabetises annotations, preserving existing fields and 
 
   await runProcess(options);
   assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
+  const savedOutput = await fs.readJson(options.out);
   await fs.writeJson(options.input, [row('Z', 'GOG', null, null), row('New', 'Steam', 1, '2026-01-01')]);
   await assert.rejects(runProcess(options), /no playtime on GOG/);
   assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
-  assert.deepEqual(await fs.readJson(options.out), games);
+  assert.deepEqual(await fs.readJson(options.out), savedOutput);
 });
 
 test('alias similarity uses normalized prefix and edit distance, retaining all plausible candidates', () => {

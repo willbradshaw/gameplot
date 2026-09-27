@@ -5,7 +5,7 @@
  */
 
 import fs from 'fs-extra';
-import { gamesSchema, parseOrThrow, rawGamesSchema } from '../lib/model.js';
+import { dashboardSchema, parseOrThrow, rawGamesSchema } from '../lib/model.js';
 import { buildAliasMap, checkTags, loadAnnotations, loadTags, suggestAliases } from './annotations.js';
 
 /** Which platform's url to show when a game is on several. First match wins. */
@@ -198,7 +198,11 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, log })
   log.info(`${rows.length} scraped rows, ${annotations.length} annotations`);
 
   const result = processGames(rows, annotations);
-  parseOrThrow(gamesSchema, result.games, 'processed games');
+  const dashboard = parseOrThrow(
+    dashboardSchema,
+    { generatedAt: new Date().toISOString(), games: result.games },
+    'processed dashboard',
+  );
 
   for (const msg of result.ignoredCorrections) log.warn(msg);
   if (result.unannotated.length) {
@@ -230,7 +234,7 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, log })
   }
   const updatedAnnotations = [...annotations, ...blanks].sort((a, b) => a.game.localeCompare(b.game, 'en'));
 
-  await fs.outputJson(out, result.games, { spaces: 2 });
+  await fs.outputJson(out, dashboard, { spaces: 2 });
   log.success(`Wrote ${result.games.length} games to ${out}`);
   if (JSON.stringify(updatedAnnotations) !== JSON.stringify(annotations)) {
     await fs.outputJson(annotationsFile, updatedAnnotations, { spaces: 2 });
