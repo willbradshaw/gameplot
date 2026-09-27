@@ -26,7 +26,7 @@ gameplot process
 
 The following steps run in order:
 
-1. **Alias review.** Name changes suggested by `process` are confirmed, rejected or deferred. Accepting adds the new name as an alias for the existing game; deferring skips the new entry's remaining prompts.
+1. **Alias review.** Name changes suggested by `process` are confirmed, rejected or deferred.
 2. **Missing statuses.** Statuses are requested for entries without one.
 3. **Stale Active games.** Active games last played outside the configured window are reviewed.
 4. **Recently played Unplayed games.** Unplayed games with activity inside that window are reviewed.
