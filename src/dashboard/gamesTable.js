@@ -4,6 +4,7 @@ let currentData = [];
 let sortColumn = 'rating';
 let sortDirection = 'desc';
 let searchTerm = '';
+let searchTimeout;
 
 /**
  * Render the games table with the provided data
@@ -72,6 +73,7 @@ function applySearchFilter(data) {
  * @param {string} term - Search term
  */
 export function setSearchTerm(term) {
+    clearTimeout(searchTimeout);
     searchTerm = term;
     // Re-render table with current data and new search term
     renderTable(currentData);
@@ -96,7 +98,6 @@ export function initializeTableSearch() {
 
     if (searchInput) {
         // Handle input changes with debouncing
-        let searchTimeout;
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
@@ -145,6 +146,14 @@ export function initializeTableSorting() {
  */
 function createTableRow(game) {
     const row = document.createElement('tr');
+    row.addEventListener('click', event => {
+        const badge = event.target.closest('[data-filter-type]');
+        if (badge) {
+            document.dispatchEvent(new CustomEvent('tableFilterRequested', {
+                detail: { type: badge.dataset.filterType, value: badge.dataset.filterValue }
+            }));
+        }
+    });
 
     // Game name with link
     const gameCell = document.createElement('td');
@@ -158,7 +167,7 @@ function createTableRow(game) {
     // Platforms
     const platformCell = document.createElement('td');
     const platformBadges = game.platforms.map(platform =>
-        `<span class="platform-badge" data-platform="${escapeHtml(platform)}" onclick="filterByPlatform('${escapeHtml(platform)}')">${escapeHtml(platform)}</span>`
+        `<span class="platform-badge" data-platform="${escapeHtml(platform)}" data-filter-type="platform" data-filter-value="${escapeHtml(platform)}">${escapeHtml(platform)}</span>`
     ).join('');
     platformCell.innerHTML = `<div class="platform-badges">${platformBadges}</div>`;
     row.appendChild(platformCell);
@@ -169,7 +178,7 @@ function createTableRow(game) {
     if (game.rating !== null && game.rating !== undefined) {
         const ratingClass = getRatingClass(game.rating);
         const ratingRange = getRatingRange(game.rating);
-        ratingCell.innerHTML = `<span class="rating-clickable ${ratingClass}" onclick="filterByRating('${ratingRange}')">${game.rating.toFixed(1)}</span>`;
+        ratingCell.innerHTML = `<span class="rating-clickable ${ratingClass}" data-filter-type="rating" data-filter-value="${ratingRange}">${game.rating.toFixed(1)}</span>`;
     } else {
         ratingCell.innerHTML = '<span style="color: #9ca3af;">-</span>';
     }
@@ -190,13 +199,13 @@ function createTableRow(game) {
     // Status
     const statusCell = document.createElement('td');
     const statusClass = getStatusClass(game.status);
-    statusCell.innerHTML = `<span class="status-badge ${statusClass}" onclick="filterByStatus('${escapeHtml(game.status || 'Unknown')}')">${escapeHtml(game.status || 'Unknown')}</span>`;
+    statusCell.innerHTML = `<span class="status-badge ${statusClass}" data-filter-type="status" data-filter-value="${escapeHtml(game.status || 'Unknown')}">${escapeHtml(game.status || 'Unknown')}</span>`;
     row.appendChild(statusCell);
 
     // Tags
     const tagsCell = document.createElement('td');
     const tagBadges = (game.tags || []).map(tag =>
-        `<span class="tag-badge" onclick="filterByTag('${escapeHtml(tag)}')">${escapeHtml(tag)}</span>`
+        `<span class="tag-badge" data-filter-type="tag" data-filter-value="${escapeHtml(tag)}">${escapeHtml(tag)}</span>`
     ).join('');
     tagsCell.innerHTML = `<div class="tags-list">${tagBadges}</div>`;
     row.appendChild(tagsCell);

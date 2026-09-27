@@ -139,6 +139,7 @@ test('table and CSV preserve zero ratings, hours, dates, status styling and disp
       this.children.push(child);
     },
     removeChild() {},
+    addEventListener() {},
     setAttribute() {},
     click() {},
   });

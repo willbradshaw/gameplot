@@ -164,14 +164,24 @@ function handleZoom(event) {
  * @param {Array} filteredData - Filtered game data
  */
 export function renderTimelinePoints(filteredData) {
+    g.selectAll('.empty-message').remove();
+    g.selectAll('.axis, .grid, .axis-label').style('display', filteredData.length ? null : 'none');
     if (filteredData.length === 0) {
-        // Clear chart if no data
-        g.selectAll(".rating-circle").remove();
+        g.selectAll('.rating-circle').remove();
+        g.append('text')
+            .attr('class', 'empty-message')
+            .attr('x', TIMELINE_CONFIG.chartWidth / 2)
+            .attr('y', TIMELINE_CONFIG.chartHeight / 2)
+            .attr('text-anchor', 'middle')
+            .attr('fill', '#a0a0a0')
+            .text('No data to display');
         return;
     }
 
-    // Update scales based on filtered data
-    updateTimelineScales(filteredData);
+    // Preserve the viewport while zoomed; otherwise fit the selected games.
+    const transform = d3.zoomTransform(svg.node());
+    if (transform.k === 1 && transform.x === 0) updateTimelineScales(filteredData);
+    const displayXScale = transform.rescaleX(originalXScale);
 
     const circles = g.selectAll(".rating-circle")
         .data(filteredData, d => d.game);
@@ -186,7 +196,7 @@ export function renderTimelinePoints(filteredData) {
     const circlesUpdate = circlesEnter.merge(circles);
 
     circlesUpdate
-        .attr("cx", d => xScale(new Date(d.lastPlayedTotal)))
+        .attr("cx", d => displayXScale(new Date(d.lastPlayedTotal)))
         .attr("cy", d => yScale(d.rating))
         .attr("r", d => Math.sqrt(d.hoursPlayedTotal) * 0.8 + 4)
         .attr("fill", d => getPlatformColor(d.platforms[0])) // Use first platform for color
@@ -250,8 +260,6 @@ function updateTimelineScales(filteredData) {
     const yAxis = d3.axisLeft(yScale);
 
     g.select(".axis")
-        .transition()
-        .duration(500)
         .call(xAxis)
         .selectAll("text")
         .style("text-anchor", "end")
@@ -260,14 +268,10 @@ function updateTimelineScales(filteredData) {
         .attr("transform", "rotate(-45)");
 
     g.selectAll(".axis").filter(function(d, i) { return i === 1; })
-        .transition()
-        .duration(500)
         .call(yAxis);
 
     // Update grid lines
     g.selectAll(".grid").filter(function(d, i) { return i === 0; })
-        .transition()
-        .duration(500)
         .call(d3.axisBottom(xScale)
             .tickSize(-chartHeight)
             .tickFormat("")
@@ -276,8 +280,6 @@ function updateTimelineScales(filteredData) {
         .attr("class", "grid-line");
 
     g.selectAll(".grid").filter(function(d, i) { return i === 1; })
-        .transition()
-        .duration(500)
         .call(d3.axisLeft(yScale)
             .tickSize(-chartWidth)
             .tickFormat("")
@@ -292,6 +294,10 @@ function updateTimelineScales(filteredData) {
 
     zoom.translateExtent([[dataMinX - padding, -Infinity],
                          [dataMaxX + padding, Infinity]]);
+}
+
+export function resetTimelineZoom() {
+    svg.call(zoom.transform, d3.zoomIdentity);
 }
 
 /**

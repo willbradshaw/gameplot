@@ -1,7 +1,7 @@
 // Main application file - coordinates all modules and handles app lifecycle
 
 import { loadGameData } from './dataLoader.js';
-import { createTimelineChart, renderTimelinePoints } from './timelineChart.js';
+import { createTimelineChart, renderTimelinePoints, resetTimelineZoom } from './timelineChart.js';
 import { renderPlaytimeChart } from './playtimeChart.js';
 import { initializePlaytimeAggregation, updatePlaytimeAggregation } from './playtimeAggregationChart.js';
 import { renderTable, initializeTableSorting, initializeTableSearch, downloadTableAsCSV, clearSearch } from './gamesTable.js';
@@ -95,7 +95,11 @@ function setupClearFilterButtons() {
     window.selectAllRatings = selectAllRatings;
 
     // Make reset all filters function available globally
-    window.resetAllFilters = resetAllFilters;
+    window.resetAllFilters = () => {
+        resetTimelineZoom();
+        clearSearch();
+        resetAllFilters();
+    };
 }
 
 /**
@@ -114,6 +118,7 @@ function setupCsvDownloadButton() {
  */
 async function updateVisualization() {
     const filteredData = getFilteredData();
+    document.getElementById('tooltip').style.display = 'none';
 
     // Update all charts and table with filtered data
     renderTimelinePoints(filteredData);
