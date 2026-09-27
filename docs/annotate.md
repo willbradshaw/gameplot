@@ -42,10 +42,11 @@ The following groups are processed in order, each in annotation file order:
    the same window are offered the status choices. Enter keeps `Unplayed`.
    Statuses just supplied during the run are not asked for again.
 4. **Missing ratings.** Complete and Abandoned entries with a null rating
-   are offered a rating prompt. Active games are skipped; existing ratings
-   are preserved. Decimal numbers from 0 to 10 are accepted, including
+   are offered a rating prompt. Existing ratings are preserved. Decimal numbers from 0 to 10 are accepted, including
    integers. Enter leaves the rating null. Exponent notation and nonnumeric
    input are rejected.
+5. **Active games without ratings.** Unrated Active entries are offered
+   the same rating prompt separately. Enter leaves them unrated.
 
 Each changed answer is saved immediately. Ctrl+C stops the command; previous
 answers remain saved. Tags are preserved.

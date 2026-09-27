@@ -168,13 +168,24 @@ export async function annotateGames({
     unrated.length,
     'Rate Complete or Abandoned games from 0 to 10, or press Enter to skip for now.',
   );
-  for (const annotation of unrated) {
-    const answer = await prompt({
-      message: annotation.game,
-      validate: validateRating,
-    });
-    if (answer.trim() !== '') await update(annotation, 'rating', Number(answer.trim()));
-  }
+  const rate = async (games) => {
+    for (const annotation of games) {
+      const answer = await prompt({
+        message: annotation.game,
+        validate: validateRating,
+      });
+      if (answer.trim() !== '') await update(annotation, 'rating', Number(answer.trim()));
+    }
+  };
+  await rate(unrated);
+  const activeUnrated = annotations.filter((a) => a.status === 'Active' && a.rating === null);
+  step(
+    5,
+    'Active games without ratings',
+    activeUnrated.length,
+    'Enter a number from 0 to 10, or press Enter to leave unrated.',
+  );
+  await rate(activeUnrated);
   return updates;
 }
 

@@ -81,7 +81,7 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
     row('Missing', 'Steam', '2020-01-01'),
     row('Recent', 'Steam', '2026-01-01'),
   ];
-  const answers = ['2', '', '0', '7.4'];
+  const answers = ['2', '', '0', '7.4', ''];
   const messages = [];
   const saves = [];
   const updates = await annotateGames({
@@ -105,7 +105,7 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
   });
   assert.deepEqual(
     messages.map((m) => m.split(' (')[0]),
-    ['Missing', 'Stale', 'Missing', 'Unmatched'],
+    ['Missing', 'Stale', 'Missing', 'Unmatched', 'Stale'],
   );
   assert.equal(updates, 3);
   assert.equal(saves[0][1].status, 'Complete');
@@ -406,10 +406,11 @@ test('step notices keep fixed numbers, report zero counts and count ratings afte
     /^\nStep 4: Missing ratings — 1 game\nRate Complete or Abandoned games from 0 to 10/,
   );
   assert.equal(events[6], 'Missing');
-  assert.equal(events.length, 7);
+  assert.equal(events[7], '\nStep 5: Active games without ratings — 0 games');
+  assert.equal(events.length, 8);
 });
 
-test('all four step notices appear when there is nothing to annotate', async () => {
+test('all five step notices appear when there is nothing to annotate', async () => {
   const notices = [];
   await annotateGames({
     annotations: [],
@@ -419,7 +420,7 @@ test('all four step notices appear when there is nothing to annotate', async () 
     prompt: async () => assert.fail('empty step must not prompt'),
     save: async () => assert.fail('empty step must not save'),
   });
-  assert.equal(notices.length, 4);
+  assert.equal(notices.length, 5);
   notices.forEach((message, i) => {
     assert.match(message, new RegExp(`^\\nStep ${i + 1}: .* — 0 games$`));
   });
@@ -440,8 +441,33 @@ test('quiet mode shows step instructions while leaving the logger level unchange
     reporters: [{ log: (event) => messages.push(event.args.join(' ')) }],
   });
   await runAnnotate({ input, annotationsFile, tagsFile, log, prompt: async () => '' });
-  assert.equal(messages.length, 4);
+  assert.equal(messages.length, 5);
   assert.match(messages[0], /Step 1: Missing statuses — 1 game[\s\S]*0 = Unplayed[\s\S]*Enter skips/);
   assert.match(messages[3], /Step 4: Missing ratings — 0 games/);
   assert.equal(log.level, 1);
+});
+
+test('Active ratings have their own final step and existing ratings are preserved', async () => {
+  const annotations = [
+    ann('Active', { status: 'Active' }),
+    ann('Already rated', { status: 'Active', rating: 6.5 }),
+  ];
+  const events = [];
+  await annotateGames({
+    annotations,
+    rows: [],
+    now,
+    notice: (message) => events.push(message),
+    prompt: async ({ message }) => {
+      events.push(message);
+      return '8.5';
+    },
+    save: async () => {},
+  });
+  assert.equal(events[3], '\nStep 4: Missing ratings — 0 games');
+  assert.match(events[4], /^\nStep 5: Active games without ratings — 1 game\n.*Enter to leave unrated/);
+  assert.equal(events[5], 'Active');
+  assert.equal(events.length, 6);
+  assert.equal(annotations[0].rating, 8.5);
+  assert.equal(annotations[1].rating, 6.5);
 });
