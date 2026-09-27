@@ -17,3 +17,4 @@ jobs:
       - run: npm run setup:dev
       - run: npm run lint
       - run: npm test
+      - run: npm run validate:data
