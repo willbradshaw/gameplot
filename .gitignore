@@ -9,7 +9,3 @@ __pycache__
 */__pycache__
 */scraper-config.json
 data/manual/blank-annotations.json
-
-# Browser test artifacts
-/test-results/
-/playwright-report/

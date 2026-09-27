@@ -14,7 +14,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm run setup:dev -- --with-deps
+      - run: npm run setup:dev
       - run: npm run lint
       - run: npm test
-      - run: npm run test:browser

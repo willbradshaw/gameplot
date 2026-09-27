@@ -170,3 +170,48 @@ test('table and CSV preserve zero ratings, hours, dates, status styling and disp
   downloadTableAsCSV();
   assert.match(await csv.text(), /Example,Steam; GOG,0,2026-03-08,5,Active,Puzzle; Adventure/);
 });
+
+test('empty filter groups exclude all games and rating shortcuts select by value', async (t) => {
+  const { getFilteredData, selectOnlyRating } = await import('../src/dashboard/filters.js');
+  await loadFixture([exampleGame()]);
+  const previous = globalThis.document;
+  t.after(() => {
+    globalThis.document = previous;
+  });
+  const groups = {
+    platformCheckboxes: [{ value: 'Steam', checked: true }],
+    tagCheckboxes: [{ value: 'Puzzle', checked: true }],
+    statusCheckboxes: [{ value: 'Active', checked: true }],
+    ratingCheckboxes: [
+      { value: '<5', checked: true },
+      { value: '9-10', checked: true },
+    ],
+  };
+  let changes = 0;
+  globalThis.document = {
+    getElementById: () => ({ value: '' }),
+    querySelectorAll: (selector) => {
+      const group = groups[selector.split(' ')[0].slice(1)];
+      return selector.endsWith(':checked') ? group.filter((cb) => cb.checked) : group;
+    },
+    dispatchEvent: () => {
+      changes++;
+    },
+  };
+  assert.equal(getFilteredData().length, 1);
+  for (const group of Object.values(groups)) {
+    for (const cb of group) cb.checked = false;
+    assert.deepEqual(getFilteredData(), []);
+    for (const cb of group) cb.checked = true;
+    assert.equal(getFilteredData().length, 1);
+  }
+  selectOnlyRating('<5');
+  assert.equal(changes, 1);
+  assert.deepEqual(
+    groups.ratingCheckboxes.map((cb) => cb.checked),
+    [true, false],
+  );
+  assert.equal(getFilteredData().length, 1);
+  selectOnlyRating('9-10');
+  assert.deepEqual(getFilteredData(), []);
+});

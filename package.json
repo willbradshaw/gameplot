@@ -8,11 +8,10 @@
     "gameplot": "bin/gameplot.js"
   },
   "scripts": {
-    "setup:dev": "npm ci --include=dev && playwright install chromium",
-    "test": "node --test tests/*.test.js",
+    "setup:dev": "npm ci --include=dev",
+    "test": "node --test",
     "lint": "biome check",
-    "format": "biome check --write",
-    "test:browser": "playwright test"
+    "format": "biome check --write"
   },
   "dependencies": {
     "@inquirer/prompts": "^8.7.2",
@@ -24,9 +23,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
-    "@playwright/test": "^1.63.0",
-    "d3": "^7.8.5"
+    "@biomejs/biome": "^2.5.14"
   },
   "engines": {
     "node": ">=22.12.0"
