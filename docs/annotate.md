@@ -41,8 +41,9 @@ The following groups are processed in order, each in annotation file order:
 3. **Recently played Unplayed games.** Games with a last-played date within
    the same window are offered the status choices. Enter keeps `Unplayed`.
    Statuses just supplied during the run are not asked for again.
-4. **Missing ratings.** Every entry with a status other than `Unplayed` and null rating is offered
-   a rating prompt. Decimal numbers from 0 to 10 are accepted, including
+4. **Missing ratings.** Complete and Abandoned entries with a null rating
+   are offered a rating prompt. Active games are skipped; existing ratings
+   are preserved. Decimal numbers from 0 to 10 are accepted, including
    integers. Enter leaves the rating null. Exponent notation and nonnumeric
    input are rejected.
 

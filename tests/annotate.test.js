@@ -81,7 +81,7 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
     row('Missing', 'Steam', '2020-01-01'),
     row('Recent', 'Steam', '2026-01-01'),
   ];
-  const answers = ['1', '', '', '0', '7.4'];
+  const answers = ['2', '', '0', '7.4'];
   const messages = [];
   const saves = [];
   const updates = await annotateGames({
@@ -105,13 +105,14 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
   });
   assert.deepEqual(
     messages.map((m) => m.split(' (')[0]),
-    ['Missing', 'Stale', 'Stale', 'Missing', 'Unmatched'],
+    ['Missing', 'Stale', 'Missing', 'Unmatched'],
   );
   assert.equal(updates, 3);
-  assert.equal(saves[0][1].status, 'Active');
+  assert.equal(saves[0][1].status, 'Complete');
   assert.equal(saves[0][1].rating, null);
   assert.equal(annotations[0].status, 'Active');
   assert.equal(annotations[0].rating, null);
+  assert.equal(annotations[2].rating, 0);
   assert.equal(annotations[1].rating, 0);
   assert.deepEqual(annotations[1].aliases, ['Other']);
   assert.deepEqual(annotations[1].tags, ['Puzzle']);
@@ -245,7 +246,7 @@ test('leaving Unplayed offers removal of only zero-hour corrections and then a r
         },
       }),
     ];
-    const answers = ['1', '8.5'];
+    const answers = ['2', '8.5'];
     const saves = [];
     let confirms = 0;
     await annotateGames({
@@ -262,7 +263,7 @@ test('leaving Unplayed offers removal of only zero-hour corrections and then a r
     });
     assert.equal(confirms, 1);
     assert.equal(saves.length, 2);
-    assert.equal(saves[0][0].status, 'Active');
+    assert.equal(saves[0][0].status, 'Complete');
     assert.equal(saves[0][0].rating, null);
     assert.equal(annotations[0].rating, 8.5);
     assert.deepEqual(
@@ -297,7 +298,7 @@ test('cancelling restore confirmation leaves status and corrections unchanged', 
   assert.deepEqual(annotations, before);
 });
 
-test('process and annotate persist Unplayed corrections and restore scraped hours on reactivation', async (t) => {
+test('process and annotate persist Unplayed corrections and restore scraped hours when leaving Unplayed', async (t) => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-annotate-flow-'));
   t.after(() => fs.remove(dir));
   const options = {
@@ -321,10 +322,10 @@ test('process and annotate persist Unplayed corrections and restore scraped hour
   await runProcess(options);
   assert.deepEqual(await fs.readJson(options.out), []);
 
-  const answers = ['1', '8.5'];
+  const answers = ['2', '8.5'];
   await runAnnotate({ ...options, now, prompt: async () => answers.shift(), confirm: async () => true });
   annotations = await fs.readJson(options.annotationsFile);
-  assert.equal(annotations[0].status, 'Active');
+  assert.equal(annotations[0].status, 'Complete');
   assert.equal(annotations[0].rating, 8.5);
   assert.equal(annotations[0].playtime, undefined);
   await runProcess(options);
@@ -400,7 +401,10 @@ test('step notices keep fixed numbers, report zero counts and count ratings afte
   assert.match(events[2], /Enter keeps Active/);
   assert.equal(events[3], 'Old (Active, last played 2020-01-01)');
   assert.equal(events[4], '\nStep 3: Unplayed, last played within 6 months — 0 games');
-  assert.match(events[5], /^\nStep 4: Missing ratings — 1 game\nEnter a number from 0 to 10/);
+  assert.match(
+    events[5],
+    /^\nStep 4: Missing ratings — 1 game\nRate Complete or Abandoned games from 0 to 10/,
+  );
   assert.equal(events[6], 'Missing');
   assert.equal(events.length, 7);
 });

@@ -160,9 +160,14 @@ export async function annotateGames({
     await updateStatus(annotation, dates.get(annotation.game));
   }
   const unrated = annotations.filter(
-    (a) => a.status !== null && a.status !== 'Unplayed' && a.rating === null,
+    (a) => (a.status === 'Complete' || a.status === 'Abandoned') && a.rating === null,
   );
-  step(4, 'Missing ratings', unrated.length, 'Enter a number from 0 to 10, or press Enter to skip for now.');
+  step(
+    4,
+    'Missing ratings',
+    unrated.length,
+    'Rate Complete or Abandoned games from 0 to 10, or press Enter to skip for now.',
+  );
   for (const annotation of unrated) {
     const answer = await prompt({
       message: annotation.game,
