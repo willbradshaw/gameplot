@@ -7,7 +7,15 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!data", "!gameplot-env", "!src/render", "!index.html", "!styles.css"]
+    "includes": [
+      "**",
+      "!data",
+      "!gameplot-env",
+      "!src/render",
+      "!src/dashboard",
+      "!index.html",
+      "!styles.css"
+    ]
   },
   "formatter": {
     "enabled": true,
