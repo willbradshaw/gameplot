@@ -7,6 +7,8 @@ import { confirm as askConfirm } from '../lib/prompt.js';
 import { buildAliasMap, checkTags, loadAnnotations, loadTags } from '../process/annotations.js';
 import { buildPlatforms } from '../process/index.js';
 
+const STATUS_CHOICES = ['Unplayed', ...STATUSES.filter((status) => status !== 'Unplayed')];
+
 /** Most recent corrected date across scraped platforms, including aliases. */
 export function lastPlayedDates(rows, annotations) {
   const aliases = buildAliasMap(annotations);
@@ -61,7 +63,7 @@ export function validateRating(value) {
 }
 
 async function askStatus(annotation, prompt, date = null) {
-  const choices = STATUSES.map((status, i) => `${i + 1} = ${status}`).join(', ');
+  const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
   const context = date ? `; last played ${date}; enter = still ${annotation.status}` : '';
   const answer = await prompt({
     message: `${annotation.game} — status (${choices}${context})`,
@@ -69,12 +71,12 @@ async function askStatus(annotation, prompt, date = null) {
       const text = value.trim();
       return (
         (date !== null && text === '') ||
-        STATUSES.some((_, i) => text === String(i + 1)) ||
-        `enter a number from 1 to ${STATUSES.length}`
+        STATUS_CHOICES.some((_, i) => text === String(i)) ||
+        `enter a number from 0 to ${STATUS_CHOICES.length - 1}`
       );
     },
   });
-  return answer.trim() === '' ? annotation.status : STATUSES[Number(answer.trim()) - 1];
+  return answer.trim() === '' ? annotation.status : STATUS_CHOICES[Number(answer.trim())];
 }
 
 /** Run status and rating prompts, saving each changed answer before continuing. */

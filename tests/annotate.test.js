@@ -90,9 +90,9 @@ test('three passes require statuses, allow unchanged stale statuses, then offer 
     prompt: async ({ message, validate }) => {
       messages.push(message);
       if (messages.length === 1) {
-        assert.match(message, /1 = Active, 2 = Complete, 3 = Abandoned, 4 = Unplayed/);
+        assert.match(message, /0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned/);
         assert.notEqual(validate(''), true);
-        assert.notEqual(validate('5'), true);
+        assert.notEqual(validate('4'), true);
         assert.notEqual(validate('1e0'), true);
       }
       const answer = answers.shift();
@@ -190,8 +190,8 @@ test('assigning Unplayed zeros every known platform, preserves dates and skips r
     now,
     prompt: async ({ validate }) => {
       prompts++;
-      assert.equal(validate('4'), true);
-      return '4';
+      assert.equal(validate('0'), true);
+      return '0';
     },
     save: async (value) => {
       saved = structuredClone(value);
@@ -312,7 +312,7 @@ test('process and annotate persist Unplayed corrections and restore scraped hour
   await runProcess(options);
   // Fill-in entries are transferred explicitly; process never modifies annotations.
   await fs.writeJson(options.annotationsFile, await fs.readJson(options.unannotatedFile));
-  await runAnnotate({ ...options, now, prompt: async () => '4' });
+  await runAnnotate({ ...options, now, prompt: async () => '0' });
   let annotations = await fs.readJson(options.annotationsFile);
   assert.equal(annotations[0].status, 'Unplayed');
   assert.deepEqual(annotations[0].playtime, { Steam: { hoursPlayed: 0 } });
