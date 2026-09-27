@@ -3,9 +3,3 @@ node_modules
 
 # Secrets: API keys and login tokens live here, never in the repo
 .env
-
-# Legacy Python pipeline (removed at v2 cutover)
-__pycache__
-*/__pycache__
-*/scraper-config.json
-data/manual/blank-annotations.json

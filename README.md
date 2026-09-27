@@ -1,48 +1,15 @@
-# 🎮 Video Game Journey Dashboard
+# gameplot
 
-Interactive dashboard for visualizing your video game playing patterns and preferences.
+A personal video-game dashboard with a Node.js CLI for collecting playtime from
+Steam, PlayStation Network, Xbox and GOG, combining it with ratings, statuses
+and tags, and exploring the results in an interactive D3 page.
 
-## Features
+The repository includes a processed dataset ready to view. The guides below
+cover viewing it, refreshing it from platform accounts, and development.
 
-- **Games Table** - Sortable, filterable table with search
-- **Timeline Chart** - Last played date vs rating scatter plot  
-- **Playtime Analysis** - Bar charts by platform, tag, status, and rating
-- **Playtime vs Rating** - Hours played vs rating scatter plot
-- **Interactive Filters** - Platform, tag, status, rating, and date filters
-
-## Quick Start
-
-1. **Prepare data** - Update files in `data/` directory with your game data
-
-## Data Processing Pipeline
-
-The `src/` directory contains Python scripts for downloading and processing game data:
-
-- `scrape-data.py` - Downloads game data from external sources
-- `process-data.py` - Processes and cleans raw game data
-- `prepare-data.py` - Orchestrates the previous two scripts in order.
-
-Run the pipeline to update your data:
-```bash
-python src/prepare-data.py
-```
-
-2. **Start a local server**
-   ```bash
-   python -m http.server 8000
-   # Open http://localhost:8000
-   ```
-
-## Data Format
-
-The dashboard expects JSON files in the `data/` directory:
-- `data/games.json` - Main game data
-- `data/last-updated.json` - Last update timestamp
-
-See existing files for format examples.
-
-## Dependencies
-
-- D3.js v7.8.5 (loaded from CDN)
-- Modern browser with ES6+ support
-- Python 3.x (for data processing scripts)
+- [Setup and development](docs/setup.md) — installation, dependencies and checks
+- [Dashboard](docs/dashboard.md) — local serving, views and controls
+- [Pipeline](docs/pipeline.md) — refreshing data through all CLI stages
+- [Scraping](docs/scrape.md) — supported platforms and account configuration
+- [Processing](docs/process.md) — merging records, annotations and output format
+- [Annotation](docs/annotate.md) — reviewing aliases and filling in statuses, ratings and tags
