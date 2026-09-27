@@ -28,10 +28,13 @@ D3 is loaded from a CDN, requiring an internet connection.
 | Playtime vs Rating | One point per game, comparing total hours on a logarithmic scale with rating |
 
 Platform, tag, status, rating and date filters update the summary, table and
-charts. Name search applies to the table and its CSV export. Table category
+charts. All selects every option in a group; None selects no games from that
+group. Reset All Filters restores all options and dates and clears both searches.
+Name search applies to the table and its CSV export. Table category
 labels and category-chart bars provide shortcuts to filters. The scatter plots
 support zooming, panning and hover details; game names link to store pages where
-available.
+available. Filtering preserves a zoomed timeline view; Reset All Filters fits
+all games again.
 
 Platform totals use each platform's own hours. Tag totals count a game's full
 playtime under each of its tags, so they overlap. Last-played dates use the

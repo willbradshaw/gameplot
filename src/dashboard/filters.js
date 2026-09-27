@@ -205,17 +205,16 @@ export function getFilteredData() {
 
     return data.filter(d => {
         // Platform filter (game must have at least one selected platform)
-        const platformMatch = selectedPlatforms.length === 0 || d.platforms.some(platform => selectedPlatforms.includes(platform));
+        const platformMatch = d.platforms.some(platform => selectedPlatforms.includes(platform));
 
         // Tag filter (game must have at least one selected tag)
-        const tagMatch = selectedTags.length === 0 || d.tags.some(tag => selectedTags.includes(tag));
+        const tagMatch = d.tags.some(tag => selectedTags.includes(tag));
 
         // Status filter
         const statusMatch = selectedStatuses.includes(d.status);
 
         // Rating filter
-        const ratingMatch = selectedRatingRanges.length === 0 ||
-            selectedRatingRanges.includes(getRatingRange(d.rating));
+        const ratingMatch = selectedRatingRanges.includes(getRatingRange(d.rating));
 
         const dateMatch = (!startDate || d.lastPlayedTotal >= startDate) &&
             (!endDate || d.lastPlayedTotal <= endDate);
@@ -339,18 +338,9 @@ export function selectOnlyStatus(status) {
  * @param {string} range - Rating range to select
  */
 export function selectOnlyRating(range) {
-    // First clear all ratings
-    document.querySelectorAll('#ratingCheckboxes input[type="checkbox"]').forEach(cb => {
-        cb.checked = false;
+    document.querySelectorAll('#ratingCheckboxes input').forEach(cb => {
+        cb.checked = cb.value === range;
     });
-
-    // Then select only the specified rating
-    const targetCheckbox = document.querySelector(`#rating-${range}`);
-    if (targetCheckbox) {
-        targetCheckbox.checked = true;
-    }
-
-    // Trigger filter update
     document.dispatchEvent(new CustomEvent('filtersChanged'));
 }
 
@@ -398,14 +388,10 @@ export function selectAllRatings() {
  * Reset all filters to their default state
  */
 export function resetAllFilters() {
-    // Select all checkboxes
-    selectAllPlatforms();
-    selectAllTags();
-    selectAllStatuses();
-    selectAllRatings();
-
-    // Reset date range to full extent
-    clearDateFilter();
+    document.querySelectorAll('.controls input[type="checkbox"]').forEach(cb => {
+        cb.checked = true;
+    });
+    setDateRange(getGameData());
 
     // Clear tag search
     const tagSearch = document.getElementById('tagSearch');
@@ -414,5 +400,5 @@ export function resetAllFilters() {
         filterTagDisplay(''); // Show all tags
     }
 
-    console.log('🔄 All filters reset to default');
+    document.dispatchEvent(new CustomEvent('filtersChanged'));
 }

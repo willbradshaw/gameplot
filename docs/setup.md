@@ -14,8 +14,20 @@ The [dashboard guide](dashboard.md) covers its views, data generation and local 
 
 ## Developing
 
+From the repository root, development setup replaces the `npm install` step above:
+
+```sh
+npm run setup:dev
 ```
-npm test          # unit and CLI smoke tests
-npm run lint      # biome: formatting and lint rules
-npm run format    # apply biome's fixes
+
+This installs runtime and development packages at the versions in
+`package-lock.json`. Biome, the sole development dependency, provides formatting
+and lint checks. The command can be rerun after dependency updates.
+
+```sh
+npm test                  # unit and CLI smoke tests
+npm run lint              # formatting and lint checks
+npm run format            # apply Biome's fixes
 ```
+
+CI runs the same setup command, lint checks and test suite.

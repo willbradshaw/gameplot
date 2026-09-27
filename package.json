@@ -8,6 +8,7 @@
     "gameplot": "bin/gameplot.js"
   },
   "scripts": {
+    "setup:dev": "npm ci --include=dev",
     "test": "node --test",
     "lint": "biome check",
     "format": "biome check --write"
