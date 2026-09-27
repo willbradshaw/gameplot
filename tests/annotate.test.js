@@ -89,6 +89,7 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
     now,
     prompt: async ({ message, validate }) => {
       messages.push(message);
+      assert.doesNotMatch(message, /enter =/);
       if (messages.length === 1) {
         assert.match(message, /0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned/);
         assert.equal(validate(''), true);
@@ -228,7 +229,7 @@ test('recent Unplayed review can keep status without a rating or repeated confir
     save: async () => assert.fail('no change'),
   });
   assert.equal(messages.length, 1);
-  assert.match(messages[0], /Recent.*enter = still Unplayed/);
+  assert.match(messages[0], /Recent.*current: Unplayed/);
 });
 
 test('leaving Unplayed offers removal of only zero-hour corrections and then a rating', async () => {
@@ -349,7 +350,7 @@ test('skipping a missing status leaves it null, skips its rating and offers it a
     save: async (value) => saved.push(structuredClone(value)),
   });
   assert.equal(messages.length, 3);
-  assert.match(messages[0], /Research.*enter = skip for now/);
+  assert.match(messages[0], /Research.*status/);
   assert.match(messages[1], /Ready.*status/);
   assert.match(messages[2], /Ready.*rating/);
   assert.deepEqual(annotations[0], ann('Research'));

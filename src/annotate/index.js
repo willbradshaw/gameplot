@@ -64,9 +64,7 @@ export function validateRating(value) {
 
 async function askStatus(annotation, prompt, date = null) {
   const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
-  const context = date
-    ? `; last played ${date}; enter = still ${annotation.status}`
-    : '; enter = skip for now';
+  const context = date ? `; current: ${annotation.status}; last played ${date}` : '';
   const answer = await prompt({
     message: `${annotation.game} — status (${choices}${context})`,
     validate: (value) => {
@@ -147,7 +145,7 @@ export async function annotateGames({
     (a) => a.status !== null && a.status !== 'Unplayed' && a.rating === null,
   )) {
     const answer = await prompt({
-      message: `${annotation.game} — rating (0–10; enter = still unrated)`,
+      message: `${annotation.game} — rating (0–10)`,
       validate: validateRating,
     });
     if (answer.trim() !== '') await update(annotation, 'rating', Number(answer.trim()));
@@ -168,6 +166,7 @@ export async function runAnnotate({
   const rows = parseOrThrow(rawGamesSchema, await fs.readJson(input), input);
   const annotations = await loadAnnotations(annotationsFile);
   checkTags(annotations, await loadTags(tagsFile), annotationsFile);
+  log.info('Enter skips missing values or keeps the current status');
   const updates = await annotateGames({
     rows,
     annotations,

@@ -25,6 +25,9 @@ gameplot process
 
 ## Prompts
 
+A note at the start explains that Enter skips missing values or keeps the
+current status.
+
 The following groups are processed in order, each in annotation file order:
 
 1. **Missing statuses.** A numbered choice is offered for every entry with
