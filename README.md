@@ -1,48 +1,74 @@
-# 🎮 Video Game Journey Dashboard
+# gameplot
 
-Interactive dashboard for visualizing your video game playing patterns and preferences.
+A personal video-game dashboard with a Node.js CLI for collecting playtime from
+Steam, PlayStation Network, Xbox and GOG, combining it with ratings, statuses
+and tags, and exploring the results in an interactive D3 page.
 
-## Features
+## Getting started
 
-- **Games Table** - Sortable, filterable table with search
-- **Timeline Chart** - Last played date vs rating scatter plot  
-- **Playtime Analysis** - Bar charts by platform, tag, status, and rating
-- **Playtime vs Rating** - Hours played vs rating scatter plot
-- **Interactive Filters** - Platform, tag, status, rating, and date filters
+Requires Node.js 22.12 or later. Commands run from the repository root:
 
-## Quick Start
-
-1. **Prepare data** - Update files in `data/` directory with your game data
-
-## Data Processing Pipeline
-
-The `src/` directory contains Python scripts for downloading and processing game data:
-
-- `scrape-data.py` - Downloads game data from external sources
-- `process-data.py` - Processes and cleans raw game data
-- `prepare-data.py` - Orchestrates the previous two scripts in order.
-
-Run the pipeline to update your data:
-```bash
-python src/prepare-data.py
+```sh
+npm install
+npm link
+gameplot --help
 ```
 
-2. **Start a local server**
-   ```bash
-   python -m http.server 8000
-   # Open http://localhost:8000
-   ```
+The committed dataset can be viewed immediately by serving the repository with
+an HTTP server, for example:
 
-## Data Format
+```sh
+python3 -m http.server 8000
+```
 
-The dashboard expects JSON files in the `data/` directory:
-- `data/games.json` - Main game data
-- `data/last-updated.json` - Last update timestamp
+The dashboard opens at [localhost:8000](http://localhost:8000). Python 3 is needed
+only for this example server. The page loads D3 from a CDN.
 
-See existing files for format examples.
+## Refreshing the data
 
-## Dependencies
+```sh
+gameplot pipeline steam             # scrape, process, annotate, reprocess
+gameplot pipeline                   # reuse the remembered source list
+```
 
-- D3.js v7.8.5 (loaded from CDN)
-- Modern browser with ES6+ support
-- Python 3.x (for data processing scripts)
+Sources and account options are described in the [pipeline guide](docs/pipeline.md).
+Credentials are requested when needed and saved in the gitignored `.env` file.
+The pipeline writes scraped records to `data/raw/batch.json`, updates
+`data/annotations.json` interactively, and generates `data/games.json` for the
+dashboard. Reloading the page displays the refreshed output.
+
+The stages can also run separately:
+
+```sh
+gameplot scrape batch
+gameplot process
+gameplot annotate
+gameplot process
+```
+
+## Dashboard
+
+The dashboard includes a searchable, sortable games table, summary statistics,
+a last-played timeline, playtime totals by category, and a playtime-versus-rating
+chart. Filters cover platforms, tags, statuses, ratings and dates. The
+[dashboard guide](docs/dashboard.md) describes the views and how they are rendered.
+
+## Documentation
+
+- [Setup and development](docs/setup.md)
+- [Pipeline](docs/pipeline.md)
+- [Scraping and accounts](docs/scrape.md)
+- [Processing, annotations and data format](docs/process.md)
+- [Interactive annotation](docs/annotate.md)
+- [Dashboard](docs/dashboard.md)
+
+## Development
+
+```sh
+npm run setup:dev       # install locked runtime and development dependencies
+npm test               # unit and CLI tests
+npm run lint           # check code, dashboard HTML and CSS
+npm run validate:data  # validate the committed JSON data
+```
+
+CI runs these checks. Contribution conventions are recorded in [AGENTS.md](AGENTS.md).
