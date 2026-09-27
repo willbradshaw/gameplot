@@ -43,6 +43,7 @@ export const annotationSchema = z
     status: z.enum(STATUSES).nullable(),
     tags: z.array(name),
     aliases: z.array(name).optional(),
+    possible_aliases: z.array(name).min(1).optional(),
     playtime: z.record(name, playtimeCorrectionSchema).optional(),
   })
   .refine((a) => a.rating === null || a.status !== null, {

@@ -24,6 +24,16 @@ gameplot process
 
 ## Prompts
 
+Pending `possible_aliases` are reviewed before the numbered steps. A numbered
+candidate can be selected, `0` keeps the entry as a separate game, and Enter
+defers the decision and skips that entry's remaining prompts for the run.
+
+Accepting adds the new name and any existing aliases to the selected entry,
+removes the blank entry, and redirects other pending suggestions. Ratings,
+statuses, tags and playtime corrections prevent an entry from being removed;
+such entries can only be kept separate or skipped. Each decision is saved
+immediately.
+
 The following steps run in order:
 
 1. **Missing statuses.** Statuses are requested for entries without one.

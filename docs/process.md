@@ -62,11 +62,15 @@ Existing annotation fields are preserved.
 | `status` | string or null | One of `Active`, `Complete`, `Abandoned`, `Unplayed`. Null is allowed only while `rating` is null: a rated game must have a status |
 | `tags` | array of strings | Free-form; the dashboard filters and aggregates by them |
 | `aliases` | array of strings, optional | Other names the platforms use for this game |
+| `possible_aliases` | array of strings, optional | Ranked canonical names to review as potential aliases in `annotate` |
 | `playtime` | object, optional | Per-platform corrections, keyed by platform label; each has optional `hoursPlayed` and `lastPlayed` |
 
 Names must be unique across entries, and an alias may not be another entry's
 name or alias. Unknown fields are rejected, so a mistyped field name fails
 validation rather than being ignored.
+
+Possible alias targets must name other existing annotation entries. Pending
+suggestions may refer to other pending entries.
 
 ### Tags
 
@@ -134,6 +138,23 @@ is an entry's `game` or one of its `aliases` belongs to that entry, and the
 output entry is named by `game`. This is how differently spelled listings of
 one game (`Slay the Spire` on Steam and `Slay The Spire` on Xbox;
 `Divinity: Original Sin 2` and its `Definitive Edition`) become one entry.
+
+### Possible aliases
+
+New blank entries are compared with annotations that match no scraped row,
+including through existing aliases. Candidate names are lowercased, trademark
+and copyright markers removed, and punctuation and whitespace normalised.
+
+Similarity is the mean of two scores: shared prefix length divided by the
+shorter name's length, and one minus Levenshtein distance divided by the longer
+name's length. The best score across a candidate's canonical name and aliases
+is used. All candidates scoring at least `0.70` are saved in `possible_aliases`,
+highest score first. Ties are alphabetised. Pending entries remain candidates;
+sequel numbers and edition wording receive no special treatment.
+
+Suggestions are added only when creating an entry. Rejecting one in `annotate`
+therefore does not cause it to reappear on the next processing run. Suggestions
+do not establish a name match until accepted.
 
 ### Playtime corrections
 
