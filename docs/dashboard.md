@@ -38,14 +38,14 @@ playtime under each of its tags, so they overlap.
 
 ## How it is generated
 
-The [pipeline](pipeline.md) scrapes platform data, processes it, runs
-[annotation prompts](annotate.md), then processes it again. Processing merges
-aliases and platform records with annotations and playtime corrections, writing
-[`data/games.json`](process.md#output). Only games meeting the
-[output selection rules](process.md#selection) appear; Unplayed games and games
-missing a rating or tags are excluded.
+Opening `index.html` loads the JavaScript modules in `src/dashboard/`, which
+fetch [`data/games.json`](process.md#output). Its `games` array supplies the
+table rows and chart points; `generatedAt` supplies Last Updated.
 
-The browser loads this file and renders the views using D3. Its `generatedAt`
-timestamp supplies Last Updated, recording when processing ran. After a data
-refresh, reloading the page displays the new output. The default dashboard
-expects `data/games.json`, including when a custom pipeline output path is used.
+Filter choices are drawn from the loaded games. The selected games supply the
+summary statistics and category totals, and D3 renders the charts as SVG.
+Changing filters recalculates these values and redraws the views in the browser.
+No separate rendering command or build step is required.
+
+Reloading the page reads the latest processed file. The dashboard always loads
+`data/games.json`; a custom processing output path is not detected automatically.
