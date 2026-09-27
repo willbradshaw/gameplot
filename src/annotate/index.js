@@ -66,7 +66,7 @@ export function validateRating(value) {
 async function askStatus(annotation, prompt, date = null) {
   const context = date ? ` (${annotation.status}, last played ${date})` : '';
   const answer = await prompt({
-    message: `${annotation.game} — status${context}`,
+    message: `${annotation.game}${context}`,
     validate: (value) => {
       const text = value.trim();
       return (
@@ -165,7 +165,7 @@ export async function annotateGames({
   step(4, 'Missing ratings', unrated.length, 'Enter a number from 0 to 10, or press Enter to skip for now.');
   for (const annotation of unrated) {
     const answer = await prompt({
-      message: `${annotation.game} — rating`,
+      message: annotation.game,
       validate: validateRating,
     });
     if (answer.trim() !== '') await update(annotation, 'rating', Number(answer.trim()));

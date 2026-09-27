@@ -104,7 +104,7 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
     save: async (value) => saves.push(structuredClone(value)),
   });
   assert.deepEqual(
-    messages.map((m) => m.split(' — ')[0]),
+    messages.map((m) => m.split(' (')[0]),
     ['Missing', 'Stale', 'Stale', 'Missing', 'Unmatched'],
   );
   assert.equal(updates, 3);
@@ -351,9 +351,9 @@ test('skipping a missing status leaves it null, skips its rating and offers it a
     save: async (value) => saved.push(structuredClone(value)),
   });
   assert.equal(messages.length, 3);
-  assert.match(messages[0], /Research.*status/);
-  assert.match(messages[1], /Ready.*status/);
-  assert.match(messages[2], /Ready.*rating/);
+  assert.equal(messages[0], 'Research');
+  assert.equal(messages[1], 'Ready');
+  assert.equal(messages[2], 'Ready');
   assert.deepEqual(annotations[0], ann('Research'));
   assert.equal(saved.length, 2);
   assert.equal(annotations[1].status, 'Complete');
@@ -371,7 +371,7 @@ test('skipping a missing status leaves it null, skips its rating and offers it a
     save: async () => assert.fail('skipping must not save'),
   });
   assert.equal(nextMessages.length, 1);
-  assert.match(nextMessages[0], /Research.*status/);
+  assert.equal(nextMessages[0], 'Research');
   assert.deepEqual(annotations[0], ann('Research'));
 });
 
@@ -395,13 +395,13 @@ test('step notices keep fixed numbers, report zero counts and count ratings afte
     events[0],
     /^\nStep 1: Missing statuses — 1 game\n0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned\nEnter skips/,
   );
-  assert.equal(events[1], 'Missing — status');
+  assert.equal(events[1], 'Missing');
   assert.match(events[2], /^\nStep 2: Active, last played over 6 months ago — 1 game\n/);
   assert.match(events[2], /Enter keeps Active/);
-  assert.equal(events[3], 'Old — status (Active, last played 2020-01-01)');
+  assert.equal(events[3], 'Old (Active, last played 2020-01-01)');
   assert.equal(events[4], '\nStep 3: Unplayed, last played within 6 months — 0 games');
   assert.match(events[5], /^\nStep 4: Missing ratings — 1 game\nEnter a number from 0 to 10/);
-  assert.equal(events[6], 'Missing — rating');
+  assert.equal(events[6], 'Missing');
   assert.equal(events.length, 7);
 });
 
