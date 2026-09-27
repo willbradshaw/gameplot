@@ -1,49 +1,54 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getGameData, getGeneratedAt, loadGameData } from '../src/dashboard/dataLoader.js';
+import { loadGameData } from '../src/dashboard/dataLoader.js';
+import { createFilters } from '../src/dashboard/filters.js';
+import { createGamesTable } from '../src/dashboard/gamesTable.js';
+import { mountDashboard } from '../src/dashboard/main.js';
 
 test('dashboard loads processed games and generation time without legacy date fields', async () => {
   const games = [{ game: 'Example', lastPlayedTotal: '2026-01-01' }];
   const generatedAt = '2026-09-27T12:00:00.000Z';
-  const loaded = await loadGameData(async (url, options) => {
-    assert.equal(url, './data/games.json');
-    assert.equal(options.cache, 'no-store');
-    return { ok: true, json: async () => ({ games, generatedAt }) };
+  const loaded = await loadGameData(undefined, {
+    fetchData: async (url, options) => {
+      assert.equal(url, './data/games.json');
+      assert.equal(options.cache, 'no-store');
+      return { ok: true, json: async () => ({ games, generatedAt }) };
+    },
   });
-  assert.deepEqual(loaded, games);
-  assert.equal(getGameData(), loaded);
-  assert.equal(getGeneratedAt(), generatedAt);
+  assert.deepEqual(loaded, { games, generatedAt });
   assert.deepEqual(
-    await loadGameData(async () => ({
-      ok: true,
-      json: async () => ({ games: [], generatedAt }),
-    })),
-    [],
+    await loadGameData(undefined, {
+      fetchData: async () => ({
+        ok: true,
+        json: async () => ({ games: [], generatedAt }),
+      }),
+    }),
+    { games: [], generatedAt },
   );
 });
 
 test('dashboard rejects HTTP errors, malformed JSON and obsolete documents', async () => {
   await assert.rejects(
-    loadGameData(async () => ({ ok: false, status: 404 })),
+    loadGameData(undefined, { fetchData: async () => ({ ok: false, status: 404 }) }),
     /HTTP 404/,
   );
   await assert.rejects(
-    loadGameData(async () => ({
-      ok: true,
-      json: async () => {
-        throw new SyntaxError('Invalid JSON');
-      },
-    })),
+    loadGameData(undefined, {
+      fetchData: async () => ({
+        ok: true,
+        json: async () => {
+          throw new SyntaxError('Invalid JSON');
+        },
+      }),
+    }),
     /Invalid JSON/,
   );
   for (const data of [[], null, { games: [] }, { games: [], generatedAt: 'bad' }]) {
     await assert.rejects(
-      loadGameData(async () => ({ ok: true, json: async () => data })),
+      loadGameData(undefined, { fetchData: async () => ({ ok: true, json: async () => data }) }),
       /Invalid dashboard/,
     );
   }
-  assert.deepEqual(getGameData(), []);
-  assert.equal(getGeneratedAt(), null);
 });
 
 const exampleGame = (overrides = {}) => ({
@@ -59,26 +64,17 @@ const exampleGame = (overrides = {}) => ({
   ...overrides,
 });
 
-async function loadFixture(games) {
-  await loadGameData(async () => ({
-    ok: true,
-    json: async () => ({ generatedAt: '2026-09-27T12:00:00.000Z', games }),
-  }));
-}
-
 test('date filters retain both boundary dates, allow open bounds and reset to the recorded dates', async (t) => {
-  const { clearDateFilter, getFilteredData } = await import('../src/dashboard/filters.js');
   const games = ['2026-03-08', '2026-03-09', '2026-11-01'].map((lastPlayedTotal) =>
     exampleGame({ lastPlayedTotal }),
   );
-  await loadFixture(games);
   const inputs = { startDate: { value: '' }, endDate: { value: '' } };
   const previous = globalThis.document;
   t.after(() => {
     globalThis.document = previous;
   });
   globalThis.document = {
-    getElementById: (id) => inputs[id],
+    querySelector: (selector) => inputs[selector.match(/data-role="([^"]+)"/)[1]],
     dispatchEvent() {},
     querySelectorAll: (selector) => {
       const values = selector.includes('platform')
@@ -91,6 +87,7 @@ test('date filters retain both boundary dates, allow open bounds and reset to th
       return values.map((value) => ({ value }));
     },
   };
+  const { clearDateFilter, getFilteredData } = createFilters(globalThis.document, games, 'test');
   clearDateFilter();
   assert.equal(inputs.startDate.value, '2026-03-08');
   assert.equal(inputs.endDate.value, '2026-11-01');
@@ -149,14 +146,17 @@ test('table and CSV preserve zero ratings, hours, dates, status styling and disp
     createElement: element,
     body: element(),
     querySelectorAll: () => [],
-    getElementById: (id) => (id === 'gamesTableBody' ? body : element()),
+    querySelector: (selector) => (selector === '[data-role="gamesTableBody"]' ? body : element()),
   };
   let csv;
   t.mock.method(URL, 'createObjectURL', (blob) => {
     csv = blob;
     return 'blob:test';
   });
-  const { renderTable, downloadTableAsCSV } = await import('../src/dashboard/gamesTable.js');
+  globalThis.document.ownerDocument = globalThis.document;
+  globalThis.document.appendChild = () => {};
+  globalThis.document.removeChild = () => {};
+  const { renderTable, downloadTableAsCSV } = createGamesTable(globalThis.document);
   const games = ['Active', 'Complete', 'Abandoned'].map((status) => exampleGame({ status }));
   renderTable(games);
   const cells = body.children[0].children;
@@ -172,8 +172,6 @@ test('table and CSV preserve zero ratings, hours, dates, status styling and disp
 });
 
 test('empty filter groups exclude all games and rating shortcuts select by value', async (t) => {
-  const { getFilteredData, selectOnlyRating } = await import('../src/dashboard/filters.js');
-  await loadFixture([exampleGame()]);
   const previous = globalThis.document;
   t.after(() => {
     globalThis.document = previous;
@@ -189,15 +187,16 @@ test('empty filter groups exclude all games and rating shortcuts select by value
   };
   let changes = 0;
   globalThis.document = {
-    getElementById: () => ({ value: '' }),
+    querySelector: () => ({ value: '' }),
     querySelectorAll: (selector) => {
-      const group = groups[selector.split(' ')[0].slice(1)];
+      const group = groups[selector.match(/data-role="([^"]+)"/)[1]];
       return selector.endsWith(':checked') ? group.filter((cb) => cb.checked) : group;
     },
     dispatchEvent: () => {
       changes++;
     },
   };
+  const { getFilteredData, selectOnlyRating } = createFilters(globalThis.document, [exampleGame()], 'test');
   assert.equal(getFilteredData().length, 1);
   for (const group of Object.values(groups)) {
     for (const cb of group) cb.checked = false;
@@ -214,4 +213,83 @@ test('empty filter groups exclude all games and rating shortcuts select by value
   assert.equal(getFilteredData().length, 1);
   selectOnlyRating('9-10');
   assert.deepEqual(getFilteredData(), []);
+});
+
+// A minimal host element exercises mount lifecycle and loading without adding a DOM dependency.
+function hostRoot() {
+  const classes = new Set();
+  const nodes = new Map();
+  return {
+    nodeType: 1,
+    ownerDocument: { defaultView: {} },
+    classList: {
+      add: (value) => classes.add(value),
+      remove: (value) => classes.delete(value),
+      contains: (value) => classes.has(value),
+    },
+    innerHTML: '',
+    querySelector(selector) {
+      if (!nodes.has(selector)) nodes.set(selector, { hidden: false, textContent: '' });
+      return nodes.get(selector);
+    },
+    replaceChildren() {
+      this.innerHTML = '';
+    },
+  };
+}
+
+test('mount loads a custom URL, owns only its root, and can be destroyed or remounted', async (t) => {
+  t.mock.method(globalThis, 'fetch', async (url) => {
+    assert.equal(url, '/site/games.json');
+    return { ok: true, json: async () => ({ generatedAt: '2026-09-27T12:00:00Z', games: [] }) };
+  });
+  const root = hostRoot();
+  const other = hostRoot();
+  other.innerHTML = 'Host content';
+  const dashboard = mountDashboard({ root, dataUrl: '/site/games.json' });
+  await dashboard.ready;
+  assert.equal(root.classList.contains('gameplot'), true);
+  assert.match(root.querySelector('[data-role="dashboard-message"]').textContent, /No games/);
+  assert.doesNotMatch(root.innerHTML, /onclick=|<h1|theme-toggle/);
+  assert.match(root.innerHTML, /data-action="selectAllPlatforms"/);
+  const oldMarkup = root.innerHTML;
+  const replacement = mountDashboard({ root, dataUrl: '/site/games.json' });
+  await replacement.ready;
+  assert.notEqual(root.innerHTML, oldMarkup); // Unique label/clip IDs on every mount.
+  dashboard.destroy(); // An old handle must not erase its replacement.
+  assert.notEqual(root.innerHTML, '');
+  replacement.destroy();
+  assert.equal(root.innerHTML, '');
+  assert.equal(root.classList.contains('gameplot'), false);
+  assert.equal(other.innerHTML, 'Host content');
+});
+
+test('failed mounts display the error and expose it through ready', async (t) => {
+  t.mock.method(globalThis, 'fetch', async () => ({ ok: false, status: 404 }));
+  const root = hostRoot();
+  const dashboard = mountDashboard({ root, dataUrl: '/missing.json' });
+  await assert.rejects(dashboard.ready, /missing.json.*404/);
+  assert.match(root.querySelector('[data-role="dashboard-message"]').textContent, /missing.json.*404/);
+  assert.equal(root.querySelector('[data-role="dashboard-content"]').hidden, true);
+  dashboard.destroy();
+  assert.throws(() => mountDashboard(), /root element/);
+});
+
+test('destroying a pending mount aborts its request and prevents late writes to a replacement', async (t) => {
+  let resolve;
+  let signal;
+  t.mock.method(globalThis, 'fetch', (_url, options) => {
+    signal = options.signal;
+    return new Promise((done) => {
+      resolve = done;
+    });
+  });
+  const root = hostRoot();
+  const dashboard = mountDashboard({ root });
+  dashboard.destroy();
+  assert.equal(signal.aborted, true);
+  root.innerHTML = 'Replacement content';
+  resolve({ ok: true, json: async () => ({ generatedAt: '2026-09-27T12:00:00Z', games: [] }) });
+  await dashboard.ready;
+  assert.equal(root.innerHTML, 'Replacement content');
 });

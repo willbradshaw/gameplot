@@ -45,48 +45,16 @@
   --platform-ps5: #eee;
 }
 
-* {
+.gameplot * {
   box-sizing: border-box;
 }
 
-button,
-input {
+.gameplot button,
+.gameplot input {
   font: inherit;
 }
 
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: "Fira Sans", "Segoe UI", sans-serif;
-  background: var(--page-bg);
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--text-primary);
-  min-height: 100vh;
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-h1 {
-  text-align: center;
-  color: var(--text-primary);
-  font-size: 2.25rem;
-  margin-bottom: 10px;
-  font-weight: 300;
-}
-
-.subtitle {
-  text-align: center;
-  color: var(--text-secondary);
-
-  font-size: 1.125rem;
-  margin-bottom: 32px;
-}
-
-.controls {
+.gameplot .controls {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr)) 0.8fr;
   gap: 15px;
@@ -97,7 +65,7 @@ h1 {
   backdrop-filter: blur(10px);
 }
 
-.control-section {
+.gameplot .control-section {
   background: var(--section-bg);
   padding: 12px;
   border-radius: 8px;
@@ -108,14 +76,14 @@ h1 {
   min-width: 0;
 }
 
-.control-header {
+.gameplot .control-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.control-title {
+.gameplot .control-title {
   font-weight: bold;
   color: var(--text-primary);
   font-size: 12px;
@@ -123,12 +91,12 @@ h1 {
   letter-spacing: 1px;
 }
 
-.control-buttons {
+.gameplot .control-buttons {
   display: flex;
   gap: 4px;
 }
 
-.filter-btn {
+.gameplot .filter-btn {
   background: var(--control-bg);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
@@ -141,16 +109,16 @@ h1 {
   letter-spacing: 0.5px;
 }
 
-.filter-btn:hover {
+.gameplot .filter-btn:hover {
   background: var(--control-hover);
   color: var(--text-primary);
 }
 
-.tag-search-container {
+.gameplot .tag-search-container {
   margin-bottom: 8px;
 }
 
-.tag-search-input {
+.gameplot .tag-search-input {
   width: 100%;
   padding: 6px 8px;
   border: 1px solid var(--border-color);
@@ -162,19 +130,19 @@ h1 {
   box-sizing: border-box;
 }
 
-.tag-search-input::placeholder {
+.gameplot .tag-search-input::placeholder {
   color: var(--text-secondary);
 }
 
-.tag-search-input:focus {
+.gameplot .tag-search-input:focus {
   border-color: #4fc3f7;
   background: var(--control-hover);
 }
 
-.platform-checkboxes,
-.tag-checkboxes,
-#statusCheckboxes,
-#ratingCheckboxes {
+.gameplot .platform-checkboxes,
+.gameplot .tag-checkboxes,
+.gameplot [data-role="statusCheckboxes"],
+.gameplot [data-role="ratingCheckboxes"] {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -183,13 +151,12 @@ h1 {
   flex: 1;
 }
 
-/* Remove height constraint for ratings filter since it only has 6 items */
-#ratingCheckboxes {
+.gameplot [data-role="ratingCheckboxes"] {
   max-height: none;
   overflow-y: visible;
 }
 
-.checkbox-item {
+.gameplot .checkbox-item {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -198,31 +165,31 @@ h1 {
   transition: background 0.2s;
 }
 
-.checkbox-item:hover {
+.gameplot .checkbox-item:hover {
   background: var(--control-bg);
 }
 
-.checkbox-item input[type="checkbox"] {
+.gameplot .checkbox-item input[type="checkbox"] {
   width: 14px;
   height: 14px;
   accent-color: #4fc3f7;
 }
 
-.checkbox-item label {
+.gameplot .checkbox-item label {
   font-size: 11px;
   cursor: pointer;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
-.reset-section {
+.gameplot .reset-section {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: auto;
 }
 
-.reset-all-btn {
+.gameplot .reset-all-btn {
   background: var(--control-bg);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
@@ -236,18 +203,18 @@ h1 {
   letter-spacing: 0.5px;
 }
 
-.reset-all-btn:hover {
+.gameplot .reset-all-btn:hover {
   background: var(--control-hover);
   color: var(--text-primary);
 }
 
-.date-range {
+.gameplot .date-range {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.date-input-group {
+.gameplot .date-input-group {
   display: flex;
   gap: 5px;
 
@@ -255,7 +222,7 @@ h1 {
   align-items: center;
 }
 
-.date-input-group label {
+.gameplot .date-input-group label {
   font-size: 12px;
   color: var(--text-secondary);
   letter-spacing: 0.5px;
@@ -264,7 +231,7 @@ h1 {
   min-width: 35px;
 }
 
-input[type="date"] {
+.gameplot input[type="date"] {
   border: none;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.9);
@@ -277,7 +244,7 @@ input[type="date"] {
   color-scheme: light;
 }
 
-.chart-container {
+.gameplot .chart-container {
   margin-top: 32px;
   background: var(--chart-bg);
   border-radius: 15px;
@@ -287,7 +254,7 @@ input[type="date"] {
   border: 1px solid var(--border-color);
 }
 
-.chart {
+.gameplot .chart {
   width: 100%;
   overflow: hidden;
   border-radius: 10px;
@@ -300,8 +267,8 @@ input[type="date"] {
   min-height: 300px;
 }
 
-.tooltip {
-  position: absolute;
+.gameplot .tooltip {
+  position: fixed;
   background: var(--tooltip-bg);
   color: var(--text-primary);
   padding: 12px 16px;
@@ -314,33 +281,33 @@ input[type="date"] {
   z-index: 1000;
 }
 
-.tooltip-title {
+.gameplot .tooltip-title {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 8px;
   color: #4fc3f7;
 }
 
-.tooltip-detail {
+.gameplot .tooltip-detail {
   margin: 4px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.tooltip-label {
+.gameplot .tooltip-label {
   color: var(--text-secondary);
   margin-right: 8px;
 }
 
-.tooltip-tags {
+.gameplot .tooltip-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   margin-top: 6px;
 }
 
-.tooltip-tag {
+.gameplot .tooltip-tag {
   background: rgba(79, 195, 247, 0.3);
   color: #4fc3f7;
   padding: 2px 6px;
@@ -348,51 +315,51 @@ input[type="date"] {
   font-size: 11px;
 }
 
-.rating-circle {
+.gameplot .rating-circle {
   cursor: pointer;
   transition: all 0.2s ease;
   stroke: var(--point-stroke);
   stroke-width: 1;
 }
 
-.rating-circle:hover {
+.gameplot .rating-circle:hover {
   stroke-width: 3;
   stroke: var(--point-hover);
   filter: brightness(1.2);
 }
 
-.axis {
+.gameplot .axis {
   font-size: 12px;
   color: var(--text-primary);
 }
 
-.axis-label {
+.gameplot .axis-label {
   fill: var(--axis-text);
 
   font-size: 16px;
   font-weight: 400;
 }
 
-.grid-line {
+.gameplot .grid-line {
   stroke: var(--grid-color);
   stroke-dasharray: 2, 2;
 }
 
-.zoom-instructions {
+.gameplot .zoom-instructions {
   text-align: center;
   margin-top: 15px;
   color: var(--text-secondary);
   font-size: 0.9em;
 }
 
-.stats {
+.gameplot .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   margin-bottom: 20px;
 }
 
-.stat-card {
+.gameplot .stat-card {
   border: 1px solid var(--border-color);
   background: var(--control-bg);
   padding: 15px;
@@ -401,7 +368,7 @@ input[type="date"] {
   backdrop-filter: blur(10px);
 }
 
-.stat-value {
+.gameplot .stat-value {
   font-size: 2.5em;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -409,7 +376,7 @@ input[type="date"] {
   color: #4fc3f7;
 }
 
-.stat-label {
+.gameplot .stat-label {
   font-size: 0.9em;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -417,8 +384,7 @@ input[type="date"] {
   margin-top: 5px;
 }
 
-/* Games Table Styles */
-.table-container {
+.gameplot .table-container {
   border: 1px solid var(--border-color);
   background: var(--chart-bg);
   border-radius: 12px;
@@ -427,7 +393,7 @@ input[type="date"] {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.table-header {
+.gameplot .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -436,14 +402,14 @@ input[type="date"] {
   gap: 15px;
 }
 
-.table-controls {
+.gameplot .table-controls {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.search-container {
+.gameplot .search-container {
   display: flex;
   align-items: center;
   background: var(--dark-bg);
@@ -452,7 +418,7 @@ input[type="date"] {
   overflow: hidden;
 }
 
-.search-input {
+.gameplot .search-input {
   background: transparent;
   border: none;
   color: var(--text-primary);
@@ -462,11 +428,11 @@ input[type="date"] {
   min-width: 200px;
 }
 
-.search-input::placeholder {
+.gameplot .search-input::placeholder {
   color: var(--text-secondary);
 }
 
-.clear-search-btn {
+.gameplot .clear-search-btn {
   background: transparent;
   border: none;
   color: var(--text-secondary);
@@ -476,11 +442,11 @@ input[type="date"] {
   transition: color 0.2s ease;
 }
 
-.clear-search-btn:hover {
+.gameplot .clear-search-btn:hover {
   color: #ef4444;
 }
 
-.download-csv-btn {
+.gameplot .download-csv-btn {
   background: var(--accent-blue);
   border: none;
   padding: 8px 16px;
@@ -493,12 +459,12 @@ input[type="date"] {
   color: white;
 }
 
-.download-csv-btn:hover {
+.gameplot .download-csv-btn:hover {
   background: #2563eb;
   transform: translateY(-1px);
 }
 
-.table-wrapper {
+.gameplot .table-wrapper {
   overflow-x: auto;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -506,7 +472,7 @@ input[type="date"] {
   overflow-y: auto;
 }
 
-.games-table {
+.gameplot .games-table {
   width: 100%;
   border-collapse: collapse;
   background: var(--dark-bg);
@@ -514,7 +480,7 @@ input[type="date"] {
   font-size: 14px;
 }
 
-.games-table th {
+.gameplot .games-table th {
   background: var(--table-heading);
   padding: 12px 16px;
   text-align: left;
@@ -525,72 +491,72 @@ input[type="date"] {
   z-index: 10;
 }
 
-.games-table th.sortable {
+.gameplot .games-table th.sortable {
   cursor: pointer;
   user-select: none;
   transition: background-color 0.2s ease;
 }
 
-.games-table th.sortable:hover {
+.gameplot .games-table th.sortable:hover {
   background: var(--control-hover);
 }
 
-.games-table th .sort-indicator {
+.gameplot .games-table th .sort-indicator {
   margin-left: 8px;
   opacity: 0.5;
 }
 
-.games-table th.sort-asc .sort-indicator::before {
+.gameplot .games-table th.sort-asc .sort-indicator::before {
   content: "▲";
   opacity: 1;
 }
 
-.games-table th.sort-desc .sort-indicator::before {
+.gameplot .games-table th.sort-desc .sort-indicator::before {
   content: "▼";
   opacity: 1;
 }
 
-.games-table td {
+.gameplot .games-table td {
   padding: 12px 16px;
   border-bottom: 1px solid var(--border-color);
   vertical-align: top;
 }
 
-.games-table tbody tr:hover {
+.gameplot .games-table tbody tr:hover {
   background: rgba(59, 130, 246, 0.1);
 }
 
-.games-table tbody tr:nth-child(even) {
+.gameplot .games-table tbody tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.02);
 }
 
-.games-table tbody tr:nth-child(even):hover {
+.gameplot .games-table tbody tr:nth-child(even):hover {
   background: rgba(59, 130, 246, 0.1);
 }
 
-.game-name {
+.gameplot .game-name {
   font-weight: 500;
   color: var(--text-primary);
 }
 
-.game-link {
+.gameplot .game-link {
   color: var(--accent-blue);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.game-link:hover {
+.gameplot .game-link:hover {
   color: #60a5fa;
   text-decoration: underline;
 }
 
-.platform-badges {
+.gameplot .platform-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-.platform-badge {
+.gameplot .platform-badge {
   color: #3b82f6;
   padding: 4px 8px;
   border-radius: 12px;
@@ -604,53 +570,53 @@ input[type="date"] {
   border-color: color-mix(in srgb, currentColor 30%, transparent);
 }
 
-.platform-badge:hover {
+.gameplot .platform-badge:hover {
   background: rgba(59, 130, 246, 0.3);
   transform: translateY(-1px);
 }
 
-.rating-cell {
+.gameplot .rating-cell {
   font-weight: 600;
   text-align: center;
 }
 
-.rating-clickable {
+.gameplot .rating-clickable {
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 4px 8px;
   border-radius: 6px;
 }
 
-.rating-clickable:hover {
+.gameplot .rating-clickable:hover {
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.rating-very-low {
+.gameplot .rating-very-low {
   color: #ef4444;
 }
 
-.rating-low {
+.gameplot .rating-low {
   color: #f97316;
 }
 
-.rating-medium-low {
+.gameplot .rating-medium-low {
   color: #eab308;
 }
 
-.rating-medium {
+.gameplot .rating-medium {
   color: #84cc16;
 }
 
-.rating-high {
+.gameplot .rating-high {
   color: #06b6d4;
 }
 
-.rating-very-high {
+.gameplot .rating-very-high {
   color: #3b82f6;
 }
 
-.status-badge {
+.gameplot .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 12px;
@@ -662,39 +628,39 @@ input[type="date"] {
   transition: all 0.2s ease;
 }
 
-.status-badge:hover {
+.gameplot .status-badge:hover {
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.status-complete {
+.gameplot .status-complete {
   background: rgba(16, 185, 129, 0.2);
   color: #10b981;
 }
 
-.status-active {
+.gameplot .status-active {
   background: rgba(59, 130, 246, 0.2);
   color: #3b82f6;
 }
 
-.status-abandoned {
+.gameplot .status-abandoned {
   background: rgba(239, 68, 68, 0.2);
   color: #ef4444;
 }
 
-.status-unplayed {
+.gameplot .status-unplayed {
   background: rgba(156, 163, 175, 0.2);
   color: var(--text-secondary);
 }
 
-.tags-list {
+.gameplot .tags-list {
   display: flex;
   flex-wrap: wrap;
   gap: 3px;
   max-width: 200px;
 }
 
-.tag-badge {
+.gameplot .tag-badge {
   padding: 2px 6px;
   border-radius: 8px;
   font-size: 11px;
@@ -707,34 +673,33 @@ input[type="date"] {
   border: 1px solid rgba(255, 107, 0, 0.3);
 }
 
-.tag-badge:hover {
+.gameplot .tag-badge:hover {
   transform: translateY(-1px);
 
   background: rgba(255, 107, 0, 0.25);
   color: #c2410c;
 }
 
-.hours-cell {
+.gameplot .hours-cell {
   text-align: right;
   font-family: "Courier New", monospace;
   font-weight: 500;
 }
 
-.date-cell {
+.gameplot .date-cell {
   font-family: "Courier New", monospace;
   font-size: 13px;
   color: var(--text-secondary);
 }
 
-.table-info {
+.gameplot .table-info {
   margin-top: 15px;
   text-align: center;
   color: var(--text-secondary);
   font-size: 14px;
 }
 
-/* Aggregation controls */
-.aggregation-controls {
+.gameplot .aggregation-controls {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -742,7 +707,7 @@ input[type="date"] {
   margin-bottom: 20px;
 }
 
-.aggregation-btn {
+.gameplot .aggregation-btn {
   background: rgba(59, 130, 246, 0.1);
   color: #3b82f6;
   border: 2px solid rgba(59, 130, 246, 0.3);
@@ -757,14 +722,14 @@ input[type="date"] {
   gap: 8px;
 }
 
-.aggregation-btn:hover {
+.gameplot .aggregation-btn:hover {
   background: rgba(59, 130, 246, 0.2);
   border-color: rgba(59, 130, 246, 0.5);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
-.aggregation-btn.active {
+.gameplot .aggregation-btn.active {
   background: rgba(59, 130, 246, 0.3);
   border-color: #3b82f6;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
@@ -772,212 +737,200 @@ input[type="date"] {
   color: var(--text-primary);
 }
 
-.aggregation-btn.active:hover {
+.gameplot .aggregation-btn.active:hover {
   background: rgba(59, 130, 246, 0.4);
   transform: translateY(-2px);
 }
 
-/* Website typography, chart colours and responsive layout. */
-h2 {
+.gameplot h2 {
   font-size: 1.5rem;
   font-weight: 300;
   text-align: center;
   margin: 0 0 20px;
 }
 
-.theme-controls {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.theme-toggle {
-  background: transparent;
-  color: var(--text-primary);
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  cursor: pointer;
-}
-.theme-toggle:hover {
-  background: var(--control-hover);
-}
-.theme-toggle svg {
-  width: 20px;
-  height: 20px;
-}
-.theme-sun {
-  display: none;
-}
-.theme-moon {
-  display: block;
-}
-.dark .theme-moon {
-  display: none;
-}
-.dark .theme-sun {
-  display: block;
-}
-
-.axis text {
+.gameplot .axis text {
   fill: var(--axis-text);
   font-size: 13px;
 }
 
-.axis line,
-.axis path,
-.grid line {
+.gameplot .axis line,
+.gameplot .axis path,
+.gameplot .grid line {
   stroke: var(--grid-color);
 }
 
-.grid path {
+.gameplot .grid path {
   stroke: none;
 }
 
-.chart svg {
+.gameplot .chart svg {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.platform-badge[data-platform="PS5"] {
+.gameplot .platform-badge[data-platform="PS5"] {
   color: var(--platform-ps5);
 }
 
-.platform-badge[data-platform="Switch"] {
+.gameplot .platform-badge[data-platform="Switch"] {
   color: var(--platform-switch);
 }
 
-.platform-badge[data-platform="Xbox"] {
+.gameplot .platform-badge[data-platform="Xbox"] {
   color: var(--platform-xbox);
 }
 
-.platform-badge[data-platform="GOG"] {
+.gameplot .platform-badge[data-platform="GOG"] {
   color: var(--platform-gog);
 }
 
-.platform-badge[data-platform="Steam"] {
+.gameplot .platform-badge[data-platform="Steam"] {
   color: var(--platform-steam);
 }
 
-.dark .tag-badge {
+.dark .gameplot .tag-badge {
   background: rgba(139, 69, 19, 0.3);
   color: #d4a574;
   border-color: rgba(139, 69, 19, 0.4);
 }
 
-.dark .tag-badge:hover {
+.dark .gameplot .tag-badge:hover {
   background: rgba(139, 69, 19, 0.4);
   color: #e0b584;
 }
 
 @media (min-width: 769px) {
-  .games-table {
+  .gameplot .games-table {
     table-layout: fixed;
     min-width: 950px;
   }
-  .games-table th:nth-child(1) {
+
+  .gameplot .games-table th:nth-child(1) {
     width: 25%;
   }
-  .games-table th:nth-child(2) {
+
+  .gameplot .games-table th:nth-child(2) {
     width: 12%;
   }
-  .games-table th:nth-child(3) {
+
+  .gameplot .games-table th:nth-child(3) {
     width: 8%;
   }
-  .games-table th:nth-child(4) {
+
+  .gameplot .games-table th:nth-child(4) {
     width: 120px;
   }
-  .games-table th:nth-child(5),
-  .games-table th:nth-child(6) {
+
+  .gameplot .games-table th:nth-child(5),
+  .gameplot .games-table th:nth-child(6) {
     width: 10%;
   }
-  .date-cell {
+
+  .gameplot .date-cell {
     white-space: nowrap;
   }
-  .game-link,
-  .game-name {
+
+  .gameplot .game-link,
+  .gameplot .game-name {
     overflow-wrap: anywhere;
   }
 }
+
 @media (max-width: 1200px) {
-  .controls {
+  .gameplot .controls {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-  .controls {
+  .gameplot .controls {
     grid-template-columns: 1fr;
     padding: 10px;
   }
-  .control-section {
+
+  .gameplot .control-section {
     min-height: auto;
   }
-  .platform-checkboxes,
-  .tag-checkboxes {
+
+  .gameplot .platform-checkboxes,
+  .gameplot .tag-checkboxes {
     max-height: 80px;
   }
-  .stats {
+
+  .gameplot .stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
-  .stat-card {
+
+  .gameplot .stat-card {
     padding: 10px;
   }
-  .stat-value {
+
+  .gameplot .stat-value {
     font-size: 1.8em;
   }
-  .stat-label {
+
+  .gameplot .stat-label {
     font-size: 0.8em;
   }
-  .table-controls {
+
+  .gameplot .table-controls {
     flex-direction: column;
     align-items: stretch;
   }
-  .search-input {
+
+  .gameplot .search-input {
     min-width: 0;
     width: 100%;
   }
-  .table-wrapper {
+
+  .gameplot .table-wrapper {
     max-height: 400px;
   }
-  .games-table {
+
+  .gameplot .games-table {
     min-width: 700px;
     font-size: 12px;
   }
-  .games-table th,
-  .games-table td {
+
+  .gameplot .games-table th,
+  .gameplot .games-table td {
     padding: 8px 12px;
   }
-  .chart-container,
-  .table-container {
+
+  .gameplot .chart-container,
+  .gameplot .table-container {
     padding: 15px 10px;
   }
-  .chart {
+
+  .gameplot .chart {
     overflow-x: auto;
     justify-content: flex-start;
   }
-  .chart svg {
+
+  .gameplot .chart svg {
     min-width: 700px;
     flex-shrink: 0;
   }
-  .aggregation-controls {
+
+  .gameplot .aggregation-controls {
     flex-direction: column;
   }
-  .aggregation-btn {
+
+  .gameplot .aggregation-btn {
     justify-content: center;
   }
 }
 
-/* Crossfade snapshots once rather than animating thousands of descendants. */
-:root.theme-changing,
-:root.theme-changing * {
-  transition: none;
+.gameplot {
+  font-family: "Fira Sans", "Segoe UI", sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-primary);
+  min-width: 0;
 }
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 500ms;
-  animation-timing-function: ease-in-out;
+.gameplot [hidden] {
+  display: none;
 }
