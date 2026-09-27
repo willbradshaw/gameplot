@@ -7,15 +7,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": [
-      "**",
-      "!data",
-      "!gameplot-env",
-      "!src/render",
-      "!src/dashboard",
-      "!index.html",
-      "!styles.css"
-    ]
+    "includes": ["**", "!data", "!gameplot-env", "!src/render"]
   },
   "formatter": {
     "enabled": true,
@@ -32,7 +24,8 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single"
-    }
+    },
+    "globals": ["d3"]
   },
   "assist": {
     "enabled": true,
