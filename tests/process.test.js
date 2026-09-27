@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
+import os from 'node:os';
+import path from 'node:path';
 import { test } from 'node:test';
+import fs from 'fs-extra';
+import { silentLogger } from '../src/lib/log.js';
 import { annotationSchema } from '../src/lib/model.js';
 import { buildAliasMap, checkTags } from '../src/process/annotations.js';
 import {
@@ -8,6 +12,7 @@ import {
   combinePlatformRows,
   PlaytimeRuleError,
   processGames,
+  runProcess,
 } from '../src/process/index.js';
 
 const row = (game, platform, hours, date, extra = {}) => ({
@@ -181,4 +186,62 @@ test('processGames stops with every violation listed and writes nothing', () => 
 
 test('blankAnnotations produces fill-in entries', () => {
   assert.deepEqual(blankAnnotations(['X']), [{ game: 'X', rating: null, status: null, tags: [] }]);
+});
+
+const unplayed = (extra = {}) => ann('Game', { status: 'Unplayed', rating: null, tags: [], ...extra });
+
+test('Unplayed rejects nonzero corrected playtime on every platform, even when unrated', () => {
+  assert.throws(
+    () =>
+      processGames(
+        [row('Game', 'Steam', 4, '2026-09-01'), row('Alias', 'PS5', 2, '2026-09-01')],
+        [unplayed({ aliases: ['Alias'] })],
+      ),
+    /Unplayed.*Steam[\s\S]*Unplayed.*PS5/,
+  );
+  assert.throws(
+    () =>
+      processGames(
+        [row('Game', 'Steam', 0, '2026-09-01')],
+        [unplayed({ playtime: { Steam: { hoursPlayed: 2 } } })],
+      ),
+    /Unplayed.*Steam/,
+  );
+});
+
+test('Unplayed accepts zero or unknown hours, applies explicit corrections and excludes even rated entries', () => {
+  for (const rating of [null, 7]) {
+    const result = processGames(
+      [row('Game', 'Steam', 20, '2026-09-01'), row('Game', 'GOG', null, '2026-09-01')],
+      [unplayed({ rating, playtime: { Steam: { hoursPlayed: 0 } } })],
+    );
+    assert.deepEqual(result.games, []);
+    assert.deepEqual(result.unrated, []);
+  }
+  assert.deepEqual(processGames([row('Game', 'Steam', 0, '2026-09-01')], [unplayed()]).games, []);
+});
+
+test('invalid Unplayed data leaves annotations and output files untouched', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-unplayed-'));
+  t.after(() => fs.remove(dir));
+  const options = {
+    input: path.join(dir, 'raw.json'),
+    annotationsFile: path.join(dir, 'annotations.json'),
+    tagsFile: path.join(dir, 'tags.json'),
+    out: path.join(dir, 'games.json'),
+    unannotatedFile: path.join(dir, 'unannotated.json'),
+    log: silentLogger,
+  };
+  await fs.writeJson(options.input, [
+    row('Game', 'Steam', 3, '2026-09-01'),
+    row('New', 'Steam', 1, '2026-09-01'),
+  ]);
+  await fs.writeJson(options.annotationsFile, [unplayed()]);
+  await fs.writeJson(options.tagsFile, {});
+  await fs.writeJson(options.out, ['existing output']);
+  await fs.writeJson(options.unannotatedFile, ['existing stubs']);
+  await assert.rejects(runProcess(options), /Unplayed.*Steam/);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), [unplayed()]);
+  assert.deepEqual(await fs.readJson(options.out), ['existing output']);
+  assert.deepEqual(await fs.readJson(options.unannotatedFile), ['existing stubs']);
 });
