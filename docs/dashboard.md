@@ -4,16 +4,17 @@ The dashboard is a static, interactive page showing rated games across platforms
 
 ## Viewing locally
 
-After [setup](setup.md), the following commands run from the repository root:
+The repository includes processed game data. From the repository root, any
+HTTP server can serve the dashboard, for example:
 
 ```sh
-gameplot pipeline                  # refresh sources and fill in annotations
-python3 -m http.server 8000         # serve the dashboard (requires Python 3)
+python3 -m http.server 8000         # requires Python 3
 ```
 
-The dashboard is available at [localhost:8000](http://localhost:8000). If scraped
-data and annotations already exist, `gameplot process` can replace the pipeline
-command to rebuild the dashboard data without scraping or prompting.
+The dashboard is available at [localhost:8000](http://localhost:8000).
+To refresh the data, the CLI can be [installed](setup.md) and the
+[pipeline](pipeline.md) run. If scraped data and annotations already exist,
+[processing](process.md) can rebuild the output without scraping or prompting.
 The page must be served over HTTP; opening `index.html` directly is insufficient.
 D3 is loaded from a CDN, requiring an internet connection.
 
