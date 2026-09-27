@@ -91,7 +91,7 @@ test('status passes precede ratings, allow unchanged stale statuses and save cha
       messages.push(message);
       assert.doesNotMatch(message, /enter =/);
       if (messages.length === 1) {
-        assert.match(message, /0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned/);
+        assert.doesNotMatch(message, /0 = Unplayed/);
         assert.equal(validate(''), true);
         assert.notEqual(validate('4'), true);
         assert.notEqual(validate('1e0'), true);
@@ -229,7 +229,7 @@ test('recent Unplayed review can keep status without a rating or repeated confir
     save: async () => assert.fail('no change'),
   });
   assert.equal(messages.length, 1);
-  assert.match(messages[0], /Recent.*current: Unplayed/);
+  assert.match(messages[0], /Recent.*\(Unplayed, last played 2026-08-01\)/);
 });
 
 test('leaving Unplayed offers removal of only zero-hour corrections and then a rating', async () => {
@@ -372,4 +372,50 @@ test('skipping a missing status leaves it null, skips its rating and offers it a
   assert.equal(nextMessages.length, 1);
   assert.match(nextMessages[0], /Research.*status/);
   assert.deepEqual(annotations[0], ann('Research'));
+});
+
+test('step notices keep fixed numbers, report zero counts and count ratings after status changes', async () => {
+  const annotations = [ann('Missing'), ann('Old', { status: 'Active', rating: 7 })];
+  const events = [];
+  const answers = ['2', '', '8'];
+  await annotateGames({
+    annotations,
+    rows: [row('Old', 'Steam', '2020-01-01')],
+    now,
+    months: 6,
+    notice: (message) => events.push(message),
+    prompt: async ({ message }) => {
+      events.push(message);
+      return answers.shift();
+    },
+    save: async () => {},
+  });
+  assert.match(
+    events[0],
+    /^\nStep 1: Missing statuses — 1 game\n0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned\nEnter skips/,
+  );
+  assert.equal(events[1], 'Missing — status');
+  assert.match(events[2], /^\nStep 2: Active, last played over 6 months ago — 1 game\n/);
+  assert.match(events[2], /Enter keeps Active/);
+  assert.equal(events[3], 'Old — status (Active, last played 2020-01-01)');
+  assert.equal(events[4], '\nStep 3: Unplayed, last played within 6 months — 0 games');
+  assert.match(events[5], /^\nStep 4: Missing ratings — 1 game\nEnter a number from 0 to 10/);
+  assert.equal(events[6], 'Missing — rating');
+  assert.equal(events.length, 7);
+});
+
+test('all four step notices appear when there is nothing to annotate', async () => {
+  const notices = [];
+  await annotateGames({
+    annotations: [],
+    rows: [],
+    now,
+    notice: (message) => notices.push(message),
+    prompt: async () => assert.fail('empty step must not prompt'),
+    save: async () => assert.fail('empty step must not save'),
+  });
+  assert.equal(notices.length, 4);
+  notices.forEach((message, i) => {
+    assert.match(message, new RegExp(`^\\nStep ${i + 1}: .* — 0 games$`));
+  });
 });

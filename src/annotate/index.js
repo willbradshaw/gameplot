@@ -63,10 +63,9 @@ export function validateRating(value) {
 }
 
 async function askStatus(annotation, prompt, date = null) {
-  const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
-  const context = date ? `; current: ${annotation.status}; last played ${date}` : '';
+  const context = date ? ` (${annotation.status}, last played ${date})` : '';
   const answer = await prompt({
-    message: `${annotation.game} — status (${choices}${context})`,
+    message: `${annotation.game} — status${context}`,
     validate: (value) => {
       const text = value.trim();
       return (
@@ -86,6 +85,7 @@ export async function annotateGames({
   prompt = ask,
   confirm = askConfirm,
   save,
+  notice = () => {},
   now = new Date(),
   months = 12,
 }) {
@@ -135,17 +135,36 @@ export async function annotateGames({
     updates += 1;
   };
 
-  for (const annotation of annotations.filter((a) => a.status === null)) {
+  const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
+  const step = (number, title, count, instructions) =>
+    notice(
+      `\nStep ${number}: ${title} — ${count} game${count === 1 ? '' : 's'}${count ? `\n${instructions}` : ''}`,
+    );
+  const missing = annotations.filter((a) => a.status === null);
+  step(1, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
+  for (const annotation of missing) {
     await updateStatus(annotation);
   }
-  for (const annotation of [...stale, ...recentUnplayed]) {
+  step(2, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
+  for (const annotation of stale) {
     await updateStatus(annotation, dates.get(annotation.game));
   }
-  for (const annotation of annotations.filter(
+  step(
+    3,
+    `Unplayed, last played within ${months} months`,
+    recentUnplayed.length,
+    `${choices}\nEnter keeps Unplayed.`,
+  );
+  for (const annotation of recentUnplayed) {
+    await updateStatus(annotation, dates.get(annotation.game));
+  }
+  const unrated = annotations.filter(
     (a) => a.status !== null && a.status !== 'Unplayed' && a.rating === null,
-  )) {
+  );
+  step(4, 'Missing ratings', unrated.length, 'Enter a number from 0 to 10, or press Enter to skip for now.');
+  for (const annotation of unrated) {
     const answer = await prompt({
-      message: `${annotation.game} — rating (0–10)`,
+      message: `${annotation.game} — rating`,
       validate: validateRating,
     });
     if (answer.trim() !== '') await update(annotation, 'rating', Number(answer.trim()));
@@ -166,7 +185,6 @@ export async function runAnnotate({
   const rows = parseOrThrow(rawGamesSchema, await fs.readJson(input), input);
   const annotations = await loadAnnotations(annotationsFile);
   checkTags(annotations, await loadTags(tagsFile), annotationsFile);
-  log.info('Enter skips missing values or keeps the current status');
   const updates = await annotateGames({
     rows,
     annotations,
@@ -174,6 +192,8 @@ export async function runAnnotate({
     confirm,
     now,
     months,
+    // Step instructions are part of the prompts, including in quiet mode.
+    notice: (message) => log.log({ message, level: 0 }),
     save: (value) => fs.outputJson(annotationsFile, value, { spaces: 2 }),
   });
   log.success(`Saved ${updates} annotation updates to ${annotationsFile}`);

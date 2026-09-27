@@ -21,12 +21,14 @@ gameplot process
 | `-t, --tags <file>` | Tag vocabulary file (default `data/tags.json`) |
 | `--months <n>` | Positive whole number of months for status reviews (default `12`) |
 | `-v, --verbose` | Show debug output |
-| `-q, --quiet` | Only warnings and errors; prompts are still shown |
+| `-q, --quiet` | Only warnings and errors; prompts and step notices are still shown |
 
 ## Prompts
 
-A note at the start explains that Enter skips missing values or keeps the
-current status.
+Each step starts with its fixed number and the number of games to process.
+A zero-count step is reported and immediately followed by the next step.
+Choices and Enter behavior appear in notices for nonempty steps. Review
+prompts show only the current status and last-played date alongside the game name.
 
 The following groups are processed in order, each in annotation file order:
 
