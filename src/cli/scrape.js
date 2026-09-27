@@ -4,22 +4,16 @@
  */
 
 import path from 'node:path';
-import { Command, InvalidArgumentError } from 'commander';
-import { RAW_DATA_DIR, saveEnvVar } from '../lib/env.js';
+import { Command } from 'commander';
+import { RAW_DATA_DIR } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
-import {
-  batchEnvVar,
-  batchOutputFile,
-  parseSources,
-  resolveSources,
-  runBatch,
-  sourceName,
-} from '../scrape/batch.js';
+import { batchOutputFile, PLATFORM_NAMES, parseSources, runScrapeBatch } from '../scrape/batch.js';
 import { writeRawGames } from '../scrape/common.js';
 import { GOG_PLATFORM, gogOutputFile, scrapeGogAccount } from '../scrape/gog.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
 import { STEAM_PLATFORM, scrapeSteamAccount, steamOutputFile } from '../scrape/steam.js';
 import { scrapeXboxAccount, XBOX_PLATFORM, xboxOutputFile } from '../scrape/xbox.js';
+import { parseSuffix } from './options.js';
 
 /** Every platform, in the order shown in help. `scrape({ suffix, platform?, log })` returns rows. */
 const PLATFORMS = [
@@ -56,17 +50,6 @@ const PLATFORMS = [
     scrape: scrapeGogAccount,
   },
 ];
-const PLATFORM_NAMES = PLATFORMS.map((p) => p.name);
-const REGISTRY = Object.fromEntries(PLATFORMS.map((p) => [p.name, p]));
-
-function parseSuffix(value) {
-  const suffix = value.toLowerCase();
-  if (!/^[a-z0-9-]+$/.test(suffix)) {
-    throw new InvalidArgumentError('must be letters, digits or dashes (it becomes part of a filename)');
-  }
-  return suffix;
-}
-
 const withLogOptions = (command) =>
   command.option('-v, --verbose', 'show debug output').option('-q, --quiet', 'only show warnings and errors');
 
@@ -110,25 +93,7 @@ const batch = withLogOptions(
     .option('-o, --out <file>', `output file (default: data/raw/${batchOutputFile()})`),
 ).action(async (given, opts) => {
   const log = createLogger(opts);
-  const { sources, remembered } = resolveSources({
-    given,
-    suffix: opts.suffix,
-    env: process.env,
-    platforms: PLATFORM_NAMES,
-  });
-  if (remembered) log.info(`Using remembered sources: ${sources.map(sourceName).join(',')}`);
-  else await saveEnvVar(batchEnvVar(opts.suffix), sources.map(sourceName).join(','));
-  const { rows, failures } = await runBatch({ sources, registry: REGISTRY, defaultSuffix: opts.suffix, log });
-  if (failures.length) {
-    log.error(
-      `${failures.length} of ${sources.length} sources failed (${failures.map((f) => f.source).join(', ')}); ` +
-        'nothing written',
-    );
-    process.exitCode = 1;
-    return;
-  }
-  log.info(`${rows.length} rows from ${sources.map(sourceName).join(', ')}`);
-  await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, batchOutputFile(opts.suffix)), rows, log);
+  await runScrapeBatch({ given, suffix: opts.suffix, out: opts.out, log });
 });
 
 export const scrapeCommand = new Command('scrape').description('download online playtime data');

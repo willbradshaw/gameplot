@@ -179,3 +179,24 @@ test('runBatch keeps going after a failure and reports it', async () => {
   assert.equal(failures[0].source, 'steam');
   assert.match(failures[0].error.message, /boom/);
 });
+
+test('batch cancellation stops before attempting later sources', async () => {
+  for (const name of ['ExitPromptError', 'AbortPromptError', 'AbortError']) {
+    const error = Object.assign(new Error('cancelled'), { name });
+    await assert.rejects(
+      runBatch({
+        sources: [{ platform: 'steam' }, { platform: 'gog' }],
+        registry: {
+          steam: {
+            scrape: async () => {
+              throw error;
+            },
+          },
+          gog: { scrape: async () => assert.fail('must not continue after cancellation') },
+        },
+        log: silentLogger,
+      }),
+      (candidate) => candidate === error,
+    );
+  }
+});

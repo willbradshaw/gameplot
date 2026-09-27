@@ -101,3 +101,27 @@ test('annotate exposes a starting step and rejects invalid step numbers', async 
     await assert.rejects(run('annotate', 'nonexistent.json', '--step', value), /whole number from 1 to 7/);
   }
 });
+
+test('pipeline is registered and exposes shared stage options', async () => {
+  assert.match((await run('--help')).stdout, /pipeline \[options\] \[sources\]/);
+  const { stdout } = await run('pipeline', '--help');
+  for (const flag of [
+    '--suffix',
+    '--raw-out',
+    '--annotations',
+    '--tags',
+    '--out',
+    '--annotation-months',
+    '--verbose',
+    '--quiet',
+  ])
+    assert.ok(stdout.includes(flag), flag);
+  for (const [flag, value, error] of [
+    ['--suffix', '../bad', /letters, digits or dashes/],
+    ['--annotation-months', '0', /positive whole number/],
+  ])
+    await assert.rejects(run('pipeline', flag, value), error);
+  await assert.rejects(run('pipeline', '--step', '2'), /unknown option/);
+  await assert.rejects(run('pipeline', '--annotation-step', '2'), /unknown option/);
+  await assert.rejects(run('pipeline', 'unknown'), /unknown platform/);
+});
