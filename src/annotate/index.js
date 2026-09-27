@@ -1,4 +1,4 @@
-/** Interactive status and rating updates. See docs/annotate.md. */
+/** Interactive annotation updates. See docs/annotate.md. */
 
 import { input as ask } from '@inquirer/prompts';
 import { LogLevels } from 'consola';
@@ -69,6 +69,20 @@ export function validateRating(value) {
   );
 }
 
+export function parseTagSelection(value, choices) {
+  if (value.trim() === '') return [];
+  const selected = new Set();
+  for (const part of value.split(',')) {
+    const token = part.trim();
+    const tag = /^\d+$/.test(token)
+      ? choices[Number(token) - 1]
+      : choices.find((name) => name.toLowerCase() === token.toLowerCase());
+    if (!tag) throw new Error(`unknown tag or number: "${token}"`);
+    selected.add(tag);
+  }
+  return choices.filter((tag) => selected.has(tag));
+}
+
 async function askStatus(annotation, prompt, date = null) {
   const context = date ? ` (${annotation.status}, last played ${date})` : '';
   const answer = await prompt({
@@ -85,21 +99,26 @@ async function askStatus(annotation, prompt, date = null) {
   return answer.trim() === '' ? annotation.status : STATUS_CHOICES[Number(answer.trim())];
 }
 
-/** Run status and rating prompts, saving each changed answer before continuing. */
+/** Run annotation prompts, saving each changed answer before continuing. */
 export async function annotateGames({
   rows,
   annotations,
+  tags = {},
   prompt = ask,
   confirm = askConfirm,
   save,
   notice = () => {},
   now = new Date(),
   months = 12,
+  startStep = 1,
 }) {
+  if (!Number.isInteger(startStep) || startStep < 1 || startStep > 7)
+    throw new Error('step must be a whole number from 1 to 7');
   monthCutoff(now, months);
   buildAliasMap(annotations);
   let updates = 0;
   const step = (number, title, count, instructions) =>
+    number >= startStep &&
     notice(
       `\nStep ${number}: ${title} — ${count} game${count === 1 ? '' : 's'}${count ? `\n${instructions}` : ''}`,
     );
@@ -110,47 +129,49 @@ export async function annotateGames({
     pending.length,
     "Each prompt shows a new scraped name. Choose an existing game to add that name as its alias, keeping the existing game's name and annotations and removing the new blank entry.\n0 = Keep as a separate game, Enter = Decide later.",
   );
-  for (const entry of pending) {
-    if (!annotations.includes(entry) || !entry.possible_aliases) continue;
-    const blank = isBlankAnnotation(entry);
-    const choices = entry.possible_aliases;
-    notice(choices.map((name, i) => `${i + 1} = ${name}`).join('\n'));
-    const answer = (
-      await prompt({
-        message: `${entry.game}${blank ? '' : ' (has annotations; only separate or skip)'}`,
-        validate: (value) =>
-          value.trim() === '' ||
-          value.trim() === '0' ||
-          (blank && choices.some((_, i) => value.trim() === String(i + 1))) ||
-          (blank
-            ? `enter 0–${choices.length}, or leave empty`
-            : 'entry has annotations; enter 0 or leave empty'),
-      })
-    ).trim();
-    if (answer === '') continue;
-    if (answer === '0') {
-      delete entry.possible_aliases;
-    } else {
-      if (!isBlankAnnotation(entry)) throw new Error(`Cannot merge "${entry.game}": entry has annotations`);
-      const target = annotations.find((a) => a.game === choices[Number(answer) - 1]);
-      if (!target) throw new Error('invalid alias review answer');
-      target.aliases = [...new Set([...(target.aliases ?? []), entry.game, ...(entry.aliases ?? [])])];
-      annotations.splice(annotations.indexOf(entry), 1);
-      for (const other of annotations) {
-        if (!other.possible_aliases) continue;
-        other.possible_aliases = [
-          ...new Set(
-            other.possible_aliases
-              .map((name) => (name === entry.game ? target.game : name))
-              .filter((name) => name !== other.game),
-          ),
-        ];
-        if (!other.possible_aliases.length) delete other.possible_aliases;
+  if (startStep <= 1) {
+    for (const entry of pending) {
+      if (!annotations.includes(entry) || !entry.possible_aliases) continue;
+      const blank = isBlankAnnotation(entry);
+      const choices = entry.possible_aliases;
+      notice(choices.map((name, i) => `${i + 1} = ${name}`).join('\n'));
+      const answer = (
+        await prompt({
+          message: `${entry.game}${blank ? '' : ' (has annotations; only separate or skip)'}`,
+          validate: (value) =>
+            value.trim() === '' ||
+            value.trim() === '0' ||
+            (blank && choices.some((_, i) => value.trim() === String(i + 1))) ||
+            (blank
+              ? `enter 0–${choices.length}, or leave empty`
+              : 'entry has annotations; enter 0 or leave empty'),
+        })
+      ).trim();
+      if (answer === '') continue;
+      if (answer === '0') {
+        delete entry.possible_aliases;
+      } else {
+        if (!isBlankAnnotation(entry)) throw new Error(`Cannot merge "${entry.game}": entry has annotations`);
+        const target = annotations.find((a) => a.game === choices[Number(answer) - 1]);
+        if (!target) throw new Error('invalid alias review answer');
+        target.aliases = [...new Set([...(target.aliases ?? []), entry.game, ...(entry.aliases ?? [])])];
+        annotations.splice(annotations.indexOf(entry), 1);
+        for (const other of annotations) {
+          if (!other.possible_aliases) continue;
+          other.possible_aliases = [
+            ...new Set(
+              other.possible_aliases
+                .map((name) => (name === entry.game ? target.game : name))
+                .filter((name) => name !== other.game),
+            ),
+          ];
+          if (!other.possible_aliases.length) delete other.possible_aliases;
+        }
       }
+      buildAliasMap(annotations);
+      await save(annotations);
+      updates += 1;
     }
-    buildAliasMap(annotations);
-    await save(annotations);
-    updates += 1;
   }
   const eligible = annotations.filter((a) => !a.possible_aliases);
   const dates = lastPlayedDates(rows, annotations);
@@ -198,23 +219,29 @@ export async function annotateGames({
   };
 
   const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
-  const missing = eligible.filter((a) => a.status === null);
-  step(2, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
-  for (const annotation of missing) {
-    await updateStatus(annotation);
+  if (startStep <= 2) {
+    const missing = eligible.filter((a) => a.status === null);
+    step(2, 'Missing statuses', missing.length, `${choices}\nEnter skips a game for now.`);
+    for (const annotation of missing) {
+      await updateStatus(annotation);
+    }
   }
-  step(3, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
-  for (const annotation of stale) {
-    await updateStatus(annotation, dates.get(annotation.game));
+  if (startStep <= 3) {
+    step(3, `Active, last played over ${months} months ago`, stale.length, `${choices}\nEnter keeps Active.`);
+    for (const annotation of stale) {
+      await updateStatus(annotation, dates.get(annotation.game));
+    }
   }
-  step(
-    4,
-    `Unplayed, last played within ${months} months`,
-    recentUnplayed.length,
-    `${choices}\nEnter keeps Unplayed.`,
-  );
-  for (const annotation of recentUnplayed) {
-    await updateStatus(annotation, dates.get(annotation.game));
+  if (startStep <= 4) {
+    step(
+      4,
+      `Unplayed, last played within ${months} months`,
+      recentUnplayed.length,
+      `${choices}\nEnter keeps Unplayed.`,
+    );
+    for (const annotation of recentUnplayed) {
+      await updateStatus(annotation, dates.get(annotation.game));
+    }
   }
   const unrated = eligible.filter(
     (a) => (a.status === 'Complete' || a.status === 'Abandoned') && a.rating === null,
@@ -234,7 +261,7 @@ export async function annotateGames({
       if (answer.trim() !== '') await update(annotation, 'rating', Number(answer.trim()));
     }
   };
-  await rate(unrated);
+  if (startStep <= 5) await rate(unrated);
   const activeUnrated = eligible.filter((a) => a.status === 'Active' && a.rating === null);
   step(
     6,
@@ -242,7 +269,32 @@ export async function annotateGames({
     activeUnrated.length,
     'Enter a number from 0 to 10, or press Enter to leave unrated.',
   );
-  await rate(activeUnrated);
+  if (startStep <= 6) await rate(activeUnrated);
+  const tagChoices = Object.keys(tags).sort((a, b) => a.localeCompare(b, 'en'));
+  const untagged = eligible.filter(
+    (a) => a.status !== null && a.status !== 'Unplayed' && a.rating !== null && a.tags.length === 0,
+  );
+  step(
+    7,
+    'Missing tags',
+    untagged.length,
+    `${tagChoices.map((tag, i) => `${i + 1} = ${tag}`).join('\n')}\nEnter comma-separated tag numbers or names, or press Enter to skip for now.`,
+  );
+  for (const annotation of untagged) {
+    const answer = await prompt({
+      message: annotation.game,
+      validate: (value) => {
+        try {
+          parseTagSelection(value, tagChoices);
+          return true;
+        } catch (error) {
+          return error.message;
+        }
+      },
+    });
+    const selected = parseTagSelection(answer, tagChoices);
+    if (selected.length) await update(annotation, 'tags', selected);
+  }
   return updates;
 }
 
@@ -255,18 +307,22 @@ export async function runAnnotate({
   confirm = askConfirm,
   now = new Date(),
   months = 12,
+  startStep = 1,
 }) {
   const rows = parseOrThrow(rawGamesSchema, await fs.readJson(input), input);
   const annotations = await loadAnnotations(annotationsFile);
-  checkTags(annotations, await loadTags(tagsFile), annotationsFile);
+  const tags = await loadTags(tagsFile);
+  checkTags(annotations, tags, annotationsFile);
   const stepLog = log.create({ level: log.level === LogLevels.warn ? LogLevels.log : log.level });
   const updates = await annotateGames({
     rows,
     annotations,
+    tags,
     prompt,
     confirm,
     now,
     months,
+    startStep,
     // Step instructions are part of the prompts, including in quiet mode.
     notice: (message) => stepLog.log(message),
     save: (value) => fs.outputJson(annotationsFile, value, { spaces: 2 }),
