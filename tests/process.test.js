@@ -375,3 +375,31 @@ test('edition suffixes on short real titles remain alias candidates', () => {
   assert.deepEqual(suggestAliases('Weird West: Definitive Edition', candidates), ['Weird West']);
   assert.deepEqual(suggestAliases("Lone Survivor: The Director's Cut", candidates), ['Lone Survivor']);
 });
+
+test('rated games need tags for output; unrated and Unplayed games are not counted as untagged', () => {
+  const rows = [
+    row('Alias', 'Steam', 2, null),
+    row('Unknown hours', 'GOG', null, null),
+    row('Unrated', 'Steam', 1, null),
+    row('Unplayed', 'Steam', 0, null),
+    row('Ready', 'Steam', 1, '2026-01-01'),
+  ];
+  const result = processGames(rows, [
+    ann('Missing tags', { tags: [], aliases: ['Alias'] }),
+    ann('Unknown hours', { tags: [] }),
+    ann('Unrated', { rating: null, tags: [] }),
+    ann('Unplayed', { status: 'Unplayed', tags: [] }),
+    ann('Ready'),
+  ]);
+  assert.deepEqual(
+    result.games.map((g) => g.game),
+    ['Ready'],
+  );
+  assert.deepEqual(result.untagged, ['Missing tags', 'Unknown hours']);
+  assert.deepEqual(result.unrated, ['Unrated']);
+  assert.throws(
+    () =>
+      processGames([row('Unplayed', 'Steam', 1, null)], [ann('Unplayed', { status: 'Unplayed', tags: [] })]),
+    /Unplayed but has playtime/,
+  );
+});

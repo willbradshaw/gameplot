@@ -109,7 +109,7 @@ export function buildGame(annotation, rows) {
  * @param {import('../lib/model.js').Annotation[]} annotations
  * @returns {{
  *   games: import('../lib/model.js').Game[],
- *   unannotated: string[], unmatched: string[], unrated: string[], ignoredCorrections: string[],
+ *   unannotated: string[], unmatched: string[], unrated: string[], untagged: string[], ignoredCorrections: string[],
  * }}
  */
 export function processGames(rows, annotations) {
@@ -126,6 +126,7 @@ export function processGames(rows, annotations) {
   const games = [];
   const unannotated = [];
   const unrated = [];
+  const untagged = [];
   const ignoredCorrections = [];
   const violations = [];
   for (const [name, group] of groups) {
@@ -151,6 +152,10 @@ export function processGames(rows, annotations) {
       unrated.push(name);
       continue;
     }
+    if (annotation.tags.length === 0) {
+      untagged.push(name);
+      continue;
+    }
     const built = buildGame(annotation, group);
     ignoredCorrections.push(...built.ignoredCorrections);
     violations.push(...built.violations);
@@ -169,6 +174,7 @@ export function processGames(rows, annotations) {
     unannotated: unannotated.sort(),
     unmatched: unmatched.sort(),
     unrated: unrated.sort(),
+    untagged: untagged.sort(),
     ignoredCorrections,
   };
 }
@@ -208,6 +214,12 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, log })
   if (result.unrated.length) {
     log.info(`${result.unrated.length} annotated games are not yet rated (--verbose lists them)`);
     for (const name of result.unrated) log.debug(`  unrated: ${name}`);
+  }
+  if (result.untagged.length) {
+    log.info(
+      `${result.untagged.length} rated games have no tags; run gameplot annotate (--verbose lists them)`,
+    );
+    for (const name of result.untagged) log.debug(`  untagged: ${name}`);
   }
 
   const candidates = annotations.filter((a) => result.unmatched.includes(a.game));
