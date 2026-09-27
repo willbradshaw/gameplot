@@ -48,7 +48,11 @@
     "game": "A Case of Distrust",
     "rating": 4.9,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Crime",
+      "Interactive Fiction",
+      "Visual Novel"
+    ]
   },
   {
     "game": "A Case of Fraud",
@@ -63,7 +67,11 @@
     "game": "A Golden Wake",
     "rating": 3.8,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Historical",
+      "Puzzle"
+    ]
   },
   {
     "game": "A House of Many Doors",
@@ -203,7 +211,9 @@
     "game": "Baba Is You",
     "rating": 5.4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Puzzle"
+    ]
   },
   {
     "game": "Balatro",
@@ -434,7 +444,10 @@
     "game": "Broken Sword 1: Shadow of the Templars",
     "rating": 3.2,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Adventure",
+      "Crime"
+    ],
     "aliases": [
       "Broken Sword 1 - Shadow of the Templars: Director's Cut (2009)",
       "Broken Sword: Director's Cut (2009)"
@@ -461,7 +474,10 @@
     "game": "Cinders",
     "rating": 5.3,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Fantasy",
+      "Visual Novel"
+    ]
   },
   {
     "game": "Citizen Sleeper",
@@ -495,13 +511,21 @@
     "game": "Cobalt Core",
     "rating": 6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Deckbuilder",
+      "Roguelike",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Cognition: An Erica Reed Thriller",
     "rating": 4.6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Crime",
+      "Puzzle"
+    ]
   },
   {
     "game": "Colony Ship: A Post-Earth Role Playing Game",
@@ -522,13 +546,20 @@
     "game": "Costume Quest",
     "rating": 4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Comedy",
+      "Fantasy",
+      "RPG"
+    ]
   },
   {
     "game": "Crusader Kings II",
     "rating": 4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Historical",
+      "Strategy"
+    ]
   },
   {
     "game": "Crypt of the NecroDancer",
@@ -682,7 +713,12 @@
     "game": "Deus Ex",
     "rating": 5,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Action",
+      "First-Person Shooter",
+      "RPG",
+      "Sci-Fi"
+    ],
     "aliases": [
       "Deus Ex: Game of the Year Edition"
     ]
@@ -766,7 +802,10 @@
     "game": "Divine Divinity",
     "rating": 5.2,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Fantasy",
+      "RPG"
+    ]
   },
   {
     "game": "Divinity: Original Sin",
@@ -946,7 +985,11 @@
     "game": "Eternal Strands",
     "rating": 4.1,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Exploration",
+      "Fantasy"
+    ]
   },
   {
     "game": "Expeditions: Rome",
@@ -971,7 +1014,11 @@
     "game": "Fallout Shelter",
     "rating": 4.9,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Management",
+      "Sci-Fi",
+      "Survival"
+    ]
   },
   {
     "game": "Far Cry",
@@ -1071,7 +1118,11 @@
     "game": "Foolish Mortals",
     "rating": 4.2,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Fantasy",
+      "Puzzle"
+    ]
   },
   {
     "game": "Fran Bow",
@@ -1113,7 +1164,10 @@
     "game": "Frozen Synapse",
     "rating": 5.2,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Sci-Fi",
+      "Tactics"
+    ]
   },
   {
     "game": "FTL: Faster Than Light",
@@ -1265,13 +1319,20 @@
     "game": "Harold Halibut",
     "rating": 4.8,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Casual",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Hate Plus",
     "rating": 6.9,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Sci-Fi",
+      "Visual Novel"
+    ]
   },
   {
     "game": "Hatoful Boyfriend",
@@ -1362,7 +1423,10 @@
     "game": "Hotline Miami",
     "rating": 3.4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Crime"
+    ]
   },
   {
     "game": "Human Resource Machine",
@@ -1402,7 +1466,9 @@
     "game": "If On A Winter's Night, Four Travelers",
     "rating": 5.1,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure"
+    ]
   },
   {
     "game": "IL-2 Sturmovik: 1946",
@@ -1493,7 +1559,9 @@
     "game": "KAMI",
     "rating": 6.3,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Puzzle"
+    ]
   },
   {
     "game": "Kathy Rain",
@@ -1567,7 +1635,11 @@
     "game": "Legend of Grimrock",
     "rating": 5.4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Fantasy",
+      "RPG"
+    ]
   },
   {
     "game": "LIMBO",
@@ -1606,7 +1678,11 @@
     "game": "Lone Survivor",
     "rating": 4.1,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Horror",
+      "Stealth",
+      "Survival"
+    ],
     "aliases": [
       "Lone Survivor: The Director's Cut"
     ]
@@ -1631,19 +1707,28 @@
     "game": "Lovers in a Dangerous Spacetime",
     "rating": 3,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Coop",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Luxuria Superbia",
     "rating": 5,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Casual"
+    ]
   },
   {
     "game": "Magic 2015",
     "rating": 5,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Fantasy",
+      "Strategy"
+    ],
     "aliases": [
       "Magic 2015 - Duels of the Planeswalkers"
     ]
@@ -1838,7 +1923,11 @@
     "game": "NieR:Automata",
     "rating": 4.6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Exploration",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Night in the Woods",
@@ -1917,7 +2006,9 @@
     "game": "Osmos",
     "rating": 6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Puzzle"
+    ]
   },
   {
     "game": "Outer Wilds",
@@ -1940,7 +2031,11 @@
     "game": "Pacific Drive",
     "rating": 6.1,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Exploration",
+      "Sci-Fi",
+      "Survival"
+    ]
   },
   {
     "game": "Papers, Please",
@@ -1960,7 +2055,12 @@
     "game": "Paradigm",
     "rating": 6.3,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Comedy",
+      "Puzzle",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Pathfinder: Kingmaker",
@@ -2009,7 +2109,10 @@
     "game": "Persona 5",
     "rating": 5.8,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Fantasy",
+      "RPG"
+    ],
     "aliases": [
       "Persona 5 Royal"
     ]
@@ -2132,7 +2235,11 @@
     "game": "Prey",
     "rating": 6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Exploration",
+      "First-Person Shooter",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Primordia",
@@ -2173,7 +2280,10 @@
     "game": "Q.U.B.E.",
     "rating": 6.1,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Platformer",
+      "Puzzle"
+    ]
   },
   {
     "game": "Quantum Conundrum",
@@ -2214,7 +2324,12 @@
     "game": "Returnal",
     "rating": 6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Coop",
+      "Roguelike",
+      "Sci-Fi"
+    ]
   },
   {
     "game": "Roadwarden",
@@ -2488,7 +2603,10 @@
     "game": "Secrets of Rætikon",
     "rating": 5.8,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Exploration"
+    ]
   },
   {
     "game": "Seven: Enhanced Edition",
@@ -2527,7 +2645,11 @@
     "game": "Shadow Tactics: Blades of the Shogun",
     "rating": 6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Historical",
+      "Stealth",
+      "Tactics"
+    ]
   },
   {
     "game": "Shadowrun Returns",
@@ -2720,7 +2842,11 @@
     "game": "Starseed Pilgrim",
     "rating": 4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Exploration",
+      "Platformer",
+      "Puzzle"
+    ]
   },
   {
     "game": "STEINS;GATE",
@@ -2737,7 +2863,12 @@
     "game": "Stellaris",
     "rating": 5.7,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Exploration",
+      "Management",
+      "Sci-Fi",
+      "Strategy"
+    ]
   },
   {
     "game": "Strange Antiquities",
@@ -2806,7 +2937,11 @@
     "game": "Sultan's Game",
     "rating": 6.1,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Fantasy",
+      "Interactive Fiction",
+      "Management"
+    ]
   },
   {
     "game": "Sunless Sea",
@@ -2837,7 +2972,11 @@
     "game": "Superbrothers: Sword & Sworcery EP",
     "rating": 3.8,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Fantasy",
+      "Puzzle"
+    ]
   },
   {
     "game": "Superliminal",
@@ -2897,7 +3036,12 @@
     "game": "Tainted Grail: Fall of Avalon",
     "rating": 5.6,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Exploration",
+      "Fantasy",
+      "RPG"
+    ]
   },
   {
     "game": "Tales from the Borderlands",
@@ -2946,7 +3090,11 @@
     "game": "The Binding of Isaac",
     "rating": 3.4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Roguelike",
+      "Twin-Stick Shooter"
+    ]
   },
   {
     "game": "The Blood of Dawnwalker",
@@ -3050,7 +3198,11 @@
     "game": "The Elder Scrolls III: Morrowind",
     "rating": 5.4,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Exploration",
+      "Fantasy",
+      "RPG"
+    ],
     "aliases": [
       "The Elder Scrolls III: Morrowind® Game of the Year Edition"
     ]
@@ -3132,7 +3284,11 @@
     "game": "The Henry Stickmin Collection",
     "rating": 5.4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Adventure",
+      "Comedy",
+      "Crime"
+    ]
   },
   {
     "game": "The Hex",
@@ -3203,7 +3359,11 @@
     "game": "The Moon Sliver",
     "rating": 4.2,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Exploration",
+      "Horror",
+      "Walking Simulator"
+    ]
   },
   {
     "game": "The Necromancer's Tale",
@@ -3444,7 +3604,11 @@
     "game": "The Witcher 2: Assassins of Kings",
     "rating": 5.5,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Action",
+      "Fantasy",
+      "RPG"
+    ],
     "aliases": [
       "The Witcher 2: Assassins of Kings Enhanced Edition"
     ]
@@ -3521,7 +3685,11 @@
     "game": "Tiny and Big: Grandpa's Leftovers",
     "rating": 5,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Comedy",
+      "Platformer",
+      "Puzzle"
+    ]
   },
   {
     "game": "Titanium Court Demo",
@@ -3598,7 +3766,12 @@
     "game": "Trine 2",
     "rating": 6,
     "status": "Abandoned",
-    "tags": [],
+    "tags": [
+      "Coop",
+      "Fantasy",
+      "Platformer",
+      "Puzzle"
+    ],
     "aliases": [
       "Trine 2: Complete Story"
     ]
@@ -3651,7 +3824,12 @@
     "game": "UNCHARTED: Legacy of Thieves Collection",
     "rating": 6.4,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Action",
+      "Adventure",
+      "Platformer",
+      "Puzzle"
+    ]
   },
   {
     "game": "Undertale",
@@ -3799,7 +3977,10 @@
     "game": "Windosill",
     "rating": 5,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Casual",
+      "Puzzle"
+    ]
   },
   {
     "game": "World of Goo",
@@ -3814,7 +3995,10 @@
     "game": "Worms Reloaded",
     "rating": 5,
     "status": "Abandoned",
-    "tags": []
+    "tags": [
+      "Comedy",
+      "Tactics"
+    ]
   },
   {
     "game": "Yuppie Psycho",
