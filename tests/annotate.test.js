@@ -77,7 +77,7 @@ test('three passes require statuses, allow unchanged stale statuses, then offer 
     row('Missing', 'Steam', '2020-01-01'),
     row('Recent', 'Steam', '2026-01-01'),
   ];
-  const answers = ['2', '', '', '0', '7.4'];
+  const answers = ['1', '', '', '0', '7.4'];
   const messages = [];
   const saves = [];
   const updates = await annotateGames({
@@ -87,6 +87,7 @@ test('three passes require statuses, allow unchanged stale statuses, then offer 
     prompt: async ({ message, validate }) => {
       messages.push(message);
       if (messages.length === 1) {
+        assert.match(message, /1 = Active, 2 = Complete, 3 = Abandoned/);
         assert.notEqual(validate(''), true);
         assert.notEqual(validate('4'), true);
         assert.notEqual(validate('1e0'), true);

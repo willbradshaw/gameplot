@@ -26,7 +26,7 @@ gameplot process
 Three passes are made, each in annotation file order:
 
 1. **Missing statuses.** A numbered choice is required for every entry with
-   a null status: `1 = Complete`, `2 = Active`, `3 = Abandoned`.
+   a null status: `1 = Active`, `2 = Complete`, `3 = Abandoned`.
    An empty answer is not accepted.
 2. **Stale Active games.** The same choices are offered for games last
    played over a year ago. Enter keeps `Active`. Statuses just supplied
