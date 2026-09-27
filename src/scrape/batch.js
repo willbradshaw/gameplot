@@ -8,8 +8,22 @@
  * replaced by a partial one.
  */
 
+import path from 'node:path';
 import { InvalidArgumentError } from 'commander';
-import { suffixedEnvVar, suffixedFile } from './common.js';
+import { RAW_DATA_DIR, saveEnvVar } from '../lib/env.js';
+import { suffixedEnvVar, suffixedFile, writeRawGames } from './common.js';
+import { scrapeGogAccount } from './gog.js';
+import { scrapePsnAccount } from './psn.js';
+import { scrapeSteamAccount } from './steam.js';
+import { scrapeXboxAccount } from './xbox.js';
+
+const REGISTRY = {
+  psn: { scrape: scrapePsnAccount },
+  steam: { scrape: scrapeSteamAccount },
+  xbox: { scrape: scrapeXboxAccount },
+  gog: { scrape: scrapeGogAccount },
+};
+export const PLATFORM_NAMES = Object.keys(REGISTRY);
 
 const SOURCE_RE = /^([a-z]+)(?::([a-z0-9-]+))?$/;
 
@@ -103,9 +117,32 @@ export async function runBatch({ sources, registry, defaultSuffix, log }) {
       });
       rows.push(...games);
     } catch (error) {
+      if (['ExitPromptError', 'AbortPromptError', 'AbortError'].includes(error.name)) throw error;
       log.error(`${name} failed: ${error.message}`);
       failures.push({ source: name, error });
     }
   }
   return { rows, failures };
+}
+
+/** Shared batch stage for the scrape command and the pipeline. */
+export async function runScrapeBatch({
+  given,
+  suffix,
+  out,
+  log,
+  env = process.env,
+  registry = REGISTRY,
+  saveEnv = saveEnvVar,
+}) {
+  const { sources, remembered } = resolveSources({ given, suffix, env, platforms: Object.keys(registry) });
+  if (remembered) log.info(`Using remembered sources: ${sources.map(sourceName).join(',')}`);
+  else await saveEnv(batchEnvVar(suffix), sources.map(sourceName).join(','));
+  const { rows, failures } = await runBatch({ sources, registry, defaultSuffix: suffix, log });
+  if (failures.length)
+    throw new Error(
+      `${failures.length} of ${sources.length} sources failed (${failures.map((f) => f.source).join(', ')}); nothing written`,
+    );
+  log.info(`${rows.length} rows from ${sources.map(sourceName).join(', ')}`);
+  await writeRawGames(out ?? path.join(RAW_DATA_DIR, batchOutputFile(suffix)), rows, log);
 }

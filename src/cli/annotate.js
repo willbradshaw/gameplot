@@ -1,33 +1,21 @@
 /** `gameplot annotate [input]`. See docs/annotate.md. */
 
-import { Command, InvalidArgumentError } from 'commander';
+import { Command } from 'commander';
 import { runAnnotate } from '../annotate/index.js';
 import { ANNOTATIONS_FILE, RAW_BATCH_FILE, TAGS_FILE } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
+import { parseMonths, parseStep } from './options.js';
 
 export const annotateCommand = new Command('annotate')
   .description('fill in missing statuses, ratings and tags interactively')
   .argument('[input]', 'scraped data file (default: data/raw/batch.json)')
   .option('-a, --annotations <file>', 'annotations file (default: data/annotations.json)')
   .option('-t, --tags <file>', 'tag vocabulary file (default: data/tags.json)')
-  .option(
-    '--step <n>',
-    'start at this step and continue through the remaining steps',
-    (value) => {
-      if (!/^[1-7]$/.test(value)) throw new InvalidArgumentError('must be a whole number from 1 to 7');
-      return Number(value);
-    },
-    1,
-  )
+  .option('--step <n>', 'start at this step and continue through the remaining steps', parseStep, 1)
   .option(
     '--months <n>',
     'months since last play; review older Active and more recent Unplayed games',
-    (value) => {
-      if (!/^\d+$/.test(value) || !Number.isSafeInteger(Number(value)) || Number(value) < 1) {
-        throw new InvalidArgumentError('must be a positive whole number');
-      }
-      return Number(value);
-    },
+    parseMonths,
     12,
   )
   .option('-v, --verbose', 'show debug output')
