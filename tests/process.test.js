@@ -245,3 +245,37 @@ test('invalid Unplayed data leaves annotations and output files untouched', asyn
   assert.deepEqual(await fs.readJson(options.out), ['existing output']);
   assert.deepEqual(await fs.readJson(options.unannotatedFile), ['existing stubs']);
 });
+
+test('process writes fill-in output only when needed and removes stale output without editing annotations', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-fill-in-'));
+  t.after(() => fs.remove(dir));
+  const options = {
+    input: path.join(dir, 'raw.json'),
+    annotationsFile: path.join(dir, 'annotations.json'),
+    tagsFile: path.join(dir, 'tags.json'),
+    out: path.join(dir, 'games.json'),
+    unannotatedFile: path.join(dir, 'fill-in.json'),
+    log: silentLogger,
+  };
+  await fs.writeJson(options.annotationsFile, [ann('Known')]);
+  const original = await fs.readFile(options.annotationsFile, 'utf8');
+  await fs.writeJson(options.tagsFile, { RPG: 'Role-playing' });
+  const known = row('Known', 'Steam', 2, '2026-01-01');
+  await fs.writeJson(options.input, [known]);
+  await runProcess(options);
+  assert.equal(await fs.pathExists(options.unannotatedFile), false);
+
+  await fs.writeJson(options.input, [known, row('New', 'Steam', 1, '2026-01-01')]);
+  await runProcess(options);
+  assert.deepEqual(await fs.readJson(options.unannotatedFile), blankAnnotations(['New']));
+  assert.equal(await fs.readFile(options.annotationsFile, 'utf8'), original);
+
+  await fs.writeJson(options.input, [row('Known', 'Steam', 2, null)]);
+  await assert.rejects(runProcess(options), /no date/);
+  assert.deepEqual(await fs.readJson(options.unannotatedFile), blankAnnotations(['New']));
+
+  await fs.writeJson(options.input, [known]);
+  await runProcess(options);
+  assert.equal(await fs.pathExists(options.unannotatedFile), false);
+  assert.equal(await fs.readFile(options.annotationsFile, 'utf8'), original);
+});

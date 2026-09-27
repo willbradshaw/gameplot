@@ -213,7 +213,11 @@ export async function runProcess({ input, annotationsFile, tagsFile, out, unanno
 
   await fs.outputJson(out, result.games, { spaces: 2 });
   log.success(`Wrote ${result.games.length} games to ${out}`);
-  await fs.outputJson(unannotatedFile, blankAnnotations(result.unannotated), { spaces: 2 });
-  log.info(`Wrote ${result.unannotated.length} fill-in entries to ${unannotatedFile}`);
+  if (result.unannotated.length) {
+    await fs.outputJson(unannotatedFile, blankAnnotations(result.unannotated), { spaces: 2 });
+    log.info(`Wrote ${result.unannotated.length} fill-in entries to ${unannotatedFile}`);
+  } else {
+    await fs.remove(unannotatedFile);
+  }
   return result;
 }
