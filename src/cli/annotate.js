@@ -1,6 +1,6 @@
 /** `gameplot annotate [input]`. See docs/annotate.md. */
 
-import { Command } from 'commander';
+import { Command, InvalidArgumentError } from 'commander';
 import { runAnnotate } from '../annotate/index.js';
 import { ANNOTATIONS_FILE, RAW_BATCH_FILE, TAGS_FILE } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
@@ -10,6 +10,17 @@ export const annotateCommand = new Command('annotate')
   .argument('[input]', 'scraped data file (default: data/raw/batch.json)')
   .option('-a, --annotations <file>', 'annotations file (default: data/annotations.json)')
   .option('-t, --tags <file>', 'tag vocabulary file (default: data/tags.json)')
+  .option(
+    '--months <n>',
+    'status review window in months',
+    (value) => {
+      if (!/^\d+$/.test(value) || !Number.isSafeInteger(Number(value)) || Number(value) < 1) {
+        throw new InvalidArgumentError('must be a positive whole number');
+      }
+      return Number(value);
+    },
+    12,
+  )
   .option('-v, --verbose', 'show debug output')
   .option('-q, --quiet', 'only show warnings and errors')
   .action(async (input, opts) => {
@@ -18,5 +29,6 @@ export const annotateCommand = new Command('annotate')
       annotationsFile: opts.annotations ?? ANNOTATIONS_FILE,
       tagsFile: opts.tags ?? TAGS_FILE,
       log: createLogger(opts),
+      months: opts.months,
     });
   });

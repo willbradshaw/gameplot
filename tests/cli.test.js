@@ -85,3 +85,11 @@ test('unknown commands exit non-zero with usage', async () => {
     return true;
   });
 });
+
+test('annotate exposes the month window and rejects invalid values before reading files', async () => {
+  const { stdout } = await run('annotate', '--help');
+  assert.match(stdout, /--months <n>[\s\S]*default: 12/);
+  for (const value of ['0', '-1', '1.5', 'abc', '1e2']) {
+    await assert.rejects(run('annotate', 'nonexistent.json', '--months', value), /positive whole number/);
+  }
+});
