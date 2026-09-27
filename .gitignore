@@ -3,9 +3,3 @@ node_modules
 
 # Secrets: API keys and login tokens live here, never in the repo
 .env
-
-# Local files left by the legacy pipeline
-__pycache__
-*/__pycache__
-*/scraper-config.json
-gameplot-env/
