@@ -68,7 +68,7 @@ test('ratings accept only blank or decimal numbers in range, including zero', ()
   }
 });
 
-test('three passes require statuses, allow unchanged stale statuses, then offer ratings and save changes', async () => {
+test('status passes precede ratings, allow unchanged stale statuses and save changes', async () => {
   const annotations = [
     ann('Stale', { status: 'Active' }),
     ann('Missing', { aliases: ['Other'], tags: ['Puzzle'] }),
@@ -91,7 +91,7 @@ test('three passes require statuses, allow unchanged stale statuses, then offer 
       messages.push(message);
       if (messages.length === 1) {
         assert.match(message, /0 = Unplayed, 1 = Active, 2 = Complete, 3 = Abandoned/);
-        assert.notEqual(validate(''), true);
+        assert.equal(validate(''), true);
         assert.notEqual(validate('4'), true);
         assert.notEqual(validate('1e0'), true);
       }
@@ -329,4 +329,46 @@ test('process and annotate persist Unplayed corrections and restore scraped hour
   const games = await fs.readJson(options.out);
   assert.equal(games[0].hoursPlayedTotal, 8);
   assert.equal(games[0].lastPlayedTotal, '2026-09-01');
+});
+
+test('skipping a missing status leaves it null, skips its rating and offers it again next run', async () => {
+  const annotations = [ann('Research'), ann('Ready')];
+  const saved = [];
+  const messages = [];
+  const answers = ['', '2', '7.5'];
+  await annotateGames({
+    annotations,
+    rows: [],
+    now,
+    prompt: async ({ message, validate }) => {
+      messages.push(message);
+      const answer = answers.shift();
+      assert.equal(validate(answer), true);
+      return answer;
+    },
+    save: async (value) => saved.push(structuredClone(value)),
+  });
+  assert.equal(messages.length, 3);
+  assert.match(messages[0], /Research.*enter = skip for now/);
+  assert.match(messages[1], /Ready.*status/);
+  assert.match(messages[2], /Ready.*rating/);
+  assert.deepEqual(annotations[0], ann('Research'));
+  assert.equal(saved.length, 2);
+  assert.equal(annotations[1].status, 'Complete');
+  assert.equal(annotations[1].rating, 7.5);
+
+  const nextMessages = [];
+  await annotateGames({
+    annotations,
+    rows: [],
+    now,
+    prompt: async ({ message }) => {
+      nextMessages.push(message);
+      return '';
+    },
+    save: async () => assert.fail('skipping must not save'),
+  });
+  assert.equal(nextMessages.length, 1);
+  assert.match(nextMessages[0], /Research.*status/);
+  assert.deepEqual(annotations[0], ann('Research'));
 });

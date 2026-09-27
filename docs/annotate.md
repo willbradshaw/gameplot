@@ -27,9 +27,10 @@ gameplot process
 
 The following groups are processed in order, each in annotation file order:
 
-1. **Missing statuses.** A numbered choice is required for every entry with
+1. **Missing statuses.** A numbered choice is offered for every entry with
    a null status: `0 = Unplayed`, `1 = Active`, `2 = Complete`, `3 = Abandoned`.
-   An empty answer is not accepted.
+   Enter skips the entry for now, leaving its status null. Skipped entries
+   receive no rating prompt and are offered again on the next run.
 2. **Stale Active games.** The same choices are offered for games last
    played more than the configured number of months ago. Enter keeps `Active`.
 3. **Recently played Unplayed games.** Games with a last-played date within

@@ -64,13 +64,15 @@ export function validateRating(value) {
 
 async function askStatus(annotation, prompt, date = null) {
   const choices = STATUS_CHOICES.map((status, i) => `${i} = ${status}`).join(', ');
-  const context = date ? `; last played ${date}; enter = still ${annotation.status}` : '';
+  const context = date
+    ? `; last played ${date}; enter = still ${annotation.status}`
+    : '; enter = skip for now';
   const answer = await prompt({
     message: `${annotation.game} — status (${choices}${context})`,
     validate: (value) => {
       const text = value.trim();
       return (
-        (date !== null && text === '') ||
+        text === '' ||
         STATUS_CHOICES.some((_, i) => text === String(i)) ||
         `enter a number from 0 to ${STATUS_CHOICES.length - 1}`
       );
