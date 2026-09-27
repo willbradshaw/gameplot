@@ -264,7 +264,7 @@
   },
   {
     "game": "Beyond Good & Evil",
-    "rating": 4,
+    "rating": null,
     "status": "Unplayed",
     "tags": [],
     "aliases": [
@@ -2704,7 +2704,7 @@
   },
   {
     "game": "Star Wars: Knights of the Old Republic",
-    "rating": 5.8,
+    "rating": null,
     "status": "Unplayed",
     "tags": [],
     "aliases": [
