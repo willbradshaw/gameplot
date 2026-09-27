@@ -11,7 +11,8 @@
     "setup:dev": "npm ci --include=dev",
     "test": "node --test",
     "lint": "biome check",
-    "format": "biome check --write"
+    "format": "biome check --write",
+    "validate:data": "node scripts/validate-data.js"
   },
   "dependencies": {
     "@inquirer/prompts": "^8.7.2",
