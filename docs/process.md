@@ -115,7 +115,8 @@ Every run ends with an account of what did not reach the output:
 - **Scraped games with no annotation.** Listed in full at warning level, and
   written as fill-in entries (rating and status null, empty tags) to
   `data/unannotated.json` so they can be pasted into the annotations file.
-  This is the to-do list.
+  The file is absent when there are no fill-in entries; any previous file
+  is removed after a successful run.
 - **Annotations with no scraped game.** Listed in full at warning level.
   Either the game has not been scraped, or its name and aliases no longer
   match how a platform spells it.
