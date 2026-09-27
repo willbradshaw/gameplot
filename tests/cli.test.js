@@ -18,7 +18,7 @@ test('gameplot --help lists the scrape, process and annotate commands', async ()
   const { stdout } = await run('--help');
   assert.match(stdout, /scrape\s+download online playtime data/);
   assert.match(stdout, /process \[options\] \[input\]\s+combine scraped playtime data/);
-  assert.match(stdout, /annotate \[options\] \[input\]\s+fill in missing statuses and ratings/);
+  assert.match(stdout, /annotate \[options\] \[input\]\s+fill in missing statuses, ratings and tags/);
 });
 
 test('gameplot process --help shows the default files', async () => {
@@ -91,5 +91,13 @@ test('annotate exposes the month window and rejects invalid values before readin
   assert.match(stdout, /--months <n>[\s\S]*default: 12/);
   for (const value of ['0', '-1', '1.5', 'abc', '1e2']) {
     await assert.rejects(run('annotate', 'nonexistent.json', '--months', value), /positive whole number/);
+  }
+});
+
+test('annotate exposes a starting step and rejects invalid step numbers', async () => {
+  const { stdout } = await run('annotate', '--help');
+  assert.match(stdout, /--step <n>/);
+  for (const value of ['0', '8', '1.5', 'tags']) {
+    await assert.rejects(run('annotate', 'nonexistent.json', '--step', value), /whole number from 1 to 7/);
   }
 });

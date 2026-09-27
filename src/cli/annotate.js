@@ -6,10 +6,19 @@ import { ANNOTATIONS_FILE, RAW_BATCH_FILE, TAGS_FILE } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
 
 export const annotateCommand = new Command('annotate')
-  .description('fill in missing statuses and ratings interactively')
+  .description('fill in missing statuses, ratings and tags interactively')
   .argument('[input]', 'scraped data file (default: data/raw/batch.json)')
   .option('-a, --annotations <file>', 'annotations file (default: data/annotations.json)')
   .option('-t, --tags <file>', 'tag vocabulary file (default: data/tags.json)')
+  .option(
+    '--step <n>',
+    'start at this step and continue through the remaining steps',
+    (value) => {
+      if (!/^[1-7]$/.test(value)) throw new InvalidArgumentError('must be a whole number from 1 to 7');
+      return Number(value);
+    },
+    1,
+  )
   .option(
     '--months <n>',
     'months since last play; review older Active and more recent Unplayed games',
@@ -30,5 +39,6 @@ export const annotateCommand = new Command('annotate')
       tagsFile: opts.tags ?? TAGS_FILE,
       log: createLogger(opts),
       months: opts.months,
+      startStep: opts.step,
     });
   });
