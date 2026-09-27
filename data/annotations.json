@@ -265,11 +265,16 @@
   {
     "game": "Beyond Good & Evil",
     "rating": 4,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Beyond Good and Evil™"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Blackwell Convergence",
@@ -2700,11 +2705,16 @@
   {
     "game": "Star Wars: Knights of the Old Republic",
     "rating": 5.8,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "STAR WARS™ Knights of the Old Republic™"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Starseed Pilgrim",
