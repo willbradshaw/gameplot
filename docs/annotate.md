@@ -24,19 +24,9 @@ gameplot process
 
 ## Prompts
 
-Pending `possible_aliases` are reviewed in Step 1. A numbered
-candidate can be selected, `0` keeps the entry as a separate game, and Enter
-defers the decision and skips that entry's remaining prompts for the run.
-
-Accepting adds the new name and any existing aliases to the selected entry,
-removes the blank entry, and redirects other pending suggestions. Ratings,
-statuses, tags and playtime corrections prevent an entry from being removed;
-such entries can only be kept separate or skipped. Each decision is saved
-immediately.
-
 The following steps run in order:
 
-1. **Alias review.** Possible name changes are confirmed, rejected or deferred.
+1. **Alias review.** Name changes suggested by `process` are confirmed, rejected or deferred. Accepting adds the new name as an alias for the existing game; deferring skips the new entry's remaining prompts.
 2. **Missing statuses.** Statuses are requested for entries without one.
 3. **Stale Active games.** Active games last played outside the configured window are reviewed.
 4. **Recently played Unplayed games.** Unplayed games with activity inside that window are reviewed.

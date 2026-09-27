@@ -141,20 +141,14 @@ one game (`Slay the Spire` on Steam and `Slay The Spire` on Xbox;
 
 ### Possible aliases
 
-New blank entries are compared with annotations that match no scraped row,
-including through existing aliases. Candidate names are lowercased, trademark
-and copyright markers removed, and punctuation and whitespace normalised.
+New scraped names are compared with annotations missing from the scraped data,
+including their aliases. Names are normalised for case, punctuation, whitespace
+and trademark/copyright markers, then ranked by shared prefix and character
+similarity. Candidates scoring at least `0.50` are saved in the new blank entry's
+`possible_aliases` for manual review in [`gameplot annotate`](annotate.md).
 
-Similarity is the mean of two scores: shared prefix length divided by the
-shorter name's length, and one minus Levenshtein distance divided by the longer
-name's length. The best score across a candidate's canonical name and aliases
-is used. All candidates scoring at least `0.50` are saved in `possible_aliases`,
-highest score first. Ties are alphabetised. Pending entries remain candidates;
-sequel numbers and edition wording receive no special treatment.
-
-Suggestions are added only when creating an entry. Rejecting one in `annotate`
-therefore does not cause it to reappear on the next processing run. Suggestions
-do not establish a name match until accepted.
+Suggestions do not establish a match until accepted. They are added only when
+creating an entry, so rejected suggestions do not reappear on subsequent runs.
 
 ### Playtime corrections
 
