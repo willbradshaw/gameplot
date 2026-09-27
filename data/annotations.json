@@ -2,14 +2,24 @@
   {
     "game": "140",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "2064: Read Only Memories",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "80 Days",
@@ -36,7 +46,7 @@
   },
   {
     "game": "A Case of Distrust",
-    "rating": null,
+    "rating": 4.9,
     "status": "Abandoned",
     "tags": []
   },
@@ -51,7 +61,7 @@
   },
   {
     "game": "A Golden Wake",
-    "rating": null,
+    "rating": 3.8,
     "status": "Abandoned",
     "tags": []
   },
@@ -171,7 +181,7 @@
   {
     "game": "ASTRONEER",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -191,7 +201,7 @@
   },
   {
     "game": "Baba Is You",
-    "rating": null,
+    "rating": 5.4,
     "status": "Abandoned",
     "tags": []
   },
@@ -216,7 +226,7 @@
   {
     "game": "Banquet for Fools",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -244,7 +254,7 @@
   {
     "game": "Beacon Pines",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -255,11 +265,16 @@
   {
     "game": "Beyond Good & Evil",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Beyond Good and Evil™"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Blackwell Convergence",
@@ -337,7 +352,7 @@
   {
     "game": "Book of Hours",
     "rating": 7.6,
-    "status": "Active",
+    "status": "Abandoned",
     "tags": [
       "Fantasy",
       "Management",
@@ -388,7 +403,7 @@
   {
     "game": "Botany Manor",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -417,7 +432,7 @@
   },
   {
     "game": "Broken Sword 1: Shadow of the Templars",
-    "rating": null,
+    "rating": 3.2,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -428,7 +443,7 @@
   {
     "game": "Chained Echoes",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -444,7 +459,7 @@
   },
   {
     "game": "Cinders",
-    "rating": null,
+    "rating": 5.3,
     "status": "Abandoned",
     "tags": []
   },
@@ -478,13 +493,13 @@
   },
   {
     "game": "Cobalt Core",
-    "rating": null,
-    "status": "Active",
+    "rating": 6,
+    "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Cognition: An Erica Reed Thriller",
-    "rating": null,
+    "rating": 4.6,
     "status": "Abandoned",
     "tags": []
   },
@@ -505,13 +520,13 @@
   },
   {
     "game": "Costume Quest",
-    "rating": null,
+    "rating": 4,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Crusader Kings II",
-    "rating": null,
+    "rating": 4,
     "status": "Abandoned",
     "tags": []
   },
@@ -569,7 +584,7 @@
   {
     "game": "Cyberpunk 2077",
     "rating": 7.8,
-    "status": "Active",
+    "status": "Abandoned",
     "tags": [
       "Sci-Fi",
       "RPG"
@@ -616,8 +631,13 @@
   {
     "game": "Deadlight",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Dear Esther",
@@ -660,7 +680,7 @@
   },
   {
     "game": "Deus Ex",
-    "rating": null,
+    "rating": 5,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -744,7 +764,7 @@
   },
   {
     "game": "Divine Divinity",
-    "rating": null,
+    "rating": 5.2,
     "status": "Abandoned",
     "tags": []
   },
@@ -879,7 +899,7 @@
   {
     "game": "Elden Ring",
     "rating": 7.9,
-    "status": "Active",
+    "status": "Abandoned",
     "tags": [
       "Soulslike",
       "Fantasy",
@@ -904,8 +924,13 @@
   {
     "game": "English Country Tune",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Esoteric Ebb",
@@ -919,7 +944,7 @@
   },
   {
     "game": "Eternal Strands",
-    "rating": null,
+    "rating": 4.1,
     "status": "Abandoned",
     "tags": []
   },
@@ -944,18 +969,23 @@
   },
   {
     "game": "Fallout Shelter",
-    "rating": null,
+    "rating": 4.9,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Far Cry",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Far Cry®"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Felvidek",
@@ -1039,14 +1069,14 @@
   },
   {
     "game": "Foolish Mortals",
-    "rating": null,
-    "status": null,
+    "rating": 4.2,
+    "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Fran Bow",
-    "rating": null,
-    "status": "Active",
+    "rating": 4.8,
+    "status": "Abandoned",
     "tags": [
       "Adventure",
       "Puzzle",
@@ -1056,8 +1086,13 @@
   {
     "game": "From Dust",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Frostpunk",
@@ -1076,7 +1111,7 @@
   },
   {
     "game": "Frozen Synapse",
-    "rating": null,
+    "rating": 5.2,
     "status": "Abandoned",
     "tags": []
   },
@@ -1165,7 +1200,7 @@
   {
     "game": "Gothic 1 Remake",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -1228,13 +1263,13 @@
   },
   {
     "game": "Harold Halibut",
-    "rating": null,
-    "status": null,
+    "rating": 4.8,
+    "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Hate Plus",
-    "rating": null,
+    "rating": 6.9,
     "status": "Abandoned",
     "tags": []
   },
@@ -1315,12 +1350,17 @@
   {
     "game": "Horizon Zero Dawn™",
     "rating": null,
-    "status": null,
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "PS5": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Hotline Miami",
-    "rating": null,
+    "rating": 3.4,
     "status": "Abandoned",
     "tags": []
   },
@@ -1360,15 +1400,20 @@
   },
   {
     "game": "If On A Winter's Night, Four Travelers",
-    "rating": null,
-    "status": "Active",
+    "rating": 5.1,
+    "status": "Abandoned",
     "tags": []
   },
   {
     "game": "IL-2 Sturmovik: 1946",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Impostor Factory",
@@ -1436,12 +1481,17 @@
   {
     "game": "Kairo",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "KAMI",
-    "rating": null,
+    "rating": 6.3,
     "status": "Abandoned",
     "tags": []
   },
@@ -1498,7 +1548,7 @@
   {
     "game": "Kingdom Come: Deliverance II",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -1515,7 +1565,7 @@
   },
   {
     "game": "Legend of Grimrock",
-    "rating": null,
+    "rating": 5.4,
     "status": "Abandoned",
     "tags": []
   },
@@ -1539,7 +1589,7 @@
   {
     "game": "Little Nightmares",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -1554,7 +1604,7 @@
   },
   {
     "game": "Lone Survivor",
-    "rating": null,
+    "rating": 4.1,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -1579,19 +1629,19 @@
   },
   {
     "game": "Lovers in a Dangerous Spacetime",
-    "rating": null,
+    "rating": 3,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Luxuria Superbia",
-    "rating": null,
+    "rating": 5,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Magic 2015",
-    "rating": null,
+    "rating": 5,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -1661,16 +1711,21 @@
   {
     "game": "Mirror's Edge",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Mirror's Edge™"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "MLB® The Show™ 24 Xbox One",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -1681,13 +1736,18 @@
   {
     "game": "Monkey Island 2: LeChuck's Revenge",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Monkey Island 2: Special Edition",
       "Monkey Island™ 2 Special Edition: LeChuck’s Revenge™",
       "Monkey Island™ 2 Special Edition: LeChuck's Revenge™"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Monster Train 2",
@@ -1721,11 +1781,16 @@
   {
     "game": "Myst",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Myst: Masterpiece Edition"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Neverwinter Nights",
@@ -1771,8 +1836,8 @@
   },
   {
     "game": "NieR:Automata",
-    "rating": null,
-    "status": null,
+    "rating": 4.6,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -1811,7 +1876,7 @@
   {
     "game": "OCTOPATH TRAVELER",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -1840,7 +1905,7 @@
   {
     "game": "Ori and the Will of the Wisps",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -1850,7 +1915,7 @@
   },
   {
     "game": "Osmos",
-    "rating": null,
+    "rating": 6,
     "status": "Abandoned",
     "tags": []
   },
@@ -1873,8 +1938,8 @@
   },
   {
     "game": "Pacific Drive",
-    "rating": null,
-    "status": null,
+    "rating": 6.1,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -1893,7 +1958,7 @@
   },
   {
     "game": "Paradigm",
-    "rating": null,
+    "rating": 6.3,
     "status": "Abandoned",
     "tags": []
   },
@@ -1942,8 +2007,8 @@
   },
   {
     "game": "Persona 5",
-    "rating": null,
-    "status": null,
+    "rating": 5.8,
+    "status": "Abandoned",
     "tags": [],
     "aliases": [
       "Persona 5 Royal"
@@ -1952,7 +2017,7 @@
   {
     "game": "Pillars of Eternity",
     "rating": 8.9,
-    "status": "Active",
+    "status": "Complete",
     "tags": [
       "Fantasy",
       "RPG"
@@ -1970,20 +2035,30 @@
   {
     "game": "Pillars of Eternity 2: Deadfire",
     "rating": null,
-    "status": "Active",
+    "status": "Unplayed",
     "tags": [
       "Fantasy",
       "RPG"
     ],
     "aliases": [
       "Pillars of Eternity 2 Deadfire"
-    ]
+    ],
+    "playtime": {
+      "PS5": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "PixelJunk™ Eden",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Planescape: Torment",
@@ -2003,11 +2078,16 @@
   {
     "game": "Poker Night at the Inventory",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Poker Night at the Inventory (2010 Original Version)"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Pony Island",
@@ -2050,8 +2130,8 @@
   },
   {
     "game": "Prey",
-    "rating": null,
-    "status": null,
+    "rating": 6,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -2081,20 +2161,30 @@
   {
     "game": "Puzzle Agent",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Q.U.B.E.",
-    "rating": null,
+    "rating": 6.1,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Quantum Conundrum",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Resonance",
@@ -2122,8 +2212,8 @@
   },
   {
     "game": "Returnal",
-    "rating": null,
-    "status": null,
+    "rating": 6,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -2345,8 +2435,13 @@
   {
     "game": "Sam & Max Save the World",
     "rating": null,
-    "status": null,
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Samorost 3",
@@ -2378,7 +2473,7 @@
   {
     "game": "Sea of Stars",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "Sea of Stars: Sunset Edition"
@@ -2391,15 +2486,20 @@
   },
   {
     "game": "Secrets of Rætikon",
-    "rating": null,
+    "rating": 5.8,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Seven: Enhanced Edition",
     "rating": null,
-    "status": null,
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Shadow Gambit: The Cursed Crew",
@@ -2425,7 +2525,7 @@
   },
   {
     "game": "Shadow Tactics: Blades of the Shogun",
-    "rating": null,
+    "rating": 6,
     "status": "Abandoned",
     "tags": []
   },
@@ -2516,8 +2616,13 @@
   {
     "game": "SIMULACRA",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Slay the Princess",
@@ -2581,7 +2686,7 @@
   {
     "game": "Spiritfarer",
     "rating": 7.1,
-    "status": "Active",
+    "status": "Abandoned",
     "tags": [
       "Fantasy",
       "Casual",
@@ -2600,27 +2705,37 @@
   {
     "game": "Star Wars: Knights of the Old Republic",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "STAR WARS™ Knights of the Old Republic™"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Starseed Pilgrim",
-    "rating": null,
+    "rating": 4,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "STEINS;GATE",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Stellaris",
-    "rating": null,
+    "rating": 5.7,
     "status": "Abandoned",
     "tags": []
   },
@@ -2689,8 +2804,8 @@
   },
   {
     "game": "Sultan's Game",
-    "rating": null,
-    "status": "Active",
+    "rating": 6.1,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -2720,15 +2835,20 @@
   },
   {
     "game": "Superbrothers: Sword & Sworcery EP",
-    "rating": null,
+    "rating": 3.8,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Superliminal",
     "rating": null,
-    "status": null,
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "PS5": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Syberia",
@@ -2775,8 +2895,8 @@
   },
   {
     "game": "Tainted Grail: Fall of Avalon",
-    "rating": null,
-    "status": null,
+    "rating": 5.6,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -2824,7 +2944,7 @@
   },
   {
     "game": "The Binding of Isaac",
-    "rating": null,
+    "rating": 3.4,
     "status": "Abandoned",
     "tags": []
   },
@@ -2877,7 +2997,7 @@
   {
     "game": "The Darkest Files",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -2894,8 +3014,13 @@
   {
     "game": "The Detail",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "The Dream Machine",
@@ -2923,7 +3048,7 @@
   },
   {
     "game": "The Elder Scrolls III: Morrowind",
-    "rating": null,
+    "rating": 5.4,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -3005,8 +3130,8 @@
   },
   {
     "game": "The Henry Stickmin Collection",
-    "rating": null,
-    "status": "Active",
+    "rating": 5.4,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -3076,7 +3201,7 @@
   },
   {
     "game": "The Moon Sliver",
-    "rating": null,
+    "rating": 4.2,
     "status": "Abandoned",
     "tags": []
   },
@@ -3099,8 +3224,13 @@
   {
     "game": "The Painscreek Killings",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "The Rise of the Golden Idol",
@@ -3200,7 +3330,7 @@
   {
     "game": "The Stone of Madness",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -3240,7 +3370,7 @@
   {
     "game": "The Thaumaturge",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -3298,16 +3428,21 @@
   {
     "game": "The Witcher",
     "rating": null,
-    "status": "Abandoned",
+    "status": "Unplayed",
     "tags": [],
     "aliases": [
       "The Witcher: Enhanced Edition",
       "The Witcher: Enhanced Edition Director's Cut"
-    ]
+    ],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "The Witcher 2: Assassins of Kings",
-    "rating": null,
+    "rating": 5.5,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -3384,14 +3519,14 @@
   },
   {
     "game": "Tiny and Big: Grandpa's Leftovers",
-    "rating": null,
+    "rating": 5,
     "status": "Abandoned",
     "tags": []
   },
   {
     "game": "Titanium Court Demo",
     "rating": null,
-    "status": null,
+    "status": "Active",
     "tags": []
   },
   {
@@ -3427,7 +3562,7 @@
   {
     "game": "Townscaper",
     "rating": null,
-    "status": null,
+    "status": "Unplayed",
     "tags": [],
     "playtime": {
       "Xbox": {
@@ -3461,7 +3596,7 @@
   },
   {
     "game": "Trine 2",
-    "rating": null,
+    "rating": 6,
     "status": "Abandoned",
     "tags": [],
     "aliases": [
@@ -3514,8 +3649,8 @@
   },
   {
     "game": "UNCHARTED: Legacy of Thieves Collection",
-    "rating": null,
-    "status": null,
+    "rating": 6.4,
+    "status": "Abandoned",
     "tags": []
   },
   {
@@ -3643,8 +3778,13 @@
   {
     "game": "Whispers of a Machine",
     "rating": null,
-    "status": "Abandoned",
-    "tags": []
+    "status": "Unplayed",
+    "tags": [],
+    "playtime": {
+      "Steam": {
+        "hoursPlayed": 0
+      }
+    }
   },
   {
     "game": "Wildermyth",
@@ -3657,7 +3797,7 @@
   },
   {
     "game": "Windosill",
-    "rating": null,
+    "rating": 5,
     "status": "Abandoned",
     "tags": []
   },
@@ -3672,7 +3812,7 @@
   },
   {
     "game": "Worms Reloaded",
-    "rating": null,
+    "rating": 5,
     "status": "Abandoned",
     "tags": []
   },
