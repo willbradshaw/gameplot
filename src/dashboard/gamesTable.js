@@ -247,7 +247,7 @@ function getColumnValue(game, column) {
         case 'rating':
             return game.rating || 0;
         case 'lastPlayedTotal':
-            return new Date(game.lastPlayedTotal);
+            return game.lastPlayedTotal;
         case 'hoursPlayedTotal':
             return game.hoursPlayedTotal || 0;
         case 'status':
@@ -298,7 +298,7 @@ export function downloadTableAsCSV() {
         ...sortedData.map(game => [
             escapeCsvField(game.game),
             escapeCsvField(game.platforms.join('; ')),
-            game.rating || '',
+            game.rating ?? '',
             game.lastPlayedTotal,
             game.hoursPlayedTotal || 0,
             escapeCsvField(game.status || ''),
@@ -372,8 +372,8 @@ function getStatusClass(status) {
     switch (status?.toLowerCase()) {
         case 'complete':
             return 'status-complete';
-        case 'playing':
-            return 'status-playing';
+        case 'active':
+            return 'status-active';
         case 'abandoned':
             return 'status-abandoned';
         case 'unplayed':
@@ -384,12 +384,7 @@ function getStatusClass(status) {
 }
 
 function formatDate(dateString) {
-    if (!dateString) return '-';
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return '-';
-
-    // Return ISO format (yyyy-mm-dd)
-    return date.toISOString().split('T')[0];
+    return dateString ?? '-';
 }
 
 function formatHours(hours) {

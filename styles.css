@@ -591,7 +591,8 @@ input[type="date"] {
     color: #10b981;
 }
 
-.status-playing {
+.status-playing,
+.status-active {
     background: rgba(59, 130, 246, 0.2);
     color: #3b82f6;
 }

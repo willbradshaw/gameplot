@@ -4,7 +4,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import fs from 'fs-extra';
 import { silentLogger } from '../src/lib/log.js';
-import { annotationSchema } from '../src/lib/model.js';
+import { annotationSchema, gameSchema } from '../src/lib/model.js';
 import {
   aliasNameKey,
   buildAliasMap,
@@ -144,12 +144,26 @@ test('playtime rules: null hours, undated playtime, and no playtime anywhere are
     /playtime on Steam but no date/,
   );
   assert.match(buildGame(ann('G'), [row('G', 'Xbox', 0, null)]).violations[0], /no playtime on any platform/);
+  for (const rows of [
+    [row('G', 'Steam', 0, '2026-01-01')],
+    [row('G', 'Steam', 0, '2026-01-01'), row('G', 'GOG', 0, null)],
+    [row('G', 'Steam', 0.01, '2026-01-01')],
+  ]) {
+    assert.match(buildGame(ann('G'), rows).violations[0], /no playtime on any platform/);
+  }
+  assert.match(
+    buildGame(ann('G', { playtime: { Steam: { hoursPlayed: 0 } } }), [row('G', 'Steam', 5, '2026-01-01')])
+      .violations[0],
+    /no playtime on any platform/,
+  );
   const ok = buildGame(ann('G', { playtime: { GOG: { hoursPlayed: 0 } } }), [
     row('G', 'GOG', null, null),
     row('G', 'Steam', 2, '2020-01-01'),
   ]);
   assert.deepEqual(ok.violations, []);
   assert.deepEqual(ok.game.hoursPlayedSingle, [2, 0]);
+  assert.equal(gameSchema.safeParse(ok.game).success, true);
+  assert.equal(gameSchema.safeParse({ ...ok.game, hoursPlayedTotal: 0 }).success, false);
   assert.deepEqual(ok.game.lastPlayedSingle, ['2020-01-01', null]);
 });
 
@@ -291,6 +305,10 @@ test('process adds and alphabetises annotations, preserving existing fields and 
   const savedOutput = await fs.readJson(options.out);
   await fs.writeJson(options.input, [row('Z', 'GOG', null, null), row('New', 'Steam', 1, '2026-01-01')]);
   await assert.rejects(runProcess(options), /no playtime on GOG/);
+  assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
+  assert.deepEqual(await fs.readJson(options.out), savedOutput);
+  await fs.writeJson(options.input, [row('Z', 'GOG', 0, '2026-01-01'), row('New', 'Steam', 1, '2026-01-01')]);
+  await assert.rejects(runProcess(options), /no playtime on any platform/);
   assert.deepEqual(await fs.readJson(options.annotationsFile), expected);
   assert.deepEqual(await fs.readJson(options.out), savedOutput);
 });

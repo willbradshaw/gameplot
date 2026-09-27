@@ -40,7 +40,7 @@ export function createTimelineChart(data) {
     // Create scales - convert lastPlayedTotal strings to Date objects
     const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
     const xExtent = d3.extent(dates);
-    xScale = d3.scaleTime()
+    xScale = d3.scaleUtc()
         .domain(xExtent)
         .range([0, chartWidth]);
 
@@ -53,7 +53,7 @@ export function createTimelineChart(data) {
 
     // Create axes
     const xAxis = d3.axisBottom(xScale)
-        .tickFormat(d3.timeFormat("%b %Y"));
+        .tickFormat(d3.utcFormat("%b %Y"));
 
     const yAxis = d3.axisLeft(yScale);
 
@@ -138,7 +138,7 @@ function handleZoom(event) {
 
     // Update axis
     g.select(".axis")
-        .call(d3.axisBottom(newXScale).tickFormat(d3.timeFormat("%b %Y")))
+        .call(d3.axisBottom(newXScale).tickFormat(d3.utcFormat("%b %Y")))
         .selectAll("text")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
@@ -226,7 +226,7 @@ function updateTimelineScales(filteredData) {
 
     // Update X scale (dates) with some padding
     const dateExtent = d3.extent(dates);
-    const datePadding = (dateExtent[1] - dateExtent[0]) * 0.05; // 5% padding
+    const datePadding = Math.max(86400000, (dateExtent[1] - dateExtent[0]) * 0.05); // At least one day for a single date
     const newDateDomain = [
         new Date(dateExtent[0].getTime() - datePadding),
         new Date(dateExtent[1].getTime() + datePadding)
@@ -237,7 +237,7 @@ function updateTimelineScales(filteredData) {
 
     // Update Y scale (ratings) with some padding
     const ratingExtent = d3.extent(ratings);
-    const ratingPadding = (ratingExtent[1] - ratingExtent[0]) * 0.1; // 10% padding
+    const ratingPadding = Math.max(0.5, (ratingExtent[1] - ratingExtent[0]) * 0.1); // At least half a rating point for a single rating
     const newRatingDomain = [
         Math.max(0, ratingExtent[0] - ratingPadding),
         Math.min(10, ratingExtent[1] + ratingPadding)
@@ -246,7 +246,7 @@ function updateTimelineScales(filteredData) {
     yScale.domain(newRatingDomain);
 
     // Update axes
-    const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %Y"));
+    const xAxis = d3.axisBottom(xScale).tickFormat(d3.utcFormat("%b %Y"));
     const yAxis = d3.axisLeft(yScale);
 
     g.select(".axis")
@@ -325,7 +325,7 @@ function showTooltip(event, d) {
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
-                <span>${new Date(d.lastPlayedTotal).toISOString().split('T')[0]}</span>
+                <span>${d.lastPlayedTotal}</span>
             </div>
             <div class="tooltip-tags">${tagHTML}</div>
         `)

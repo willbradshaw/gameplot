@@ -52,11 +52,11 @@ export function renderPlaytimeChart(filteredData) {
 
     // Calculate dynamic domains based on filtered data
     const ratings = filteredData.map(d => d.rating).filter(r => r !== null && r !== undefined);
-    const hours = filteredData.map(d => Math.max(d.hoursPlayedTotal, 0.1));
+    const hours = filteredData.map(d => d.hoursPlayedTotal);
 
     // Create scales with dynamic domains
     const ratingExtent = d3.extent(ratings);
-    const ratingPadding = (ratingExtent[1] - ratingExtent[0]) * 0.1; // 10% padding
+    const ratingPadding = Math.max(0.5, (ratingExtent[1] - ratingExtent[0]) * 0.1); // At least half a rating point for a single rating
     const ratingDomain = [
         Math.max(0, ratingExtent[0] - ratingPadding),
         Math.min(10, ratingExtent[1] + ratingPadding)
@@ -64,7 +64,7 @@ export function renderPlaytimeChart(filteredData) {
 
     const hoursExtent = d3.extent(hours);
     const hoursDomain = [
-        Math.max(0.1, hoursExtent[0] * 0.8), // 20% padding on log scale
+        hoursExtent[0] * 0.8,
         hoursExtent[1] * 1.2
     ];
 
@@ -282,7 +282,7 @@ function showPlaytimeTooltip(event, d) {
             </div>
             <div class="tooltip-detail">
                 <span class="tooltip-label">Last Played:</span>
-                <span>${new Date(d.lastPlayedTotal).toISOString().split('T')[0]}</span>
+                <span>${d.lastPlayedTotal}</span>
             </div>
             <div class="tooltip-tags">${tagHTML}</div>
         `)

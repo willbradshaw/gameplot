@@ -154,17 +154,19 @@ function populateRatingFilters(data) {
     });
 }
 
+// Processed dates are YYYY-MM-DD strings, so their lexical order is chronological.
+function setDateRange(data) {
+    const dates = data.map(d => d.lastPlayedTotal).sort();
+    document.getElementById('startDate').value = dates[0] ?? '';
+    document.getElementById('endDate').value = dates.at(-1) ?? '';
+}
+
 /**
  * Populate date range filters
  * @param {Array} data - Game data array
  */
 function populateDateFilters(data) {
-    // Convert lastPlayedTotal strings to Date objects and find extent
-    const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
-    const dateExtent = d3.extent(dates);
-
-    document.getElementById("startDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[0]);
-    document.getElementById("endDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[1]);
+    setDateRange(data);
 
     document.getElementById("startDate").addEventListener("change", () => {
         document.dispatchEvent(new CustomEvent('filtersChanged'));
@@ -198,9 +200,8 @@ export function getFilteredData() {
         .map(cb => cb.value);
 
     // Get date range
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
-    endDate.setHours(23, 59, 59); // Include the entire end date
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
 
     return data.filter(d => {
         // Platform filter (game must have at least one selected platform)
@@ -216,9 +217,8 @@ export function getFilteredData() {
         const ratingMatch = selectedRatingRanges.length === 0 ||
             selectedRatingRanges.includes(getRatingRange(d.rating));
 
-        // Date filter - convert lastPlayedTotal to Date for comparison
-        const gameDate = new Date(d.lastPlayedTotal);
-        const dateMatch = !isNaN(gameDate) && gameDate >= startDate && gameDate <= endDate;
+        const dateMatch = (!startDate || d.lastPlayedTotal >= startDate) &&
+            (!endDate || d.lastPlayedTotal <= endDate);
 
         return platformMatch && tagMatch && statusMatch && ratingMatch && dateMatch;
     });
@@ -276,12 +276,7 @@ export function clearRatingFilters() {
  */
 export function clearDateFilter() {
     const data = getGameData();
-    // Convert lastPlayedTotal strings to Date objects and find extent
-    const dates = data.map(d => new Date(d.lastPlayedTotal)).filter(d => !isNaN(d));
-    const dateExtent = d3.extent(dates);
-
-    document.getElementById("startDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[0]);
-    document.getElementById("endDate").value = d3.timeFormat("%Y-%m-%d")(dateExtent[1]);
+    setDateRange(data);
     document.dispatchEvent(new CustomEvent('filtersChanged'));
 }
 

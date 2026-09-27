@@ -34,7 +34,9 @@ support zooming, panning and hover details; game names link to store pages where
 available.
 
 Platform totals use each platform's own hours. Tag totals count a game's full
-playtime under each of its tags, so they overlap.
+playtime under each of its tags, so they overlap. Last-played dates use the
+recorded calendar date, independent of browser timezone; date filters include
+both endpoints.
 
 ## How it is generated
 
