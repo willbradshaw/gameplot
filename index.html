@@ -21,8 +21,8 @@
                 <div class="control-header">
                     <div class="control-title">Platforms</div>
                     <div class="control-buttons">
-                        <button type="button" class="filter-btn" onclick="selectAllPlatforms()">All</button>
-                        <button type="button" class="filter-btn" onclick="clearPlatformFilters()">None</button>
+                        <button class="filter-btn" onclick="selectAllPlatforms()">All</button>
+                        <button class="filter-btn" onclick="clearPlatformFilters()">None</button>
                     </div>
                 </div>
                 <div class="platform-checkboxes" id="platformCheckboxes"></div>
@@ -32,8 +32,8 @@
                 <div class="control-header">
                     <div class="control-title">Tags</div>
                     <div class="control-buttons">
-                        <button type="button" class="filter-btn" onclick="selectAllTags()">All</button>
-                        <button type="button" class="filter-btn" onclick="clearTagFilters()">None</button>
+                        <button class="filter-btn" onclick="selectAllTags()">All</button>
+                        <button class="filter-btn" onclick="clearTagFilters()">None</button>
                     </div>
                 </div>
                 <div class="tag-search-container">
@@ -46,8 +46,8 @@
                 <div class="control-header">
                     <div class="control-title">Status</div>
                     <div class="control-buttons">
-                        <button type="button" class="filter-btn" onclick="selectAllStatuses()">All</button>
-                        <button type="button" class="filter-btn" onclick="clearStatusFilters()">None</button>
+                        <button class="filter-btn" onclick="selectAllStatuses()">All</button>
+                        <button class="filter-btn" onclick="clearStatusFilters()">None</button>
                     </div>
                 </div>
                 <div class="platform-checkboxes" id="statusCheckboxes"></div>
@@ -57,8 +57,8 @@
                 <div class="control-header">
                     <div class="control-title">Ratings</div>
                     <div class="control-buttons">
-                        <button type="button" class="filter-btn" onclick="selectAllRatings()">All</button>
-                        <button type="button" class="filter-btn" onclick="clearRatingFilters()">None</button>
+                        <button class="filter-btn" onclick="selectAllRatings()">All</button>
+                        <button class="filter-btn" onclick="clearRatingFilters()">None</button>
                     </div>
                 </div>
                 <div class="platform-checkboxes" id="ratingCheckboxes"></div>
@@ -68,7 +68,7 @@
                 <div class="control-header">
                     <div class="control-title">Date Range</div>
                     <div class="control-buttons">
-                        <button type="button" class="filter-btn" onclick="clearDateFilter()">Reset</button>
+                        <button class="filter-btn" onclick="clearDateFilter()">Reset</button>
                     </div>
                 </div>
                 <div class="date-range">
@@ -84,19 +84,19 @@
             </div>
             
             <div class="control-section reset-section">
-                <button type="button" class="reset-all-btn" onclick="resetAllFilters()">🔄 Reset All Filters</button>
+                <button class="reset-all-btn" onclick="resetAllFilters()">🔄 Reset All Filters</button>
             </div>
         </div>
 
         <div class="table-container">
             <div class="table-header">
-                <h2 style="color: #ffffff; text-align: center;">📋 Games Table</h2>
+                <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px;">📋 Games Table</h2>
                 <div class="table-controls">
                     <div class="search-container">
                         <input type="text" id="gameSearch" placeholder="Search games..." class="search-input">
-                        <button type="button" class="clear-search-btn" onclick="clearGameSearch()" title="Clear search">✕</button>
+                        <button class="clear-search-btn" onclick="clearGameSearch()" title="Clear search">✕</button>
                     </div>
-                    <button type="button" class="download-csv-btn" onclick="downloadTableAsCSV()">📥 Download CSV</button>
+                    <button class="download-csv-btn" onclick="downloadTableAsCSV()">📥 Download CSV</button>
                 </div>
             </div>
             <div class="table-wrapper">
