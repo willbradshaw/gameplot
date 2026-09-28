@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap");
 
 :root {
-  color-scheme: light;
   --page-bg: #fff;
   --chart-bg: rgba(255, 255, 255, 0.95);
   --dark-bg: rgba(0, 0, 0, 0.05);
@@ -26,7 +25,6 @@
 }
 
 :root.dark {
-  color-scheme: dark;
   --page-bg: #262626;
   --chart-bg: rgba(255, 255, 255, 0.05);
   --dark-bg: rgba(0, 0, 0, 0.2);
@@ -241,6 +239,7 @@
   min-width: 0;
   width: 100%;
   padding: 8px;
+  /* The fixed light background needs dark native text and calendar icons in both themes. */
   color-scheme: light;
 }
 

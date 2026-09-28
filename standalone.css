@@ -1,4 +1,12 @@
 /* Page shell and theme switch for the standalone dashboard only. */
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   padding: 20px;
