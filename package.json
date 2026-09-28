@@ -1,6 +1,6 @@
 {
   "name": "gameplot",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Personal video-game dashboard: scrapes playtime from Steam, PSN, Xbox and GOG, merges it with hand-written ratings and tags, and renders an interactive D3 page.",
   "type": "module",
   "private": true,
