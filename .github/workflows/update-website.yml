@@ -1,0 +1,73 @@
+name: Update website dependency
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published gameplot release tag (for example v2.1.1)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-website-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - name: Check credentials
+        env:
+          WEBSITE_UPDATE_TOKEN: ${{ secrets.WEBSITE_UPDATE_TOKEN }}
+        run: |
+          if [ -z "$WEBSITE_UPDATE_TOKEN" ]; then
+            echo "::error::Configure WEBSITE_UPDATE_TOKEN; see docs/release.md."
+            exit 1
+          fi
+      - name: Check published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          draft=$(gh release view --repo willbradshaw/gameplot --json isDraft --jq .isDraft -- "$RELEASE_TAG")
+          test "$draft" = false
+      - name: Check out updater and release history
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          path: gameplot
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check out website
+        uses: actions/checkout@v5
+        with:
+          repository: willbradshaw/willbradshaw-astro
+          ref: main
+          path: website
+          token: ${{ secrets.WEBSITE_UPDATE_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Update manifests and describe data changes
+        run: node gameplot/scripts/update-website.js gameplot website "$RELEASE_TAG" "$RUNNER_TEMP/gameplot-website-pr.md"
+      - name: Open or update review PR
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        with:
+          token: ${{ secrets.WEBSITE_UPDATE_TOKEN }}
+          path: website
+          base: main
+          branch: gameplot/${{ env.RELEASE_TAG }}
+          add-paths: |
+            package.json
+            package-lock.json
+          commit-message: Update gameplot to ${{ env.RELEASE_TAG }}
+          title: Update gameplot to ${{ env.RELEASE_TAG }}
+          body-path: ${{ runner.temp }}/gameplot-website-pr.md

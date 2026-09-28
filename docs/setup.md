@@ -39,3 +39,6 @@ games must belong to the vocabulary. Files are read without being rewritten;
 the check does not require the dashboard to match the latest annotations.
 
 CI runs the same setup command, lint checks, test suite and data validation.
+
+The [release guide](release.md) covers tagging versions and configuring automatic
+website dependency PRs.
