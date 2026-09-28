@@ -1,12 +1,6 @@
-// Loads the processed dashboard document described in docs/process.md.
-let gameData = [];
-let generatedAt = null;
-
-export async function loadGameData(fetchData = fetch) {
-  gameData = [];
-  generatedAt = null;
-  const response = await fetchData('./data/games.json', { cache: 'no-store' });
-  if (!response.ok) throw new Error(`Could not load data/games.json (HTTP ${response.status})`);
+export async function loadGameData(dataUrl = './data/games.json', { fetchData = fetch, signal } = {}) {
+  const response = await fetchData(dataUrl, { cache: 'no-store', signal });
+  if (!response.ok) throw new Error(`Could not load ${dataUrl} (HTTP ${response.status})`);
   const data = await response.json();
   if (
     !data ||
@@ -16,15 +10,5 @@ export async function loadGameData(fetchData = fetch) {
   ) {
     throw new Error('Invalid dashboard document; regenerate data/games.json with gameplot process');
   }
-  gameData = data.games;
-  generatedAt = data.generatedAt;
-  return gameData;
-}
-
-export function getGameData() {
-  return gameData;
-}
-
-export function getGeneratedAt() {
-  return generatedAt;
+  return data;
 }

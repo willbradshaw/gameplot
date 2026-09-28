@@ -1,7 +1,5 @@
 // Statistics module - handles calculation and display of summary statistics
 
-import { getGeneratedAt } from './dataLoader.js';
-
 /**
  * Format the last updated date for display
  * @param {string} dateString - ISO date string
@@ -24,14 +22,16 @@ function formatLastUpdated(dateString) {
  * Update and display statistics based on filtered data
  * @param {Array} filteredData - Filtered game data
  */
-export function updateStats(filteredData) {
+export function updateStats(root, filteredData, generatedAt) {
   const avgRating = filteredData.length > 0 ? d3.mean(filteredData, (d) => d.rating).toFixed(1) : 0;
   const totalHours = d3.sum(filteredData, (d) => d.hoursPlayedTotal).toFixed(1);
   const gamesCount = filteredData.length;
 
-  const formattedDate = formatLastUpdated(getGeneratedAt());
+  const formattedDate = formatLastUpdated(generatedAt);
 
-  d3.select('#stats').html(`
+  d3.select(root)
+    .select('[data-role="stats"]')
+    .html(`
         <div class="stat-card">
             <div class="stat-value">${gamesCount}</div>
             <div class="stat-label">Games Played</div>

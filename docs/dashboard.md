@@ -47,14 +47,50 @@ both endpoints.
 
 ## How it is generated
 
-Opening `index.html` loads the JavaScript modules in `src/dashboard/`, which
-fetch [`data/games.json`](process.md#output). Its `games` array supplies the
-table rows and chart points; `generatedAt` supplies Last Updated.
+Opening `index.html` calls `mountDashboard` to create the dashboard and fetch
+[`data/games.json`](process.md#output). Its `games` array supplies the table rows
+and chart points; `generatedAt` supplies Last Updated.
 
 Filter choices are drawn from the loaded games. The selected games supply the
 summary statistics and category totals, and D3 renders the charts as SVG.
 Changing filters recalculates these values and redraws the views in the browser.
 No separate rendering command or build step is required.
 
-Reloading the page reads the latest processed file. The dashboard always loads
-`data/games.json`; a custom processing output path is not detected automatically.
+Reloading the standalone page reads the latest `data/games.json`. A custom
+processing output path is not detected automatically.
+
+## Embedding
+
+A host page can consume this repository as a git dependency or submodule.
+Load D3 7 as a global before mounting (the standalone page uses a CDN script
+for D3 7.8.5), then import the shared styles and mount function:
+
+```js
+import 'gameplot/styles.css';
+import { mountDashboard } from 'gameplot/src/dashboard/main.js';
+
+const dashboard = mountDashboard({
+  root: document.getElementById('gameplot-root'),
+  dataUrl: '/gaming/games.json',
+});
+```
+
+With a submodule, use the corresponding relative import paths. The host must
+serve the processed JSON at `dataUrl`; importing the dashboard does not copy
+the data into the site's public assets.
+
+`root` is a required element whose contents are replaced. `dataUrl` defaults to
+`./data/games.json`, resolved relative to the host page. The returned `ready`
+promise resolves after loading and rendering, or rejects with the error also
+shown in the dashboard. Call `dashboard.destroy()` on page teardown to cancel
+loading, disconnect resize handling and remove the dashboard. Mounting again
+on the same root disposes the previous mount; separate roots have independent
+filters, searches and charts.
+
+The shared stylesheet scopes dashboard rules to `.gameplot`, which the mount
+adds to its root. `standalone.css` and `src/dashboard/theme.js` belong only to
+the standalone page. The host supplies its own heading, introduction and theme
+toggle. Global colour variables remain on `:root` and `:root.dark`; toggling
+`dark` on `<html>` recolours the SVGs directly, without a redraw. The standalone
+toggle uses the `theme` localStorage key. Container resizing is observed and
+chart redraws are debounced by 250 ms, with a window-resize fallback.

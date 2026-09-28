@@ -1,0 +1,89 @@
+/* Page shell and theme switch for the standalone dashboard only. */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Fira Sans", "Segoe UI", sans-serif;
+  background: var(--page-bg);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 2.25rem;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+
+  font-size: 1.125rem;
+  margin-bottom: 32px;
+}
+
+.theme-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.theme-toggle {
+  font: inherit;
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--control-hover);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.theme-sun {
+  display: none;
+}
+
+.theme-moon {
+  display: block;
+}
+
+.dark .theme-moon {
+  display: none;
+}
+
+.dark .theme-sun {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+}
+
+:root.theme-changing,
+:root.theme-changing * {
+  transition: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
