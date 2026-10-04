@@ -107,8 +107,65 @@ export function finalizeRawGames(rows, label) {
  * @param {string} file
  * @param {import('../lib/model.js').RawGame[]} games
  * @param {import('consola').ConsolaInstance} log
+ * @param {Record<string, string>} sources source identifiers mapped to current display labels
  */
-export async function writeRawGames(file, games, log) {
-  await fs.outputJson(file, games, { spaces: 2 });
-  log.success(`Wrote ${games.length} games to ${file}`);
+export async function writeRawGames(file, games, log, sources) {
+  let previous = [];
+  try {
+    previous = parseOrThrow(rawGamesSchema, await fs.readJson(file), file);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  const merged = retainMissingGames(previous, parseOrThrow(rawGamesSchema, games, 'scrape'), sources, log);
+  await fs.outputJson(file, merged, { spaces: 2 });
+  log.success(`Wrote ${merged.length} games to ${file}`);
+}
+
+/** Merge history within each source, always preferring fresh records (including lower playtimes). */
+export function retainMissingGames(previous, fresh, sources, log) {
+  const key = (row) => JSON.stringify([row.source, String(row.id)]);
+  const legacyKey = (row) => JSON.stringify([row.platform, String(row.id)]);
+  const seen = new Set(fresh.map(key));
+  const counts = new Map();
+  for (const row of fresh) counts.set(legacyKey(row), (counts.get(legacyKey(row)) ?? 0) + 1);
+  // A fresh row already matched to attributed history cannot also cover an
+  // unidentified legacy row from another account.
+  const matched = new Set();
+  for (const row of previous) {
+    if (!row.source || !seen.has(key(row)) || matched.has(key(row))) continue;
+    matched.add(key(row));
+    const labelKey = legacyKey({ ...row, platform: sources[row.source] });
+    counts.set(labelKey, (counts.get(labelKey) ?? 0) - 1);
+  }
+  const retained = [];
+  for (const row of previous) {
+    let source = row.source;
+    if (!source) {
+      const candidates = Object.keys(sources).filter((s) => sources[s] === row.platform);
+      if (candidates.length === 0) continue;
+      if (candidates.length > 1) {
+        // Old batch files lack account identities. Only discard an old record
+        // when a corresponding fresh row exists; never guess a missing row's account.
+        const remaining = counts.get(legacyKey(row)) ?? 0;
+        if (!remaining)
+          throw new Error(
+            `Cannot retain "${row.game}": its old row has no source and matches multiple accounts. Add a source field to that row in the raw file and retry.`,
+          );
+        counts.set(legacyKey(row), remaining - 1);
+        continue;
+      }
+      [source] = candidates;
+    }
+    if (!Object.hasOwn(sources, source)) continue;
+    const candidate = { ...row, source, platform: sources[source] };
+    if (seen.has(key(candidate))) continue;
+    seen.add(key(candidate));
+    retained.push(candidate);
+  }
+  if (retained.length) {
+    log.warn(
+      `Retained ${retained.length} previously scraped games missing from this scrape:\n${retained.map((r) => `  ${r.game} (${r.source}, id ${r.id})`).join('\n')}`,
+    );
+  }
+  return [...fresh, ...retained];
 }

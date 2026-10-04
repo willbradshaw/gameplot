@@ -19,6 +19,10 @@ export const STATUSES = ['Active', 'Complete', 'Abandoned', 'Unplayed'];
 export const rawGameSchema = z.strictObject({
   game: name,
   platform: name,
+  source: z
+    .string()
+    .regex(/^[a-z]+(?::[a-z0-9-]+)?$/)
+    .optional(),
   lastPlayed: isoDate.nullable(),
   hoursPlayed: hours.nullable(),
   id,
