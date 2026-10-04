@@ -14,11 +14,12 @@ See [setup.md](setup.md) for installation.
 
 ### Output
 
-Every scraper writes a JSON array of rows with exactly these fields:
+Every scraper writes a JSON array of rows with these fields:
 
 | Field | Type | Meaning |
 |---|---|---|
 | `game` | string | Game name as the platform reports it |
+| `source` | string (optional in older files) | Scraper and account suffix, e.g. `steam` or `psn:uk` |
 | `platform` | string | Gaming platform display name, e.g. `PS5`, `Steam` |
 | `lastPlayed` | `YYYY-MM-DD` or null | Last recorded play date on platform |
 | `hoursPlayed` | number or null | Hours of recorded playtime on platform, to one decimal place |
@@ -27,11 +28,29 @@ Every scraper writes a JSON array of rows with exactly these fields:
 
 Each run writes one file, `data/raw/<platform>.json`, or
 `data/raw/<platform>-<suffix>.json` with `--suffix`. Rows are ordered by hours
-played in descending order.
+played in descending order, with retained historical rows appended.
 
 Titles the platform reports as unplayed (zero playtime) are skipped. Platforms
 that report ownership but no playtime at all keep every owned title, with
 `hoursPlayed` and `lastPlayed` null.
+
+### Missing games
+
+Scrapes retain games missing from the new results using the previous contents
+of the output file. Fresh records replace old ones by source and game ID,
+including changed names or lower playtimes. Missing records keep their previous
+playtime and date, and are listed in a warning. No history is available when
+writing to a new output path.
+
+The `source` field keeps accounts separate even when they share a platform
+label. Records from sources omitted from a batch are not retained. Use separate
+suffixes and output paths for different accounts.
+
+Older files without `source` are supported when the platform label identifies
+one source. If a missing record could belong to multiple accounts, the scrape
+stops without overwriting the file; add the correct `source` to that raw row
+before retrying. To remove a historical record deliberately, delete it from the
+raw output file; it will return if the platform reports it again.
 
 ### Options
 

@@ -7,7 +7,13 @@ import path from 'node:path';
 import { Command } from 'commander';
 import { RAW_DATA_DIR } from '../lib/env.js';
 import { createLogger } from '../lib/log.js';
-import { batchOutputFile, PLATFORM_NAMES, parseSources, runScrapeBatch } from '../scrape/batch.js';
+import {
+  batchOutputFile,
+  PLATFORM_NAMES,
+  parseSources,
+  runScrapeBatch,
+  sourceName,
+} from '../scrape/batch.js';
 import { writeRawGames } from '../scrape/common.js';
 import { GOG_PLATFORM, gogOutputFile, scrapeGogAccount } from '../scrape/gog.js';
 import { PSN_PLATFORM, psnOutputFile, scrapePsnAccount } from '../scrape/psn.js';
@@ -69,7 +75,13 @@ function platformCommand({ name, summary, description, defaultPlatform, outputFi
   ).action(async (opts) => {
     const log = createLogger(opts);
     const games = await scrape({ suffix: opts.suffix, platform: opts.label, log });
-    await writeRawGames(opts.out ?? path.join(RAW_DATA_DIR, outputFile(opts.suffix)), games, log);
+    const source = sourceName({ platform: name, suffix: opts.suffix });
+    await writeRawGames(
+      opts.out ?? path.join(RAW_DATA_DIR, outputFile(opts.suffix)),
+      games.map((game) => ({ ...game, source })),
+      log,
+      { [source]: opts.label },
+    );
   });
 }
 

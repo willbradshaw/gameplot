@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
+import os from 'node:os';
+import path from 'node:path';
 import { test } from 'node:test';
+import fs from 'fs-extra';
 import { silentLogger } from '../src/lib/log.js';
 import {
   batchEnvVar,
@@ -7,6 +10,7 @@ import {
   parseSources,
   resolveSources,
   runBatch,
+  runScrapeBatch,
   sourceName,
 } from '../src/scrape/batch.js';
 
@@ -199,4 +203,41 @@ test('batch cancellation stops before attempting later sources', async () => {
       (candidate) => candidate === error,
     );
   }
+});
+
+test('batch history keeps two accounts separate, even with identical platform labels and game ids', async (t) => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gameplot-batch-history-'));
+  t.after(() => fs.remove(dir));
+  const out = path.join(dir, 'batch.json');
+  let phase = 0;
+  const options = {
+    out,
+    log: silentLogger,
+    given: parseSources('psn:uk,psn', ['psn']),
+    saveEnv: async () => {},
+    registry: {
+      psn: {
+        label: 'PS5',
+        scrape: async ({ suffix }) => {
+          if (phase === 2) throw new Error('offline');
+          if (phase === 1 && suffix) return [];
+          return [{ ...row('Shared', 'PS5'), hoursPlayed: suffix ? 2 : phase === 1 ? 5 : 1 }];
+        },
+      },
+    },
+  };
+  await runScrapeBatch(options);
+  phase = 1;
+  await runScrapeBatch(options);
+  const records = await fs.readJson(out);
+  assert.deepEqual(
+    records.map((r) => [r.source, r.hoursPlayed]),
+    [
+      ['psn', 5],
+      ['psn:uk', 2],
+    ],
+  );
+  phase = 2;
+  await assert.rejects(runScrapeBatch(options), /nothing written/);
+  assert.deepEqual(await fs.readJson(out), records);
 });

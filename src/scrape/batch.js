@@ -12,16 +12,16 @@ import path from 'node:path';
 import { InvalidArgumentError } from 'commander';
 import { RAW_DATA_DIR, saveEnvVar } from '../lib/env.js';
 import { suffixedEnvVar, suffixedFile, writeRawGames } from './common.js';
-import { scrapeGogAccount } from './gog.js';
-import { scrapePsnAccount } from './psn.js';
-import { scrapeSteamAccount } from './steam.js';
-import { scrapeXboxAccount } from './xbox.js';
+import { GOG_PLATFORM, scrapeGogAccount } from './gog.js';
+import { PSN_PLATFORM, scrapePsnAccount } from './psn.js';
+import { STEAM_PLATFORM, scrapeSteamAccount } from './steam.js';
+import { scrapeXboxAccount, XBOX_PLATFORM } from './xbox.js';
 
 const REGISTRY = {
-  psn: { scrape: scrapePsnAccount },
-  steam: { scrape: scrapeSteamAccount },
-  xbox: { scrape: scrapeXboxAccount },
-  gog: { scrape: scrapeGogAccount },
+  psn: { scrape: scrapePsnAccount, label: PSN_PLATFORM },
+  steam: { scrape: scrapeSteamAccount, label: STEAM_PLATFORM },
+  xbox: { scrape: scrapeXboxAccount, label: XBOX_PLATFORM },
+  gog: { scrape: scrapeGogAccount, label: GOG_PLATFORM },
 };
 export const PLATFORM_NAMES = Object.keys(REGISTRY);
 
@@ -100,14 +100,18 @@ export const sourceName = ({ platform, suffix, label }) =>
  * @param {Record<string, { scrape: Function }>} options.registry  platform name -> scraper
  * @param {string} [options.defaultSuffix]  the batch --suffix, used by sources without their own
  * @param {import('consola').ConsolaInstance} options.log
- * @returns {Promise<{ rows: object[], failures: { source: string, error: Error }[] }>}
+ * @returns {Promise<{ rows: object[], failures: { source: string, error: Error }[], sourceLabels: Record<string, string> }>}
  */
 export async function runBatch({ sources, registry, defaultSuffix, log }) {
   const rows = [];
   const failures = [];
+  const sourceLabels = {};
   for (const source of sources) {
     const resolved = { ...source, suffix: source.suffix ?? defaultSuffix };
     const name = sourceName(resolved);
+    const sourceId = sourceName({ ...resolved, label: undefined });
+    if (Object.hasOwn(sourceLabels, sourceId)) throw new Error(`Duplicate resolved source: ${sourceId}`);
+    sourceLabels[sourceId] = resolved.label ?? registry[source.platform].label;
     log.info(`Fetching from ${name}`);
     try {
       const games = await registry[source.platform].scrape({
@@ -115,14 +119,15 @@ export async function runBatch({ sources, registry, defaultSuffix, log }) {
         platform: resolved.label,
         log,
       });
-      rows.push(...games);
+      sourceLabels[sourceId] ??= games[0]?.platform;
+      rows.push(...games.map((game) => ({ ...game, source: sourceId })));
     } catch (error) {
       if (['ExitPromptError', 'AbortPromptError', 'AbortError'].includes(error.name)) throw error;
       log.error(`${name} failed: ${error.message}`);
       failures.push({ source: name, error });
     }
   }
-  return { rows, failures };
+  return { rows, failures, sourceLabels };
 }
 
 /** Shared batch stage for the scrape command and the pipeline. */
@@ -138,11 +143,11 @@ export async function runScrapeBatch({
   const { sources, remembered } = resolveSources({ given, suffix, env, platforms: Object.keys(registry) });
   if (remembered) log.info(`Using remembered sources: ${sources.map(sourceName).join(',')}`);
   else await saveEnv(batchEnvVar(suffix), sources.map(sourceName).join(','));
-  const { rows, failures } = await runBatch({ sources, registry, defaultSuffix: suffix, log });
+  const { rows, failures, sourceLabels } = await runBatch({ sources, registry, defaultSuffix: suffix, log });
   if (failures.length)
     throw new Error(
       `${failures.length} of ${sources.length} sources failed (${failures.map((f) => f.source).join(', ')}); nothing written`,
     );
   log.info(`${rows.length} rows from ${sources.map(sourceName).join(', ')}`);
-  await writeRawGames(out ?? path.join(RAW_DATA_DIR, batchOutputFile(suffix)), rows, log);
+  await writeRawGames(out ?? path.join(RAW_DATA_DIR, batchOutputFile(suffix)), rows, log, sourceLabels);
 }

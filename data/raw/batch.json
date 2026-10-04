@@ -192,6 +192,14 @@
     "url": "https://store.steampowered.com/app/404730"
   },
   {
+    "game": "The Blood of Dawnwalker",
+    "platform": "Steam",
+    "lastPlayed": "2026-10-04",
+    "hoursPlayed": 30.9,
+    "id": 3751260,
+    "url": "https://store.steampowered.com/app/3751260"
+  },
+  {
     "game": "Tactical Breach Wizards",
     "platform": "Steam",
     "lastPlayed": "2025-04-30",
@@ -230,14 +238,6 @@
     "hoursPlayed": 27.3,
     "id": 489830,
     "url": "https://store.steampowered.com/app/489830"
-  },
-  {
-    "game": "The Blood of Dawnwalker",
-    "platform": "Steam",
-    "lastPlayed": "2026-09-26",
-    "hoursPlayed": 26.8,
-    "id": 3751260,
-    "url": "https://store.steampowered.com/app/3751260"
   },
   {
     "game": "Shadowrun: Hong Kong - Extended Edition",
@@ -2376,7 +2376,7 @@
     "url": "https://store.playstation.com/concept/232735"
   },
   {
-    "game": "The Witcher 3: Wild Hunt",
+    "game": "The Witcher 3: Wild Hunt — Remastered",
     "platform": "PS5",
     "lastPlayed": "2022-07-16",
     "hoursPlayed": 0,
@@ -2616,7 +2616,7 @@
     "url": "https://store.playstation.com/concept/10000185"
   },
   {
-    "game": "The Witcher 3: Wild Hunt",
+    "game": "The Witcher 3: Wild Hunt — Remastered",
     "platform": "PS5",
     "lastPlayed": "2022-07-18",
     "hoursPlayed": 4.7,
