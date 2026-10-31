@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T21:37:53.723Z",
+  "generatedAt": "2026-10-31T10:40:22.609Z",
   "games": [
     {
       "game": "80 Days",
@@ -451,15 +451,15 @@
         "https://store.steampowered.com/app/1086940"
       ],
       "hoursPlayedSingle": [
-        242,
-        148.5
+        242.4,
+        150.9
       ],
       "lastPlayedSingle": [
-        "2026-01-24",
-        "2026-08-25"
+        "2026-10-19",
+        "2026-10-25"
       ],
-      "hoursPlayedTotal": 390.5,
-      "lastPlayedTotal": "2026-08-25",
+      "hoursPlayedTotal": 393.3,
+      "lastPlayedTotal": "2026-10-25",
       "displayUrl": "https://store.steampowered.com/app/1086940",
       "rating": 9.6,
       "status": "Complete",
@@ -854,6 +854,33 @@
       "tags": [
         "Adventure",
         "Crime"
+      ]
+    },
+    {
+      "game": "Chained Echoes",
+      "platforms": [
+        "Steam"
+      ],
+      "ids": [
+        1229240
+      ],
+      "urls": [
+        "https://store.steampowered.com/app/1229240"
+      ],
+      "hoursPlayedSingle": [
+        3.4
+      ],
+      "lastPlayedSingle": [
+        "2026-09-14"
+      ],
+      "hoursPlayedTotal": 3.4,
+      "lastPlayedTotal": "2026-09-14",
+      "displayUrl": "https://store.steampowered.com/app/1229240",
+      "rating": 6.4,
+      "status": "Abandoned",
+      "tags": [
+        "Fantasy",
+        "RPG"
       ]
     },
     {
@@ -1685,15 +1712,15 @@
         "https://store.playstation.com/concept/232084"
       ],
       "hoursPlayedSingle": [
-        257.4,
+        259.4,
         37
       ],
       "lastPlayedSingle": [
-        "2026-09-24",
+        "2026-10-22",
         "2024-03-31"
       ],
-      "hoursPlayedTotal": 294.4,
-      "lastPlayedTotal": "2026-09-24",
+      "hoursPlayedTotal": 296.4,
+      "lastPlayedTotal": "2026-10-22",
       "displayUrl": "https://store.steampowered.com/app/435150",
       "rating": 8.4,
       "status": "Active",
@@ -3789,6 +3816,34 @@
       ]
     },
     {
+      "game": "Monster Train 2",
+      "platforms": [
+        "Steam"
+      ],
+      "ids": [
+        2742830
+      ],
+      "urls": [
+        "https://store.steampowered.com/app/2742830"
+      ],
+      "hoursPlayedSingle": [
+        1.5
+      ],
+      "lastPlayedSingle": [
+        "2026-05-15"
+      ],
+      "hoursPlayedTotal": 1.5,
+      "lastPlayedTotal": "2026-05-15",
+      "displayUrl": "https://store.steampowered.com/app/2742830",
+      "rating": 6.2,
+      "status": "Abandoned",
+      "tags": [
+        "Roguelike",
+        "Deckbuilder",
+        "Fantasy"
+      ]
+    },
+    {
       "game": "Moon Hunters",
       "platforms": [
         "PS5"
@@ -5791,6 +5846,38 @@
       "tags": [
         "Adventure",
         "Puzzle"
+      ]
+    },
+    {
+      "game": "Solasta: Crown of the Magister",
+      "platforms": [
+        "PS5",
+        "Steam"
+      ],
+      "ids": [
+        10008805,
+        1096530
+      ],
+      "urls": [
+        "https://store.playstation.com/concept/10008805",
+        "https://store.steampowered.com/app/1096530"
+      ],
+      "hoursPlayedSingle": [
+        3.5,
+        2.5
+      ],
+      "lastPlayedSingle": [
+        "2025-08-31",
+        "2025-10-02"
+      ],
+      "hoursPlayedTotal": 6,
+      "lastPlayedTotal": "2025-10-02",
+      "displayUrl": "https://store.steampowered.com/app/1096530",
+      "rating": 5.4,
+      "status": "Abandoned",
+      "tags": [
+        "Fantasy",
+        "RPG"
       ]
     },
     {
