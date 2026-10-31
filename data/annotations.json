@@ -455,9 +455,12 @@
   },
   {
     "game": "Chained Echoes",
-    "rating": null,
-    "status": "Active",
-    "tags": []
+    "rating": 6.4,
+    "status": "Abandoned",
+    "tags": [
+      "Fantasy",
+      "RPG"
+    ]
   },
   {
     "game": "Chants of Sennaar",
@@ -1836,8 +1839,8 @@
   },
   {
     "game": "Monster Train 2",
-    "rating": null,
-    "status": "Active",
+    "rating": 6.2,
+    "status": "Abandoned",
     "tags": [
       "Roguelike",
       "Deckbuilder",
@@ -2789,8 +2792,8 @@
   },
   {
     "game": "Solasta: Crown of the Magister",
-    "rating": null,
-    "status": "Active",
+    "rating": 5.4,
+    "status": "Abandoned",
     "tags": [
       "Fantasy",
       "RPG"
